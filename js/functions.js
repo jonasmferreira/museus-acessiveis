@@ -68,7 +68,21 @@ $(document).ready(function(){
       location.href="#footer";
     });
 
+	//REESCREVENDO O TABINDEX DOS ELEMTENTOS
+	var idx = 1;
+	$("*[tabIndex]").each(function(){
+		console.log($(this).attr('name'));
+		$(this).attr("tabIndex", idx);
+		idx++;
+	});
+
+
 });
+
+function showHideNews(){
+	
+}
+
 
 function controlerFontSize(obj,container,multipleSize,dontChangeMe){
 	//inicializo os valores

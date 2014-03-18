@@ -104,6 +104,14 @@ body.contrast {
 .contrast #outdoor #item-box #item dl dd{
 	color:#000;
 }
+
+.contrast #outdoor #item-box #item dl dt a{
+	color:#000;
+}
+.contrast #outdoor #item-box #item dl dd a{
+	color:#000;
+}
+
 .contrast #outdoor #item-box #item dl span,
 .contrast #outdoor #item-box #item dl i{
 	background-color: #FFF;
