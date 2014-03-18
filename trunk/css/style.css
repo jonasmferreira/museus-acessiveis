@@ -101,6 +101,7 @@ h3 {
 
 #content-r{
 	width: 288px;
+	padding: 0 0 30px 0;
 	background-color: #FFF;
 	float: right;
 }	
@@ -251,6 +252,17 @@ h3 {
 	line-height: 27px;
 	color:#f37920;
 }
+
+
+
+#outdoor #item-box #item dl dt a{
+	color:#f37920;
+}
+#outdoor #item-box #item dl dd a{
+	color:#f37920;
+}
+
+
 #outdoor #item-box #item dl span,
 #outdoor #item-box #item dl i{
 	background-color: #FFF;
@@ -490,7 +502,7 @@ h3 {
 	text-transform: uppercase;
 }
 #contact #access-option a{
-	color: #FFF;
+	color: #FFF !important;
 	text-decoration: none;
 }
 
@@ -642,6 +654,132 @@ h3 {
 	width: auto;
 	padding: 3px 5px;
 }
+
+
+/* PÁGINA DE DOWNLOADS E IMPRENSA */
+
+#download-box{
+	padding: 30px 15px 42px 110px;
+}
+
+table#list{
+	margin: 35px 0 0 0;
+	font-size: 12px;
+	color: #4d4d4d;
+}
+table#list thead tr td{
+	padding: 0 0 25px 0;
+	font-style: italic;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table#list thead td span{
+	font-weight: bold;
+	padding: 2px 5px;	
+	color: #FFF;
+	background: #4d4d4d; 
+}
+
+table#list tbody tr td{
+	border-bottom: 1px solid #632d8b;
+	text-align: left;
+	vertical-align: middle;
+	padding: 5px 0 5px 5px;
+	font-style: italic;
+}
+
+table#list tbody tr.none td{
+	border-bottom: none !important;
+}
+
+table#list tbody td a{
+	color: #4d4d4d; 
+}
+
+/* PÁGINA DE NOVIDADES 360 - ITEM */
+
+#news360 h1 a#news-list {
+	font-weight: normal;
+}
+
+#content-news{
+	font-size: 16px;
+	font-style: normal;
+	padding: 30px 30px 60px 0 !important;
+}
+
+#content-news img{
+	padding: 10px 0 !important;
+}
+
+#content-news #date{
+	padding-top: 30px;
+	font-size: 19px;
+	color: #f37920;
+}
+
+#content-news h2#title-news{
+	font-size: 28px;
+	font-weight: normal;
+	padding: 0 150px 30px 0;
+	color: #f37920;
+}
+
+#content-news #news-spotlight{
+	font-style: italic;
+	padding: 0 0 30px 0;
+}
+
+
+/* PÁGINA NOVIDADES 360 - LISTA */
+
+#outdoor-news{
+	height: 40px;
+	background: url(../img/content-dest_bg.png) right bottom no-repeat;
+}
+
+#news360.list{
+	padding: 30px 15px 39px 0 !important;
+}
+#news360.list h1{
+	padding-left: 110px;
+}
+
+#list-itens{
+	display: block;
+}
+#list-itens li.month-list{
+	background: url(../img/content-dest_bg.png) right bottom no-repeat;
+	display: block;
+	padding: 10px 0 10px 110px;
+}
+
+#list-itens li.month-list .itens{
+	padding: 10px 0 0 0;
+}
+
+.active{
+	display: block;
+}
+.inactive{
+	display: none;
+}
+
+#list-itens li.month-list h3{
+	font-size: 28px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
