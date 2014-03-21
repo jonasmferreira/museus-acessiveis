@@ -19,17 +19,17 @@
 <script type="text/javascript" src="js/usuario.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-		Painel Administrativo / Usuários <strong>/ <?=isset($aRow['usuario_id'])?'Editar':'Cadastrar'?> Autor</strong>
+		Painel Administrativo / Usuários <strong>/ <?=isset($aRow['usuario_id'])?'Editar':'Cadastrar'?> Usuario</strong>
 	</div>
 	<form action="controller/usuario.controller.php" method="post" id="formSalvar" name="formSalvar">
 		<input type="hidden" name="action" id="action" value="edit-item" />
 		<input type="hidden" name="usuario_id" id="usuario_id" value="<?=$aRow['usuario_id']?>" />
-		<input type="hidden" name="voltar" id="voltar" value="editarusuario.php" />
+		<input type="hidden" name="voltar" id="voltar" value="usuarioEdicao.php" />
 		<table cellpadding="0" cellspacing="0" id="formCadastro">
 			<tbody>
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Dados do Autor</strong>
+						<strong>Dados do Usuario</strong>
 					</td>
 				</tr>
 				<tr>
@@ -53,8 +53,11 @@
 					<td width="170">
 						Nível<br />
 						<select class="formTxt obrigatorio" name="usuario_nivel" id="usuario_nivel">
-							<option value="A"<?=$aRow['usuario_status']=='A'?' selected="selected"':''?>>Ativo</option>
-							<option value="I"<?=$aRow['usuario_status']=='I'?' selected="selected"':''?>>Inativo</option>
+							<?	foreach($aNivel AS $k=>$v):
+									$selected = $aRow['usuario_nivel']==$k?' selected="selected"':'';
+							?>
+							<option value="<?=$k?>"<?=$selected?>><?=$v?></option>
+							<?	endforeach;?>
 						</select>
 					</td>
 				</tr>
@@ -73,7 +76,7 @@
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td align="right">
-						<a href="listausuario.php" class="butVoltar">Voltar</a>&nbsp;
+						<a href="usuarioLista.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
 					</td>
 				</tr>

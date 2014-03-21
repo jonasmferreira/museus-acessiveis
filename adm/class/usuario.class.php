@@ -39,12 +39,7 @@ class usuario extends defaultClass{
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
-			SELECT	a.usuario_id
-					,a.usuario_nome
-					,a.usuario_login
-					,a.usuario_senha
-					,a.usuario_email
-					,a.usuario_status
+			SELECT	a.*
 			FROM	tb_usuario a
 			WHERE	1 = 1
 		";
