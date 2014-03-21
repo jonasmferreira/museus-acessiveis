@@ -14,11 +14,11 @@
 			var obj = $(this);
 			var id = trim($(this).attr('rel'));
 			var param = {
-				'autor_id':id
+				'usuario_id':id
 			}
 			deleteItem(
 					"Deseja Mesmo Excluir esse Item?"
-					,"controller/autor.controller.php?action=deleteItem"
+					,"controller/usuario.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');

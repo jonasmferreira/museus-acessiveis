@@ -1,31 +1,31 @@
 <?php
-$path_root_AutorController = dirname(__FILE__);
+$path_root_UsuarioController = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
-$path_root_AutorController = "{$path_root_AutorController}{$DS}..{$DS}..{$DS}";
-require_once "{$path_root_AutorController}adm{$DS}class{$DS}autor.class.php";
-$obj = new autor();
+$path_root_UsuarioController = "{$path_root_UsuarioController}{$DS}..{$DS}..{$DS}";
+require_once "{$path_root_UsuarioController}adm{$DS}class{$DS}usuario.class.php";
+$obj = new usuario();
 switch($_REQUEST['action']){
 	case 'edit-item':
-		$volta = "editarautor.php";
+		$volta = "usuarioEdicao.php";
 		if(isset($_POST['volta'])&&trim($_POST['volta'])!=''){
 			$volta = $_POST['volta'];
 		}
 		$obj->setValues($_POST);
 		$exec = $obj->edit();
-		if(isset($_POST['autor_id']) && trim($_POST['autor_id'])!=''){
+		if(isset($_POST['usuario_id']) && trim($_POST['usuario_id'])!=''){
 			if($exec['success']){
-				$msg = "Autor Atualizado com Sucesso!";
-				$url = "{$volta}?autor_id={$_POST['autor_id']}";
+				$msg = "Usuario Atualizado com Sucesso!";
+				$url = "{$volta}?usuario_id={$_POST['usuario_id']}";
 			}else{
-				$msg = "Erro ao atualizar o autor!";
-				$url = "{$volta}?autor_id={$_POST['autor_id']}";
+				$msg = "Erro ao atualizar o usuario!";
+				$url = "{$volta}?usuario_id={$_POST['usuario_id']}";
 			}
 		}else{
 			if($exec['success']){
-				$msg = "Autor Cadastrado com Sucesso!";
+				$msg = "Usuario Cadastrado com Sucesso!";
 				$url = "{$volta}";
 			}else{
-				$msg = "Erro ao cadastrar o autor!";
+				$msg = "Erro ao cadastrar o usuario!";
 				$url = "{$volta}";
 			}
 		}
@@ -48,5 +48,3 @@ switch($_REQUEST['action']){
 		echo json_encode($aResult);
 	break;
 }
-
-?>
