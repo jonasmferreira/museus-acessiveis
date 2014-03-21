@@ -51,12 +51,12 @@
            		<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Institucional
                 	<div>
-                    	<a href="listavideos.html" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
-                    	<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Downloads</a><br />
-                    	<a href="listavideos.html" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
-		           		<a href="listaposts.html" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
-                        <a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Newsletter</a><br />
-                        <a href="listaposts.html" style="background-image:url(imgs/icon-blog.png);">Contatos</a>
+                    	<a href="quemSomosEdicao.php" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
+                    	<a href="downloadsLista.php" style="background-image:url(imgs/icon-jogos.png);">Downloads</a><br />
+                    	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
+		           		<a href="acessibilidadeEdicao.php" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
+                        <a href="newsletterLista.php" style="background-image:url(imgs/icon-jogos.png);">Newsletter</a><br />
+                        <a href="contatosLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a>
                     </div>
                 </span>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
