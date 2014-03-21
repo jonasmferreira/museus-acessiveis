@@ -1,318 +1,717 @@
-CREATE DATABASE  IF NOT EXISTS `museus_acessiveis` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `museus_acessiveis`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
---
--- Host: localhost    Database: museus_acessiveis
--- ------------------------------------------------------
--- Server version	5.6.12-log
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP SCHEMA IF EXISTS `museus_acessiveis` ;
+CREATE SCHEMA IF NOT EXISTS `museus_acessiveis` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `museus_acessiveis` ;
 
---
--- Table structure for table `tb_anunciante`
---
+-- -----------------------------------------------------
+-- Table `tb_configuracao`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_configuracao` ;
 
-DROP TABLE IF EXISTS `tb_anunciante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_anunciante` (
-  `anunciante_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
-  `anunciante_dt` date NOT NULL,
-  `anunciante_hr` time NOT NULL,
-  `anunciante_nome` varchar(255) NOT NULL,
-  `anunciante_tipo_banner` enum('FB','RE') NOT NULL,
-  `anunciante_banner` varchar(255) NOT NULL,
-  `anunciante_banner_desc` varchar(255) NOT NULL,
-  `anunciante_dt_agenda` date NOT NULL,
-  PRIMARY KEY (`anunciante_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE  TABLE IF NOT EXISTS `tb_configuracao` (
+  `configuracao_id` INT UNSIGNED NOT NULL ,
+  `configuracao_baseurl_ckfinder` VARCHAR(255) NOT NULL ,
+  `configuracao_baseurl` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`configuracao_id`) )
+ENGINE = InnoDB;
 
---
--- Dumping data for table `tb_anunciante`
---
 
-LOCK TABLES `tb_anunciante` WRITE;
-/*!40000 ALTER TABLE `tb_anunciante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_anunciante` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `tb_usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_usuario` ;
 
---
--- Table structure for table `tb_anunciante_tag`
---
+CREATE  TABLE IF NOT EXISTS `tb_usuario` (
+  `usuario_id` BIGINT UNSIGNED NOT NULL ,
+  `usuario_nome` VARCHAR(255) NOT NULL ,
+  `usuario_login` VARCHAR(255) NOT NULL ,
+  `usuario_senha` VARCHAR(45) NOT NULL ,
+  `usuario_email` VARCHAR(255) NOT NULL ,
+  `usuario_nivel` ENUM('AS','A','U') NOT NULL DEFAULT 'U' ,
+  `usuario_status` ENUM('A','I') NOT NULL ,
+  PRIMARY KEY (`usuario_id`) )
+ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `tb_anunciante_tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_anunciante_tag` (
-  `anunciante_id` bigint(19) unsigned NOT NULL,
-  `tag_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`anunciante_id`,`tag_id`),
-  KEY `fk_tb_anunciante_has_tb_tag_tb_tag1_idx` (`tag_id`),
-  KEY `fk_tb_anunciante_has_tb_tag_tb_anunciante1_idx` (`anunciante_id`),
-  CONSTRAINT `fk_tb_anunciante_has_tb_tag_tb_anunciante1` FOREIGN KEY (`anunciante_id`) REFERENCES `tb_anunciante` (`anunciante_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_anunciante_has_tb_tag_tb_tag1` FOREIGN KEY (`tag_id`) REFERENCES `tb_tag` (`tag_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tb_anunciante_tag`
---
+-- -----------------------------------------------------
+-- Table `tb_texto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_texto` ;
 
-LOCK TABLES `tb_anunciante_tag` WRITE;
-/*!40000 ALTER TABLE `tb_anunciante_tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_anunciante_tag` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE  TABLE IF NOT EXISTS `tb_texto` (
+  `texto_id` INT UNSIGNED NOT NULL ,
+  `texto_dt` DATE NOT NULL ,
+  `texto_hr` TIME NOT NULL ,
+  `texto_conteudo` LONGTEXT NOT NULL ,
+  PRIMARY KEY (`texto_id`) )
+ENGINE = InnoDB;
 
---
--- Table structure for table `tb_configuracao`
---
 
-DROP TABLE IF EXISTS `tb_configuracao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_configuracao` (
-  `configuracao_id` int(10) unsigned NOT NULL,
-  `configuracao_baseurl_ckfinder` varchar(255) NOT NULL,
-  `configuracao_baseurl` varchar(255) NOT NULL,
-  PRIMARY KEY (`configuracao_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `tb_download`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_download` ;
 
---
--- Dumping data for table `tb_configuracao`
---
+CREATE  TABLE IF NOT EXISTS `tb_download` (
+  `download_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `download_titulo` VARCHAR(255) NOT NULL ,
+  `download_tipo` INT(2) NOT NULL ,
+  `download_tamanho` DECIMAL(25,2) NOT NULL ,
+  `download_arquivo` VARCHAR(255) NOT NULL ,
+  `download_dt` DATE NOT NULL ,
+  `download_hr` TIME NOT NULL ,
+  PRIMARY KEY (`download_id`) )
+ENGINE = InnoDB;
 
-LOCK TABLES `tb_configuracao` WRITE;
-/*!40000 ALTER TABLE `tb_configuracao` DISABLE KEYS */;
-INSERT INTO `tb_configuracao` VALUES (1,'http://localhost/museus-acessiveis/img_editor','http://localhost/museus-acessiveis/');
-/*!40000 ALTER TABLE `tb_configuracao` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_download`
---
+-- -----------------------------------------------------
+-- Table `tb_imprensa`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_imprensa` ;
 
-DROP TABLE IF EXISTS `tb_download`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_download` (
-  `download_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
-  `download_titulo` varchar(255) NOT NULL,
-  `download_tipo` int(2) NOT NULL,
-  `download_tamanho` decimal(25,2) NOT NULL,
-  `download_arquivo` varchar(255) NOT NULL,
-  `download_dt` date NOT NULL,
-  `download_hr` time NOT NULL,
-  PRIMARY KEY (`download_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE  TABLE IF NOT EXISTS `tb_imprensa` (
+  `imprensa_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `imprensa_titulo` VARCHAR(255) NOT NULL ,
+  `imprensa_tipo` INT(2) NOT NULL ,
+  `imprensa_tamanho` DECIMAL(25,2) NOT NULL ,
+  `imprensa_arquivo` VARCHAR(255) NOT NULL ,
+  `imprensa_dt` DATE NOT NULL ,
+  `imprensa_hr` TIME NOT NULL ,
+  PRIMARY KEY (`imprensa_id`) )
+ENGINE = InnoDB;
 
---
--- Dumping data for table `tb_download`
---
 
-LOCK TABLES `tb_download` WRITE;
-/*!40000 ALTER TABLE `tb_download` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_download` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `tb_novidade_360`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_novidade_360` ;
 
---
--- Table structure for table `tb_imprensa`
---
+CREATE  TABLE IF NOT EXISTS `tb_novidade_360` (
+  `novidade_360_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `novidade_360_dt_agenda` DATE NOT NULL ,
+  `novidade_360_dt` DATE NOT NULL ,
+  `tb_novidade_360col` VARCHAR(45) NULL ,
+  `novidade_360_hr` TIME NOT NULL ,
+  `novidade_360_titulo` VARCHAR(255) NOT NULL ,
+  `novidade_360_resumo` TEXT NOT NULL ,
+  `novidade_360_thumb` VARCHAR(255) NOT NULL ,
+  `novidade_360_thumb_desc` VARCHAR(255) NOT NULL ,
+  `novidade_360_fonte` VARCHAR(255) NOT NULL ,
+  `novidade_360_url_fonte` VARCHAR(255) NOT NULL ,
+  `novidade_360_conteudo` LONGTEXT NOT NULL ,
+  `novidade_360_exibir_banner` ENUM('S','N') NOT NULL ,
+  `novidade_360_banner` VARCHAR(255) NOT NULL ,
+  `novidade_360_banner_desc` TEXT NOT NULL ,
+  `novidade_360_exibir_destaque_home` ENUM('S','N') NOT NULL ,
+  `novidade_360_destaque_home` VARCHAR(255) NOT NULL ,
+  `novidade_360_destaque_home_desc` TEXT NOT NULL ,
+  `novidade_360_destaque_home_frase` TEXT NOT NULL ,
+  PRIMARY KEY (`novidade_360_id`) )
+ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `tb_imprensa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_imprensa` (
-  `imprensa_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
-  `imprensa_titulo` varchar(255) NOT NULL,
-  `imprensa_tipo` int(2) NOT NULL,
-  `imprensa_tamanho` decimal(25,2) NOT NULL,
-  `imprensa_arquivo` varchar(255) NOT NULL,
-  `imprensa_dt` date NOT NULL,
-  `imprensa_hr` time NOT NULL,
-  PRIMARY KEY (`imprensa_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tb_imprensa`
---
+-- -----------------------------------------------------
+-- Table `tb_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_tag` ;
 
-LOCK TABLES `tb_imprensa` WRITE;
-/*!40000 ALTER TABLE `tb_imprensa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_imprensa` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE  TABLE IF NOT EXISTS `tb_tag` (
+  `tag_id` BIGINT NOT NULL AUTO_INCREMENT ,
+  `tag_titulo` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`tag_id`) )
+ENGINE = InnoDB;
 
---
--- Table structure for table `tb_novidade_360`
---
 
-DROP TABLE IF EXISTS `tb_novidade_360`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_novidade_360` (
-  `novidade_360_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
-  `novidade_360_dt_agenda` date NOT NULL,
-  `novidade_360_dt` date NOT NULL,
-  `tb_novidade_360col` varchar(45) DEFAULT NULL,
-  `novidade_360_hr` time NOT NULL,
-  `novidade_360_titulo` varchar(255) NOT NULL,
-  `novidade_360_resumo` text NOT NULL,
-  `novidade_360_thumb` varchar(255) NOT NULL,
-  `novidade_360_thumb_desc` varchar(255) NOT NULL,
-  `novidade_360_fonte` varchar(255) NOT NULL,
-  `novidade_360_url_fonte` varchar(255) NOT NULL,
-  `novidade_360_conteudo` longtext NOT NULL,
-  `novidade_360_exibir_banner` enum('S','N') NOT NULL,
-  `novidade_360_banner` varchar(255) NOT NULL,
-  `novidade_360_banner_desc` text NOT NULL,
-  `novidade_360_exibir_destaque_home` enum('S','N') NOT NULL,
-  `novidade_360_destaque_home` varchar(255) NOT NULL,
-  `novidade_360_destaque_home_desc` text NOT NULL,
-  `novidade_360_destaque_home_frase` text NOT NULL,
-  PRIMARY KEY (`novidade_360_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `tb_novidade_360_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_novidade_360_tag` ;
 
---
--- Dumping data for table `tb_novidade_360`
---
+CREATE  TABLE IF NOT EXISTS `tb_novidade_360_tag` (
+  `novidade_360_id` BIGINT UNSIGNED NOT NULL ,
+  `tag_id` BIGINT NOT NULL ,
+  PRIMARY KEY (`novidade_360_id`, `tag_id`) ,
+  INDEX `fk_tb_novidade_360_has_tb_tag_tb_tag1_idx` (`tag_id` ASC) ,
+  INDEX `fk_tb_novidade_360_has_tb_tag_tb_novidade_360_idx` (`novidade_360_id` ASC) ,
+  CONSTRAINT `fk_tb_novidade_360_has_tb_tag_tb_novidade_360`
+    FOREIGN KEY (`novidade_360_id` )
+    REFERENCES `tb_novidade_360` (`novidade_360_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_novidade_360_has_tb_tag_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-LOCK TABLES `tb_novidade_360` WRITE;
-/*!40000 ALTER TABLE `tb_novidade_360` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_novidade_360` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_novidade_360_tag`
---
+-- -----------------------------------------------------
+-- Table `tb_anunciante`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_anunciante` ;
 
-DROP TABLE IF EXISTS `tb_novidade_360_tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_novidade_360_tag` (
-  `novidade_360_id` bigint(19) unsigned NOT NULL,
-  `tag_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`novidade_360_id`,`tag_id`),
-  KEY `fk_tb_novidade_360_has_tb_tag_tb_tag1_idx` (`tag_id`),
-  KEY `fk_tb_novidade_360_has_tb_tag_tb_novidade_360_idx` (`novidade_360_id`),
-  CONSTRAINT `fk_tb_novidade_360_has_tb_tag_tb_novidade_360` FOREIGN KEY (`novidade_360_id`) REFERENCES `tb_novidade_360` (`novidade_360_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_novidade_360_has_tb_tag_tb_tag1` FOREIGN KEY (`tag_id`) REFERENCES `tb_tag` (`tag_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE  TABLE IF NOT EXISTS `tb_anunciante` (
+  `anunciante_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `anunciante_dt` DATE NOT NULL ,
+  `anunciante_hr` TIME NOT NULL ,
+  `anunciante_nome` VARCHAR(255) NOT NULL ,
+  `anunciante_tipo_banner` ENUM('FB','RE') NOT NULL ,
+  `anunciante_banner` VARCHAR(255) NOT NULL ,
+  `anunciante_banner_desc` VARCHAR(255) NOT NULL ,
+  `anunciante_dt_agenda` DATE NOT NULL ,
+  PRIMARY KEY (`anunciante_id`) )
+ENGINE = InnoDB;
 
---
--- Dumping data for table `tb_novidade_360_tag`
---
 
-LOCK TABLES `tb_novidade_360_tag` WRITE;
-/*!40000 ALTER TABLE `tb_novidade_360_tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_novidade_360_tag` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `tb_anunciante_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_anunciante_tag` ;
 
---
--- Table structure for table `tb_tag`
---
+CREATE  TABLE IF NOT EXISTS `tb_anunciante_tag` (
+  `anunciante_id` BIGINT UNSIGNED NOT NULL ,
+  `tag_id` BIGINT NOT NULL ,
+  PRIMARY KEY (`anunciante_id`, `tag_id`) ,
+  INDEX `fk_tb_anunciante_has_tb_tag_tb_tag1_idx` (`tag_id` ASC) ,
+  INDEX `fk_tb_anunciante_has_tb_tag_tb_anunciante1_idx` (`anunciante_id` ASC) ,
+  CONSTRAINT `fk_tb_anunciante_has_tb_tag_tb_anunciante1`
+    FOREIGN KEY (`anunciante_id` )
+    REFERENCES `tb_anunciante` (`anunciante_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_anunciante_has_tb_tag_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `tb_tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_tag` (
-  `tag_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tag_titulo` varchar(255) NOT NULL,
-  PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tb_tag`
---
+-- -----------------------------------------------------
+-- Table `tb_contato`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_contato` ;
 
-LOCK TABLES `tb_tag` WRITE;
-/*!40000 ALTER TABLE `tb_tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_tag` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE  TABLE IF NOT EXISTS `tb_contato` (
+  `contato_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `contato_dt` DATE NOT NULL ,
+  `contato_hr` TIME NOT NULL ,
+  `contato_tipo` INT(2) NOT NULL ,
+  `contato_nome` VARCHAR(255) NOT NULL ,
+  `contato_link` VARCHAR(45) NOT NULL ,
+  `contato_exibir` ENUM('S','N') NOT NULL ,
+  PRIMARY KEY (`contato_id`) )
+ENGINE = InnoDB;
 
---
--- Table structure for table `tb_texto`
---
 
-DROP TABLE IF EXISTS `tb_texto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_texto` (
-  `texto_id` int(10) unsigned NOT NULL,
-  `texto_dt` date NOT NULL,
-  `texto_hr` time NOT NULL,
-  `texto_conteudo` longtext NOT NULL,
-  PRIMARY KEY (`texto_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `tb_agenda`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_agenda` ;
 
---
--- Dumping data for table `tb_texto`
---
+CREATE  TABLE IF NOT EXISTS `tb_agenda` (
+  `agenda_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `agenda_dt_cad` DATE NOT NULL ,
+  `agenda_hr_cad` TIME NOT NULL ,
+  `agenda_titulo` VARCHAR(255) NOT NULL ,
+  `agenda_resumo` TEXT NOT NULL ,
+  `agenda_dt` DATE NOT NULL ,
+  `agenda_img` VARCHAR(255) NOT NULL ,
+  `agenda_img_desc` TEXT NOT NULL ,
+  `agenda_fonte` VARCHAR(255) NOT NULL ,
+  `agenda_link_fonte` VARCHAR(255) NOT NULL ,
+  `agenda_conteudo` VARCHAR(255) NOT NULL ,
+  `agenda_exibir` ENUM('S','N') NOT NULL ,
+  PRIMARY KEY (`agenda_id`) )
+ENGINE = InnoDB;
 
-LOCK TABLES `tb_texto` WRITE;
-/*!40000 ALTER TABLE `tb_texto` DISABLE KEYS */;
-INSERT INTO `tb_texto` VALUES (1,'0000-00-00','00:00:00',''),(2,'0000-00-00','00:00:00','');
-/*!40000 ALTER TABLE `tb_texto` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `tb_usuario`
---
+-- -----------------------------------------------------
+-- Table `tb_agenda_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_agenda_tag` ;
 
-DROP TABLE IF EXISTS `tb_usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_usuario` (
-  `usuario_id` bigint(19) unsigned NOT NULL,
-  `usuario_nome` varchar(255) NOT NULL,
-  `usuario_login` varchar(255) NOT NULL,
-  `usuario_senha` varchar(45) NOT NULL,
-  `usuario_email` varchar(255) NOT NULL,
-  `usuario_nivel` enum('AS','A','U') NOT NULL DEFAULT 'U',
-  `usuario_status` enum('A','I') NOT NULL,
-  PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE  TABLE IF NOT EXISTS `tb_agenda_tag` (
+  `agenda_id` BIGINT UNSIGNED NOT NULL ,
+  `tag_id` BIGINT NOT NULL ,
+  PRIMARY KEY (`agenda_id`, `tag_id`) ,
+  INDEX `fk_tb_agenda_has_tb_tag_tb_tag1_idx` (`tag_id` ASC) ,
+  INDEX `fk_tb_agenda_has_tb_tag_tb_agenda1_idx` (`agenda_id` ASC) ,
+  CONSTRAINT `fk_tb_agenda_has_tb_tag_tb_agenda1`
+    FOREIGN KEY (`agenda_id` )
+    REFERENCES `tb_agenda` (`agenda_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_agenda_has_tb_tag_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
---
--- Dumping data for table `tb_usuario`
---
 
-LOCK TABLES `tb_usuario` WRITE;
-/*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `tb_newsletter`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_newsletter` ;
 
---
--- Dumping events for database 'museus_acessiveis'
---
+CREATE  TABLE IF NOT EXISTS `tb_newsletter` (
+  `newsletter_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `newsletter_nome` VARCHAR(45) NOT NULL ,
+  `newsletter_email` VARCHAR(45) NOT NULL ,
+  `newsletter_receber_informacoes` ENUM('S','N') NOT NULL ,
+  PRIMARY KEY (`newsletter_id`) )
+ENGINE = InnoDB;
 
---
--- Dumping routines for database 'museus_acessiveis'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- -----------------------------------------------------
+-- Table `tb_glossario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_glossario` ;
 
--- Dump completed on 2014-03-16 16:36:17
+CREATE  TABLE IF NOT EXISTS `tb_glossario` (
+  `glossario_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `glossario_dt` DATE NOT NULL ,
+  `glossario_hr` TIME NOT NULL ,
+  `glossario_palavra` VARCHAR(255) NOT NULL ,
+  `glossario_definicao` TEXT NOT NULL ,
+  `glossario_fonte` VARCHAR(255) NOT NULL ,
+  `glossario_link_fonte` VARCHAR(255) NOT NULL ,
+  `glossario_conteudo` LONGTEXT NOT NULL ,
+  `glossario_exibir` ENUM('S','N') NOT NULL ,
+  PRIMARY KEY (`glossario_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_glossario_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_glossario_tag` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_glossario_tag` (
+  `tag_id` BIGINT NOT NULL ,
+  `glossario_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`tag_id`, `glossario_id`) ,
+  INDEX `fk_tb_tag_has_tb_glossario_tb_glossario1_idx` (`glossario_id` ASC) ,
+  INDEX `fk_tb_tag_has_tb_glossario_tb_tag1_idx` (`tag_id` ASC) ,
+  CONSTRAINT `fk_tb_tag_has_tb_glossario_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_tag_has_tb_glossario_tb_glossario1`
+    FOREIGN KEY (`glossario_id` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_glossario_relacionado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_glossario_relacionado` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_glossario_relacionado` (
+  `glossario_id` BIGINT UNSIGNED NOT NULL ,
+  `glossario_id1` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`glossario_id`, `glossario_id1`) ,
+  INDEX `fk_tb_glossario_has_tb_glossario_tb_glossario2_idx` (`glossario_id1` ASC) ,
+  INDEX `fk_tb_glossario_has_tb_glossario_tb_glossario1_idx` (`glossario_id` ASC) ,
+  CONSTRAINT `fk_tb_glossario_has_tb_glossario_tb_glossario1`
+    FOREIGN KEY (`glossario_id` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_glossario_has_tb_glossario_tb_glossario2`
+    FOREIGN KEY (`glossario_id1` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_extra`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_extra` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_extra` (
+  `extra_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `extra_nome_campo` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`extra_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_curso`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_curso` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_curso` (
+  `curso_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `curso_dt_cad` DATE NOT NULL ,
+  `curso_hr_cad` TIME NOT NULL ,
+  `curso_dt_ini` DATE NOT NULL ,
+  `curso_dt_fim` DATE NOT NULL ,
+  `curso_sob_demanda` ENUM('S','N') NOT NULL ,
+  `curso_titulo` VARCHAR(255) NOT NULL ,
+  `curso_resumo` TEXT NOT NULL ,
+  `curso_thumb` VARCHAR(255) NOT NULL ,
+  `curso_thumb_desc` TEXT NOT NULL ,
+  `curso_fonte` VARCHAR(255) NOT NULL ,
+  `curso_link_fonte` VARCHAR(255) NOT NULL ,
+  `curso_conteudo` LONGTEXT NOT NULL ,
+  `curso_agenda` DATE NOT NULL ,
+  PRIMARY KEY (`curso_id`) )
+ENGINE = InnoDB
+COMMENT = '	';
+
+
+-- -----------------------------------------------------
+-- Table `tb_curso_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_curso_tag` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_curso_tag` (
+  `tag_id` BIGINT NOT NULL ,
+  `curso_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`tag_id`, `curso_id`) ,
+  INDEX `fk_tb_tag_has_tb_curso_tb_curso1_idx` (`curso_id` ASC) ,
+  INDEX `fk_tb_tag_has_tb_curso_tb_tag1_idx` (`tag_id` ASC) ,
+  CONSTRAINT `fk_tb_tag_has_tb_curso_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_tag_has_tb_curso_tb_curso1`
+    FOREIGN KEY (`curso_id` )
+    REFERENCES `tb_curso` (`curso_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_curso_glossario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_curso_glossario` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_curso_glossario` (
+  `glossario_id` BIGINT UNSIGNED NOT NULL ,
+  `curso_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`glossario_id`, `curso_id`) ,
+  INDEX `fk_tb_glossario_has_tb_curso_tb_curso1_idx` (`curso_id` ASC) ,
+  INDEX `fk_tb_glossario_has_tb_curso_tb_glossario1_idx` (`glossario_id` ASC) ,
+  CONSTRAINT `fk_tb_glossario_has_tb_curso_tb_glossario1`
+    FOREIGN KEY (`glossario_id` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_glossario_has_tb_curso_tb_curso1`
+    FOREIGN KEY (`curso_id` )
+    REFERENCES `tb_curso` (`curso_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_curso_download`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_curso_download` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_curso_download` (
+  `curso_id` BIGINT UNSIGNED NOT NULL ,
+  `download_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`curso_id`, `download_id`) ,
+  INDEX `fk_tb_curso_has_tb_download_tb_download1_idx` (`download_id` ASC) ,
+  INDEX `fk_tb_curso_has_tb_download_tb_curso1_idx` (`curso_id` ASC) ,
+  CONSTRAINT `fk_tb_curso_has_tb_download_tb_curso1`
+    FOREIGN KEY (`curso_id` )
+    REFERENCES `tb_curso` (`curso_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_curso_has_tb_download_tb_download1`
+    FOREIGN KEY (`download_id` )
+    REFERENCES `tb_download` (`download_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_curso_extra`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_curso_extra` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_curso_extra` (
+  `curso_id` BIGINT UNSIGNED NOT NULL ,
+  `extra_id` BIGINT UNSIGNED NOT NULL ,
+  `curso_extra_valor` TEXT NOT NULL ,
+  PRIMARY KEY (`curso_id`, `extra_id`) ,
+  INDEX `fk_tb_curso_has_tb_extra_tb_extra1_idx` (`extra_id` ASC) ,
+  INDEX `fk_tb_curso_has_tb_extra_tb_curso1_idx` (`curso_id` ASC) ,
+  CONSTRAINT `fk_tb_curso_has_tb_extra_tb_curso1`
+    FOREIGN KEY (`curso_id` )
+    REFERENCES `tb_curso` (`curso_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_curso_has_tb_extra_tb_extra1`
+    FOREIGN KEY (`extra_id` )
+    REFERENCES `tb_extra` (`extra_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_servico`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_servico` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_servico` (
+  `servico_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `servico_dt_cad` DATE NOT NULL ,
+  `servico_hr_cad` TIME NOT NULL ,
+  `servico_dt_ini` DATE NOT NULL ,
+  `servico_dt_fim` DATE NOT NULL ,
+  `servico_sob_demanda` ENUM('S','N') NOT NULL ,
+  `servico_titulo` VARCHAR(255) NOT NULL ,
+  `servico_resumo` TEXT NOT NULL ,
+  `servico_thumb` VARCHAR(255) NOT NULL ,
+  `servico_thumb_desc` TEXT NOT NULL ,
+  `servico_fonte` VARCHAR(255) NOT NULL ,
+  `servico_link_fonte` VARCHAR(255) NOT NULL ,
+  `servico_agenda` DATE NOT NULL ,
+  PRIMARY KEY (`servico_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_servico_download`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_servico_download` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_servico_download` (
+  `servico_id` BIGINT UNSIGNED NOT NULL ,
+  `download_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`servico_id`, `download_id`) ,
+  INDEX `fk_tb_servico_has_tb_download_tb_download1_idx` (`download_id` ASC) ,
+  INDEX `fk_tb_servico_has_tb_download_tb_servico1_idx` (`servico_id` ASC) ,
+  CONSTRAINT `fk_tb_servico_has_tb_download_tb_servico1`
+    FOREIGN KEY (`servico_id` )
+    REFERENCES `tb_servico` (`servico_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_servico_has_tb_download_tb_download1`
+    FOREIGN KEY (`download_id` )
+    REFERENCES `tb_download` (`download_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_servico_glossario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_servico_glossario` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_servico_glossario` (
+  `servico_id` BIGINT UNSIGNED NOT NULL ,
+  `glossario_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`servico_id`, `glossario_id`) ,
+  INDEX `fk_tb_servico_has_tb_glossario_tb_glossario1_idx` (`glossario_id` ASC) ,
+  INDEX `fk_tb_servico_has_tb_glossario_tb_servico1_idx` (`servico_id` ASC) ,
+  CONSTRAINT `fk_tb_servico_has_tb_glossario_tb_servico1`
+    FOREIGN KEY (`servico_id` )
+    REFERENCES `tb_servico` (`servico_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_servico_has_tb_glossario_tb_glossario1`
+    FOREIGN KEY (`glossario_id` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_servico_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_servico_tag` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_servico_tag` (
+  `tag_id` BIGINT NOT NULL ,
+  `servico_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`tag_id`, `servico_id`) ,
+  INDEX `fk_tb_tag_has_tb_servico_tb_servico1_idx` (`servico_id` ASC) ,
+  INDEX `fk_tb_tag_has_tb_servico_tb_tag1_idx` (`tag_id` ASC) ,
+  CONSTRAINT `fk_tb_tag_has_tb_servico_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_tag_has_tb_servico_tb_servico1`
+    FOREIGN KEY (`servico_id` )
+    REFERENCES `tb_servico` (`servico_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_servico_extra`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_servico_extra` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_servico_extra` (
+  `servico_id` BIGINT UNSIGNED NOT NULL ,
+  `extra_id` BIGINT UNSIGNED NOT NULL ,
+  `servico_extra_valor` TEXT NOT NULL ,
+  PRIMARY KEY (`servico_id`, `extra_id`) ,
+  INDEX `fk_tb_servico_has_tb_extra_tb_extra1_idx` (`extra_id` ASC) ,
+  INDEX `fk_tb_servico_has_tb_extra_tb_servico1_idx` (`servico_id` ASC) ,
+  CONSTRAINT `fk_tb_servico_has_tb_extra_tb_servico1`
+    FOREIGN KEY (`servico_id` )
+    REFERENCES `tb_servico` (`servico_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_servico_has_tb_extra_tb_extra1`
+    FOREIGN KEY (`extra_id` )
+    REFERENCES `tb_extra` (`extra_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_projeto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_projeto` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_projeto` (
+  `projeto_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `projeto_dt_cad` DATE NOT NULL ,
+  `projeto_hr_cad` TIME NOT NULL ,
+  `projeto_dt_ini` DATE NOT NULL ,
+  `projeto_dt_fim` DATE NOT NULL ,
+  `projeto_sob_demanda` ENUM('S','N') NOT NULL ,
+  `projeto_tipo` ENUM('A','R','EA') NOT NULL ,
+  `projeto_titulo` VARCHAR(255) NOT NULL ,
+  `projeto_resumo` TEXT NOT NULL ,
+  `projeto_thumb` VARCHAR(255) NOT NULL ,
+  `projeto_thumb_desc` TEXT NOT NULL ,
+  `projeto_fonte` VARCHAR(255) NOT NULL ,
+  `projeto_link_fonte` VARCHAR(255) NOT NULL ,
+  `projeto_agenda` DATE NOT NULL ,
+  PRIMARY KEY (`projeto_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_projeto_tag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_projeto_tag` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_projeto_tag` (
+  `projeto_id` BIGINT UNSIGNED NOT NULL ,
+  `tag_id` BIGINT NOT NULL ,
+  PRIMARY KEY (`projeto_id`, `tag_id`) ,
+  INDEX `fk_tb_projeto_has_tb_tag_tb_tag1_idx` (`tag_id` ASC) ,
+  INDEX `fk_tb_projeto_has_tb_tag_tb_projeto1_idx` (`projeto_id` ASC) ,
+  CONSTRAINT `fk_tb_projeto_has_tb_tag_tb_projeto1`
+    FOREIGN KEY (`projeto_id` )
+    REFERENCES `tb_projeto` (`projeto_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_projeto_has_tb_tag_tb_tag1`
+    FOREIGN KEY (`tag_id` )
+    REFERENCES `tb_tag` (`tag_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_projeto_glossario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_projeto_glossario` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_projeto_glossario` (
+  `projeto_id` BIGINT UNSIGNED NOT NULL ,
+  `glossario_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`projeto_id`, `glossario_id`) ,
+  INDEX `fk_tb_projeto_has_tb_glossario_tb_glossario1_idx` (`glossario_id` ASC) ,
+  INDEX `fk_tb_projeto_has_tb_glossario_tb_projeto1_idx` (`projeto_id` ASC) ,
+  CONSTRAINT `fk_tb_projeto_has_tb_glossario_tb_projeto1`
+    FOREIGN KEY (`projeto_id` )
+    REFERENCES `tb_projeto` (`projeto_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_projeto_has_tb_glossario_tb_glossario1`
+    FOREIGN KEY (`glossario_id` )
+    REFERENCES `tb_glossario` (`glossario_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_projeto_download`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_projeto_download` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_projeto_download` (
+  `projeto_id` BIGINT UNSIGNED NOT NULL ,
+  `download_id` BIGINT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`projeto_id`, `download_id`) ,
+  INDEX `fk_tb_projeto_has_tb_download_tb_download1_idx` (`download_id` ASC) ,
+  INDEX `fk_tb_projeto_has_tb_download_tb_projeto1_idx` (`projeto_id` ASC) ,
+  CONSTRAINT `fk_tb_projeto_has_tb_download_tb_projeto1`
+    FOREIGN KEY (`projeto_id` )
+    REFERENCES `tb_projeto` (`projeto_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_projeto_has_tb_download_tb_download1`
+    FOREIGN KEY (`download_id` )
+    REFERENCES `tb_download` (`download_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tb_projeto_extra`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tb_projeto_extra` ;
+
+CREATE  TABLE IF NOT EXISTS `tb_projeto_extra` (
+  `projeto_id` BIGINT UNSIGNED NOT NULL ,
+  `extra_id` BIGINT UNSIGNED NOT NULL ,
+  `projeto_extra_valor` TEXT NOT NULL ,
+  PRIMARY KEY (`projeto_id`, `extra_id`) ,
+  INDEX `fk_tb_projeto_has_tb_extra_tb_extra1_idx` (`extra_id` ASC) ,
+  INDEX `fk_tb_projeto_has_tb_extra_tb_projeto1_idx` (`projeto_id` ASC) ,
+  CONSTRAINT `fk_tb_projeto_has_tb_extra_tb_projeto1`
+    FOREIGN KEY (`projeto_id` )
+    REFERENCES `tb_projeto` (`projeto_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_projeto_has_tb_extra_tb_extra1`
+    FOREIGN KEY (`extra_id` )
+    REFERENCES `tb_extra` (`extra_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `museus_acessiveis` ;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
