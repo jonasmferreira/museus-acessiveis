@@ -56,6 +56,7 @@
                     	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
 		           		<a href="acessibilidadeEdicao.php?texto_id=2" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
                         <a href="newsletterLista.php" style="background-image:url(imgs/icon-jogos.png);">Newsletter</a><br />
+                        <a href="emktLista.php" style="background-image:url(imgs/icon-jogos.png);">E-mail MKT</a><br />
                         <a href="contatosLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a>
                     </div>
                 </span>
