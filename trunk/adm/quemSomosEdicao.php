@@ -41,8 +41,7 @@
                     	Data (dd/mm/yyyy)<br />
                         <input <?=$readOnly?> value="<?=$obj->dateDB2BR($aRow['texto_dt'])?>" type="text" class="formTxt <?=$class?> dt" name="texto_dt" id="texto_dt" />
                     </td>
-            		<td width="170">&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td colspan="2">&nbsp;</td>
                 </tr>
             	<tr>
             		<td colspan="3">
