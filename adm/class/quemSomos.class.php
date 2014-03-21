@@ -48,8 +48,6 @@ class quemSomos extends defaultClass{
 	public function edit(){
 		if(isset($this->values['texto_id'])&&trim($this->values['texto_id'])!=''){
 			$result = $this->update();
-		}else{
-			$result = $this->insert();
 		}
 		return $result;
 	}
