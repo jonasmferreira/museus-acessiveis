@@ -1,19 +1,19 @@
 <?php
-$path_root_newsletterClass = dirname(__FILE__);
+$path_root_mailingClass = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
-$path_root_newsletterClass = "{$path_root_newsletterClass}{$DS}..{$DS}..{$DS}";
-require_once "{$path_root_newsletterClass}adm{$DS}class{$DS}default.class.php";
-class newsletter extends defaultClass{
+$path_root_mailingClass = "{$path_root_mailingClass}{$DS}..{$DS}..{$DS}";
+require_once "{$path_root_mailingClass}adm{$DS}class{$DS}default.class.php";
+class mailing extends defaultClass{
 	protected $dbConn;
 	protected $filterFieldName = array(
-		'n.newsletter_nome'=>array(
-			'fieldNameId'=>'n.newsletter_nome'
+		'm.mailing_nome'=>array(
+			'fieldNameId'=>'m.mailing_nome'
 			,'fieldNameLabel'=>'Nome'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
-		,'n.newsletter_email'=>array(
-			'fieldNameId'=>'n.newsletter_email'
+		,'m.mailing_email'=>array(
+			'fieldNameId'=>'m.mailing_email'
 			,'fieldNameLabel'=>'E-mail'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
@@ -31,8 +31,8 @@ class newsletter extends defaultClass{
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
-			SELECT	n.*
-			FROM	tb_newsletter n
+			SELECT	m.*
+			FROM	tb_mailing m
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -49,8 +49,8 @@ class newsletter extends defaultClass{
 				$sql[] = "AND {$this->values['fieldName']} LIKE '%{$this->values['txtPesquisar']}%'";
 			}
 		}
-		if(isset($this->values['newsletter_receber_informacoes'])&&trim($this->values['newsletter_receber_informacoes'])!=''){
-			$sql[] = "AND n.newsletter_receber_informacoes IN ({$this->values['newsletter_receber_informacoes']})";
+		if(isset($this->values['mailing_enviar'])&&trim($this->values['mailing_enviar'])!=''){
+			$sql[] = "AND m.mailing_enviar IN ({$this->values['mailing_enviar']})";
 		}
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -64,7 +64,7 @@ class newsletter extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY n.newsletter_nome ASC";
+		$sql[] = "ORDER BY m.mailing_nome ASC";
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -78,7 +78,7 @@ class newsletter extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$rs['newsletter_receber_informacoes_label'] = $rs['newsletter_receber_informacoes']=='S'?'Sim':'Não';
+					$rs['mailing_enviar_label'] = $rs['mailing_enviar']=='S'?'Sim':'Não';
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
@@ -90,7 +90,7 @@ class newsletter extends defaultClass{
 	public function getOne(){
 		$sql = array();
 		$sql[] = $this->getSql();
-		$sql[] = "AND		n.newsletter_id = '{$this->values['newsletter_id']}'";
+		$sql[] = "AND		m.mailing_id = '{$this->values['mailing_id']}'";
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){
@@ -102,7 +102,7 @@ class newsletter extends defaultClass{
 	}
 
 	public function edit(){
-		if(isset($this->values['newsletter_id'])&&trim($this->values['newsletter_id'])!=''){
+		if(isset($this->values['mailing_id'])&&trim($this->values['mailing_id'])!=''){
 			$result = $this->update();
 		}else{
 			$result = $this->insert();
@@ -111,15 +111,15 @@ class newsletter extends defaultClass{
 	}
 
 	private function update(){
-		$this->values['newsletter_receber_informacoes'] = trim($this->values['newsletter_receber_informacoes'])!=''?$this->values['newsletter_receber_informacoes']:'N';
+		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			UPDATE	tb_newsletter SET
-					newsletter_nome = '{$this->values['newsletter_nome']}'
-					,newsletter_receber_informacoes = '{$this->values['newsletter_receber_informacoes']}'
-					,newsletter_email = '{$this->values['newsletter_email']}'
-			WHERE	newsletter_id = '{$this->values['newsletter_id']}'
+			UPDATE	tb_mailing SET
+					mailing_nome = '{$this->values['mailing_nome']}'
+					,mailing_enviar = '{$this->values['mailing_enviar']}'
+					,mailing_email = '{$this->values['mailing_email']}'
+			WHERE	mailing_id = '{$this->values['mailing_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -131,14 +131,14 @@ class newsletter extends defaultClass{
 	}
 
 	private function insert(){
-		$this->values['newsletter_receber_informacoes'] = trim($this->values['newsletter_receber_informacoes'])!=''?$this->values['newsletter_receber_informacoes']:'N';
+		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			INSERT INTO	tb_newsletter SET
-					newsletter_nome = '{$this->values['newsletter_nome']}'
-					,newsletter_receber_informacoes = '{$this->values['newsletter_receber_informacoes']}'
-					,newsletter_email = '{$this->values['newsletter_email']}'
+			INSERT INTO	tb_mailing SET
+					mailing_nome = '{$this->values['mailing_nome']}'
+					,mailing_enviar = '{$this->values['mailing_enviar']}'
+					,mailing_email = '{$this->values['mailing_email']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -152,8 +152,8 @@ class newsletter extends defaultClass{
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			DELETE FROM tb_newsletter
-			WHERE newsletter_id = '{$this->values['newsletter_id']}'
+			DELETE FROM tb_mailing
+			WHERE mailing_id = '{$this->values['mailing_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){

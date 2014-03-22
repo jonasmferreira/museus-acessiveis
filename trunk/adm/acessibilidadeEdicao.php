@@ -37,11 +37,10 @@
 					</td>
 				</tr>
 				<tr>
-            		<td width="170">
+            		<td colspan="3">
                     	Data (dd/mm/yyyy)<br />
                         <input <?=$readOnly?> value="<?=$obj->dateDB2BR($aRow['texto_dt'])?>" type="text" class="formTxt <?=$class?> dt" name="texto_dt" id="texto_dt" />
                     </td>
-                    <td colspan="2">&nbsp;</td>
                 </tr>
             	<tr>
             		<td colspan="3">
@@ -52,9 +51,7 @@
                     </td>
                 </tr>
             	<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-                    <td align="right">
+                    <td align="right" colspan="3">
     	        		<a href="home.php" class="butVoltar">Voltar</a>&nbsp;
                     	<input type="button" value="Salvar" id="salvar" class="butSalvar" />
                     </td>
