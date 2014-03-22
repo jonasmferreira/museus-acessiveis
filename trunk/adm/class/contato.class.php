@@ -1,20 +1,20 @@
 <?php
-$path_root_mailingClass = dirname(__FILE__);
+$path_root_contatoClass = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
-$path_root_mailingClass = "{$path_root_mailingClass}{$DS}..{$DS}..{$DS}";
-require_once "{$path_root_mailingClass}adm{$DS}class{$DS}default.class.php";
-class mailing extends defaultClass{
+$path_root_contatoClass = "{$path_root_contatoClass}{$DS}..{$DS}..{$DS}";
+require_once "{$path_root_contatoClass}adm{$DS}class{$DS}default.class.php";
+class contato extends defaultClass{
 	protected $dbConn;
 	protected $filterFieldName = array(
-		'm.mailing_nome'=>array(
-			'fieldNameId'=>'m.mailing_nome'
+		't.contato_nome'=>array(
+			'fieldNameId'=>'t.contato_nome'
 			,'fieldNameLabel'=>'Nome'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
-		,'m.mailing_email'=>array(
-			'fieldNameId'=>'m.mailing_email'
-			,'fieldNameLabel'=>'E-mail'
+		,'tc.contato_tipo'=>array(
+			'fieldNameId'=>'tc.contato_tipo'
+			,'fieldNameLabel'=>'Tipo'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
@@ -31,8 +31,11 @@ class mailing extends defaultClass{
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
-			SELECT	m.*
-			FROM	tb_mailing m
+			SELECT	t.*
+					,tc.contato_tipo
+			FROM	tb_contato t
+			JOIN	tb_contato_tipo tc
+			ON		t.contato_tipo_id = tc.contato_tipo_id
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -49,8 +52,8 @@ class mailing extends defaultClass{
 				$sql[] = "AND {$this->values['fieldName']} LIKE '%{$this->values['txtPesquisar']}%'";
 			}
 		}
-		if(isset($this->values['mailing_enviar'])&&trim($this->values['mailing_enviar'])!=''){
-			$sql[] = "AND m.mailing_enviar IN ({$this->values['mailing_enviar']})";
+		if(isset($this->values['contato_exibir'])&&trim($this->values['contato_exibir'])!=''){
+			$sql[] = "AND t.contato_exibir IN ({$this->values['contato_exibir']})";
 		}
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -64,7 +67,7 @@ class mailing extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY m.mailing_nome ASC";
+		$sql[] = "ORDER BY tc.contato_tipo ASC, t.contato_nome ASC ";
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -78,7 +81,7 @@ class mailing extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$rs['mailing_enviar_label'] = $rs['mailing_enviar']=='S'?'Sim':'Não';
+					$rs['contato_exibir_label'] = $rs['contato_exibir']=='S'?'Sim':'Não';
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
@@ -90,7 +93,7 @@ class mailing extends defaultClass{
 	public function getOne(){
 		$sql = array();
 		$sql[] = $this->getSql();
-		$sql[] = "AND		m.mailing_id = '{$this->values['mailing_id']}'";
+		$sql[] = "AND		t.contato_id = '{$this->values['contato_id']}'";
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){
@@ -102,7 +105,7 @@ class mailing extends defaultClass{
 	}
 
 	public function edit(){
-		if(isset($this->values['mailing_id'])&&trim($this->values['mailing_id'])!=''){
+		if(isset($this->values['contato_id'])&&trim($this->values['contato_id'])!=''){
 			$result = $this->update();
 		}else{
 			$result = $this->insert();
@@ -111,15 +114,20 @@ class mailing extends defaultClass{
 	}
 
 	private function update(){
-		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
+		$this->values['contato_exibir'] = trim($this->values['contato_exibir'])!=''?$this->values['contato_exibir']:'N';
+		$this->values['contato_dt'] = date('Y-m-d');
+		$this->values['contato_hr'] = date('H:i:s');
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			UPDATE	tb_mailing SET
-					mailing_nome = '{$this->values['mailing_nome']}'
-					,mailing_enviar = '{$this->values['mailing_enviar']}'
-					,mailing_email = '{$this->values['mailing_email']}'
-			WHERE	mailing_id = '{$this->values['mailing_id']}'
+			UPDATE	tb_contato SET
+					contato_dt = '{$this->values['contato_dt']}'
+					,contato_hr = '{$this->values['contato_dt']}'
+					,contato_tipo_id = '{$this->values['contato_tipo_id']}'
+					,contato_nome = '{$this->values['contato_nome']}'
+					,contato_link = '{$this->values['contato_link']}'
+					,contato_exibir = '{$this->values['contato_exibir']}'
+			WHERE	contato_id = '{$this->values['contato_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -131,15 +139,21 @@ class mailing extends defaultClass{
 	}
 
 	private function insert(){
-		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
+		$this->values['contato_exibir'] = trim($this->values['contato_exibir'])!=''?$this->values['contato_exibir']:'N';
+		$this->values['contato_dt'] = date('Y-m-d');
+		$this->values['contato_hr'] = date('H:i:s');
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			INSERT INTO	tb_mailing SET
-					mailing_nome = '{$this->values['mailing_nome']}'
-					,mailing_enviar = '{$this->values['mailing_enviar']}'
-					,mailing_email = '{$this->values['mailing_email']}'
+			INSERT	INTO tb_contato SET
+					contato_dt = '{$this->values['contato_dt']}'
+					,contato_hr = '{$this->values['contato_dt']}'
+					,contato_tipo_id = '{$this->values['contato_tipo_id']}'
+					,contato_nome = '{$this->values['contato_nome']}'
+					,contato_link = '{$this->values['contato_link']}'
+					,contato_exibir = '{$this->values['contato_exibir']}'
 		";
+
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
@@ -152,8 +166,8 @@ class mailing extends defaultClass{
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
-			DELETE FROM tb_mailing
-			WHERE mailing_id = '{$this->values['mailing_id']}'
+			DELETE FROM tb_contato
+			WHERE contato_id = '{$this->values['contato_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
