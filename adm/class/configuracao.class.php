@@ -52,7 +52,8 @@ class configuracao extends defaultClass {
 		$sql = array();
 		$sql[] = "
 			UPDATE	tb_configuracao SET
-					configuracao_baseurl_ckfinder = '{$this->values['configuracao_baseurl_ckfinder']}'
+					configuracao_baseurl = '{$this->values['configuracao_baseurl']}'
+					,configuracao_baseurl_ckfinder = '{$this->values['configuracao_baseurl_ckfinder']}'
 		";
 		$sql[] = "WHERE	configuracao_id = '1'";
 		$result = $this->dbConn->db_execute(implode("\n", $sql));
