@@ -47,6 +47,10 @@
 				</select>
 			</div>
 			<div class="busca">
+				<input type="text" name="txtPesquisar" id="txtPesquisar" placeholder="Pesquisar..." class="srcForm" value="<?=$_POST['txtPesquisar']?>" />
+				<input type="image" id="filrar" src="imgs/busca.png" class="srcBt" align="absbottom" />
+			</div>
+			<div class="busca">
 				<input type="text" name="data_ini" id="data_ini" placeholder="De..." class="srcForm datepicker dt" value="<?=$_POST['data_ini']?>" />
 				<input type="image" src="imgs/busca.png" class="srcBt filtrar" align="absbottom" />
 			</div>
@@ -54,10 +58,7 @@
 				<input type="text" name="data_fim" id="data_fim" placeholder="Até..." class="srcForm datepicker dt" value="<?=$_POST['data_fim']?>" />
 				<input type="image" src="imgs/busca.png" class="srcBt filtrar" align="absbottom" />
 			</div>
-			<div class="busca">
-				<input type="text" name="txtPesquisar" id="txtPesquisar" placeholder="Pesquisar..." class="srcForm" value="<?=$_POST['txtPesquisar']?>" />
-				<input type="image" id="filrar" src="imgs/busca.png" class="srcBt" align="absbottom" />
-			</div>
+
 		</form>
 	</div>
 
@@ -69,8 +70,9 @@
 		<thead>
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
-				<td>Data</td>
+				<td width="140">Data</td>
 				<td>Palavra</td>
+				<td>Fonte</td>
 				<td>Definição</td>
 				<td>Exibir?</td>
 				<td width="174">&nbsp;</td>
@@ -85,6 +87,7 @@
 				<td align="center"><?=$v['glossario_id']?></td>
 				<td><?=$v['glossario_dt_hr']?></td>
 				<td><?=$v['glossario_palavra']?></td>
+				<td><?=$v['glossario_fonte']?></td>
 				<td><?=$v['glossario_definicao']?></td>
 				<td><?=$v['glossario_exibir_label']?></td>
 				<td>
