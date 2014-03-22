@@ -142,19 +142,42 @@ CREATE TABLE `tb_configuracao` (
 
 
 --
+-- Definition of table `tb_contato_tipo`
+--
+
+DROP TABLE IF EXISTS `tb_contato_tipo`;
+CREATE TABLE `tb_contato_tipo` (
+  `contato_tipo_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `contato_tipo` VARCHAR(45) NOT NULL,
+  `contato_status` ENUM('S','N') NOT NULL,
+  PRIMARY KEY (`contato_tipo_id`)
+)
+ENGINE = InnoDB;
+
+--
+-- Dumping data for table `tb_contato_tipo`
+--
+
+/*!40000 ALTER TABLE `tb_contato_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_contato_tipo` ENABLE KEYS */;
+
+
+--
 -- Definition of table `tb_contato`
 --
 
 DROP TABLE IF EXISTS `tb_contato`;
-CREATE TABLE `tb_contato` (
+CREATE TABLE  `tb_contato` (
   `contato_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
+  `contato_tipo_id` int(10) unsigned NOT NULL,
   `contato_dt` date NOT NULL,
   `contato_hr` time NOT NULL,
-  `contato_tipo` int(2) NOT NULL,
   `contato_nome` varchar(255) NOT NULL,
   `contato_link` varchar(45) NOT NULL,
   `contato_exibir` enum('S','N') NOT NULL,
-  PRIMARY KEY (`contato_id`)
+  PRIMARY KEY (`contato_id`),
+  KEY `FK_tb_contato_1` (`contato_tipo_id`),
+  CONSTRAINT `FK_tb_contato_1` FOREIGN KEY (`contato_tipo_id`) REFERENCES `tb_contato_tipo` (`contato_tipo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
