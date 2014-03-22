@@ -66,14 +66,14 @@
 						<a href="tagLista.php" style="background-image:url(imgs/icon-jogos.png);">Tags</a><br />
 						<a href="glossarioLista.php" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
-                    	<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
-                    	<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
-						<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
+                    	<a href="servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
+                    	<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
+						<a href="infoExtraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
                     </div>
                 </span>                
-           		<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
-                <a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Agenda</a>
-           		<a href="listaposts.html" style="background-image:url(imgs/icon-blog.png);">Banners</a>
+           		<a href="novidadeLista.php" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
+                <a href="agendaLista.php" style="background-image:url(imgs/icon-jogos.png);">Agenda</a>
+           		<a href="bannerLista.php" style="background-image:url(imgs/icon-blog.png);">Banners</a>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Configurações
                 	<div>
