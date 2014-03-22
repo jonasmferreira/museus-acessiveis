@@ -10,7 +10,7 @@ class quemSomos extends defaultClass{
 		$path_root_quemSomosClass = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
 		$path_root_quemSomosClass = "{$path_root_quemSomosClass}{$DS}..{$DS}..{$DS}";
-		$this->pathImg = "{$path_root_quemSomosClass}quemsomos{$DS}";
+		$this->pathImg = "{$path_root_quemSomosClass}images{$DS}";
 		if(!is_dir($this->pathImg)){
 			@mkdir($this->pathImg, 0777,true);
 		}

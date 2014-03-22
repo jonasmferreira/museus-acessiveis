@@ -18,7 +18,7 @@ class curso extends defaultClass{
 		$path_root_cursoClass = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
 		$path_root_cursoClass = "{$path_root_cursoClass}{$DS}..{$DS}..{$DS}";
-		$this->pathImg = "{$path_root_cursoClass}curso{$DS}";
+		$this->pathImg = "{$path_root_cursoClass}images{$DS}";
 		if(!is_dir($this->pathImg)){
 			@mkdir($this->pathImg, 0777,true);
 		}
