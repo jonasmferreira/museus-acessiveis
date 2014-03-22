@@ -14,11 +14,11 @@
 			var obj = $(this);
 			var id = trim($(this).attr('rel'));
 			var param = {
-				'newsletter_id':id
+				'mailing_id':id
 			}
 			deleteItem(
 					"Deseja excluir esse item?"
-					,"controller/newsletter.controller.php?action=deleteItem"
+					,"controller/mailing.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');
