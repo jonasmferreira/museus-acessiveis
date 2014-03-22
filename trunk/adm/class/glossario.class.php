@@ -8,10 +8,23 @@ class glossario extends defaultClass{
 	protected $filterFieldName = array(
 		't.glossario_palavra'=>array(
 			'fieldNameId'=>'t.glossario_palavra'
-			,'fieldNameLabel'=>'Nome'
+			,'fieldNameLabel'=>'Palavra'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'t.glossario_definicao'=>array(
+			'fieldNameId'=>'t.glossario_definicao'
+			,'fieldNameLabel'=>'Definição'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
+		,'t.glossario_fonte'=>array(
+			'fieldNameId'=>'t.glossario_fonte'
+			,'fieldNameLabel'=>'Fonte'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
+		
 	);
 	public function __construct() {
 		$this->dbConn = new DataBaseClass();
