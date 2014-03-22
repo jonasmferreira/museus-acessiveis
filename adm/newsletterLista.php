@@ -23,7 +23,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$obj->debug($aRows);
+	//$obj->debug($aRows);
 ?>
 <script type="text/javascript" src="js/autor.js"></script>
 <div id="contentWrapper">
