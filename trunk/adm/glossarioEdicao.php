@@ -95,7 +95,7 @@
 				<tr>
             		<td colspan="3">
 						Exibir?<br />
-						<input value="S" type="checkbox" <?=$aRow['glossario_exibir']=='S'?'checked="ckecked"':''?> name="glossario_exibir" id="glossario_exibir"/>&nbsp; Sim
+						<input value="S" type="checkbox" <?=$aRow['glossario_exibir']=='S'?'checked="checked"':''?> name="glossario_exibir" id="glossario_exibir"/>&nbsp; Sim
                     </td>
                 </tr>
 				<tr>

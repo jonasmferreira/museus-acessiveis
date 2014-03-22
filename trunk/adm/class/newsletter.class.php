@@ -31,10 +31,7 @@ class newsletter extends defaultClass{
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
-			SELECT	n.newsletter_id
-					,n.newsletter_nome
-					,n.newsletter_email
-					,n.newsletter_receber_informacoes
+			SELECT	n.*
 			FROM	tb_newsletter n
 			WHERE	1 = 1
 		";
@@ -114,6 +111,7 @@ class newsletter extends defaultClass{
 	}
 
 	private function update(){
+		$this->values['newsletter_receber_informacoes'] = trim($this->values['newsletter_receber_informacoes'])!=''?$this->values['newsletter_receber_informacoes']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -133,6 +131,7 @@ class newsletter extends defaultClass{
 	}
 
 	private function insert(){
+		$this->values['newsletter_receber_informacoes'] = trim($this->values['newsletter_receber_informacoes'])!=''?$this->values['newsletter_receber_informacoes']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
