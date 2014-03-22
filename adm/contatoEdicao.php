@@ -1,10 +1,20 @@
 <?php
-	$path_root_mailingEdicao = dirname(__FILE__);
+	$path_root_contatoEdicao = dirname(__FILE__);
 	$DS = DIRECTORY_SEPARATOR;
-	$path_root_mailingEdicao = "{$path_root_mailingEdicao}{$DS}..{$DS}";
-	include_once "{$path_root_mailingEdicao}adm{$DS}includes{$DS}header.php";
-	include_once("{$path_root_mailingEdicao}adm{$DS}class{$DS}mailing.class.php");
-	$obj = new mailing();
+	$path_root_contatoEdicao = "{$path_root_contatoEdicao}{$DS}..{$DS}";
+	include_once "{$path_root_contatoEdicao}adm{$DS}includes{$DS}header.php";
+	include_once("{$path_root_contatoEdicao}adm{$DS}class{$DS}contato.class.php");
+	include_once("{$path_root_contatoEdicao}adm{$DS}class{$DS}contatoTipo.class.php");
+
+	$objTipo = new contatoTipo();
+	$objTipo->setValues(array(
+			'contato_tipo_status'=>'S'
+			,'page'=>'1'
+			,'rows'=>'10000000000'		
+	));
+	$aTipo=$objTipo->getLista();
+	
+	$obj = new contato();
 	$obj->setValues($_REQUEST);
 	$aRow = $obj->getOne();
 	$session = $obj->getSessions();
@@ -16,44 +26,55 @@
 	}
 	//$obj->debug($aRow);
 ?>
-<script type="text/javascript" src="js/mailing.js"></script>
+<script type="text/javascript" src="js/contato.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-		Painel Administrativo / Institucional / mailing <strong>/ <?=isset($aRow['mailing_id'])?'Editar':'Cadastrar'?> mailing</strong>
+		Painel Administrativo / Institucional / Contato <strong>/ <?=isset($aRow['contato_id'])?'Editar':'Cadastrar'?> Contato</strong>
 	</div>
-	<form action="controller/mailing.controller.php" method="post" id="formSalvar" name="formSalvar">
+	<form action="controller/contato.controller.php" method="post" id="formSalvar" name="formSalvar">
 		<input type="hidden" name="action" id="action" value="edit-item" />
-		<input type="hidden" name="mailing_id" id="autor_id" value="<?=$aRow['mailing_id']?>" />
-		<input type="hidden" name="voltar" id="voltar" value="mailingEdicao.php" />
+		<input type="hidden" name="contato_id" id="autor_id" value="<?=$aRow['contato_id']?>" />
+		<input type="hidden" name="voltar" id="voltar" value="contatoEdicao.php" />
 		<table cellpadding="0" cellspacing="0" id="formCadastro">
 			<tbody>
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Dados do Mailing</strong>
+						<strong>Dados do Contato</strong>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						<input type="checkbox" name="mailing_enviar" value="S" <?=$aRow['mailing_enviar']=='S'?' checked="checked"':''?> /> Receber Informações
+						<input type="checkbox" name="contato_exibir" value="S" <?=$aRow['contato_exibir']=='S'?' checked="checked"':''?> /> Exibir
 					</td>
 				</tr>
+				<tr>
+					<td colspan="3">
+						Tipo Contato<br />
+						<select class="formTxt obrigatorio" name="contato_tipo_id" id="contato_tipo_id">
+							<?	foreach($aTipo['rows'] AS $k=>$v):
+									$selected = $aRow['contato_tipo_id']==$v['contato_tipo_id']?' selected="selected"':'';
+							?>
+							<option value="<?=$v['contato_tipo_id']?>"<?=$selected?>><?=$v['contato_tipo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+
 				<tr>
 					<td colspan="3">
 						Nome<br />
-						<input type="text" class="formTxt obrigatorio" name="mailing_nome" id="mailing_nome" style="width:98%" value="<?=$aRow['mailing_nome']?>" />
+						<input type="text" class="formTxt obrigatorio" name="contato_nome" id="contato_nome" style="width:98%" value="<?=$aRow['contato_nome']?>" />
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						E-mail<br />
-						<input type="text" class="formTxt obrigatorio" name="mailing_email" id="mailing_email" style="width:98%" value="<?=$aRow['mailing_email']?>" />
+						Link<br />
+						<input type="text" class="formTxt" name="contato_link" id="contato_link" style="width:98%" value="<?=$aRow['contato_link']?>" />
 					</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td align="right">
-						<a href="mailingLista.php" class="butVoltar">Voltar</a>&nbsp;
+					<td align="right" colspan="3">
+						<a href="contatoLista.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
 					</td>
 				</tr>
@@ -61,4 +82,4 @@
 		</table>
 	</form>
 </div>
-<?php include_once "{$path_root_mailingEdicao}adm{$DS}includes{$DS}footer.php"; ?>
+<?php include_once "{$path_root_contatoEdicao}adm{$DS}includes{$DS}footer.php"; ?>

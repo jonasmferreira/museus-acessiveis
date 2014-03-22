@@ -1,24 +1,24 @@
 <?php
-$path_root_mailingController = dirname(__FILE__);
+$path_root_contatoController = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
-$path_root_mailingController = "{$path_root_mailingController}{$DS}..{$DS}..{$DS}";
-require_once "{$path_root_mailingController}adm{$DS}class{$DS}mailing.class.php";
-$obj = new mailing();
+$path_root_contatoController = "{$path_root_contatoController}{$DS}..{$DS}..{$DS}";
+require_once "{$path_root_contatoController}adm{$DS}class{$DS}contato.class.php";
+$obj = new contato();
 switch($_REQUEST['action']){
 	case 'edit-item':
-		$volta = "mailingEdicao.php";
+		$volta = "contatoEdicao.php";
 		if(isset($_POST['volta'])&&trim($_POST['volta'])!=''){
 			$volta = $_POST['volta'];
 		}
 		$obj->setValues($_POST);
 		$exec = $obj->edit();
-		if(isset($_POST['mailing_id']) && trim($_POST['mailing_id'])!=''){
+		if(isset($_POST['contato_id']) && trim($_POST['contato_id'])!=''){
 			if($exec['success']){
 				$msg = "Cadastro atualizado com sucesso!";
-				$url = "{$volta}?mailing_id={$_POST['mailing_id']}";
+				$url = "{$volta}?contato_id={$_POST['contato_id']}";
 			}else{
 				$msg = "Erro ao atualizar dados!";
-				$url = "{$volta}?mailing_id={$_POST['mailing_id']}";
+				$url = "{$volta}?contato_id={$_POST['contato_id']}";
 			}
 		}else{
 			if($exec['success']){

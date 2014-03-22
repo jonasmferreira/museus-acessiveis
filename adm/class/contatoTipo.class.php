@@ -51,6 +51,10 @@ class contatoTipo extends defaultClass{
 				$sql[] = "AND {$this->values['fieldName']} LIKE '%{$this->values['txtPesquisar']}%'";
 			}
 		}
+		if(isset($this->values['contato_tipo_status'])&&trim($this->values['contato_tipo_status'])!=''){
+			$sql[] = "AND t.contato_tipo_status IN ('{$this->values['contato_tipo_status']}')";
+		}
+
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {

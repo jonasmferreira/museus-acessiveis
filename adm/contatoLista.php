@@ -1,10 +1,10 @@
 <?php
-	$path_root_mailingLista = dirname(__FILE__);
+	$path_root_contatoLista = dirname(__FILE__);
 	$DS = DIRECTORY_SEPARATOR;
-	$path_root_mailingLista = "{$path_root_mailingLista}{$DS}..{$DS}";
-	include_once "{$path_root_mailingLista}adm{$DS}includes{$DS}header.php";
-	include_once("{$path_root_mailingLista}adm{$DS}class{$DS}mailing.class.php");
-	$obj = new mailing();
+	$path_root_contatoLista = "{$path_root_contatoLista}{$DS}..{$DS}";
+	include_once "{$path_root_contatoLista}adm{$DS}includes{$DS}header.php";
+	include_once("{$path_root_contatoLista}adm{$DS}class{$DS}contato.class.php");
+	$obj = new contato();
 	$aFilterField = $obj->getFilterFieldName();
 	if(isset($_POST['submitado'])){
 		$obj->setValues($_REQUEST);
@@ -25,14 +25,14 @@
 	}
 	//$obj->debug($aRows);
 ?>
-<script type="text/javascript" src="js/autor.js"></script>
+<script type="text/javascript" src="js/contato.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-          Painel Administrativo <strong>/ mailing</strong>
+          Painel Administrativo <strong>/ Contato</strong>
 	</div>
 
 	<div class="left" style="width:auto;">
-		<form action="mailingLista.php" method="post" id="formBusca" name="formbusca">
+		<form action="contatoLista.php" method="post" id="formBusca" name="formbusca">
 			<input type="hidden" name="submitado" value="1" />
 			<input type="hidden" name="page" id="pagePag" value="<?=$aRows['page']?>" />
 			<input type="hidden" name="rows" id="rowsPag" value="10" />
@@ -55,16 +55,18 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="mailingEdicao.php" class="butCadastro">Cadastrar novo Contato</a>
+		<a href="contatoEdicao.php" class="butCadastro">Cadastrar novo Contato</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
 		<thead>
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
-				<td>Nome</td>
-				<td width="150" align="left">E-mail</td>
-				<td width="150" align="center">Receber Inf.</td>
+				<td align="left">Data</td>
+				<td align="left">Tipo</td>
+				<td align="left">Nome</td>
+				<td align="left">Link</td>
+				<td width="150" align="center">Exibir</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -74,13 +76,15 @@
 						$evenOdd = (($k+1)%2 > 0)?" even":"";
 			?>
 			<tr class="tableItem<?=$evenOdd?>">
-				<td align="center"><?=$v['mailing_id']?></td>
-				<td align="left"><?=$v['mailing_nome']?></td>
-				<td align="left"><?=$v['mailing_email']?></td>
-				<td align="center"><?=($v['mailing_enviar']=='S'?'Sim':'Não');?></td>
+				<td align="center"><?=$v['contato_id']?></td>
+				<td align="left"><?=$v['contato_dt']?> às <?=$v['contato_hr']?></td>
+				<td align="left"><?=$v['contato_tipo']?></td>
+				<td align="left"><?=$v['contato_nome']?></td>
+				<td align="left"><?=$v['contato_link']?></td>
+				<td width="150" align="center"><?=($v['contato_exibir']=='S'?'Sim':'Não');?></td>
 				<td>
-					<a href="mailingEdicao.php?mailing_id=<?=$v['mailing_id']?>" class="btEdit">Editar</a>
-					<a href="javascript:void(0);" rel="<?=$v['mailing_id']?>" class="btDel">Excluir</a>
+					<a href="contatoEdicao.php?contato_id=<?=$v['contato_id']?>" class="btEdit">Editar</a>
+					<a href="javascript:void(0);" rel="<?=$v['contato_id']?>" class="btDel">Excluir</a>
 				</td>
 			</tr>
 			<?		endforeach;?>
@@ -100,4 +104,4 @@
 	</div>
 	<?	endif;?>
 </div>
-<?php include_once "{$path_root_mailingLista}adm{$DS}includes{$DS}footer.php"; ?>
+<?php include_once "{$path_root_contatoLista}adm{$DS}includes{$DS}footer.php"; ?>
