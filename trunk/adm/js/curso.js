@@ -17,7 +17,7 @@
 				'curso_id':id
 			}
 			deleteItem(
-					"Deseja Mesmo Excluir esse Item?"
+					"Deseja excluir esse Item?"
 					,"controller/curso.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
