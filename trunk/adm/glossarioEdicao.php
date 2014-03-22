@@ -31,7 +31,7 @@
 			<tbody>
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Dados da Glossario</strong>
+						<strong>Dados do Glossario</strong>
 					</td>
 				</tr>
 				<tr>

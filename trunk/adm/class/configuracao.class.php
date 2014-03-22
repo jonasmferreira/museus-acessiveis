@@ -16,13 +16,13 @@ class configuracao extends defaultClass {
 		$DS = DIRECTORY_SEPARATOR;
 		$path_root_ConfiguracaoClass = "{$path_root_ConfiguracaoClass}{$DS}..{$DS}..{$DS}";
 		$this->dbConn = new DataBaseClass();
-		$this->pathImg = "{$path_root_ConfiguracaoClass}configuracaoFiles{$DS}";
+		$this->pathImg = "{$path_root_ConfiguracaoClass}images{$DS}";
 		if (!is_dir($this->pathImg)) {
 			@mkdir($this->pathImg, 0777, true);
 		}
 		@chmod($this->pathImg, 0777);
 		
-		$this->pathLogo = "{$path_root_ConfiguracaoClass}configuracaoLogo{$DS}";
+		$this->pathLogo = "{$path_root_ConfiguracaoClass}images{$DS}";
 		if (!is_dir($this->pathLogo)) {
 			@mkdir($this->pathLogo, 0777, true);
 		}
