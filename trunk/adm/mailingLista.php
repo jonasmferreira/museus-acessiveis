@@ -1,10 +1,10 @@
 <?php
-	$path_root_newsletterLista = dirname(__FILE__);
+	$path_root_mailingLista = dirname(__FILE__);
 	$DS = DIRECTORY_SEPARATOR;
-	$path_root_newsletterLista = "{$path_root_newsletterLista}{$DS}..{$DS}";
-	include_once "{$path_root_newsletterLista}adm{$DS}includes{$DS}header.php";
-	include_once("{$path_root_newsletterLista}adm{$DS}class{$DS}newsletter.class.php");
-	$obj = new newsletter();
+	$path_root_mailingLista = "{$path_root_mailingLista}{$DS}..{$DS}";
+	include_once "{$path_root_mailingLista}adm{$DS}includes{$DS}header.php";
+	include_once("{$path_root_mailingLista}adm{$DS}class{$DS}mailing.class.php");
+	$obj = new mailing();
 	$aFilterField = $obj->getFilterFieldName();
 	if(isset($_POST['submitado'])){
 		$obj->setValues($_REQUEST);
@@ -28,11 +28,11 @@
 <script type="text/javascript" src="js/autor.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-          Painel Administrativo <strong>/ Newsletter</strong>
+          Painel Administrativo <strong>/ mailing</strong>
 	</div>
 
 	<div class="left" style="width:auto;">
-		<form action="newsletterLista.php" method="post" id="formBusca" name="formbusca">
+		<form action="mailingLista.php" method="post" id="formBusca" name="formbusca">
 			<input type="hidden" name="submitado" value="1" />
 			<input type="hidden" name="page" id="pagePag" value="<?=$aRows['page']?>" />
 			<input type="hidden" name="rows" id="rowsPag" value="10" />
@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="newsletterEdicao.php" class="butCadastro">Cadastrar novo Contato</a>
+		<a href="mailingEdicao.php" class="butCadastro">Cadastrar novo Contato</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
@@ -74,13 +74,13 @@
 						$evenOdd = (($k+1)%2 > 0)?" even":"";
 			?>
 			<tr class="tableItem<?=$evenOdd?>">
-				<td align="center"><?=$v['newsletter_id']?></td>
-				<td align="left"><?=$v['newsletter_nome']?></td>
-				<td align="left"><?=$v['newsletter_email']?></td>
-				<td align="center"><?=($v['newsletter_receber_informacoes']=='S'?'Sim':'Não');?></td>
+				<td align="center"><?=$v['mailing_id']?></td>
+				<td align="left"><?=$v['mailing_nome']?></td>
+				<td align="left"><?=$v['mailing_email']?></td>
+				<td align="center"><?=($v['mailing_enviar']=='S'?'Sim':'Não');?></td>
 				<td>
-					<a href="newsletterEdicao.php?newsletter_id=<?=$v['newsletter_id']?>" class="btEdit">Editar</a>
-					<a href="javascript:void(0);" rel="<?=$v['newsletter_id']?>" class="btDel">Excluir</a>
+					<a href="mailingEdicao.php?mailing_id=<?=$v['mailing_id']?>" class="btEdit">Editar</a>
+					<a href="javascript:void(0);" rel="<?=$v['mailing_id']?>" class="btDel">Excluir</a>
 				</td>
 			</tr>
 			<?		endforeach;?>
@@ -100,4 +100,4 @@
 	</div>
 	<?	endif;?>
 </div>
-<?php include_once "{$path_root_newsletterLista}adm{$DS}includes{$DS}footer.php"; ?>
+<?php include_once "{$path_root_mailingLista}adm{$DS}includes{$DS}footer.php"; ?>
