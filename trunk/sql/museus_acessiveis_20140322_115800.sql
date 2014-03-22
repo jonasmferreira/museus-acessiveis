@@ -146,15 +146,13 @@ CREATE TABLE `tb_configuracao` (
 --
 
 DROP TABLE IF EXISTS `tb_contato_tipo`;
-CREATE TABLE `tb_contato_tipo` (
-  `contato_tipo_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `contato_tipo` VARCHAR(45) NOT NULL,
-  `contato_status` ENUM('S','N') NOT NULL,
+CREATE TABLE  `tb_contato_tipo` (
+  `contato_tipo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `contato_tipo` varchar(45) NOT NULL,
+  `contato_tipo_icone` varchar(255) DEFAULT NULL,
+  `contato__tipo_status` enum('S','N') NOT NULL,
   PRIMARY KEY (`contato_tipo_id`)
-)
-ENGINE = InnoDB;
-
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;--
 -- Dumping data for table `tb_contato_tipo`
 --
 
