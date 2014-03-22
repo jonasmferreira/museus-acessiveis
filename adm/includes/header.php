@@ -77,8 +77,9 @@
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Configurações
                 	<div>
-						<a href="listaposts.html" style="background-image:url(imgs/icon-blog.png);">Configurações Gerais</a><br />
-                    	<a href="usuarioLista.php" style="background-image:url(imgs/icon-blog.png);">Usuários</a>
+                    	<a href="usuarioLista.php" style="background-image:url(imgs/icon-blog.png);">Usuários</a><br />
+                    	<a href="contatoTipoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipo de Contato</a><br />
+						<a href="configuracaoEdicao.php" style="background-image:url(imgs/icon-blog.png);">Configurações Gerais</a>
                     </div>
                 </span> 
                 
