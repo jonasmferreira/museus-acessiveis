@@ -150,9 +150,10 @@ CREATE TABLE  `tb_contato_tipo` (
   `contato_tipo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `contato_tipo` varchar(45) NOT NULL,
   `contato_tipo_icone` varchar(255) DEFAULT NULL,
-  `contato__tipo_status` enum('S','N') NOT NULL,
+  `contato_tipo_icone_contraste` varchar(255) DEFAULT NULL,
+  `contato_tipo_status` enum('S','N') NOT NULL,
   PRIMARY KEY (`contato_tipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;--
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 -- Dumping data for table `tb_contato_tipo`
 --
 
