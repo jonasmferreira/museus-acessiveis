@@ -142,6 +142,7 @@ class curso extends defaultClass{
 		$this->values['curso_thumb'] = $this->uploadFile($this->pathImg, $this->files['curso_thumb']);
 		$this->values['curso_dt_ini'] = $this->dateBR2DB($this->values['curso_dt_ini']);
 		$this->values['curso_dt_fim'] = $this->dateBR2DB($this->values['curso_dt_fim']);
+		$this->values['curso_agenda'] = $this->dateBR2DB($this->values['curso_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -219,6 +220,7 @@ class curso extends defaultClass{
 		$this->values['curso_thumb'] = $this->uploadFile($this->pathImg, $this->files['curso_thumb']);
 		$this->values['curso_dt_ini'] = $this->dateBR2DB($this->values['curso_dt_ini']);
 		$this->values['curso_dt_fim'] = $this->dateBR2DB($this->values['curso_dt_fim']);
+		$this->values['curso_agenda'] = $this->dateBR2DB($this->values['curso_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
