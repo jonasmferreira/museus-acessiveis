@@ -64,7 +64,7 @@
                 	Produtos
                 	<div>
 						<a href="tagLista.php" style="background-image:url(imgs/icon-jogos.png);">Tags</a><br />
-						<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
+						<a href="glossarioLista.php" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
 						<a href="listavideos.html" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
                     	<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
                     	<a href="listajogos.html" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
