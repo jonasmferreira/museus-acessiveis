@@ -437,7 +437,7 @@ CREATE TABLE `tb_mailing` (
   `mailing_id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
   `mailing_nome` varchar(45) NOT NULL,
   `mailing_email` varchar(45) NOT NULL,
-  `mailing_receber_informacoes` enum('S','N') NOT NULL,
+  `mailing_enviar` enum('S','N') NOT NULL,
   PRIMARY KEY (`mailing_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
