@@ -51,7 +51,7 @@ $(document).ready(function(){
 	});
 
 
-//ACESSIBILIDADE POR TECLADO
+	//ACESSIBILIDADE POR TECLADO
     shortcut.add("Ctrl+1",function() {
       location.href="#access-bar";
     });
@@ -70,12 +70,14 @@ $(document).ready(function(){
 
 	//REESCREVENDO O TABINDEX DOS ELEMTENTOS
 	var idx = 1;
-	$("*[tabIndex]").each(function(){
-		console.log($(this).attr('name'));
-		$(this).attr("tabIndex", idx);
+	$("*[tabindex]").each(function(){
+		//console.log($(this).get(0), idx)
+		$(this).removeAttr('tabindex').attr('tabindex',idx);
 		idx++;
 	});
 
+	
+	
 
 });
 
