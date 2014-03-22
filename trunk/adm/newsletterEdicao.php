@@ -14,7 +14,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$obj->debub($aRow);
+	$obj->debug($aRow);
 ?>
 <script type="text/javascript" src="js/newsletter.js"></script>
 <div id="contentWrapper">
@@ -34,8 +34,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						Receber Informações?<br />
-						<input type="checkbox" name="newsletter_receber_informacoes" value="S" <?=$aRow['newsletter_receber_informacoes']=='S'?' ckecked':''?>>Receber Informações<br>
+						<input type="checkbox" name="newsletter_receber_informacoes" value="S" <?=$aRow['newsletter_receber_informacoes']=='S' ? ' ckecked':''?>>&nbsp;Receber Informações<br>
 					</td>
 				</tr>
 				<tr>
