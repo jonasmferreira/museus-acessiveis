@@ -6,7 +6,7 @@ require_once "{$path_root_ConfiguracaoController}adm{$DS}class{$DS}configuracao.
 $obj = new configuracao();
 switch($_REQUEST['action']){
 	case 'edit-item':
-		$volta = "editarconfiguracao.php";
+		$volta = "configuracaoEdicao.php";
 		if(isset($_POST['volta'])&&trim($_POST['volta'])!=''){
 			$volta = $_POST['volta'];
 		}
