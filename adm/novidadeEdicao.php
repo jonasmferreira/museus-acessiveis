@@ -107,7 +107,7 @@
 						<span>(<a href="javascript:void(0)" <?=$aRow['novidade_360_exibir_banner']=='S'?'disabled="disabled"':''?> rel="novidade_360_banner" class="delImg">Remover Imagem</a>)</span>
 						<?	endif;?>
 						<br />
-						<input type="file" name="novidade_360_banner" id="novidade_360_banner" <?=$aRow['novidade_360_exibir_banner']=='S'?'disabled="disabled"':''?> />
+						<input type="file" name="novidade_360_banner" id="novidade_360_banner" />
 						<?	if(is_file("../images/{$aRow['novidade_360_banner']}")):?>
 						<div class="images">
                         	<img src="../images/<?=$aRow['novidade_360_banner']?>" />
@@ -131,7 +131,7 @@
 				<tr>
 					<td colspan="3">
 						Destaque Imagem(262x262)<br />
-						<input type="file" name="novidade_360_destaque_home" <?=$aRow['novidade_360_exibir_destaque_home']=='S'?'disabled="disabled"':''?> id="novidade_360_destaque_home" />
+						<input type="file" name="novidade_360_destaque_home" id="novidade_360_destaque_home" />
 					</td>
 				</tr>
 				<tr>
