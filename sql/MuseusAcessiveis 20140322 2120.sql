@@ -159,13 +159,17 @@ CREATE TABLE `tb_contato` (
   PRIMARY KEY (`contato_id`),
   KEY `FK_tb_contato_1` (`contato_tipo_id`),
   CONSTRAINT `FK_tb_contato_1` FOREIGN KEY (`contato_tipo_id`) REFERENCES `tb_contato_tipo` (`contato_tipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_contato`
 --
 
 /*!40000 ALTER TABLE `tb_contato` DISABLE KEYS */;
+INSERT INTO `tb_contato` (`contato_id`,`contato_dt`,`contato_hr`,`contato_tipo_id`,`contato_nome`,`contato_link`,`contato_exibir`) VALUES 
+ (1,'2014-03-22','00:20:14',2,'11 99801-7147','','S'),
+ (2,'2014-03-22','00:20:14',1,'www.facebook.com/josenilson.oliveira','www.facebook.com/josenilson.oliveira','S'),
+ (3,'2014-03-22','00:20:14',5,'joynilson@gmail.com','joynilson@gmail.com','S');
 /*!40000 ALTER TABLE `tb_contato` ENABLE KEYS */;
 
 
@@ -181,7 +185,7 @@ CREATE TABLE `tb_contato_tipo` (
   `contato_tipo_icone` varchar(255) DEFAULT NULL,
   `contato_tipo_icone_contraste` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`contato_tipo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_contato_tipo`
@@ -191,7 +195,8 @@ CREATE TABLE `tb_contato_tipo` (
 INSERT INTO `tb_contato_tipo` (`contato_tipo_id`,`contato_tipo`,`contato_tipo_status`,`contato_tipo_icone`,`contato_tipo_icone_contraste`) VALUES 
  (1,'Facebook','S','20140322185208_ico_facebook.png','20140322185208_ico_facebook_contrast.png'),
  (2,'Celular','S','20140322185232_ico_cel.png','20140322185232_ico_cel_contrast.png'),
- (3,'Skype','S','20140322185312_ico_skype.png','20140322185312_ico_skype_contrast.png');
+ (3,'Skype','S','20140322185312_ico_skype.png','20140322185312_ico_skype_contrast.png'),
+ (5,'E-mail','S','20140322194900_ico_cel.png','20140322194900_ico_cel_contrast.png');
 /*!40000 ALTER TABLE `tb_contato_tipo` ENABLE KEYS */;
 
 
@@ -216,7 +221,7 @@ CREATE TABLE `tb_curso` (
   `curso_conteudo` longtext NOT NULL,
   `curso_agenda` date NOT NULL,
   PRIMARY KEY (`curso_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='	';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='	';
 
 --
 -- Dumping data for table `tb_curso`
@@ -224,7 +229,8 @@ CREATE TABLE `tb_curso` (
 
 /*!40000 ALTER TABLE `tb_curso` DISABLE KEYS */;
 INSERT INTO `tb_curso` (`curso_id`,`curso_dt_cad`,`curso_hr_cad`,`curso_dt_ini`,`curso_dt_fim`,`curso_sob_demanda`,`curso_titulo`,`curso_resumo`,`curso_thumb`,`curso_thumb_desc`,`curso_fonte`,`curso_link_fonte`,`curso_conteudo`,`curso_agenda`) VALUES 
- (1,'2014-03-22','13:52:56','2014-03-23','2014-03-31','N','Acessibilidade online','Aqui vai o resumo do curso','20140322184409_novidades.jpg','Aqui vai o resumo do curso','Stocco Art & Design','http://stoccoartedesign.wix.com/stoccoartedesign','<p>\r\n	Aqui vai o conte&uacute;do do curso, inclusive com as imagens que eu vou colocar...</p>\r\n<p>\r\n	<img alt=\"\" src=\"http://localhost/MuseusAcessiveis/imgs_rich/images/Calendario_Capa.jpg\" style=\"width: 270px; height: 350px; float: left;\" /></p>\r\n<p>\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	E depois mais texto ainda.</p>\r\n','2014-03-24');
+ (1,'2014-03-22','13:52:56','2014-03-23','2014-03-31','N','Acessibilidade online','Aqui vai o resumo do curso','20140322184409_novidades.jpg','Aqui vai o resumo do curso','Stocco Art & Design','http://stoccoartedesign.wix.com/stoccoartedesign','<p>\r\n	Aqui vai o conte&uacute;do do curso, inclusive com as imagens que eu vou colocar...</p>\r\n<p>\r\n	<img alt=\"\" src=\"http://localhost/MuseusAcessiveis/imgs_rich/images/Calendario_Capa.jpg\" style=\"width: 270px; height: 350px; float: left;\" /></p>\r\n<p>\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	<br />\r\n	E depois mais texto ainda.</p>\r\n','2014-03-24'),
+ (2,'2014-03-22','20:54:42','0000-00-00','0000-00-00','N','','','','','','','','0000-00-00');
 /*!40000 ALTER TABLE `tb_curso` ENABLE KEYS */;
 
 
@@ -321,7 +327,9 @@ CREATE TABLE `tb_curso_tag` (
 INSERT INTO `tb_curso_tag` (`tag_id`,`curso_id`) VALUES 
  (1,1),
  (2,1),
- (5,1);
+ (5,1),
+ (2,2),
+ (3,2);
 /*!40000 ALTER TABLE `tb_curso_tag` ENABLE KEYS */;
 
 
@@ -528,13 +536,15 @@ CREATE TABLE `tb_novidade_360` (
   `novidade_360_destaque_home_desc` text NOT NULL,
   `novidade_360_destaque_home_frase` text NOT NULL,
   PRIMARY KEY (`novidade_360_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_novidade_360`
 --
 
 /*!40000 ALTER TABLE `tb_novidade_360` DISABLE KEYS */;
+INSERT INTO `tb_novidade_360` (`novidade_360_id`,`novidade_360_dt_agenda`,`novidade_360_dt`,`novidade_360_hr`,`novidade_360_titulo`,`novidade_360_resumo`,`novidade_360_thumb`,`novidade_360_thumb_desc`,`novidade_360_fonte`,`novidade_360_url_fonte`,`novidade_360_conteudo`,`novidade_360_exibir_banner`,`novidade_360_banner`,`novidade_360_banner_desc`,`novidade_360_exibir_destaque_home`,`novidade_360_destaque_home`,`novidade_360_destaque_home_desc`,`novidade_360_destaque_home_frase`) VALUES 
+ (1,'2014-03-24','2014-03-22','21:03:52','A primeira novidade','fasdfjksd sajfksdkf jskd','20140323000352_novidades.jpg','fjsadj  lsddf jsdkjf sdlk ','Google','www.google.com.br','<p>\r\n	fasdf dfds</p>\r\n<p>\r\n	&nbsp;sdf</p>\r\n<p>\r\n	sdf</p>\r\n<p>\r\n	sdsd</p>\r\n<p>\r\n	fsd</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	s fsd</p>\r\n<p>\r\n	fsd</p>\r\n','S','20140323000352_novidades.jpg','lalallala','S','20140323000352_novidades.jpg','fasd h sdh fsd  skdhf sdjkaaaaa','frase de efeito final.');
 /*!40000 ALTER TABLE `tb_novidade_360` ENABLE KEYS */;
 
 
@@ -558,6 +568,9 @@ CREATE TABLE `tb_novidade_360_tag` (
 --
 
 /*!40000 ALTER TABLE `tb_novidade_360_tag` DISABLE KEYS */;
+INSERT INTO `tb_novidade_360_tag` (`novidade_360_id`,`tag_id`) VALUES 
+ (1,2),
+ (1,5);
 /*!40000 ALTER TABLE `tb_novidade_360_tag` ENABLE KEYS */;
 
 
