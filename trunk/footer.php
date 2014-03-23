@@ -2,16 +2,67 @@
 	<div id="footer" href="footer" accesskey="5">
     	<div id="contact">
         	<strong tabIndex="114">Contatos</strong>
-        	<div id="devices">
-            	<span tabIndex="115" class="fone">55 (11) 9 7631.3962</span>
-                <span tabIndex="116" class="skype">skype: viviane.sarraf</span>
-                <span tabIndex="117" class="facebook">facebook.com\museusacessiveis</span>
+
+<?php
+	$devices=array();
+	$sites=array();
+	foreach($aContato['rows'] as $k => $v){
+		$tipo=strtolower($v['contato_tipo']);
+		if($tipo=='celular' || $tipo=='telefone' || $tipo=='facebook' || $tipo=='twitter' || $tipo=='skype'){
+			$devices[$k]['contato_tipo']=$v['contato_tipo'];
+			$devices[$k]['contato_nome']=$v['contato_nome'];
+			$devices[$k]['contato_link']=$v['contato_link'];
+			$devices[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
+			$devices[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
+		}else{
+			$sites[$k]['contato_tipo']=$v['contato_tipo'];
+			$sites[$k]['contato_nome']=$v['contato_nome'];
+			$sites[$k]['contato_link']=$v['contato_link'];
+			$sites[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
+			$sites[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
+		}
+		
+	}
+	//$objContato->debug($devices);
+
+?>
+		
+			<div id="devices">
+				<?php 
+					foreach($devices as $k => $v){
+						$tipo=strtolower($v['contato_tipo']);
+						if($tipo=='celular' || $tipo=='telefone'){
+				?>	
+						<span tabIndex="" class="fone"><?=$v['contato_nome'];?></span>
+				<?php
+						}elseif($tipo=='skype'){
+				?>	
+						<span tabIndex="" class="skype"><?=$v['contato_nome'];?></span>
+				<?php
+						}else{
+				?>	
+						<a tabIndex="" class="facebook" href="<?=$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+				<?php
+						}
+					}
+				?>
             </div>
             <div id="web">
-            	<a tabIndex="118" href="">viviane@museusacessiveis.com.br</a>
-            	<a tabIndex="119" href="">www.museusacessiveis.com.br</a>
+				<?php 
+					foreach($sites as $k => $v){
+						$tipo=strtolower($v['contato_tipo']);
+						if($tipo=='e-mail'){
+							$link='mailto:';
+						}else{
+							$link='';
+						}
+				?>	
+				<a tabIndex="" href="<?=$link.$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+				<?php
+					}
+				?>	
             </div>
-            <strong id="access-option"><a tabIndex="120" href="">opções de acessibilidade</a></strong>
+            <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>/acessibilidade">opções de acessibilidade</a></strong>
         </div>
         <div id="sitemap">
         	<strong tabIndex="121">Mapa do Site</strong>
