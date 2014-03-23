@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+    Options -Indexes
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME}\.php -f
+
+	RewriteCond %{REQUEST_URI} !^(index\.php|robots\.txt|imgs|imgs_rich|fonts|videos|posts|js|css|scripts) [NC]
+	RewriteRule ^(.*)$ $1.php
+
+	RewriteRule ^home/?$ index.php
+	
+	RewriteRule ^jogos/?$ jogosList.php
+	RewriteRule ^jogo/([^/]+)/?$ jogoItem.php?jogo_id=$1&jogo_titulo=$2
+	RewriteRule ^jogo/([^/]+)/([^/]+)/?$ jogoItem.php?jogo_id=$1&jogo_titulo=$2
+
+	RewriteRule ^blog/?$ blogList.php
+	RewriteRule ^blog/([^/]+)/?$ blogpost.php?post_id=$1
+	RewriteRule ^blog/([^/]+)/([^/]+)/?$ blogpost.php?post_id=$1&post_titulo=$2
+
+	RewriteRule ^videos/?$ videosList.php
+	RewriteRule ^video/([^/]+)/?$ videoItem.php?video_id=$1
+	RewriteRule ^video/([^/]+)/([^/]+)/?$ videoItem.php?video_id=$1&video_titulo=$2
+	
+</IfModule>
+<IfModule !mod_rewrite.c>
+	ErrorDocument 404 http://www.google.com.br
+</IfModule>
