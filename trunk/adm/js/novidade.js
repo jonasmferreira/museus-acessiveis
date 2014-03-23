@@ -33,29 +33,6 @@
 					}
 			)
 		});
-		$("#novidade_360_exibir_banner").click(function(){
-			if(!$(this).prop('checked')){
-				$("#novidade_360_banner").removeAttr('disabled');
-				$("#novidade_360_banner_desc").removeAttr('readonly');
-			}else{
-				$("#novidade_360_banner").attr('disabled','disabled');
-				$("#novidade_360_banner_desc").attr('readonly','yes');
-			}
-		});
-
-		$("#novidade_360_exibir_destaque_home").click(function(){
-			if(!$(this).prop('checked')){
-				$("#novidade_360_destaque_home").removeAttr('disabled');
-				$("#novidade_360_destaque_home_desc").removeAttr('readonly');
-				$("#novidade_360_destaque_home_frase").removeAttr('readonly');
-			}else{
-				$("#novidade_360_destaque_home").attr('disabled','disabled');
-				$("#novidade_360_destaque_home_desc").attr('readonly','yes');
-				$("#novidade_360_destaque_home_frase").attr('readonly','yes');
-			}
-		});
-		//$("#novidade_360_exibir_banner").click();
-		//$("#novidade_360_exibir_destaque_home").click();
 		
 		$(".delImg").click(function(){
 			var obj = $(this);
