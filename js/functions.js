@@ -76,8 +76,29 @@ $(document).ready(function(){
 		idx++;
 	});
 
-	
-	
+	//CONTROLANDO O OUTDOOR
+	$('#outdoor #item-box #outdoor-lista li a').each(function(){
+		$(this).click(function(){
+			
+			var idItem = $(this).attr('id');
+			var aIdx = idItem.split('_');
+			idItem = aIdx[1];
+			
+			$('#outdoor #item-box #item img').each(function(){
+				$(this).css('display','none');
+			});
+			$('#outdoor #item-box #item dl').each(function(){
+				$(this).css('display','none');
+			});
+			
+			$('#outi_'+idItem).css('display','block');
+			$('#outdd_'+idItem).css('display','block');
+			
+			console.log($(this).get(0),aIdx[1]);
+			return false;
+			
+		});
+	});
 
 });
 
