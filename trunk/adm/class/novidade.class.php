@@ -102,6 +102,8 @@ class novidade extends defaultClass{
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
 					$rs['novidade_360_dthr'] = $this->dateDB2BR($rs['novidade_360_dt'])." às ".$rs['novidade_360_hr'];
 					$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
+					$rs['novidade_360_exibir_destaque_home_label'] = $rs['novidade_360_exibir_destaque_home']=='S'?'Sim':'Não';
+					$rs['novidade_360_exibir_banner_label'] = $rs['novidade_360_exibir_banner']=='S'?'Sim':'Não';
 					$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
@@ -165,23 +167,29 @@ class novidade extends defaultClass{
 					,novidade_360_hr = '{$this->values['novidade_360_hr']}'
 					,novidade_360_titulo = '{$this->values['novidade_360_titulo']}'
 					,novidade_360_resumo = '{$this->values['novidade_360_resumo']}'
-					,novidade_360_thumb = '{$this->values['novidade_360_thumb']}'
 					,novidade_360_thumb_desc = '{$this->values['novidade_360_thumb_desc']}'
 					,novidade_360_fonte = '{$this->values['novidade_360_fonte']}'
 					,novidade_360_url_fonte = '{$this->values['novidade_360_url_fonte']}'
 					,novidade_360_conteudo = '{$this->values['novidade_360_conteudo']}'
 					,novidade_360_exibir_banner = '{$this->values['novidade_360_exibir_banner']}'
-					,novidade_360_banner = '{$this->values['novidade_360_banner']}'
 					,novidade_360_banner_desc = '{$this->values['novidade_360_banner_desc']}'
 					,novidade_360_exibir_destaque_home = '{$this->values['novidade_360_exibir_destaque_home']}'
-					,novidade_360_destaque_home = '{$this->values['novidade_360_destaque_home']}'
 					,novidade_360_destaque_home_desc = '{$this->values['novidade_360_destaque_home_desc']}'
 					,novidade_360_destaque_home_frase = '{$this->values['novidade_360_destaque_home_frase']}'
-
-			WHERE	novidade_360_id = '{$this->values['novidade_360_id']}'
 		";
-
+		if(trim($this->values['novidade_360_thumb'])!=""){
+			$sql[] = ",novidade_360_thumb = '{$this->values['novidade_360_thumb']}'";
+		}
+		if(trim($this->values['novidade_360_banner'])!=""){
+			$sql[] = ",novidade_360_banner = '{$this->values['novidade_360_banner']}'";
+		}
+		if(trim($this->values['novidade_360_destaque_home'])!=""){
+			$sql[] = ",novidade_360_destaque_home = '{$this->values['novidade_360_destaque_home']}'";
+		}
+		
+		$sql[] = "WHERE	novidade_360_id = '{$this->values['novidade_360_id']}'";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
 			return $result;
@@ -191,6 +199,7 @@ class novidade extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		$novidade_360_id = $this->values['novidade_360_id'];
 		$result = $this->insertTags($this->values['tags'], $novidade_360_id);
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
@@ -341,6 +350,26 @@ class novidade extends defaultClass{
 			}
 		}
 		return $arr;
+	}
+	
+	public function removeImage(){
+		$aReg = $this->getOne();
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		$sql[] = "
+			UPDATE tb_novidade_360 SET
+				{$this->values['img']} = ''
+			WHERE	novidade_360_id = '{$this->values['novidade_360_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			@unlink("{$this->pathImg}{$aReg[$this->values['img']]}");
+			$this->dbConn->db_commit();
+		}
+		return $result;
+		
 	}
 	
 }

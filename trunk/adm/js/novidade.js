@@ -54,9 +54,36 @@
 				$("#novidade_360_destaque_home_frase").attr('disabled','disabled');
 			}
 		});
-		
 		$("#novidade_360_exibir_banner").click();
 		$("#novidade_360_exibir_destaque_home").click();
+		
+		$(".delImg").click(function(){
+			var obj = $(this);
+			var img = $(this).attr('rel');
+			var id = $("#novidade_360_id").val();
+			
+			var param = {
+				'novidade_360_id':id
+				,'img':img
+			}
+			deleteItem(
+					"Deseja remover essa imagem?"
+					,"controller/novidade.controller.php?action=removeImage"
+					,param
+					,function(msg,oDialog){
+						oDialog.dialog('close');
+						oDialog.dialog('destroy');
+						obj.parent().parent().find('.images').remove();
+						obj.parent().remove();
+						newAlert(msg);
+					}
+					,function(msg,oDialog){
+						oDialog.dialog('close');
+						oDialog.dialog('destroy');
+						newAlert(msg);
+					}
+			)
+		});
 		
 	});
 	

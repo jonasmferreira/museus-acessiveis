@@ -14,7 +14,6 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$obj->debug($aRow);
 	$aTags = $obj->getTags();
 ?>
 <script type="text/javascript" src="js/novidade.js"></script>

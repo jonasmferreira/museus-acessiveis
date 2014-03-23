@@ -23,7 +23,6 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$obj->debug($aRows);
 ?>
 <script type="text/javascript" src="js/novidade.js"></script>
 <div id="contentWrapper">
@@ -32,7 +31,7 @@
 	</div>
 
 	<div class="left" style="width:auto;">
-		<form action="cursoLista.php" method="post" id="formBusca" name="formbusca">
+		<form action="novidade_360Lista.php" method="post" id="formBusca" name="formbusca">
 			<input type="hidden" name="submitado" value="1" />
 			<input type="hidden" name="page" id="pagePag" value="<?=$aRows['page']?>" />
 			<input type="hidden" name="rows" id="rowsPag" value="10" />
@@ -63,7 +62,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="novidadeEdicao.php" class="butCadastro">Cadastrar novo curso</a>
+		<a href="novidadeEdicao.php" class="butCadastro">Cadastrar novo novidade_360</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
@@ -71,12 +70,10 @@
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
 				<td>Data</td>
-				<td>Periodo De</td>
-				<td>Periodo Até</td>
-				<td>Sob Demanda?</td>
-				<td>Nome do Curso</td>
-				<td>Resumo</td>
+				<td>Titulo</td>
 				<td>Agenda</td>
+				<td>Banner Principal?</td>
+				<td>Destaque Home?</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -87,13 +84,11 @@
 			?>
 			<tr class="tableItem<?=$evenOdd?>">
 				<td align="center"><?=$v['novidade_360_id']?></td>
-				<td><?=$v['curso_dt_hr']?></td>
-				<td><?=$v['curso_dt_ini']?></td>
-				<td><?=$v['curso_dt_fim']?></td>
-				<td><?=$v['curso_sob_demanda_label']?></td>
-				<td><?=$v['curso_titulo']?></td>
-				<td><?=$v['curso_resumo']?></td>
-				<td><?=$v['curso_agenda']?></td>
+				<td><?=$v['novidade_360_dthr']?></td>
+				<td><?=$v['novidade_360_titulo']?></td>
+				<td><?=$v['novidade_360_dt_agenda']?></td>
+				<td><?=$v['novidade_360_exibir_destaque_home_label']?></td>
+				<td><?=$v['novidade_360_exibir_banner_label']?></td>
 				<td>
 					<a href="novidadeEdicao.php?novidade_360_id=<?=$v['novidade_360_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['novidade_360_id']?>" class="btDel">Excluir</a>
