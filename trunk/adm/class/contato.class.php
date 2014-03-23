@@ -33,6 +33,8 @@ class contato extends defaultClass{
 		$sql[] = "
 			SELECT	t.*
 					,tc.contato_tipo
+					,tc.contato_tipo_icone
+					,tc.contato_tipo_icone_contraste
 			FROM	tb_contato t
 			JOIN	tb_contato_tipo tc
 			ON		t.contato_tipo_id = tc.contato_tipo_id
@@ -53,7 +55,7 @@ class contato extends defaultClass{
 			}
 		}
 		if(isset($this->values['contato_exibir'])&&trim($this->values['contato_exibir'])!=''){
-			$sql[] = "AND t.contato_exibir IN ({$this->values['contato_exibir']})";
+			$sql[] = "AND t.contato_exibir IN ('{$this->values['contato_exibir']}')";
 		}
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -177,6 +179,32 @@ class contato extends defaultClass{
 		}
 		return $result;
 	}
+	
+	public function getContatoTipo($contato_tipo_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	contato_tipo
+			FROM	tb_contato_tipo
+			WHERE	1 = 1
+			AND		contato_tipo_id = '{$contato_tipo_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$aRet['rows'] = $arr;
+		return $aRet;		
+		
+	}
+	
+	
+	
+	
 }
 
 
