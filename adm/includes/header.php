@@ -68,7 +68,7 @@
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
                     	<a href="servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
                     	<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
-						<a href="infoExtraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
+						<a href="extraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
                     </div>
                 </span>                
            		<a href="novidadeLista.php" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
