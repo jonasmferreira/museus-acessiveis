@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="left" style="width:auto;">
-		<form action="novidade_360Lista.php" method="post" id="formBusca" name="formbusca">
+		<form action="novidadeLista.php" method="post" id="formBusca" name="formbusca">
 			<input type="hidden" name="submitado" value="1" />
 			<input type="hidden" name="page" id="pagePag" value="<?=$aRows['page']?>" />
 			<input type="hidden" name="rows" id="rowsPag" value="10" />
@@ -70,8 +70,9 @@
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
 				<td>Data</td>
-				<td>Titulo</td>
 				<td>Agenda</td>
+				<td>Titulo</td>
+				<td>Fonte</td>
 				<td>Banner Principal?</td>
 				<td>Destaque Home?</td>
 				<td width="174">&nbsp;</td>
@@ -85,8 +86,9 @@
 			<tr class="tableItem<?=$evenOdd?>">
 				<td align="center"><?=$v['novidade_360_id']?></td>
 				<td><?=$v['novidade_360_dthr']?></td>
-				<td><?=$v['novidade_360_titulo']?></td>
 				<td><?=$v['novidade_360_dt_agenda']?></td>
+				<td><?=$v['novidade_360_titulo']?></td>
+				<td><?=$v['novidade_360_fonte']?></td>
 				<td><?=$v['novidade_360_exibir_destaque_home_label']?></td>
 				<td><?=$v['novidade_360_exibir_banner_label']?></td>
 				<td>
