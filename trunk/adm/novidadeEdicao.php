@@ -104,10 +104,10 @@
             		<td colspan="3">
 						Outdoor(517x227)<br />
 						<?	if(is_file("../images/{$aRow['novidade_360_banner']}")):?>
-						<span>(<a href="javascript:void(0)" rel="novidade_360_banner" class="delImg">Remover Imagem</a>)</span>
+						<span>(<a href="javascript:void(0)" <?=$aRow['novidade_360_exibir_banner']=='S'?'disabled="disabled"':''?> rel="novidade_360_banner" class="delImg">Remover Imagem</a>)</span>
 						<?	endif;?>
 						<br />
-						<input type="file" name="novidade_360_banner" id="novidade_360_banner" />
+						<input type="file" name="novidade_360_banner" id="novidade_360_banner" <?=$aRow['novidade_360_exibir_banner']=='S'?'disabled="disabled"':''?> />
 						<?	if(is_file("../images/{$aRow['novidade_360_banner']}")):?>
 						<div class="images">
                         	<img src="../images/<?=$aRow['novidade_360_banner']?>" />
@@ -119,7 +119,7 @@
 				<tr>
 					<td colspan="3">
 						Descrição do Outdoor<br />
-						<textarea name="novidade_360_thumb_desc" id="novidade_360_banner_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_banner_desc']?></textarea>
+						<textarea name="novidade_360_banner_desc" <?=$aRow['novidade_360_exibir_banner']=='S'?'readonly="yes"':''?> id="novidade_360_banner_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_banner_desc']?></textarea>
 					</td>
 				</tr>
 				<!-- Sessão B - Exibir no Destaque -->
@@ -131,19 +131,19 @@
 				<tr>
 					<td colspan="3">
 						Destaque Imagem(262x262)<br />
-						<input type="file" name="novidade_360_destaque_home" id="novidade_360_destaque_home" />
+						<input type="file" name="novidade_360_destaque_home" <?=$aRow['novidade_360_exibir_destaque_home']=='S'?'disabled="disabled"':''?> id="novidade_360_destaque_home" />
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
 						Destaque Imagem Descrição<br />
-						<textarea name="novidade_360_destaque_home_desc" id="novidade_360_destaque_home_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_destaque_home_desc']?></textarea>
+						<textarea name="novidade_360_destaque_home_desc" <?=$aRow['novidade_360_exibir_destaque_home']=='S'?'readonly="yes"':''?> id="novidade_360_destaque_home_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_destaque_home_desc']?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
 						Destaque Frase <br />
-						<textarea name="novidade_360_destaque_home_frase" id="novidade_360_destaque_home_frase" rows="5" style="width:99%"><?=$aRow['novidade_360_destaque_home_frase']?></textarea>
+						<textarea name="novidade_360_destaque_home_frase" <?=$aRow['novidade_360_exibir_destaque_home']=='S'?'readonly="yes"':''?> id="novidade_360_destaque_home_frase" rows="5" style="width:99%"><?=$aRow['novidade_360_destaque_home_frase']?></textarea>
 					</td>
 				</tr>
 				<tr>
