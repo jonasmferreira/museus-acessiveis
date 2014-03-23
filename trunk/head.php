@@ -3,6 +3,7 @@
 	include_once("{$path_root_page}adm{$DS}class{$DS}configuracao.class.php");
 	$objConfig = new configuracao();
 	$aConfig = $objConfig->getOne();
+
 	//$objConfig->debug($aConfig);
 	$linkAbsolute=$aConfig['configuracao_baseurl'];
 	$seqAleatoria = "rnd=".str_replace(".","",microtime(true));
@@ -10,14 +11,14 @@
 	//itens dos contatos no footer
 	include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
 	$objContato = new contato();
-
 	$objContato->setValues(array(
 		'contato_exibir'=>'S'
 		,'page'=>'1'
 		,'rows'=>'10'
 	));
 	$aContato = $objContato->getLista();
-	//$objContato->debug($aContato);
+
+	
 	
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

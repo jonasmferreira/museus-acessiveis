@@ -10,6 +10,50 @@
 
 		//Carregando os conteúdos da página
 		
+		//itens do Outdoor / Destaque e Novidades 360º
+		include_once("{$path_root_page}adm{$DS}class{$DS}novidade.class.php");
+		$objNovidade = new novidade();
+
+		//itens do outdoor
+		$objNovidade->setValues(array(
+			'novidade_360_exibir_banner'=>'S'
+			,'page'=>'1'
+			,'rows'=>'4'
+		));
+		$objNovidade->setAOrderBy(array(
+			't.novidade_360_dt_agenda' => 'DESC'
+			,'t.novidade_360_dt' => 'DESC'
+			,'t.novidade_360_hr' => 'DESC'
+		));
+		$aOutdoor = $objNovidade->getLista();
+
+		//Novidades 360 - Destaque
+		$objNovidade->setValues(array(
+			'novidade_360_exibir_destaque_home'=>'S'
+			,'page'=>'1'
+			,'rows'=>'1'
+		));
+		$objNovidade->setAOrderBy(array(
+			't.novidade_360_dt_agenda' => 'DESC'
+			,'t.novidade_360_dt' => 'DESC'
+			,'t.novidade_360_hr' => 'DESC'
+		));
+		$aDestaque = $objNovidade->getLista();
+		$aDestaque = $aDestaque['rows'][0];
+		
+		//Novidades 360 - Lista
+		$objNovidade->setValues(array(
+			'page'=>'1'
+			,'rows'=>'3'
+		));
+		$objNovidade->setAOrderBy(array(
+			't.novidade_360_dt_agenda' => 'DESC'
+			,'t.novidade_360_dt' => 'DESC'
+			,'t.novidade_360_hr' => 'DESC'
+		));
+		$aNovidades = $objNovidade->getLista();
+
+		//$objNovidade->debug($aDestaque);
 		
 	?>	
 </head>
@@ -18,25 +62,34 @@
 	<?php include_once("{$path_root_page}accessbar.php"); ?>
 	<div class="clear"></div>    
 	<div id="content-l">
-		<?php include_once("{$path_root_page}accessbar.php"); ?>
+		<?php include_once("{$path_root_page}menu.php"); ?>
         <div id="content" href="content" accesskey="3">
         	<div id="logo">
 				<img tabIndex="15" src="<?=$linkAbsolute;?>img/logo_transparent.png" alt="Logo Museus Acessíveis, cultura + acessibilidade 360º" width="288" height="152" title="Logo Museus Acessíveis, cultura + acessibilidade 360º" />            
             </div>
             <div id="outdoor">
             	<div id="item-box">
-               	  <ul>
-                    	<li><a tabIndex="16" href="">1</a></li>
-                    	<li><a tabIndex="17" href="">2</a></li>
-                    	<li><a tabIndex="18" href="">3</a></li>
-                    	<li><a tabIndex="19" href="">4</a></li>
+					<ul id="outdoor-lista">
+<?php
+						foreach($aOutdoor['rows'] as $k =>$v){
+?>
+						<li><a id="outl_<?=$k?>" tabIndex="" href=""><?=($k+1)?></a></li>
+<?php
+						}
+?>
                     </ul>
                     <div id="item">
-               	    <img src="img/outdoor_dest.jpg" width="515" height="226"  alt=""/> 
-                    <dl>
-                   	  <dt><span tabIndex="20"><a href="novidade.html">Exposição Brasil-Portugal</a></span></dt>
-                        <dd><i tabIndex="21"><a href="novidade.html">Exposição acessível de 10 de agosto a 20 de dezembro</a></i></dd>
-                    </dl>
+<?php
+						foreach($aOutdoor['rows'] as $k =>$v){
+?>
+						<img <?=($k!=0) ? 'style="display:none;"' : '';?> id="outi_<?=$k?>" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_banner'];?>" width="515" height="226" alt="<?=$v['novidade_360_destaque_home_desc'];?>" title="<?=$v['novidade_360_destaque_home_desc'];?>" /> 
+						<dl <?=($k!=0) ? 'style="display:none;"' : '';?> id="outdd_<?=$k?>">
+							<dt><span tabIndex=""><a href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></span></dt>
+							<dd><i tabIndex=""><a href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_resumo'];?></a></i></dd>
+						</dl>
+<?php
+						}
+?>
                     </div>
                 </div>
             </div>
@@ -45,10 +98,10 @@
                 <div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-                        	<td valign="top" align="left" width="264"><img tabIndex="26" src="img/destaque.jpg" width="264" height="262"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
+                        	<td valign="top" align="left" width="264"><img tabIndex="26" src="<?=$linkAbsolute;?>images/<?=$aDestaque['novidade_360_destaque_home'];?>" width="264" height="262"  alt="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" title="<?=$aDestaque['novidade_360_destaque_home_desc'];?>"/></td>
                             <td valign="top" align="left">
                                 <div class="info-head">
-                                                        <div class="date"><span tabIndex="23" class="purple-color">13/08/2013</span></div>
+                                                        <div class="date"><span tabIndex="23" class="purple-color"><?=$aDestaque['novidade_360_dt_agenda'];?></span></div>
                                                         <div class="social-media">
                                                             <span class="purple-color"><a class="purple-color" href="" tabIndex="28">facebook</a></span>
                                                             <span class="separator">|</span>
@@ -58,18 +111,18 @@
                               </div>  
                               <dl>
                               	<dt>
-                                	<strong><a tabIndex="24" href="novidade.html">Aniversário de Helen Keller</a></strong>
+                                	<strong><a tabIndex="24" href="<?=$linkAbsolute;?>novidade/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>"><?=$aDestaque['novidade_360_titulo'];?></a></strong>
                                 </dt>
                               	<dd>
                                 <i tabIndex="25">
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
+                                <?=$aDestaque['novidade_360_resumo'];?>
                                 </i>
                                 </dd>
                               </dl>   
                               <p id="frase" tabIndex="27"><i>
-                              	A ciência poderá ter encontrado a cura para a maioria dos males, mas não achou ainda remédio para o pior de todos: a apatia dos seres humanos.
+                              <?=$aDestaque['novidade_360_destaque_home_frase'];?>
                               </i></p>
-                              <strong class="more"><a tabIndex="30" href="novidade.html">ver mais +</a></strong>                       
+                              <strong class="more"><a tabIndex="30" href="<?=$linkAbsolute;?>novidade/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>">ver mais +</a></strong>                       
                             </td>
                         </tr>
                     </table>
@@ -79,106 +132,44 @@
            </div>
             <div id="news360">
             	<h1 tabIndex="31" class="orange-color">Novidades 360º</h1>
-					<div class="content-box">
+					
+<?php
+						foreach($aNovidades['rows'] as $k =>$v){
+?>
+				
+				<div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
+                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_thumb'];?>" width="152" height="116"  alt="<?=$v['novidade_360_thumb_desc'];?>" title="<?=$v['novidade_360_thumb_desc'];?>"/></td>
                           <td valign="top" align="left">
                                 <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
+									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['novidade_360_dt_agenda'];?></span></div>
+									<div class="social-media">
+										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
+										<span class="separator">|</span>
+										<span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
+									</div>
+									<div class="clear"></div>
                               </div>  
                             <dl>
                               	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
+                                	<strong><a tabIndex="33" href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></strong>
                                 </dt>
                               	<dd tabIndex="34">
                                 <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
+                                <?=$v['novidade_360_resumo'];?>
                                 </i>
                                 </dd>
                             </dl>
                             </td>
                         </tr>
                         <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
+                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">ver mais +</a></strong></td>
                         </tr>
                     </table>
-                    
-                    
                 </div>  
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="42" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="39">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="43" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="44" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="40" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="41">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="45" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                    
-                    
-                </div>
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="49" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="46">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="50" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="51" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="47" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="48">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="52" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                    
-                    
-                </div>                                              
-				<h1 class="orange-color"><a tabIndex="53" class="orange-color" href="novidade_lista.html">demais notícias</a></h1>
+				<?php } ?>
+				<h1 class="orange-color"><a tabIndex="53" class="orange-color" href="<?=$linkAbsolute;?>/novidade;?>">demais notícias</a></h1>
             </div>
             <div id="banners">
             	<div class="button">
