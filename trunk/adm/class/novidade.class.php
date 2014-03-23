@@ -141,6 +141,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_dt_agenda'] = $this->dateBR2DB($this->values['novidade_360_dt_agenda']);
 		$this->values['novidade_360_dt'] = date('Y-m-d');
 		$this->values['novidade_360_hr'] = date('H:i:s');		
+		$this->values['novidade_360col'] = $this->escape_string($this->values['novidade_360col']);
 		$this->values['novidade_360_titulo'] = $this->escape_string($this->values['novidade_360_titulo']);
 		$this->values['novidade_360_resumo'] = $this->escape_string($this->values['novidade_360_resumo']);
 		$this->values['novidade_360_conteudo'] = $this->escape_string($this->values['novidade_360_conteudo']);
@@ -148,8 +149,10 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_thumb_desc'] = $this->escape_string($this->values['novidade_360_thumb_desc']);
 		$this->values['novidade_360_fonte'] = $this->escape_string($this->values['novidade_360_fonte']);
 		$this->values['novidade_360_exibir_banner'] = trim($this->values['novidade_360_exibir_banner'])!=''?$this->values['novidade_360_exibir_banner']:'N';
+		$this->values['novidade_360_banner'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_banner']);
 		$this->values['novidade_360_banner_desc'] = $this->escape_string($this->values['novidade_360_banner_desc']);
 		$this->values['novidade_360_exibir_destaque_home'] = trim($this->values['novidade_360_exibir_destaque_home'])!=''?$this->values['novidade_360_exibir_destaque_home']:'N';
+		$this->values['novidade_360_destaque_home'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_destaque_home']);
 		$this->values['novidade_360_destaque_home_desc'] = $this->escape_string($this->values['novidade_360_destaque_home_desc']);
 		$this->values['novidade_360_destaque_home_frase'] = $this->escape_string($this->values['novidade_360_destaque_home_frase']);
 		
