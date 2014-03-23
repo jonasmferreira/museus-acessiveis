@@ -152,15 +152,17 @@ class curso extends defaultClass{
 					,curso_sob_demanda = '{$this->values['curso_sob_demanda']}'
 					,curso_titulo = '{$this->values['curso_titulo']}'
 					,curso_resumo = '{$this->values['curso_resumo']}'
-					,curso_thumb = '{$this->values['curso_thumb']}'
 					,curso_thumb_desc = '{$this->values['curso_thumb_desc']}'
 					,curso_fonte = '{$this->values['curso_fonte']}'
 					,curso_link_fonte = '{$this->values['curso_link_fonte']}'
 					,curso_conteudo = '{$this->values['curso_conteudo']}'
 					,curso_agenda = '{$this->values['curso_agenda']}'
-					
-			WHERE	curso_id = '{$this->values['curso_id']}'
 		";
+		if(trim($this->values['curso_thumb'])){
+			$sql[] = ",curso_thumb = '{$this->values['curso_thumb']}'";
+		}
+		
+		$sql[] = "WHERE	curso_id = '{$this->values['curso_id']}'";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
@@ -566,5 +568,23 @@ class curso extends defaultClass{
 			}
 		}
 		return $arr;
+	}
+	public function removeImage(){
+		$aReg = $this->getOne();
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		$sql[] = "
+			UPDATE tb_curso SET
+				{$this->values['img']} = ''
+			WHERE	curso_id = '{$this->values['curso_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			@unlink("{$this->pathImg}{$aReg[$this->values['img']]}");
+			$this->dbConn->db_commit();
+		}
+		return $result;
 	}
 }

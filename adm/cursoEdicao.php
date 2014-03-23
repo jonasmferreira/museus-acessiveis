@@ -51,7 +51,17 @@
 				<tr>
 					<td colspan="3">
 						Thumb(150x115)<br />
+						<?	if(is_file("../images/{$aRow['curso_thumb']}")):?>
+						<span>(<a href="javascript:void(0)" rel="curso_thumb" class="delImg">Remover Imagem</a>)</span>
+						<br />
+						<?	endif;?>
 						<input type="file" name="curso_thumb" id="curso_thumb" />
+						<?	if(is_file("../images/{$aRow['curso_thumb']}")):?>
+						<br />
+						<div class="images">
+                        	<img src="../images/<?=$aRow['curso_thumb']?>" />
+                        </div>
+						<?	endif;?>
 					</td>
 				</tr>
 				<tr>

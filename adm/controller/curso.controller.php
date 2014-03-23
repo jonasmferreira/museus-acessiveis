@@ -48,4 +48,14 @@ switch($_REQUEST['action']){
 		$aResult = $obj->getLista();
 		echo json_encode($aResult);
 	break;
+	case 'removeImage':
+		$obj->setValues($_REQUEST);
+		$exec = $obj->removeImage();
+		if($exec['success']){
+			$msg = "CMD_SUCCESS|Imagem Removida com Sucesso!";
+		}else{
+			$msg = "CMD_FAILED|Não é possivel remover a imagem!";
+		}
+		echo $msg;
+	break;
 }

@@ -42,5 +42,33 @@
 				$("#curso_dt_fim").removeAttr('disabled');
 			}
 		});
+		
+		$(".delImg").click(function(){
+			var obj = $(this);
+			var img = $(this).attr('rel');
+			var id = $("#curso_id").val();
+			
+			var param = {
+				'curso_id':id
+				,'img':img
+			}
+			deleteItem(
+					"Deseja remover essa imagem?"
+					,"controller/curso.controller.php?action=removeImage"
+					,param
+					,function(msg,oDialog){
+						oDialog.dialog('close');
+						oDialog.dialog('destroy');
+						obj.parent().parent().find('.images').remove();
+						obj.parent().remove();
+						newAlert(msg);
+					}
+					,function(msg,oDialog){
+						oDialog.dialog('close');
+						oDialog.dialog('destroy');
+						newAlert(msg);
+					}
+			)
+		});
 	});
 })(jQuery);
