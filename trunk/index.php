@@ -1,63 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Museus Acessíveis</title>
+	<?php 
 
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="plugins/lightbox/css/lightbox.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="css/style_contrast.css" type="text/css" media="screen" />
+		$path_root_page = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_page = "{$path_root_page}{$DS}";
+		include_once("{$path_root_page}head.php"); 
 
-<script src="plugins/jquery-1.10.2.min.js"></script>
-<script src="plugins/shortcut.js"></script>
-<script src="plugins/cookie.js"></script>
-<script src="plugins/fontSize.js"></script>
-
-<script src="plugins/lightbox/js/lightbox-2.6.min.js"></script>
-
-<script src="js/functions.js"></script>
-
+		//Carregando os conteúdos da página
+		
+		
+	?>	
 </head>
 <body>
 <div id="root">
-	<div href="access-bar" accesskey="1" id="access-bar" class="fixedSize">
-    	<span class="title fixedSize" style="padding-right:30px;">opções de acessibilidade</span>
-
-    	<span class="title fixedSize">tipo de contraste:</span>
-    	<span class="option fixedSize"><a id="normal-view" href="javascript:void(0);" tabIndex="1">Contraste Padrão</a></span>
-    	<span class="option fixedSize"><a id="contrast-view" href="javascript:void(0);" tabIndex="2">Contraste Invertido</a></span>
-
-    	<span class="title fixedSize">tamanho da fonte</span>
-        <p id="fontSize">
-            <span class="option"><a tabIndex="3" href=javascript:void(0);" id="font-minus">A-</a></span>
-            <span class="option"><a tabIndex="4" href="javascript:void(0);" id="font-plus">A+</a></span>
-        </p>
-    </div>
+	<?php include_once("{$path_root_page}accessbar.php"); ?>
 	<div class="clear"></div>    
 	<div id="content-l">
-    	<div id="menu" href="menu" accesskey="2" >
-        	<ul id="principal">
-            	<li class="fontSize"><a tabIndex="5" href="index.html">home</a></li>
-            	<li class="fontSize"><a tabIndex="6" href="quemsomos.html">quem somos</a></li>
-            	<li class="fontSize"><a tabIndex="7" href="servico_lista.html">serviços</a></li>
-            	<li class="fontSize"><a tabIndex="8" href="projeto_lista.html">projetos</a>
-                    <div class="submenu">
-                        <ul>
-                            <li class="fontSize"><a tabIndex="9" href="abertos.html">Projetos abertos para captação</a></li>
-                            <li class="fontSize"><a tabIndex="10" href="realizados.html">Portifólio de projetos realizados</a></li>
-                            <li class="fontSize"><a tabIndex="11" href="andamento.html">Projetos em andamento</a></li>
-                       </ul>
-                    </div>
-                </li>
-            	<li class="fontSize"><a tabIndex="12" href="curso_lista.html">cursos</a></li>
-            	<li class="fontSize"><a tabIndex="13" href="download.html">downloads</a></li>
-            	<li class="fontSize"><a tabIndex="14" href="imprensa.html" style="padding-right:none !important;">imprensa</a></li>
-            </ul>
-        </div>
+		<?php include_once("{$path_root_page}accessbar.php"); ?>
         <div id="content" href="content" accesskey="3">
         	<div id="logo">
-<img tabIndex="15" src="img/logo_transparent.png" alt="Logo Museus Acessíveis, cultura + acessibilidade 360º" width="288" height="152" title="Logo Museus Acessíveis, cultura + acessibilidade 360º" />            
+				<img tabIndex="15" src="<?=$linkAbsolute;?>img/logo_transparent.png" alt="Logo Museus Acessíveis, cultura + acessibilidade 360º" width="288" height="152" title="Logo Museus Acessíveis, cultura + acessibilidade 360º" />            
             </div>
             <div id="outdoor">
             	<div id="item-box">
@@ -356,42 +320,7 @@
             <div class="clear"></div>
         </form>
     </div>
-	<div class="clear"></div>
-    <div id="footer" href="footer" accesskey="5">
-    	<div id="contact">
-        	<strong tabIndex="114">Contatos</strong>
-        	<div id="devices">
-            	<span tabIndex="115" class="fone">55 (11) 9 7631.3962</span>
-                <span tabIndex="116" class="skype">skype: viviane.sarraf</span>
-                <span tabIndex="117" class="facebook">facebook.com\museusacessiveis</span>
-            </div>
-            <div id="web">
-            	<a tabIndex="118" href="">viviane@museusacessiveis.com.br</a>
-            	<a tabIndex="119" href="">www.museusacessiveis.com.br</a>
-            </div>
-            <strong id="access-option"><a tabIndex="120" href="">opções de acessibilidade</a></strong>
-        </div>
-        <div id="sitemap">
-        	<strong tabIndex="121">Mapa do Site</strong>
-            <ul>
-            	<li><a tabIndex="122" href="">Home</a></li>
-            	<li><a tabIndex="123" href="">Quem Somos</a></li>
-            	<li><a tabIndex="124" href="">Serviços</a></li>
-            	<li tabIndex="125">
-                	Projetos
-                    <ul>
-                    	<li><a tabIndex="126" href="">Projetos abertos para capacitação</a></li>
-                    	<li><a tabIndex="127" href="">Portifólio de projetos realizados</a></li>
-                    	<li><a tabIndex="128" href="">Projetos em andamento</a></li>
-                    </ul>
-                </li>
-            	<li><a tabIndex="129" href="">Cursos</a></li>
-            	<li><a tabIndex="130" href="">Downloads</a></li>
-                <li><a tabIndex="131" href="">Imprensa</a></li>
-            </ul>
-        </div>
-    	<div class="clear"></div>
-    </div>
+	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
 </body>
 </html>
