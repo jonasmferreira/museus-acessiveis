@@ -62,6 +62,54 @@ class defaultClass {
 		, "12" => "Dezembro"
 	);
 
+	private $aOrderBy = array();
+	private $oWheres;
+	
+	public function setAOrderBy($aOrderBy) {
+		$this->aOrderBy = $aOrderBy;
+	}
+	public function setOWheres($oWheres) {
+		$this->oWheres = $oWheres;
+	}
+
+	public function getAOrderBy() {
+		if(count($this->aOrderBy) && isset($this->aOrderBy)):
+			$aOrder = array();
+			foreach($this->aOrderBy as $k => $v):
+				if($k!=''):
+					$aOrder[] = "{$k} {$v}";
+				endif;
+			endforeach;
+			$aOrder = implode(",\n",$aOrder);
+			$aOrder = "ORDER BY {$aOrder}";
+			return $aOrder;
+		endif;
+		
+		return false;
+	}
+	
+	public function getOWheres() {
+		if(count($this->oWheres) && isset($this->oWheres)):
+			$aWheres = array();
+			foreach($this->oWheres as $k => $v):
+				if(trim($v)!=''):
+					$key = (stripos($k,' ')!==false)?trim(reset(explode(' ',$k))):trim($k);
+				
+					$tipo = (stripos($k,' ')!==false)?trim(end(explode($key,$k))):'=';
+					
+					$v = (stripos($k,'LIKE')!==false)?"%{$v}%":$v;
+					
+					$v = $this->antiInjection($v);
+					$aWheres[] = " AND {$key} {$tipo} '{$v}'";
+				endif;
+			endforeach;
+			$aWheres = implode("\n",$aWheres);
+			return $aWheres;
+		endif;
+		
+		return false;
+	}
+
 	public function registerSession($arr) {
 		if (is_array($arr) && count($arr) > 0) {
 			foreach ($arr AS $k => $v) {
