@@ -153,7 +153,13 @@ h3 {
 	padding: 0 !important;
 	margin: 0 !important;
 	text-transform: none !important;
+	display: none;
 }
+
+#menu ul#principal li.sub-mn:hover .submenu{
+	display:block;
+}
+
 #menu div.submenu ul{
 	display: block;
 	width: 250px;
