@@ -73,6 +73,16 @@ class novidade extends defaultClass{
 			$this->values['novidade_360_dt'] = $this->dateBR2DB($this->values['novidade_360_dt']);
 			$sql[] = "AND t.novidade_360_dt_agenda <= '{$this->values['novidade_360_dt']}'";
 		}
+
+		if(isset($this->values['novidade_360_exibir_banner'])&&trim($this->values['novidade_360_exibir_banner'])!=''){
+			$this->values['novidade_360_exibir_banner'] = $this->values['novidade_360_exibir_banner'];
+			$sql[] = "AND t.novidade_360_exibir_banner = '{$this->values['novidade_360_exibir_banner']}'";
+		}
+		
+		if(isset($this->values['novidade_360_exibir_destaque_home'])&&trim($this->values['novidade_360_exibir_destaque_home'])!=''){
+			$this->values['novidade_360_exibir_destaque_home'] = $this->values['novidade_360_exibir_destaque_home'];
+			$sql[] = "AND t.novidade_360_exibir_destaque_home = '{$this->values['novidade_360_exibir_destaque_home']}'";
+		}
 		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -86,7 +96,14 @@ class novidade extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.novidade_360_dt_agenda ASC";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.novidade_360_dt_agenda ASC";
+		}
+
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -113,6 +130,7 @@ class novidade extends defaultClass{
 		return $aRet;
 	}
 
+	
 	public function getOne(){
 		$sql = array();
 		$sql[] = $this->getSql();
