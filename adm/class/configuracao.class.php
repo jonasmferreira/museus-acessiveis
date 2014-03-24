@@ -54,6 +54,9 @@ class configuracao extends defaultClass {
 			UPDATE	tb_configuracao SET
 					configuracao_baseurl = '{$this->values['configuracao_baseurl']}'
 					,configuracao_baseurl_ckfinder = '{$this->values['configuracao_baseurl_ckfinder']}'
+					,configuracao_meta_author = '{$this->values['configuracao_meta_author']}'
+					,configuracao_meta_keywords = '{$this->values['configuracao_meta_keywords']}'
+					,configuracao_meta_description = '{$this->values['configuracao_meta_description']}'
 		";
 		$sql[] = "WHERE	configuracao_id = '1'";
 		$result = $this->dbConn->db_execute(implode("\n", $sql));
