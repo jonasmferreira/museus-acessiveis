@@ -40,6 +40,25 @@
 					</td>
 				</tr>
 				<tr>
+					<td colspan="3">
+						Meta Author (ex: Mobile Studio)<br />
+						<input type="text" class="formTxt obrigatorio" name="configuracao_meta_author" id="configuracao_meta_author" style="width:98%" value="<?=$aRow['configuracao_meta_author']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Meta Keywords (ex: acessibilidade, inclusão, deficiência visual)<br />
+						<input type="text" class="formTxt obrigatorio" name="configuracao_meta_keywords" id="configuracao_meta_keywords" style="width:98%" value="<?=$aRow['configuracao_meta_keywords']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Meta Description (ex: Site especializado em inclusão de pessoas com deficiência visual.)<br />
+						<textarea name="configuracao_meta_description" id="configuracao_meta_description" rows="5" class="formTxt obrigatorio" style="width:99%"><?=$aRow['configuracao_meta_description']?></textarea>
+
+					</td>
+				</tr>
+				<tr>
 					<td align="right" colspan="3">
 						<a href="home.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
