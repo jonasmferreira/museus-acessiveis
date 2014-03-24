@@ -13,7 +13,6 @@
 		//itens do Outdoor / Destaque e Novidades 360º
 		include_once("{$path_root_page}adm{$DS}class{$DS}novidade.class.php");
 		$objNovidade = new novidade();
-
 		$nId = (isset($_REQUEST['novidade_360_id'])?$_REQUEST['novidade_360_id']:0);
 		$objNovidade->setValues(
 			array(
@@ -21,9 +20,6 @@
 			)
 		);
 		$aNovidade = $objNovidade->getOne();
-		
-		$objNovidade->debug($aNovidade);
-		
 	?>	
 </head>
 <body>
