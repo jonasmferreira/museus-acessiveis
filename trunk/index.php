@@ -84,8 +84,8 @@
 ?>
 						<img <?=($k!=0) ? 'style="display:none;"' : '';?> id="outi_<?=$k?>" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_banner'];?>" width="515" height="226" alt="<?=$v['novidade_360_destaque_home_desc'];?>" title="<?=$v['novidade_360_destaque_home_desc'];?>" /> 
 						<dl <?=($k!=0) ? 'style="display:none;"' : '';?> id="outdd_<?=$k?>">
-							<dt><span tabIndex=""><a href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></span></dt>
-							<dd><i tabIndex=""><a href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_resumo'];?></a></i></dd>
+							<dt><span tabIndex=""><a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></span></dt>
+							<dd><i tabIndex=""><a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_resumo'];?></a></i></dd>
 						</dl>
 <?php
 						}
@@ -111,7 +111,7 @@
                               </div>  
                               <dl>
                               	<dt>
-                                	<strong><a tabIndex="24" href="<?=$linkAbsolute;?>novidade/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>"><?=$aDestaque['novidade_360_titulo'];?></a></strong>
+                                	<strong><a tabIndex="24" href="<?=$linkAbsolute;?>novidade360/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>"><?=$aDestaque['novidade_360_titulo'];?></a></strong>
                                 </dt>
                               	<dd>
                                 <i tabIndex="25">
@@ -122,7 +122,7 @@
                               <p id="frase" tabIndex="27"><i>
                               <?=$aDestaque['novidade_360_destaque_home_frase'];?>
                               </i></p>
-                              <strong class="more"><a tabIndex="30" href="<?=$linkAbsolute;?>novidade/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>">ver mais +</a></strong>                       
+                              <strong class="more"><a tabIndex="30" href="<?=$linkAbsolute;?>novidade360/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>">ver mais +</a></strong>                       
                             </td>
                         </tr>
                     </table>
@@ -153,7 +153,7 @@
                               </div>  
                             <dl>
                               	<dt>
-                                	<strong><a tabIndex="33" href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></strong>
+                                	<strong><a tabIndex="33" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></strong>
                                 </dt>
                               	<dd tabIndex="34">
                                 <i>
@@ -164,7 +164,7 @@
                             </td>
                         </tr>
                         <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>novidade/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">ver mais +</a></strong></td>
+                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">ver mais +</a></strong></td>
                         </tr>
                     </table>
                 </div>  
@@ -190,126 +190,10 @@
   </div>
 
 	<div id="content-r" href="content-r" accesskey="4">
-    	<form action="" method="GET" id="search">
-        	<h1 tabIndex="57">Busca</h1>
-            <p tabIndex="58" class="description"><i>Saiba mais sobre inclusão sem complicação!!!</i></p>
-            <input tabIndex="59" type="text" class="field" value="" />
-			<input tabIndex="60" type="image" class="bt-search" src="img/search-bt_transparent.png" style="" />            <div class="clear"></div>
-        </form>
-        <div id="diary">
-        	<h1 tabIndex="61">Agenda Brasil de Acessibilidade</h1>
-            <p tabIndex="62" class="description">
-				Clique e saiba mais sobreos principais eventosda área de acessibilidade!!!
-                </p>
-                <div id="calendar">
-                	<div id="month-info">
-                    	<table cellpadding="0" cellspacing="0" width="100%">
-							<tr>
-                            	<td><a tabIndex="63" href="" class="arrow-l"><strong>&lt;&lt;</strong></a></td>
-                                <td><a tabIndex="64" href=""><strong>agosto</strong></a></td>
-                                <td><span>|</span></td>
-                                <td><a tabIndex="65" href=""><strong>2013</strong></a></td>
-                                <td><a tabIndex="66" href="" class="arrow-r"><strong>&gt;&gt;</strong></a></td>
-                            </tr>
-                        </table>
-                 </div>
-                 <div id="month-days">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                        	<thead>
-                            	<tr>
-                                	<td align="center" valign="middle">D</td>
-                                	<td align="center" valign="middle">S</td>
-                                	<td align="center" valign="middle">T</td>
-                                	<td align="center" valign="middle">Q</td>
-                                	<td align="center" valign="middle">Q</td>
-                                	<td align="center" valign="middle">S</td>
-                                	<td align="center" valign="middle">S</td>
-                                </tr>
-                            </thead>
-                        	<tbody>
-                            	<tr>
-                                	<td tabIndex="67" align="center" valign="middle"></td>
-                                	<td tabIndex="68" align="center" valign="middle"></td>
-                                	<td tabIndex="69" align="center" valign="middle"></td>
-                                	<td tabIndex="70" align="center" valign="middle"><span>1</span></td>
-                                	<td tabIndex="71" align="center" valign="middle"><span>2</span></td>
-                                	<td tabIndex="72" align="center" valign="middle"><span class="event-day">3</span></td>
-                                	<td tabIndex="73" align="center" valign="middle"><span>4</span></td>
-                                </tr>
-                            	<tr>
-                                	<td align="center" valign="middle"><span>5</span></td>
-                                	<td align="center" valign="middle"><span>6</span></td>
-                                	<td align="center" valign="middle">
-                                    <span class="event-day">7<span class="event-info">Início da Reatec</span></span>
-                                    
-                                    </td>
-                                	<td align="center" valign="middle"><span>8</span></td>
-                                	<td align="center" valign="middle"><span>9</span></td>
-                                	<td align="center" valign="middle"><span>10</span></td>
-                                	<td align="center" valign="middle"><span>11</span></td>
-                                </tr>
-                            	<tr>
-                            	<tr>
-                                	<td align="center" valign="middle"><span>12</span></td>
-                                	<td align="center" valign="middle"><span>13</span></td>
-                                	<td align="center" valign="middle"><span>14</span></td>
-                                	<td align="center" valign="middle"><span>15</span></td>
-                                	<td align="center" valign="middle"><span>16</span></td>
-                                	<td align="center" valign="middle"><span>17</span></td>
-                                	<td align="center" valign="middle"><span class="event-day">18</span></td>
-                                </tr>
-                                </tr>
-                            	<tr>
-                            	<tr>
-                                	<td align="center" valign="middle"><span>19</span></td>
-                                	<td align="center" valign="middle"><span>20</span></td>
-                                	<td align="center" valign="middle"><span>21</span></td>
-                                	<td align="center" valign="middle"><span>22</span></td>
-                                	<td align="center" valign="middle"><span>23</span></td>
-                                	<td align="center" valign="middle"><span>24</span></td>
-                                	<td align="center" valign="middle"><span>25</span></td>
-                                </tr>
-                                </tr>
-                            	<tr>
-                            	<tr>
-                                	<td align="center" valign="middle"><span>26</span></td>
-                                	<td align="center" valign="middle"><span>27</span></td>
-                                	<td align="center" valign="middle"><span>28</span></td>
-                                	<td align="center" valign="middle"><span class="event-day">29</span></td>
-                                	<td align="center" valign="middle"><span>30</span></td>
-                                	<td align="center" valign="middle"></td>
-                                	<td align="center" valign="middle"></td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                            
-                        </table>
-                    </div>
-                </div>
-        </div>
-        <div id="atento">
-        	<h1 tabIndex="102">Fique atento!</h1>
-            <div tabIndex="103" id="day">15</div>
-            <h3 tabIndex="104" id="month">Agosto</h3>
-            <span tabIndex="105" id="event">Início da Reatec</span>
-        </div>
-        <form action="" method="POST" id="newsletter">
-        	<h1 tabIndex="106" >Cadastro</h1>
-            <p tabIndex="107" class="description">
-            Cadastre-se para recebernossas novidades!!!
-            </p>
-            <input tabIndex="108" type="text" class="field" value="" />
-			<input tabIndex="109" type="image" class="bt-newsletter" src="img/newsletter-bt_transparent.png" />            <div class="clear"></div>            
-        </form>
-        <form action="" method="POST" id="glossary-search">
-        	<h1 tabIndex="110">Glossário da <br />Acessibilidade</h1>
-            <p tabIndex="111" class="description">
-            Saiba mais sobre inclusãosem complicação!!!
-            </p>
-            <input tabIndex="112" type="text" class="field" value="" />
-			<input tabIndex="113" type="image" class="bt-search" src="img/search-bt_transparent.png" style="" />
-            <div class="clear"></div>
-        </form>
+		<?php include_once("{$path_root_page}boxBusca.php"); ?>
+		<?php include_once("{$path_root_page}boxAgenda.php"); ?>
+		<?php include_once("{$path_root_page}boxNewsletter.php"); ?>
+		<?php include_once("{$path_root_page}boxGlossario.php"); ?>
     </div>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
