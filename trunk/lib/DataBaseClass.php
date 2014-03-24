@@ -3,11 +3,18 @@ class DataBaseClass{
 	private $dbChaveReferencia = ""; //CHAVE QUE IDENTIFICA OS OBJETOS QUE COMPARTILHAM A MESMA CONEXÃO
 
     private $dbConnection = null;
-    private $dbHost = "localhost";
+
 	private $dbUser = "root";
 	private $dbPassword = "";
-	//private $dbPassword = "cat200200";
 	private $dbName = "museus_acessiveis"; 
+    private $dbHost = "localhost";
+/*
+	private $dbUser = "rinam1";
+	private $dbPassword = "viviane0000";
+	private $dbName = "rinam1"; 
+    //private $dbHost = "mysql02.rinam.com.br";
+    private $dbHost = "186.202.152.130";
+*/	
 	
 	private $dbDriver = "mysql";
 
