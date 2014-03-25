@@ -64,9 +64,7 @@
 	<div id="content-l">
 		<?php include_once("{$path_root_page}menu.php"); ?>
         <div id="content" href="content" accesskey="3">
-        	<div id="logo">
-				<img tabIndex="15" src="<?=$linkAbsolute;?>img/logo_transparent.png" alt="Logo Museus Acessíveis, cultura + acessibilidade 360º" width="288" height="152" title="Logo Museus Acessíveis, cultura + acessibilidade 360º" />            
-            </div>
+			<?php include_once("{$path_root_page}logo.php"); ?>
             <div id="outdoor">
             	<div id="item-box">
 					<ul id="outdoor-lista">
