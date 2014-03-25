@@ -12,7 +12,7 @@
 
 	RewriteRule ^quem_somos/?$ quemsomos.php
 	
-	RewriteRule ^novidades/?$ novidadeLista.php
+	RewriteRule ^novidade360/?$ novidadeLista.php
 	RewriteRule ^novidade360/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1
 	RewriteRule ^novidade360/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2
 

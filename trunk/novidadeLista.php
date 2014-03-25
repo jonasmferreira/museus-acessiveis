@@ -10,50 +10,43 @@
 
 		//Carregando os conteúdos da página
 		
-		//itens do Outdoor / Destaque e Novidades 360º
 		include_once("{$path_root_page}adm{$DS}class{$DS}novidade.class.php");
 		$objNovidade = new novidade();
 
-		//itens do outdoor
-		$objNovidade->setValues(array(
-			'novidade_360_exibir_banner'=>'S'
-			,'page'=>'1'
-			,'rows'=>'4'
-		));
-		$objNovidade->setAOrderBy(array(
-			't.novidade_360_dt_agenda' => 'DESC'
-			,'t.novidade_360_dt' => 'DESC'
-			,'t.novidade_360_hr' => 'DESC'
-		));
-		$aOutdoor = $objNovidade->getLista();
-
-		//Novidades 360 - Destaque
-		$objNovidade->setValues(array(
-			'novidade_360_exibir_destaque_home'=>'S'
-			,'page'=>'1'
-			,'rows'=>'1'
-		));
-		$objNovidade->setAOrderBy(array(
-			't.novidade_360_dt_agenda' => 'DESC'
-			,'t.novidade_360_dt' => 'DESC'
-			,'t.novidade_360_hr' => 'DESC'
-		));
-		$aDestaque = $objNovidade->getLista();
-		$aDestaque = $aDestaque['rows'][0];
-		
 		//Novidades 360 - Lista
 		$objNovidade->setValues(array(
 			'page'=>'1'
-			,'rows'=>'3'
+			,'rows'=>'100000'
 		));
 		$objNovidade->setAOrderBy(array(
 			't.novidade_360_dt_agenda' => 'DESC'
 			,'t.novidade_360_dt' => 'DESC'
 			,'t.novidade_360_hr' => 'DESC'
 		));
-		$aNovidades = $objNovidade->getLista();
+		$aRows = $objNovidade->getLista();
 
-		//$objNovidade->debug($aDestaque);
+		$aMeses = $objNovidade->getMeses();
+		//$objNovidade->debug($aRows);
+
+		//montando o array com os dados por mês/ano
+/*
+		$aNovidades = array();
+		$nAno = 0;
+		$nMes = 0;
+		$nPos=0;
+		foreach($aRows['rows'] as $k => $v){
+			$aData = explode('/',$v['novidade_360_dt_agenda']);
+			if($nAno!=$aData[2]||$nMes!=$aData[1]){
+				$nAno = $aData[2];
+				$nMes = $aData[1];
+				$nPos=0;
+			}
+			$aNovidades[$nAno][$nMes][$nPos]=$v;
+			$nPos++;
+		}
+		$objNovidade->debug($aNovidades);
+*/		
+		
 		
 	?>	
 </head>
@@ -64,405 +57,76 @@
 	<div id="content-l">
 		<?php include_once("{$path_root_page}menu.php"); ?>
         <div id="content" href="content" accesskey="3">
-        	<div id="logo">
-<img tabIndex="15" src="img/logo_transparent.png" alt="Logo Museus Acessíveis, cultura + acessibilidade 360º" width="288" height="152" title="Logo Museus Acessíveis, cultura + acessibilidade 360º" />            
-            </div>
-		  <div id="outdoor-news"></div>        	
+			<?php include_once("{$path_root_page}logo.php"); ?>
+			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
            	  <h1 tabIndex="31" class="orange-color">Novidades 360º</h1>
               <ul id="list-itens">
-              	<li class="month-list">
-               	  <h3><a class="orange-color" href="">Junho/2013</a></h3>
-                    <div class="itens">
-<div class="content-box">
+              	
+<?php
+
+		//montando o array com os dados por mês/ano
+		//$aNovidades = array();
+		$nAno = 0;
+		$nMes = 0;
+		$nPos=0;
+		$sCloseLi = '';
+		foreach($aRows['rows'] as $k => $v){
+			$aData = explode('/',$v['novidade_360_dt_agenda']);
+			if($nAno!=$aData[2]||$nMes!=$aData[1]){
+				$nAno = $aData[2];
+				$nMes = $aData[1];
+				$nPos=0;
+				if(trim($sCloseLi)!=''){
+					$sCloseLi .='</li>';
+					echo $sCloseLi;
+				}else{
+?>				
+				<li class="month-list">
+					<h3><a class="orange-color news-list" href=""><?=$aMeses[$nMes];?>/<?=$nAno?></a></h3>
+					<div class="itens <?=($k!=0)? ' inactive': '';?>">
+<?php				
+				
+				}
+			}
+?>
+					<div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
+                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_thumb'];?>" width="152" height="116"  alt="<?=$v['novidade_360_thumb_desc'];?>" title="<?=$v['novidade_360_titulo'];?>"/></td>
+	                        <td valign="top" align="left">
                                 <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
+									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['novidade_360_dt_agenda'];?></span></div>
+									<div class="social-media">
+										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
+										<span class="separator">|</span>
+										<span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
+									</div>
+									<div class="clear"></div>
                               </div>  
                             <dl>
                               	<dt>
-                                	<strong><a tabIndex="33" href="novidade.html">Aniversário de Helen Keller</a></strong>
+                                	<strong><a tabIndex="33" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></strong>
                                 </dt>
                               	<dd tabIndex="34">
                                 <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
+                                <?=$v['novidade_360_resumo'];?>
                                 </i>
                                 </dd>
                             </dl>
                             </td>
                         </tr>
                         <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="novidade.html">ver mais +</a></strong></td>
+                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">ver mais +</a></strong></td>
                         </tr>
                     </table>
                 </div>  
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>                                                  
-                    </div>
-                </li>
-<li class="month-list">
-               	  <h3><a class="orange-color" href="">Julho/2013</a></h3>
-                    <div class="itens inactive">
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>  
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>                                                  
-                    </div>
-                </li>
-<li class="month-list">
-               	  <h3><a class="orange-color" href="">Agosto/2013</a></h3>
-                    <div class="itens inactive">
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>  
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>                                                  
-                    </div>
-                </li>
-<li class="month-list">
-               	  <h3><a class="orange-color" href="">Setembro/2013</a></h3>
-                    <div class="itens inactive">
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>  
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>
-<div class="content-box">
-                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
-                    	<tr>
-                        	<td valign="top" align="left" width="152"><img tabIndex="35" src="img/novidades.jpg" width="152" height="116"  alt="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados" title="mulher sorrindo, de chapéu e roupa preta, com colar. Cabelos cacheados"/></td>
-                          <td valign="top" align="left">
-                                <div class="info-head">
-                                                        <div class="date"><span class="purple-color" tabIndex="32">13/08/2013</span></div>
-                                                        <div class="social-media">
-                                                            <span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
-                                                            <span class="separator">|</span>
-                                                            <span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-                                                        </div>
-                                                        <div class="clear"></div>
-                              </div>  
-                            <dl>
-                              	<dt>
-                                	<strong><a tabIndex="33" href="">Aniversário de Helen Keller</a></strong>
-                                </dt>
-                              	<dd tabIndex="34">
-                                <i>
-                                Conheça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas, Paginações, eça os revestimentos da coleção Patchwork DecorTiles, a marca premim Eliane, explore a sua criatividade com variadas paginações.
-                                </i>
-                                </dd>
-                            </dl>
-                          </td>
-                        </tr>
-                        <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="">ver mais +</a></strong></td>
-                        </tr>
-                    </table>
-                </div>                                                  
-                    </div>
-                </li>                                                
+						
+<?php						
+			$nPos++;
+		}
+?>
+				  
               </ul>
         	</div>
             <div class="clear"></div>
