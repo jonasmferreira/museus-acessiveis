@@ -71,7 +71,14 @@ class curso extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.curso_agenda ASC";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.curso_agenda ASC";
+		}
+		
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
