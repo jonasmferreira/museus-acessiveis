@@ -47,4 +47,9 @@ switch($_REQUEST['action']){
 		$aResult = $obj->getLista();
 		echo json_encode($aResult);
 	break;
+	case 'getOne':
+		$obj->setValues($_REQUEST);
+		$aResult = $obj->getOne();
+		echo json_encode($aResult);
+	break;
 }
