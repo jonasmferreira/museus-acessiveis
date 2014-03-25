@@ -117,6 +117,7 @@ class imprensa extends defaultClass{
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
 					$rs['imprensa_tipo_label'] = $this->tipoImprensa[$rs['imprensa_tipo']]['tipo_imprensa_titulo'];
 					$rs['imprensa_dt_hr'] = $this->dateDB2BR($rs['imprensa_dt'])." às ".$rs['imprensa_hr'];
+					$rs['imprensa_tamanho_label'] = $this->getSizeName($rs['imprensa_tamanho']);					
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
