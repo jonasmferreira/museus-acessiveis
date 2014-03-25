@@ -62,7 +62,7 @@
 					}
 				?>	
             </div>
-            <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>/acessibilidade">opções de acessibilidade</a></strong>
+            <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">opções de acessibilidade</a></strong>
         </div>
         <div id="sitemap">
         	<strong tabIndex="121">Mapa do Site</strong>
