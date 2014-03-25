@@ -22,7 +22,6 @@
 		$objDown->setAOrderBy(array(
 			't.download_dt' => 'DESC'
 			,'t.download_hr' => 'DESC'
-			,'t.download_tipo'=> 'ASC'
 			,'t.download_titulo'=> 'ASC'
 		));
 		$aDown = $objDown->getLista();
