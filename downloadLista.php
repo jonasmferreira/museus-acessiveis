@@ -26,7 +26,7 @@
 		));
 		$aDown = $objDown->getLista();
 
-		$objDown->debug($aDown);
+		//$objDown->debug($aDown);
 	?>	
 </head>
 <body>
