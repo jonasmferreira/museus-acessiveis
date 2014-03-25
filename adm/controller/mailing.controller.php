@@ -47,6 +47,26 @@ switch($_REQUEST['action']){
 		$aResult = $obj->getLista();
 		echo json_encode($aResult);
 	break;
+	case 'cad-mailing':
+		$obj->setValues($_POST);
+		$exec = $obj->edit();
+		if(isset($_POST['mailing_id']) && trim($_POST['mailing_id'])!=''){
+			if($exec['success']){
+				$msg = "Cadastro atualizado com sucesso!";
+			}else{
+				$msg = "Erro ao atualizar dados!";
+			}
+		}else{
+			if($exec['success']){
+				$msg = "Cadastro realizado com sucesso!";
+			}else{
+				$msg = "Erro ao cadastrar dados!";
+			}
+		}
+		$obj->registerSession(array('erro'=>$msg));
+		header("Location: ../{$url}");
+	break;
+
 }
 
 ?>
