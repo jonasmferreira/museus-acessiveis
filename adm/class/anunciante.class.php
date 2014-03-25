@@ -71,7 +71,14 @@ class anunciante extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.anunciante_dt_agenda ASC";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.anunciante_dt_agenda ASC";
+		}
+		
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -137,7 +144,7 @@ class anunciante extends defaultClass{
 					,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
 					,anunciante_dt_agenda = '{$this->values['anunciante_dt_agenda']}'
 		";
-		if(trim($this->values['anunciante_banner'])){
+		if(trim($this->values['anunciante_banner'])!=''){
 			$sql[] = ",anunciante_banner = '{$this->values['anunciante_banner']}'";
 		}
 		
@@ -178,6 +185,11 @@ class anunciante extends defaultClass{
 				,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
 				,anunciante_dt_agenda = '{$this->values['anunciante_dt_agenda']}'
 		";
+
+		if(trim($this->values['anunciante_banner'])!=''){
+			$sql[] = ",anunciante_banner = '{$this->values['anunciante_banner']}'";
+		}
+
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
