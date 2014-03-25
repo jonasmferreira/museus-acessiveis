@@ -43,6 +43,26 @@ class glossario extends defaultClass{
 		";
 		return implode("\n",$sql);
 	}
+	
+	public function getAll(){
+		$sql = array();
+		$sql[] = $this->getSql();
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['glossario_exibir_label'] = $rs['glossario_exibir']=='S'?'Sim':'Não';
+					$rs['glossario_dt_hr'] = $this->dateDB2BR($rs['glossario_dt'])." às ".$rs['glossario_hr'];
+					$rs['tags'] = $this->getTagsCadatradas($rs['glossario_id']);
+					$rs['glossarios'] = $this->getGlossarioCadatradas($rs['glossario_id']);
+					
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
 	public function getLista(){
 		$page = $this->values['page']; 
 		// get the requested page 
