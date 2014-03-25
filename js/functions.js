@@ -111,6 +111,32 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	//selecionando o conteúdo do campo no focus
+	$('input.field').focus(function(){
+		$(this).select();
+	})
+
+	//Cadastrando os dados de Mailing
+	$('#newsletter .bt-newsletter').click(function(){
+		//Ajax para salvar os dados do newsletter
+		$.ajax({
+			type: "POST"
+			,async:false
+			,url: 'adm/controller/mailing.controller.php'
+			,data: {
+				action:'cad-mailing'
+				,'mailing_nome': $('#mailing_nome').val()
+				,'mailing_email': $('#mailing_email').val()
+			}
+			,success:function(msg){
+				alert(msg);
+			}
+			,dataType: json
+		});
+	});
+
+
+
 
 });
 
