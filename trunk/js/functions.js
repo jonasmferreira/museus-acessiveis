@@ -99,6 +99,18 @@ $(document).ready(function(){
 			
 		});
 	});
+	
+
+	$('.news-list').click(function(){
+		var obj = $(this).parent().parent().find('div:first');
+		if(obj.hasClass('inactive')){
+			obj.removeClass('inactive')
+		}else{
+			obj.addClass('inactive')
+		}
+		return false;
+	});
+	
 
 });
 
