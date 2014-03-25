@@ -29,10 +29,30 @@
 		$aNovidade = $objNovidade->getOne();
 		//$objNovidade->debug($aNovidade);
 		$sConteudo = $aNovidade['novidade_360_conteudo'];
+		$caracEspeciais = array(
+			"!"
+			,"?"
+			,","
+			,";"
+			,":"
+			," "
+		);
 		if(count($aTodosGlossario) > 0){
 			foreach($aTodosGlossario AS $v){
-				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def"> '.$v['glossario_palavra'].' </a>';
-				$sConteudo = str_replace(" {$v['glossario_palavra']} ",$linkGlossario,$sConteudo);
+				$v['glossario_palavra'] = trim($v['glossario_palavra']);
+				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.$v['glossario_palavra'].'</a>';
+				$linkGlossario2 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtolower($v['glossario_palavra']).'</a>';
+				$linkGlossario3 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
+				foreach($caracEspeciais AS $carac){
+					$sConteudo = str_replace("\t{$v['glossario_palavra']}{$carac}","\t".$linkGlossario.$carac,$sConteudo);
+					$sConteudo = str_replace(" {$v['glossario_palavra']}{$carac}"," ".$linkGlossario.$carac,$sConteudo);
+					
+					$sConteudo = str_replace("\t".strtolower($v['glossario_palavra']).$carac,"\t".$linkGlossario2.$carac,$sConteudo);
+					$sConteudo = str_replace(" ".strtolower($v['glossario_palavra']).$carac," ".$linkGlossario2.$carac,$sConteudo);
+					
+					$sConteudo = str_replace("\t".strtoupper($v['glossario_palavra']).$carac,"\t".$linkGlossario3.$carac,$sConteudo);
+					$sConteudo = str_replace(" ".strtoupper($v['glossario_palavra']).$carac," ".$linkGlossario3.$carac,$sConteudo);
+				}
 			}
 		}
 		

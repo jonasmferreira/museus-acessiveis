@@ -63,10 +63,10 @@ switch($_REQUEST['action']){
 				$msg = "Erro ao cadastrar dados!";
 			}
 		}
-		$obj->registerSession(array('erro'=>$msg));
-		header("Location: ../{$url}");
+		/*$obj->registerSession(array('erro'=>$msg));
+		header("Location: ../{$url}");*/
+		$exec['msg'] = $msg;
+		echo json_encode($exec);
 	break;
 
 }
-
-?>
