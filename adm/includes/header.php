@@ -73,7 +73,7 @@
                 </span>                
            		<a href="novidadeLista.php" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
                 <a href="agendaLista.php" style="background-image:url(imgs/icon-jogos.png);">Agenda</a>
-           		<a href="bannerLista.php" style="background-image:url(imgs/icon-blog.png);">Banners</a>
+           		<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Configurações
                 	<div>
