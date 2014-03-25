@@ -225,21 +225,4 @@ class download extends defaultClass{
 		return $result;
 	}
 	
-	public function getSizeName($value){
-		//13824.00
-		$sLabel='';
-		$nVal=0;
-		if($value<1024){
-			$nVal = $value;
-			$sLabel='b';
-		}elseif($value/1024 <=1024){
-			$nVal = $value/1024;
-			$sLabel='kb';
-		}else{
-			$sLabel='mb';	
-			$nVal = $value/1024;
-		}
-		return number_format($nVal,2) . $sLabel;
-	}
-	
 }
