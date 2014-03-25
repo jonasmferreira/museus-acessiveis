@@ -778,9 +778,9 @@ table#list tbody td a{
 	font-size: 28px;
 }
 
-
-
-
+.glossario_def{
+	text-decoration: underline !important;
+}
 
 
 
