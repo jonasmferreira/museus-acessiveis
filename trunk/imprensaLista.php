@@ -26,7 +26,7 @@
 		));
 		$aImprensa = $objImprensa->getLista();
 
-		$objImprensa->debug($aImprensa);
+		//$objImprensa->debug($aImprensa);
 	?>	
 </head>
 <body>
