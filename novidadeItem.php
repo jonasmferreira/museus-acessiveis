@@ -13,6 +13,13 @@
 		//itens do Outdoor / Destaque e Novidades 360º
 		include_once("{$path_root_page}adm{$DS}class{$DS}novidade.class.php");
 		$objNovidade = new novidade();
+		
+		//Glossario
+		include_once("{$path_root_page}adm{$DS}class{$DS}glossario.class.php");
+		$objGlossario = new glossario();
+		$aGlossario = array();
+		$aTodosGlossario = $objGlossario->getAll();
+		
 		$nId = (isset($_REQUEST['novidade_360_id'])?$_REQUEST['novidade_360_id']:0);
 		$objNovidade->setValues(
 			array(
@@ -21,6 +28,13 @@
 		);
 		$aNovidade = $objNovidade->getOne();
 		//$objNovidade->debug($aNovidade);
+		$sConteudo = $aNovidade['novidade_360_conteudo'];
+		if(count($aTodosGlossario) > 0){
+			foreach($aTodosGlossario AS $v){
+				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def"> '.$v['glossario_palavra'].' </a>';
+				$sConteudo = str_replace(" {$v['glossario_palavra']} ",$linkGlossario,$sConteudo);
+			}
+		}
 		
 	?>	
 </head>
@@ -40,7 +54,7 @@
 						</div>
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><?=$aNovidade['novidade_360_resumo'];?></p>
-						<?=$aNovidade['novidade_360_conteudo'];?>
+						<?=$sConteudo;?>
 					</div>
         	</div>
         	<div class="clear"></div>
