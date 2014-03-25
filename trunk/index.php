@@ -53,7 +53,23 @@
 		));
 		$aNovidades = $objNovidade->getLista();
 
-		//$objNovidade->debug($aDestaque);
+
+		//Banners de Parceiros
+		include_once("{$path_root_page}adm{$DS}class{$DS}anunciante.class.php");
+		$objAnunciante = new anunciante();
+
+		$objAnunciante->setValues(array(
+			'page'=>'1'
+			,'rows'=>'500000'
+		));
+		$objAnunciante->setAOrderBy(array(
+			't.anunciante_dt_agenda' => 'DESC'
+			,'t.anunciante_tipo_banner' => 'ASC'
+		));
+		$aAnunciantes = $objAnunciante->getLista();
+
+		//$objNovidade->debug($aAnunciantes);
+		
 		
 	?>	
 </head>
@@ -167,19 +183,34 @@
                     </table>
                 </div>  
 				<?php } ?>
-				<h1 class="orange-color"><a tabIndex="53" class="orange-color" href="<?=$linkAbsolute;?>/novidade;?>">demais notícias</a></h1>
+				<h1 class="orange-color"><a tabIndex="53" class="orange-color" href="<?=$linkAbsolute;?>novidade360/">demais notícias</a></h1>
             </div>
             <div id="banners">
-            	<div class="button">
-                	<a tabIndex="54" href=""><img src="img/banner_item.jpg"  alt="banner" width="276" height="188" title="banner"/></a>
+<?php 
+			foreach($aAnunciantes['rows'] as $k => $v){
+				$width = ($v['anunciante_tipo_banner']=='FB')?'577':'276';
+				$class = ($v['anunciante_tipo_banner']=='FB')?'fullbanner':'button';
+				
+				if($v['anunciante_tipo_banner']=='FB'){
+?>
+					<div class="clear"></div>
+<?php					
+				}
+?>
+				<div class="<?=$class;?>">
+                	<a tabIndex="" href="<?=$v['anunciante_banner_link'];?>" target="_BLANK">
+						<img src="<?=$linkAbsolute;?>images/<?=$v['anunciante_banner'];?>"  alt="<?=$v['anunciante_banner_desc'];?>" width="<?=$width;?>" height="188" title="<?=$v['anunciante_nome'];?>"/>
+					</a>
                 </div>
-            	<div class="button">
-                	<a tabIndex="55" href=""><img src="img/banner_item.jpg"  alt="banner" width="276" height="188" title="banner"/></a>
-                </div>
-                <div class="clear"></div>
-            	<div class="fullbanner">
-                	<a tabIndex="56" href=""><img src="img/fullbanner.jpg"  alt="banner" width="577" height="188" title="banner"/></a>
-                </div>
+<?php					
+				if($v['anunciante_tipo_banner']=='FB'){
+?>
+					<div class="clear">&nbsp;</div>
+<?php					
+				}
+
+			}
+?>				
                 <div class="clear"></div>
           </div>
             <div class="clear"></div>
