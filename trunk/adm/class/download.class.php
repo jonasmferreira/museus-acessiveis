@@ -101,7 +101,14 @@ class download extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.download_tipo ASC, t.download_titulo ASC ";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.download_tipo ASC, t.download_titulo ASC ";
+		}
+
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -117,6 +124,8 @@ class download extends defaultClass{
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
 					$rs['download_tipo_label'] = $this->tipoDownload[$rs['download_tipo']]['tipo_download_titulo'];
 					$rs['download_dt_hr'] = $this->dateDB2BR($rs['download_dt'])." às ".$rs['download_hr'];
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
@@ -215,4 +224,22 @@ class download extends defaultClass{
 		}
 		return $result;
 	}
+	
+	public function getSizeName($value){
+		//13824.00
+		$sLabel='';
+		$nVal=0;
+		if($value<1024){
+			$nVal = $value;
+			$sLabel='b';
+		}elseif($value/1024 <=1024){
+			$nVal = $value/1024;
+			$sLabel='kb';
+		}else{
+			$sLabel='mb';	
+			$nVal = $value/1024;
+		}
+		return number_format($nVal,2) . $sLabel;
+	}
+	
 }
