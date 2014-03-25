@@ -42,8 +42,8 @@
 					<td colspan="3">
 						Tipo Banner<br />
 						<select class="formTxt obrigatorio" name="anunciante_tipo_banner" id="anunciante_tipo_banner">
-							<option value="FB"<?=$aRow['anunciante_nome']=='FB'?' selected="selected"':''?>>Full Banner</option>
-							<option value="RE"<?=$aRow['anunciante_nome']=='RE'?' selected="selected"':''?>>Retângulo</option>
+							<option value="FB"<?=$aRow['anunciante_tipo_banner']=='FB'?' selected="selected"':''?>>Full Banner</option>
+							<option value="RE"<?=$aRow['anunciante_tipo_banner']=='RE'?' selected="selected"':''?>>Retângulo</option>
 						</select>
 					</td>
 				</tr>
