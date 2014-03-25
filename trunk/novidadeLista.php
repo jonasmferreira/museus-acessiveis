@@ -28,26 +28,6 @@
 		$aMeses = $objNovidade->getMeses();
 		//$objNovidade->debug($aRows);
 
-		//montando o array com os dados por mês/ano
-/*
-		$aNovidades = array();
-		$nAno = 0;
-		$nMes = 0;
-		$nPos=0;
-		foreach($aRows['rows'] as $k => $v){
-			$aData = explode('/',$v['novidade_360_dt_agenda']);
-			if($nAno!=$aData[2]||$nMes!=$aData[1]){
-				$nAno = $aData[2];
-				$nMes = $aData[1];
-				$nPos=0;
-			}
-			$aNovidades[$nAno][$nMes][$nPos]=$v;
-			$nPos++;
-		}
-		$objNovidade->debug($aNovidades);
-*/		
-		
-		
 	?>	
 </head>
 <body>
