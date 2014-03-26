@@ -10,6 +10,10 @@
 
 	RewriteRule ^home/?$ index.php
 
+	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
+
+	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
+
 	RewriteRule ^novidade360/?$ novidadeLista.php
 	RewriteRule ^novidade360/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1
 	RewriteRule ^novidade360/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2
@@ -24,15 +28,12 @@
 	RewriteRule ^curso/([^/]+)/?$ cursoItem.php?curso_id=$1
 	RewriteRule ^curso/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2
 
-	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
-
 	RewriteRule ^servicos/?$ servicoLista.php
 	RewriteRule ^servico/([^/]+)/?$ servicoItem.php?servico_id=$1
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
 
 	RewriteRule ^projetos/?$ projetoLista.php
 	RewriteRule ^projetos/([^/]+)/?$ projetoLista.php?projeto_tipo_desc=$1
-
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 

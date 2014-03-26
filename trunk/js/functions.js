@@ -525,6 +525,13 @@ $(document).ready(function(){
 		});
 	});
 
+	//Formulário de busca
+	$('#search .bt-search').click(function(e){
+		e.preventDefault();
+		window.location.href=linkAbsolute+'busca/'+$('#busca_texto').val()
+	});
+
+
 	//controlando tamanho dos conteudos (content-r e content-l)
 	resizeContent();
 	
