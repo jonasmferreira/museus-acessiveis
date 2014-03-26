@@ -256,6 +256,21 @@ body.contrast {
 	color: #000;
 }
 
+.contrast #glossary-search .tag-box h3{
+	color: #FFF;
+}
+
+.contrast #glossary-search .tag-box ul.tag{
+	color: #FFF;
+}
+.contrast #glossary-search .tag-box ul.tag li{
+	color: #FFF;
+}
+.contrast #glossary-search .tag-box ul.tag li a{
+	color: #FFF;
+	border-bottom: 1px dotted #FFF;
+}
+
 .contrast .bt-search{
 	background: url(../img/search-button_contrast.png) right top no-repeat !important;
 }
