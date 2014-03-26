@@ -11,11 +11,28 @@
 		//Carregando os conteúdos da página
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}curso.class.php");
-		$objCurso = new curso();
+		//include_once("{$path_root_page}adm{$DS}class{$DS}cursoTipo.class.php");
 
+		$objCurso = new curso();
+		//$objCursoTipo = new curso();
+
+		$sTipo = (isset($_REQUEST['curso_tipo'])?$_REQUEST['curso_tipo']:'');
+		/*
+		if(trim($sTipo)!=''){
+			$objCursoTipo->setValues(
+				array(
+					'curso_tipo_titulo'=>$sTipo
+				)
+			);
+		}
+		$aTipo = $objCursoTipo->getOne();
+		$nTipoId = $aTipo['curso_tipo_id'];
+		*/
+		$nTipoId='';
 		//Cursos - Lista
 		$objCurso->setValues(array(
-			'page'=>'1'
+			'curso_tipo_id'=>$nTipoId
+			,'page'=>'1'
 			,'rows'=>'100000'
 		));
 		$objCurso->setAOrderBy(array(
@@ -72,7 +89,8 @@
 					<div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-	                        <td valign="top" align="left">
+	                        <td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['curso_thumb'];?>" width="152" height="116"  alt="<?=$v['curso_thumb_desc'];?>" title="<?=$v['curso_titulo'];?>"/></td>
+							<td valign="top" align="left">
                                 <div class="info-head">
 									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['curso_agenda'];?></span></div>
 									<div class="social-media">
@@ -104,7 +122,7 @@
                             </td>
                         </tr>
                         <tr>
-                        	<td><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>curso/<?=$v['curso_id'];?>/<?=$objCurso->toNormaliza($v['curso_titulo']);?>">ver mais +</a></strong></td>
+                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>curso/<?=$v['curso_id'];?>/<?=$objCurso->toNormaliza($v['curso_titulo']);?>">ver mais +</a></strong></td>
                         </tr>
                     </table>
                 </div>  
