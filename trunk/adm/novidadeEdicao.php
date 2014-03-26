@@ -35,7 +35,7 @@
 				<tr>
 					<td width="150">
 						Agenda<br />
-						<input type="text" class="formTxt obrigatorio datepicker" name="novidade_360_dt_agenda" id="novidade_360_dt_agenda" style="width:95%" value="<?=$aRow['novidade_360_dt_agenda']?>" />
+						<input type="text" class="formTxt datepicker" name="novidade_360_dt_agenda" id="novidade_360_dt_agenda" style="width:95%" value="<?=$aRow['novidade_360_dt_agenda']?>" />
                     </td>
 					<td width="150">
                     	Data (dd/mm/yyyy)<br />
