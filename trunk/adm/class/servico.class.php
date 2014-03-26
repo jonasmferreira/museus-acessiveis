@@ -34,7 +34,10 @@ class servico extends defaultClass{
 		$sql = array();
 		$sql[] = "
 			SELECT	t.*
+					,tc.tipo_servico_titulo
 			FROM	tb_servico t
+			JOIN	tb_tipo_servico tc
+			ON		tc.tipo_servico_id = t.tipo_servico_id
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -157,6 +160,7 @@ class servico extends defaultClass{
 					,servico_link_fonte = '{$this->values['servico_link_fonte']}'
 					,servico_conteudo = '{$this->values['servico_conteudo']}'
 					,servico_agenda = '{$this->values['servico_agenda']}'
+					,tipo_servico_id = '{$this->values['tipo_servico_id']}'
 		";
 		if(trim($this->values['servico_thumb'])){
 			$sql[] = ",servico_thumb = '{$this->values['servico_thumb']}'";
@@ -240,6 +244,7 @@ class servico extends defaultClass{
 				,servico_link_fonte = '{$this->values['servico_link_fonte']}'
 				,servico_conteudo = '{$this->values['servico_conteudo']}'
 				,servico_agenda = '{$this->values['servico_agenda']}'
+				,tipo_servico_id = '{$this->values['tipo_servico_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -586,5 +591,24 @@ class servico extends defaultClass{
 			$this->dbConn->db_commit();
 		}
 		return $result;
+	}
+	
+	public function getTipoServico(){
+		$sql = array();
+		$sql[] = "
+			SELECT	t.*
+			FROM	tb_tipo_servico t
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
 	}
 }

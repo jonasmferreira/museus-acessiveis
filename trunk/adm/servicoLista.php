@@ -74,6 +74,7 @@
 				<td>Periodo Até</td>
 				<td>Sob Demanda?</td>
 				<td>Nome do Servico</td>
+				<td>Tipo</td>
 				<td>Resumo</td>
 				<td>Agenda</td>
 				<td width="174">&nbsp;</td>
@@ -91,6 +92,7 @@
 				<td><?=$v['servico_dt_fim']?></td>
 				<td><?=$v['servico_sob_demanda_label']?></td>
 				<td><?=$v['servico_titulo']?></td>
+				<td><?=$v['tipo_servico_titulo']?></td>
 				<td><?=$v['servico_resumo']?></td>
 				<td><?=$v['servico_agenda']?></td>
 				<td>

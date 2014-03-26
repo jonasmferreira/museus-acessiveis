@@ -19,6 +19,7 @@
 	$aGlossarios = $obj->getGlossario();
 	$aDownloads = $obj->getDownload();
 	$aExtras = $obj->getExtra();
+	$aTipoCurso = $obj->getTipoCurso();
 ?>
 <script type="text/javascript" src="js/curso.js"></script>
 <div id="contentWrapper">
@@ -34,6 +35,20 @@
 				<tr class="tableHead">
 					<td colspan="3">
 						<strong>Dados do Curso</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Tipo<br />
+						<select id="tipo_curso_id" name="tipo_curso_id">
+							<?	if(count($aTipoCurso) > 0):?>
+							<?		foreach($aTipoCurso AS $v):
+										$selected = $v['tipo_curso_id']==$aRow['tipo_curso_id']?' selected="selected"':'';
+							?>
+							<option<?=$selected?> value="<?=$v['tipo_curso_id']?>"><?=$v['tipo_curso_titulo']?></option>
+							<?		endforeach;?>
+							<?	endif;?>
+						</select>
 					</td>
 				</tr>
 				<tr>
