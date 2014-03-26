@@ -556,6 +556,33 @@ h3 {
 }
 
 
+#glossary-search .tag-box{
+	padding: 3px 0 5px 0;
+	font-size: 12px;
+}
+#glossary-search .tag-box h3{
+	font-size: 14px;
+	color: #632d8b;
+	font-weight: bold;
+}
+
+#glossary-search .tag-box ul.tag{
+	color: #ff931e;
+	display: block;
+	padding:2px 0;	
+}
+#glossary-search .tag-box ul.tag li{
+	color: #ff931e;
+	display: block;
+}
+#glossary-search .tag-box ul.tag li a{
+	color: #ff931e;
+	display: block;
+	width:200px;
+	border-bottom: 1px dotted #ff931e;
+}
+
+
 .bt-search{
 	background: url(../img/search-button.png) right top no-repeat !important;
 	float: none;
