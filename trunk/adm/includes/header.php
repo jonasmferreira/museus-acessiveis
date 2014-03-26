@@ -63,18 +63,18 @@
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Produtos
                 	<div>
-						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Serviço</a><br />
-                    	<a href="tipo_cursoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Curso</a><br />
 						<a href="tagLista.php" style="background-image:url(imgs/icon-jogos.png);">Tags</a><br />
 						<a href="glossarioLista.php" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
+						<a href="tipo_cursoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Curso</a><br />
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
+						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Serviço</a><br />
                     	<a href="servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
                     	<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
 						<a href="extraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
                     </div>
                 </span>                
            		<a href="novidadeLista.php" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
-                <a href="agendaLista.php" style="background-image:url(imgs/icon-jogos.png);">Agenda</a>
+                <!--a href="agendaLista.php" style="background-image:url(imgs/icon-jogos.png);">Agenda</a-->
            		<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Configurações
