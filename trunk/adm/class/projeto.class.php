@@ -23,8 +23,8 @@ class projeto extends defaultClass{
 			'tipo_projeto_id'=>'R'
 			,'tipo_projeto_titulo'=>'Realizado'
 		)
-		,'EM'=>array(
-			'tipo_projeto_id'=>'EM'
+		,'EA'=>array(
+			'tipo_projeto_id'=>'EA'
 			,'tipo_projeto_titulo'=>'Em Andamento'
 		)
 	);
@@ -77,6 +77,10 @@ class projeto extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.projeto_agenda <= '{$this->values['data_fim']}'";
 		}
+		if(isset($this->values['projeto_tipo'])&&trim($this->values['projeto_tipo'])!=''){
+			$sql[] = "AND t.projeto_tipo = '{$this->values['projeto_tipo']}'";
+		}
+
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
@@ -89,7 +93,14 @@ class projeto extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.projeto_agenda ASC";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.projeto_agenda ASC";
+		}
+		
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -170,6 +181,7 @@ class projeto extends defaultClass{
 					projeto_dt_ini = '{$this->values['projeto_dt_ini']}'
 					,projeto_dt_fim = '{$this->values['projeto_dt_fim']}'
 					,projeto_sob_demanda = '{$this->values['projeto_sob_demanda']}'
+					,projeto_tipo = '{$this->values['projeto_tipo']}'
 					,projeto_titulo = '{$this->values['projeto_titulo']}'
 					,projeto_resumo = '{$this->values['projeto_resumo']}'
 					,projeto_thumb_desc = '{$this->values['projeto_thumb_desc']}'
@@ -253,6 +265,7 @@ class projeto extends defaultClass{
 				,projeto_dt_fim = '{$this->values['projeto_dt_fim']}'
 				,projeto_sob_demanda = '{$this->values['projeto_sob_demanda']}'
 				,projeto_titulo = '{$this->values['projeto_titulo']}'
+				,projeto_tipo = '{$this->values['projeto_tipo']}'
 				,projeto_resumo = '{$this->values['projeto_resumo']}'
 				,projeto_thumb = '{$this->values['projeto_thumb']}'
 				,projeto_thumb_desc = '{$this->values['projeto_thumb_desc']}'
