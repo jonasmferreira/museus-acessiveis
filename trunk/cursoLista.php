@@ -11,30 +11,38 @@
 		//Carregando os conteúdos da página
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}curso.class.php");
-		//include_once("{$path_root_page}adm{$DS}class{$DS}cursoTipo.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}tipo_curso.class.php");
 
 		$objCurso = new curso();
-		//$objCursoTipo = new curso();
+		$objTipoCurso = new tipo_curso();
 
-		$sTipo = (isset($_REQUEST['curso_tipo'])?$_REQUEST['curso_tipo']:'');
-		/*
+		$sTipo = (isset($_REQUEST['tipo_curso_titulo'])?$_REQUEST['tipo_curso_titulo']:'');
 		if(trim($sTipo)!=''){
-			$objCursoTipo->setValues(
+			$objTipoCurso->setValues(
 				array(
-					'curso_tipo_titulo'=>$sTipo
+					'tipo_curso_titulo'=>$sTipo
 				)
 			);
+		
+			$aTipo = $objTipoCurso->getOne();
+			$nTipoId = $aTipo['tipo_curso_id'];
+
+			//Cursos - Lista
+			$objCurso->setValues(array(
+				'tipo_curso_id'=>$nTipoId
+				,'page'=>'1'
+				,'rows'=>'100000'
+			));
+			
+		}else{
+			//Cursos - Lista
+			$objCurso->setValues(array(
+				'page'=>'1'
+				,'rows'=>'100000'
+			));
+			
 		}
-		$aTipo = $objCursoTipo->getOne();
-		$nTipoId = $aTipo['curso_tipo_id'];
-		*/
-		$nTipoId='';
-		//Cursos - Lista
-		$objCurso->setValues(array(
-			'curso_tipo_id'=>$nTipoId
-			,'page'=>'1'
-			,'rows'=>'100000'
-		));
+
 		$objCurso->setAOrderBy(array(
 			't.curso_agenda' => 'DESC'
 			,'t.curso_dt_ini' => 'DESC'
