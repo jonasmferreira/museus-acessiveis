@@ -1,6 +1,7 @@
-    	<form action="" method="GET" id="search">
+    	<form action="javascript:void(0);" method="POST" id="search">
         	<h1 tabIndex="57">Busca</h1>
             <p tabIndex="58" class="description"><i>Saiba mais sobre inclusão sem complicação!!!</i></p>
-            <input tabIndex="59" type="text" class="field" value="" />
-			<input tabIndex="60" type="image" class="bt-search" src="img/search-bt_transparent.png" style="" />            <div class="clear"></div>
+            <input tabIndex="59" type="text" name="busca_texto"  id="busca_texto" class="field" value="" />
+			<input tabIndex="60" type="image" class="bt-search" src="img/search-bt_transparent.png" style="" />            
+			<div class="clear"></div>
         </form>
