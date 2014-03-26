@@ -22,7 +22,7 @@ switch($_REQUEST['action']){
 			}
 		}else{
 			if($exec['success']){
-				$msg = "Extra Cadastrada com Tipo do curso!";
+				$msg = "Tipo do curso Cadastrada com sucesso!";
 				$url = "{$volta}";
 			}else{
 				$msg = "Erro ao cadastrar o Tipo do curso!";
