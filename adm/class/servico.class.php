@@ -62,6 +62,11 @@ class servico extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.servico_agenda <= '{$this->values['data_fim']}'";
 		}
+		
+		if(isset($this->values['tipo_servico_id'])&&trim($this->values['tipo_servico_id'])!=''){
+			$sql[] = "AND t.tipo_servico_id = '{$this->values['tipo_servico_id']}'";
+		}
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
@@ -74,7 +79,14 @@ class servico extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.servico_agenda ASC";
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.servico_agenda ASC";
+		}
+		
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
