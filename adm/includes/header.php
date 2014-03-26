@@ -64,7 +64,7 @@
                 	Produtos
                 	<div>
 						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Serviço</a><br />
-                    	<a href="tipo_projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Projeto</a><br />
+                    	<a href="tipo_cursoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Curso</a><br />
 						<a href="tagLista.php" style="background-image:url(imgs/icon-jogos.png);">Tags</a><br />
 						<a href="glossarioLista.php" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
