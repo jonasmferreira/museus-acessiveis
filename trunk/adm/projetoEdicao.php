@@ -20,6 +20,7 @@
 	$aDownloads = $obj->getDownload();
 	$aExtras = $obj->getExtra();
 	$aTipoProjeto = $obj->getTipoProjeto();
+	
 ?>
 <script type="text/javascript" src="js/projeto.js"></script>
 <div id="contentWrapper">
@@ -41,11 +42,11 @@
 					<td>
 						Tipo do Projeto<br />
 						<select id="projeto_tipo" name="projeto_tipo" class="formTxt obrigatorio">
-							<?	foreach($aTipoProjeto AS $v):
+							<?php	foreach($aTipoProjeto as $k => $v):
 									$selected = ($v['tipo_projeto_id']==$aRow['projeto_tipo'])?' selected="selected"':'';
 							?>
 							<option<?=$selected?> value="<?=$v['tipo_projeto_id']?>"><?=$v['tipo_projeto_titulo']?></option>
-							<?	endforeach;?>
+							<?php	endforeach;?>
 						</select>
 					</td>
 					<td colspan="2">
