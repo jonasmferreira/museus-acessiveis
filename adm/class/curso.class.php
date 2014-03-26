@@ -34,7 +34,10 @@ class curso extends defaultClass{
 		$sql = array();
 		$sql[] = "
 			SELECT	t.*
+					,tc.tipo_curso_titulo
 			FROM	tb_curso t
+			JOIN	tb_tipo_curso tc
+			ON		tc.tipo_curso_id = t.tipo_curso_id
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -169,6 +172,7 @@ class curso extends defaultClass{
 					,curso_link_fonte = '{$this->values['curso_link_fonte']}'
 					,curso_conteudo = '{$this->values['curso_conteudo']}'
 					,curso_agenda = '{$this->values['curso_agenda']}'
+					,tipo_curso_id = '{$this->values['tipo_curso_id']}'
 		";
 		if(trim($this->values['curso_thumb'])){
 			$sql[] = ",curso_thumb = '{$this->values['curso_thumb']}'";
@@ -252,6 +256,7 @@ class curso extends defaultClass{
 				,curso_link_fonte = '{$this->values['curso_link_fonte']}'
 				,curso_conteudo = '{$this->values['curso_conteudo']}'
 				,curso_agenda = '{$this->values['curso_agenda']}'
+				,tipo_curso_id = '{$this->values['tipo_curso_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -598,5 +603,24 @@ class curso extends defaultClass{
 			$this->dbConn->db_commit();
 		}
 		return $result;
+	}
+	
+	public function getTipoCurso(){
+		$sql = array();
+		$sql[] = "
+			SELECT	t.*
+			FROM	tb_tipo_curso t
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
 	}
 }

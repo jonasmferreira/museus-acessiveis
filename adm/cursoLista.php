@@ -74,6 +74,7 @@
 				<td>Periodo Até</td>
 				<td>Sob Demanda?</td>
 				<td>Nome do Curso</td>
+				<td>Tipo</td>
 				<td>Resumo</td>
 				<td>Agenda</td>
 				<td width="174">&nbsp;</td>
@@ -91,6 +92,7 @@
 				<td><?=$v['curso_dt_fim']?></td>
 				<td><?=$v['curso_sob_demanda_label']?></td>
 				<td><?=$v['curso_titulo']?></td>
+				<td><?=$v['tipo_curso_titulo']?></td>
 				<td><?=$v['curso_resumo']?></td>
 				<td><?=$v['curso_agenda']?></td>
 				<td>
