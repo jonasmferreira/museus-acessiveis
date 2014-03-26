@@ -43,6 +43,7 @@
 				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.$v['glossario_palavra'].'</a>';
 				$linkGlossario2 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtolower($v['glossario_palavra']).'</a>';
 				$linkGlossario3 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
+				$linkGlossario4 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.ucwords($v['glossario_palavra']).'</a>';
 				foreach($caracEspeciais AS $carac){
 					$sConteudo = str_replace("\t{$v['glossario_palavra']}{$carac}","\t".$linkGlossario.$carac,$sConteudo);
 					$sConteudo = str_replace(" {$v['glossario_palavra']}{$carac}"," ".$linkGlossario.$carac,$sConteudo);
@@ -52,6 +53,9 @@
 					
 					$sConteudo = str_replace("\t".strtoupper($v['glossario_palavra']).$carac,"\t".$linkGlossario3.$carac,$sConteudo);
 					$sConteudo = str_replace(" ".strtoupper($v['glossario_palavra']).$carac," ".$linkGlossario3.$carac,$sConteudo);
+					
+					$sConteudo = str_replace("\t".ucwords($v['glossario_palavra']).$carac,"\t".$linkGlossario4.$carac,$sConteudo);
+					$sConteudo = str_replace(" ".ucwords($v['glossario_palavra']).$carac," ".$linkGlossario4.$carac,$sConteudo);
 				}
 			}
 		}
