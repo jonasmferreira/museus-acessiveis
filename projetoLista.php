@@ -112,13 +112,20 @@
 										<span class="orange-color" tabIndex="32">
 											<strong><a tabIndex="33" href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objProjeto->toNormaliza($v['projeto_titulo']);?>"><?=$v['projeto_titulo'];?></a></strong>
 										</span>
-										<span class="curso-info orange-color">
-										<?php if($v['projeto_sob_demanda']=='N'){  ?>
-											Período: de <?=$v['projeto_dt_ini'];?> até <?=$v['projeto_dt_fim'];?>
-										<?php }else { ?>
-											Período: Sob demanda
-										<?php } ?>
-										</span>
+										<div class="purple-color">
+											<?php
+												if($sTipo==''){
+													echo 'categoria: ' . $v['projeto_tipo_label'];
+												}
+											?>
+											<span class="curso-info orange-color">
+											<?php if($v['projeto_sob_demanda']=='N'){  ?>
+												Período: de <?=$v['projeto_dt_ini'];?> até <?=$v['projeto_dt_fim'];?>
+											<?php }else { ?>
+												Período: Sob demanda
+											<?php } ?>
+											</span>
+										</div>
 									</dt>
 									<dd tabIndex="34">
 										<i>
