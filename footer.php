@@ -1,4 +1,17 @@
-	<div class="clear"></div>    
+<?php
+
+	//itens dos contatos no footer
+	include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
+	$objContato = new contato();
+	$objContato->setValues(array(
+		'contato_exibir'=>'S'
+		,'page'=>'1'
+		,'rows'=>'10'
+	));
+	$aContato = $objContato->getLista();
+
+?>
+<div class="clear"></div>    
 	<div id="footer" href="footer" accesskey="5">
     	<div id="contact">
         	<strong tabIndex="114">Contatos</strong>
