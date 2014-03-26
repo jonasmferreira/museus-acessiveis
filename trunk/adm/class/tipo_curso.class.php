@@ -79,7 +79,14 @@ class tipo_curso extends defaultClass{
 	public function getOne(){
 		$sql = array();
 		$sql[] = $this->getSql();
-		$sql[] = "AND		t.tipo_curso_id = '{$this->values['tipo_curso_id']}'";
+
+		if(isset($this->values['tipo_curso_id'])&&trim($this->values['tipo_curso_id'])!=''){
+			$sql[] = "AND		t.tipo_curso_id = '{$this->values['tipo_curso_id']}'";
+		}
+		if(isset($this->values['tipo_curso_titulo'])&&trim($this->values['tipo_curso_titulo'])!=''){
+			$sql[] = "AND		t.tipo_curso_titulo = '{$this->values['tipo_curso_titulo']}'";
+		}
+		
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){
