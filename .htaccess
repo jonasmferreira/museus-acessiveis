@@ -24,6 +24,8 @@
 	RewriteRule ^curso/([^/]+)/?$ cursoItem.php?curso_id=$1
 	RewriteRule ^curso/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2
 
+	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
+
 	RewriteRule ^servicos/?$ servicoLista.php
 	RewriteRule ^servico/([^/]+)/?$ servicoItem.php?servico_id=$1
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
