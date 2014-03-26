@@ -41,7 +41,7 @@
            	  <h1 tabIndex="31" class="orange-color">Busca</h1>
               <ul id="list-itens">
 				<li class="month-list">
-					<h3 class="orange-color news-list">Total encontrado: <?=$aBusca['records'];?></h3>
+					<span class="orange-color news-list">Foram encontrados: <?=$aBusca['records'];?> resultados.</span>
 					<div class="itens">
 					<?php foreach($aBusca['rows'] as $k => $v){ ?>
 					<div class="content-box">
