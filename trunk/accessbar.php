@@ -7,7 +7,7 @@
 
     	<span class="title fixedSize">tamanho da fonte</span>
         <p id="fontSize">
-            <span class="option"><a tabIndex="3" href=javascript:void(0);" id="font-minus">A-</a></span>
+            <span class="option"><a tabIndex="3" href="javascript:void(0);" id="font-minus">A-</a></span>
             <span class="option"><a tabIndex="4" href="javascript:void(0);" id="font-plus">A+</a></span>
         </p>
     </div>
