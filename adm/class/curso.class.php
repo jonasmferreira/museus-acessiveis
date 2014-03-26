@@ -59,6 +59,11 @@ class curso extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.curso_agenda <= '{$this->values['data_fim']}'";
 		}
+
+		if(isset($this->values['curso_tipo_id'])&&trim($this->values['curso_tipo_id'])!=''){
+			$sql[] = "AND t.curso_tipo_id = '{$this->values['curso_tipo_id']}'";
+		}
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
