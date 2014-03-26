@@ -12,18 +12,6 @@
 	$keywords = $aConfig['configuracao_meta_keywords'];
 	$description = $aConfig['configuracao_meta_description'];
 	
-	//itens dos contatos no footer
-	include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
-	$objContato = new contato();
-	$objContato->setValues(array(
-		'contato_exibir'=>'S'
-		,'page'=>'1'
-		,'rows'=>'10'
-	));
-	$aContato = $objContato->getLista();
-
-	
-	
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Museus Acessíveis</title>
