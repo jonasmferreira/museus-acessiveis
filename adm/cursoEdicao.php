@@ -162,7 +162,7 @@
                     </td>
 					<td>
 						Agenda<br />
-						<input type="text" class="formTxt obrigatorio datepicker" name="curso_agenda" id="curso_agenda" style="width:98%" value="<?=$aRow['curso_agenda']?>" />
+						<input type="text" class="formTxt datepicker" name="curso_agenda" id="curso_agenda" style="width:98%" value="<?=$aRow['curso_agenda']?>" />
                     </td>
                 </tr>
 				<?	if(count($aExtras) > 0):?>
