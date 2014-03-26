@@ -366,6 +366,7 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 	}).html('<div style="text-align:center">'+mensagem+'</div>');
 }
 
+
 $(document).ready(function(){
 	$('#normal-view').click(function(){
 		$(document).find('body').attr('class','');
@@ -466,7 +467,7 @@ $(document).ready(function(){
 		});
 	});
 	
-
+	//Controlando a listagem de novidades
 	$('.news-list').click(function(){
 		var obj = $(this).parent().parent().find('div:first');
 		if(obj.hasClass('inactive')){
@@ -524,12 +525,23 @@ $(document).ready(function(){
 		});
 	});
 
+	//controlando tamanho dos conteudos (content-r e content-l)
+	resizeContent();
+	
 });
 
-function showHideNews(){
+function resizeContent(){
+	var cr = $('#content-r').css('height');
+	var cl = $('#content').css('height');
+	cr=cr.split('px');
+	r=cr[0];
+	cl=cl.split('px');
+	l=cl[0];
+	if(parseInt(l) < parseInt(r)){
+		$('#content').css('height',r+'px');
+	}
 	
 }
-
 
 function controlerFontSize(obj,container,multipleSize,dontChangeMe){
 	//inicializo os valores
