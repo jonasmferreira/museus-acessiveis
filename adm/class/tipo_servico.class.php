@@ -79,7 +79,14 @@ class tipo_servico extends defaultClass{
 	public function getOne(){
 		$sql = array();
 		$sql[] = $this->getSql();
-		$sql[] = "AND		t.tipo_servico_id = '{$this->values['tipo_servico_id']}'";
+
+		if(isset($this->values['tipo_servico_id'])&&trim($this->values['tipo_servico_id'])!=''){
+			$sql[] = "AND		t.tipo_servico_id = '{$this->values['tipo_servico_id']}'";
+		}
+		if(isset($this->values['tipo_servico_titulo'])&&trim($this->values['tipo_servico_titulo'])!=''){
+			$sql[] = "AND		t.tipo_servico_titulo = '{$this->values['tipo_servico_titulo']}'";
+		}
+		
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){

@@ -63,8 +63,8 @@ class curso extends defaultClass{
 			$sql[] = "AND t.curso_agenda <= '{$this->values['data_fim']}'";
 		}
 
-		if(isset($this->values['curso_tipo_id'])&&trim($this->values['curso_tipo_id'])!=''){
-			$sql[] = "AND t.curso_tipo_id = '{$this->values['curso_tipo_id']}'";
+		if(isset($this->values['tipo_curso_id'])&&trim($this->values['tipo_curso_id'])!=''){
+			$sql[] = "AND t.tipo_curso_id = '{$this->values['tipo_curso_id']}'";
 		}
 		
 		$count = $this->getTotalData(implode("\n",$sql));
