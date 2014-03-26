@@ -25,10 +25,12 @@
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^cursos/?$ cursoLista.php
+	RewriteRule ^cursos/([^/]+)/?$ cursoLista.php?tipo_curso_titulo=$1
 	RewriteRule ^curso/([^/]+)/?$ cursoItem.php?curso_id=$1
 	RewriteRule ^curso/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2
 
 	RewriteRule ^servicos/?$ servicoLista.php
+	RewriteRule ^servicos/([^/]+)/?$ servicoLista.php?tipo_servico_titulo=$1
 	RewriteRule ^servico/([^/]+)/?$ servicoItem.php?servico_id=$1
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
 
