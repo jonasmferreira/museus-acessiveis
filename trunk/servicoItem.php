@@ -19,9 +19,8 @@
 				'servico_id'=>$nId
 			)
 		);
-		$aServico = $objServico->getOne();
-
-		$objServico->debug($aServico);
+		$aServicos = $objServico->getOne();
+		//$objServico->debug($aServico);
 		
 	?>	
 </head>
@@ -37,25 +36,25 @@
            	  <h1 tabIndex="31" class="orange-color">Servico <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>servicos">| Lista de Serviços</a></h1>
 					<div id="content-news" class="content-box">
                         <div class="date">
-							<span class="orange-color" tabIndex="32"><?=$aServico['servico_agenda'];?></span>
+							<span class="orange-color" tabIndex="32"><?=$aServicos['servico_agenda'];?></span>
 						</div>
-						<h2 id="title-news" tabIndex="33"><?=$aServico['servico_titulo'];?></h2>
+						<h2 id="title-news" tabIndex="33"><?=$aServicos['servico_titulo'];?></h2>
 						<span class="curso-info orange-color">
-						<?php if($v['servico_sob_demanda']=='N'){  ?>
-							Período: de <?=$v['servico_dt_ini'];?> até <?=$v['servico_dt_fim'];?>
+						<?php if($aServicos['servico_sob_demanda']=='N'){  ?>
+							Período: de <?=$aServicos['servico_dt_ini'];?> até <?=$aServicos['servico_dt_fim'];?>
 						<?php }else { ?>
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<p id="news-spotlight"  tabIndex="34"><?=$aServico['servico_resumo'];?></p>
-						<?=$aServico['servico_conteudo'];?>
+						<p id="news-spotlight"  tabIndex="34"><?=$aServicos['servico_resumo'];?></p>
+						<?=$aServicos['servico_conteudo'];?>
 						<div class="clear"><br /><br /></div>
 						<div>
 							<?php
-								if(trim($aServico['servico_link_fonte'])){
-									echo '<span class="purple-color">fonte: </span><a class="orange-color" class="orange-color" href="' . $aServico['servico_link_fonte'] . '">'. $aServico['servico_fonte'] .'</a>';
-								}elseif(trim($aServico['servico_fonte'])){
-									echo '<span class="purple-color">fonte: </span><span  class="purple-color">' . $aServico['servico_fonte'] . '</span>';
+								if(trim($aServicos['servico_link_fonte'])){
+									echo '<span class="purple-color">fonte: </span><a class="orange-color" class="orange-color" href="' . $aServicos['servico_link_fonte'] . '">'. $aServico['servico_fonte'] .'</a>';
+								}elseif(trim($aServicos['servico_fonte'])){
+									echo '<span class="purple-color">fonte: </span><span  class="purple-color">' . $aServicos['servico_fonte'] . '</span>';
 								}
 							?>
 						</div>
