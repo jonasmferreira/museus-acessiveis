@@ -429,4 +429,123 @@ class agenda extends defaultClass{
 		}
 		return $aArr;
 	}
+	
+	public function getFiqueAtento($month,$year){
+		$path_root_agendaClass = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_agendaClass = "{$path_root_agendaClass}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_agendaClass}adm{$DS}class{$DS}configuracao.class.php");
+		$objConfig = new configuracao();
+		$aConfig = $objConfig->getOne();
+
+		//$objConfig->debug($aConfig);
+		$linkAbsolute=$aConfig['configuracao_baseurl'];
+		$sql = array();
+		$month = trim($month!="")?$month:date("m");
+		$year = trim($year!="")?$year:date("Y");
+
+		//novidade 360
+		$sql[] = "
+			SELECT	
+					t.novidade_360_id as item_id
+					,'novidade360' as item_tipo_link
+					,t.novidade_360_titulo as item_titulo
+					,t.novidade_360_dt_agenda as item_dt_agenda
+					,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
+					,MONTH(t.novidade_360_dt_agenda) as item_dt_agenda_mes
+					,YEAR(t.novidade_360_dt_agenda) as item_dt_agenda_ano
+		
+			FROM	tb_novidade_360 t
+			WHERE	1 = 1 
+			AND		MONTH(t.novidade_360_dt_agenda) = '{$month}'
+			AND		YEAR(t.novidade_360_dt_agenda) = '{$year}'
+			";
+
+		//Projetos
+		$sql[] = "
+			SELECT	
+					t.projeto_id as item_id
+					,'projeto' as item_tipo_link
+					,t.projeto_titulo as item_titulo
+					,t.projeto_agenda as item_dt_agenda
+					,DAY(t.projeto_agenda) as item_dt_agenda_dia
+					,MONTH(t.projeto_agenda) as item_dt_agenda_mes
+					,YEAR(t.projeto_agenda) as item_dt_agenda_ano
+			
+			FROM	tb_projeto t
+			WHERE	1 = 1 
+			AND		MONTH(t.projeto_agenda) = '{$month}'
+			AND		YEAR(t.projeto_agenda) = '{$year}'
+			";
+
+		//cursos
+		$sql[] = "
+			SELECT	
+					t.curso_id as item_id
+					,'curso' as item_tipo_link
+					,t.curso_titulo as item_titulo
+					,t.curso_agenda as item_dt_agenda
+					,DAY(t.curso_agenda) as item_dt_agenda_dia
+					,MONTH(t.curso_agenda) as item_dt_agenda_mes
+					,YEAR(t.curso_agenda) as item_dt_agenda_ano
+			
+			FROM	tb_curso t
+			WHERE	1 = 1 
+			AND		MONTH(t.curso_agenda) = '{$month}'
+			AND		YEAR(t.curso_agenda) = '{$year}'
+			";
+
+		//servicos
+		$sql[] = "
+			SELECT	
+					t.servico_id as item_id
+					,'servico' as item_tipo_link
+					,t.servico_titulo as item_titulo
+					,t.servico_agenda as item_dt_agenda
+					,DAY(t.servico_agenda) as item_dt_agenda_dia
+					,MONTH(t.servico_agenda) as item_dt_agenda_mes
+					,YEAR(t.servico_agenda) as item_dt_agenda_ano
+			
+			FROM	tb_servico t
+			WHERE	1 = 1 
+			AND		MONTH(t.servico_agenda) = '{$month}'
+			AND		YEAR(t.servico_agenda) = '{$year}'
+			";
+			
+		$aSql = Array();
+		$aSql[] = "SELECT * FROM (";
+		$aSql[] = implode(" UNION \n",$sql);
+		$aSql[] = ") AS item_busca ";
+		$aSql[] = "WHERE 1 = 1 ";
+		$aSql[] = "ORDER BY	item_dt_agenda_ano ASC,
+							item_dt_agenda_mes ASC,
+							item_dt_agenda_dia ASC		
+				";
+
+		
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$aSql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		
+		$count = $this->getTotalData(implode("\n",$aSql));
+		$aRet = array(
+			'records'=>$count
+			,'mesExtenso'=>$this->meses[$month]
+			,'mes'=>$month
+			,'ano'=>$year
+			,'rows'=>$arr
+		);
+		
+		return $aRet;
+		
+	}
+	
+	
+	
 }
