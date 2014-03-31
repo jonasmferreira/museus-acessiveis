@@ -5,6 +5,9 @@
 	require_once "{$path_root_boxAgenda}adm{$DS}class{$DS}agenda.class.php";
 	$objBoxAgenda = new agenda();
 	$aArrAgenda = $objBoxAgenda->getAgendaGeral(date("m"), date("Y"));
+
+	$aFiqueAtento = $objBoxAgenda->getFiqueAtento(date("m"), date("Y"));
+	//$objBoxAgenda->debug($aFiqueAtento);
 	
 ?>
 		<style type='text/css'>
@@ -52,67 +55,30 @@
 								   endforeach;?>
 						   </tr>
 						   <?	endforeach;?>
-						   <!--tr>
-							   <td tabIndex="67" align="center" valign="middle"></td>
-							   <td tabIndex="68" align="center" valign="middle"></td>
-							   <td tabIndex="69" align="center" valign="middle"></td>
-							   <td tabIndex="70" align="center" valign="middle"><span>1</span></td>
-							   <td tabIndex="71" align="center" valign="middle"><span>2</span></td>
-							   <td tabIndex="72" align="center" valign="middle"><span class="event-day">3</span></td>
-							   <td tabIndex="73" align="center" valign="middle"><span>4</span></td>
-						   </tr>
-						   <tr>
-							   <td align="center" valign="middle"><span>5</span></td>
-							   <td align="center" valign="middle"><span>6</span></td>
-							   <td align="center" valign="middle">
-								   <span class="event-day">7<span class="event-info">Início da Reatec<br />Início da Reatec<br />Início da Reatec<br /></span></span>
-							   </td>
-							   <td align="center" valign="middle"><span>8</span></td>
-							   <td align="center" valign="middle"><span>9</span></td>
-							   <td align="center" valign="middle"><span>10</span></td>
-							   <td align="center" valign="middle"><span>11</span></td>
-						   </tr>
-						   <tr>
-						   <tr>
-							   <td align="center" valign="middle"><span>12</span></td>
-							   <td align="center" valign="middle"><span>13</span></td>
-							   <td align="center" valign="middle"><span>14</span></td>
-							   <td align="center" valign="middle"><span>15</span></td>
-							   <td align="center" valign="middle"><span>16</span></td>
-							   <td align="center" valign="middle"><span>17</span></td>
-							   <td align="center" valign="middle"><span class="event-day">18</span><span class="event-info">Início da Reatec<br /></span></td>
-						   </tr>
-						   </tr>
-						   <tr>
-						   <tr>
-							   <td align="center" valign="middle"><span>19</span></td>
-							   <td align="center" valign="middle"><span>20</span></td>
-							   <td align="center" valign="middle"><span>21</span></td>
-							   <td align="center" valign="middle"><span>22</span></td>
-							   <td align="center" valign="middle"><span>23</span></td>
-							   <td align="center" valign="middle"><span>24</span></td>
-							   <td align="center" valign="middle"><span>25</span></td>
-						   </tr>
-						   </tr>
-						   <tr>
-						   <tr>
-							   <td align="center" valign="middle"><span>26</span></td>
-							   <td align="center" valign="middle"><span>27</span></td>
-							   <td align="center" valign="middle"><span>28</span></td>
-							   <td align="center" valign="middle"><span class="event-day">29</span></td>
-							   <td align="center" valign="middle"><span>30</span></td>
-							   <td align="center" valign="middle"></td>
-							   <td align="center" valign="middle"></td>
-						   </tr>
-						   </tr -->
 					   </tbody>
 				   </table>
 			   </div>
 			</div>
 		</div>
+		<?php if($aFiqueAtento['records']>0){  ?>
 		<div id="atento">
 			<h1 tabIndex="102">Fique atento!</h1>
-			<div tabIndex="103" id="day">15</div>
-			<h3 tabIndex="104" id="month">Agosto</h3>
-			<span tabIndex="105" id="event">Início da Reatec</span>
+			<div class="atento-item">
+				<ul>
+			<?php
+				foreach($aFiqueAtento['rows'] as $k => $v){
+?>
+					<li>
+						<div tabIndex="103" id="day"><?=$v['item_dt_agenda_dia'];?></div>
+						<h3 tabIndex="104" id="month"><?=$aFiqueAtento['mesExtenso'];?></h3>
+						<span tabIndex="105" id="event">
+							<a href="<?=$linkAbsolute;?><?=$v['item_tipo_link'];?>/<?=$v['item_id'];?>/<?=$v['item_titulo'];?>"><?=$v['item_titulo'];?></a>
+						</span>
+					</li>
+<?php			
+				}
+			?>
+				</ul>
+			</div>
 		</div>
+<?php } ?>
