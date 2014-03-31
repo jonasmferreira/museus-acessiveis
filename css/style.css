@@ -694,6 +694,10 @@ h3 {
 	width: auto;
 	padding: 3px 5px;
 }
+#atento span#event a{
+	color: #FFF;
+	background: #f37920;
+}
 
 
 /* PÁGINA DE DOWNLOADS E IMPRENSA */
