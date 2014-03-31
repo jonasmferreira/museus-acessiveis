@@ -1,3 +1,21 @@
+function gerarCalendario(mes,ano,tipoMes){
+	$.ajax({
+		type:"POST"
+		,url: linkAbsolute+'adm/controller/agenda.controller.php'
+		,'data':{
+			'tipoMes':tipoMes
+			,'mes':mes
+			,'ano':ano
+			,'action':'getAgendaGeral'
+		}
+		,success:function(resp){
+			resp = $.trim(resp);
+			if(resp!=""){
+				$("#calendar").html(resp);
+			}
+		}
+	});
+}
 jQuery.fn.validacnpj = function(){
 	CNPJ = $(this).val();
 	if(!CNPJ){return false;}
@@ -415,8 +433,11 @@ $(document).ready(function(){
 		$(this).css('cursor', 'pointer');
 	});
 
-	$('.event-day').click(function(){
+	$('.event-day').click('click',function(){
 		//aqui o ajax que busca a informação para exibir no hover
+		var obj = $(this);
+		$('.event-info').addClass("hidden");
+		obj.find('.event-info').removeClass("hidden");
 	});
 
 
@@ -531,7 +552,15 @@ $(document).ready(function(){
 		window.location.href=linkAbsolute+'busca/'+$('#busca_texto').val()
 	});
 
-
+	$("#mes_anterior").live('click',function(){
+		var obj = $(this);
+		gerarCalendario(obj.attr("mes"),obj.attr("ano"),"mes_anterior");
+	});
+	$("#mes_posterior").live('click',function(){
+		var obj = $(this);
+		gerarCalendario(obj.attr("mes"),obj.attr("ano"),"mes_posterior");
+	});
+	
 	//controlando tamanho dos conteudos (content-r e content-l)
 	resizeContent();
 	
