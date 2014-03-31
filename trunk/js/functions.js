@@ -433,7 +433,7 @@ $(document).ready(function(){
 		$(this).css('cursor', 'pointer');
 	});
 
-	$('.event-day').click('click',function(){
+	$('.event-day').live('click',function(){
 		//aqui o ajax que busca a informação para exibir no hover
 		var obj = $(this);
 		$('.event-info').addClass("hidden");
