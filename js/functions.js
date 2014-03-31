@@ -429,15 +429,17 @@ $(document).ready(function(){
 	});
 */
 	
-	$('.event-day').mouseover(function(){
+	$('.event-day').live('mouseover',function(){
 		$(this).css('cursor', 'pointer');
-	});
-
-	$('.event-day').live('click',function(){
+		
 		//aqui o ajax que busca a informação para exibir no hover
 		var obj = $(this);
 		$('.event-info').addClass("hidden");
 		obj.find('.event-info').removeClass("hidden");
+	});
+
+	$('.event-day').live('click',function(){
+		
 	});
 
 
