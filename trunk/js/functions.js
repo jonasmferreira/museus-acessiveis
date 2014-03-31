@@ -460,14 +460,6 @@ $(document).ready(function(){
       location.href="#footer";
     });
 
-	//REESCREVENDO O TABINDEX DOS ELEMTENTOS
-	var idx = 1;
-	$("*[tabindex]").each(function(){
-		//console.log($(this).get(0), idx)
-		$(this).removeAttr('tabindex').attr('tabindex',idx);
-		idx++;
-	});
-
 	//CONTROLANDO O OUTDOOR
 	$('#outdoor #item-box #outdoor-lista li a').each(function(){
 		$(this).click(function(){
@@ -563,9 +555,25 @@ $(document).ready(function(){
 		gerarCalendario(obj.attr("mes"),obj.attr("ano"),"mes_posterior");
 	});
 	
+	//SLIDER do Fique Atento
+	$('.atento-item ul').cycle({
+		fx:      'scrollUp'
+		,speed:    1000
+		,timeout:  2000
+	});
+
+	
 	//controlando tamanho dos conteudos (content-r e content-l)
 	resizeContent();
-	
+
+	//REESCREVENDO O TABINDEX DOS ELEMTENTOS
+	var idx = 1;
+	$("*[tabindex]").each(function(){
+		//console.log($(this).get(0), idx)
+		$(this).removeAttr('tabindex').attr('tabindex',idx);
+		idx++;
+	});
+
 });
 
 function resizeContent(){
