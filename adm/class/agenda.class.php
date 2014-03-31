@@ -311,4 +311,122 @@ class agenda extends defaultClass{
 		}
 		return $result;
 	}
+	
+	public function getAgendaGeral($month,$year){
+		$path_root_agendaClass = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_agendaClass = "{$path_root_agendaClass}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_agendaClass}adm{$DS}class{$DS}configuracao.class.php");
+		$objConfig = new configuracao();
+		$aConfig = $objConfig->getOne();
+
+		//$objConfig->debug($aConfig);
+		$linkAbsolute=$aConfig['configuracao_baseurl'];
+		$sql = array();
+		$month = trim($month!="")?$month:date("m");
+		$year = trim($year!="")?$year:date("Y");
+
+		//novidade 360
+		$sql[] = "
+			SELECT	
+					t.novidade_360_id as item_id
+					,'novidade360' as item_tipo_link
+					,t.novidade_360_titulo as item_titulo
+					,t.novidade_360_dt_agenda as item_dt_agenda
+					,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
+			FROM	tb_novidade_360 t
+			WHERE	1 = 1 
+			AND		MONTH(t.novidade_360_dt_agenda) = '{$month}'
+			AND		YEAR(t.novidade_360_dt_agenda) = '{$year}'
+			";
+
+		//Projetos
+		$sql[] = "
+			SELECT	
+					t.projeto_id as item_id
+					,'projeto' as item_tipo_link
+					,t.projeto_titulo as item_titulo
+					,t.projeto_agenda as item_dt_agenda
+					,DAY(t.projeto_agenda) as item_dt_agenda_dia
+			FROM	tb_projeto t
+			WHERE	1 = 1 
+			AND		MONTH(t.projeto_agenda) = '{$month}'
+			AND		YEAR(t.projeto_agenda) = '{$year}'
+			";
+
+		//cursos
+		$sql[] = "
+			SELECT	
+					t.curso_id as item_id
+					,'curso' as item_tipo_link
+					,t.curso_titulo as item_titulo
+					,t.curso_agenda as item_dt_agenda
+					,DAY(t.curso_agenda) as item_dt_agenda_dia
+			FROM	tb_curso t
+			WHERE	1 = 1 
+			AND		MONTH(t.curso_agenda) = '{$month}'
+			AND		YEAR(t.curso_agenda) = '{$year}'
+			";
+
+		//servicos
+		$sql[] = "
+			SELECT	
+					t.servico_id as item_id
+					,'servico' as item_tipo_link
+					,t.servico_titulo as item_titulo
+					,t.servico_agenda as item_dt_agenda
+					,DAY(t.servico_agenda) as item_dt_agenda_dia
+			FROM	tb_servico t
+			WHERE	1 = 1 
+			AND		MONTH(t.servico_agenda) = '{$month}'
+			AND		YEAR(t.servico_agenda) = '{$year}'
+			";
+			
+		$aSql = Array();
+		$aSql[] = "SELECT * FROM (";
+		$aSql[] = implode(" UNION \n",$sql);
+		$aSql[] = ") AS item_busca ";
+		$aSql[] = "WHERE 1 = 1 ";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$aSql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$sLink = "{$linkAbsolute}{$rs['item_tipo_link']}/{$rs['item_id']}/{$rs['item_titulo']}";
+					$arr[$rs['item_dt_agenda_dia']][] = "<a href='{$sLink}'>{$rs['item_titulo']}</a>";
+				}
+			}
+		}
+		$aArr = array(
+			'mesExtenso'=>$this->meses[$month]
+			,'mes'=>$month
+			,'ano'=>$year
+			,'dias'=>array()
+		);
+		
+		$dtFinal = date("t",  mktime(0, 0, 0, $month, 1, $year));
+		$dtFinalNumSemana = date("t",  mktime(0, 0, 0, $month, 1, $year));
+		$dtInicialNumSemana = date("w",  mktime(0, 0, 0, $month, 1, $year));
+		$w = 0;
+		for($j=0;$j<$dtInicialNumSemana;$j++){
+			$aArr['dias'][0][$j] = "&nbsp;";
+		}
+		for($i=1;$i<=$dtFinal;$i++){
+			$sNumSemana = date("w",  mktime(0, 0, 0, $month, $i, $year));
+			if($sNumSemana < 1){
+				$w++;
+			}
+			if(isset($arr[$i])&&count($arr[$i]) > 0){
+				$diaCal = '<span class="event-day">'.$i.'<span class="event-info hidden">'.implode("<br />",$arr[$i]).'</span></span>';
+			}else{
+				$diaCal = '<span>'.$i.'</span>';
+			}
+			$aArr['dias'][$w][$sNumSemana] = $diaCal;
+		}
+		$sNumSemana++;
+		for($j=$sNumSemana;$j<=6;$j++){
+			$aArr['dias'][$w][$j] = "&nbsp;";
+		}
+		return $aArr;
+	}
 }
