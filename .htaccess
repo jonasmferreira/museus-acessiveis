@@ -21,7 +21,7 @@
 	RewriteRule ^downloads/?$ downloadLista.php
 	RewriteRule ^imprensa/?$ imprensaLista.php
 
-	RewriteRule ^quem_somos/?$ quemsomos.php
+	RewriteRule ^quem_somos/?$ quemSomos.php
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^cursos/?$ cursoLista.php
