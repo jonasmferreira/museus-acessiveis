@@ -307,8 +307,12 @@ body.contrast {
 	border: 1px solid #fcee21;
 }
 
-.contrast #diary #calendar #month-days .event-info{
+.contrast #diary #calendar #month-days .event-day .event-info{
 	background: #fcee21;
+	color: #000 !important;
+}
+
+.contrast #diary #calendar #month-days .event-day a{
 	color: #000 !important;
 }
 
