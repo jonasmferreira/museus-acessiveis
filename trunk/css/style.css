@@ -651,7 +651,8 @@ h3 {
 	background: #632d8b;
 }
 
-#diary #calendar #month-days .event-info{
+
+#diary #calendar #month-days .event-day .event-info{
 	width: 150px;
 	display:block;
 	padding: 3px 5px;
@@ -663,6 +664,10 @@ h3 {
 	left:16px;
 	top: -20px;
 	z-index:3;
+}
+
+#diary #calendar #month-days .event-day a{
+	color: #FFF !important;
 }
 
 #atento #day{
