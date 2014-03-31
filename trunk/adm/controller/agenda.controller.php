@@ -106,6 +106,23 @@ switch($_REQUEST['action']){
 	   </tbody>
    </table>
 </div>
-		<?
+		<?php
 	break;
+	
+	
+	case 'getFiqueAtento':
+		if($_REQUEST['tipoMes']=='mes_anterior'){
+			$mes = date("m",  mktime(0, 0, 0, $_REQUEST['mes']-1, 1, $_REQUEST['ano']));
+			$ano = date("Y",  mktime(0, 0, 0, $_REQUEST['mes']-1, 1, $_REQUEST['ano']));
+		}else{
+			$mes = date("m",  mktime(0, 0, 0, $_REQUEST['mes']+1, 1, $_REQUEST['ano']));
+			$ano = date("Y",  mktime(0, 0, 0, $_REQUEST['mes']+1, 1, $_REQUEST['ano']));
+		}
+
+		$aArrAgenda = $obj->getFiqueAtento($mes, $ano);
+		
+		echo json_encode($aResult);
+	break;
+	
+	
 }
