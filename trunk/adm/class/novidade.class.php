@@ -13,6 +13,12 @@ class novidade extends defaultClass{
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'t.novidade_360_titulo_sintese'=>array(
+			'fieldNameId'=>'t.novidade_360_titulo_sintese'
+			,'fieldNameLabel'=>'Título Síntese'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
 		,'t.novidade_360_resumo'=>array(
 			'fieldNameId'=>'t.novidade_360_resumo'
 			,'fieldNameLabel'=>'Resumo'
@@ -163,6 +169,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_hr'] = date('H:i:s');		
 		$this->values['novidade_360col'] = $this->escape_string($this->values['novidade_360col']);
 		$this->values['novidade_360_titulo'] = $this->escape_string($this->values['novidade_360_titulo']);
+		$this->values['novidade_360_titulo_sintese'] = $this->escape_string($this->values['novidade_360_titulo_sintese']);
 		$this->values['novidade_360_resumo'] = $this->escape_string($this->values['novidade_360_resumo']);
 		$this->values['novidade_360_conteudo'] = $this->escape_string($this->values['novidade_360_conteudo']);
 		$this->values['novidade_360_thumb'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_thumb']);
@@ -184,6 +191,7 @@ class novidade extends defaultClass{
 					,novidade_360_dt = '{$this->values['novidade_360_dt']}'
 					,novidade_360_hr = '{$this->values['novidade_360_hr']}'
 					,novidade_360_titulo = '{$this->values['novidade_360_titulo']}'
+					,novidade_360_titulo_sintese = '{$this->values['novidade_360_titulo_sintese']}'
 					,novidade_360_resumo = '{$this->values['novidade_360_resumo']}'
 					,novidade_360_thumb_desc = '{$this->values['novidade_360_thumb_desc']}'
 					,novidade_360_fonte = '{$this->values['novidade_360_fonte']}'
@@ -233,6 +241,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_hr'] = date('H:i:s');		
 		$this->values['novidade_360col'] = $this->escape_string($this->values['novidade_360col']);
 		$this->values['novidade_360_titulo'] = $this->escape_string($this->values['novidade_360_titulo']);
+		$this->values['novidade_360_titulo_sintese'] = $this->escape_string($this->values['novidade_360_titulo_sintese']);
 		$this->values['novidade_360_resumo'] = $this->escape_string($this->values['novidade_360_resumo']);
 		$this->values['novidade_360_conteudo'] = $this->escape_string($this->values['novidade_360_conteudo']);
 		$this->values['novidade_360_thumb'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_thumb']);
@@ -254,6 +263,7 @@ class novidade extends defaultClass{
 					,novidade_360_dt = CURDATE()
 					,novidade_360_hr = CURTIME()
 					,novidade_360_titulo = '{$this->values['novidade_360_titulo']}'
+					,novidade_360_titulo_sintese = '{$this->values['novidade_360_titulo_sintese']}'
 					,novidade_360_resumo = '{$this->values['novidade_360_resumo']}'
 					,novidade_360_thumb = '{$this->values['novidade_360_thumb']}'
 					,novidade_360_thumb_desc = '{$this->values['novidade_360_thumb_desc']}'
