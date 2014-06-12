@@ -438,7 +438,7 @@ $(document).ready(function(){
 		obj.find('.event-info').removeClass("hidden");
 	});
 
-	$('.event-day').live('click',function(){
+	$('.event-day').live('mouseover',function(){
 		
 	});
 
