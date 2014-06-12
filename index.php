@@ -20,13 +20,22 @@
 			,'page'=>'1'
 			,'rows'=>'4'
 		));
+		/*
 		$objNovidade->setAOrderBy(array(
 			't.novidade_360_dt_agenda' => 'DESC'
-			,'t.novidade_360_dt' => 'DESC'
+			,'t.novidade_360_dt' => 'ASC'
 			,'t.novidade_360_hr' => 'DESC'
-		));
+			,'t.novidade_360_titulo' => 'ASC'
+		));*/
+		
 		$aOutdoor = $objNovidade->getLista();
-
+		
+		//RANDOMIZANDO A LISTA DO OUTDOOR
+		$aListOutdoor = $aOutdoor['rows'];
+		shuffle($aListOutdoor);
+		$aOutdoor['rows']=$aListOutdoor;
+		//$objNovidade->debug($aOutdoor);
+		
 		//Novidades 360 - Destaque
 		$objNovidade->setValues(array(
 			'novidade_360_exibir_destaque_home'=>'S'
