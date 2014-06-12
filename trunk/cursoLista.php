@@ -81,17 +81,6 @@
 				$nAno = $aData[2];
 				$nMes = $aData[1];
 				$nPos=0;
-				if(trim($sCloseLi)!=''){
-					$sCloseLi .='</li>';
-					echo $sCloseLi;
-				}else{
-?>				
-				<li class="month-list">
-					<h3><a class="orange-color news-list" href=""><?=$aMeses[$nMes];?>/<?=$nAno?></a></h3>
-					<div class="itens <?=($k!=0)? ' inactive': '';?>">
-<?php				
-				
-				}
 			}
 ?>
 					<div class="content-box">
