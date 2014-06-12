@@ -5,8 +5,13 @@
 	include_once "{$path_root_tipo_cursoEdicao}adm{$DS}includes{$DS}header.php";
 	include_once("{$path_root_tipo_cursoEdicao}adm{$DS}class{$DS}tipo_curso.class.php");
 	$obj = new tipo_curso();
-	$obj->setValues($_REQUEST);
-	$aRow = $obj->getOne();
+
+	//CORRIGINDO BUG DE CARREGAR UM ITEM QUANDO CLICAMOS EM 'CADASTRAR NOVO'
+	if(isset($_REQUEST['tipo_curso_id']) && trim($_REQUEST['tipo_curso_id'])!=''){
+		$obj->setValues($_REQUEST);
+		$aRow = $obj->getOne();
+	}
+
 	$session = $obj->getSessions();
 	if(trim($session['erro'])!='' && isset($session['erro'])){
 		$obj->alert($session['erro']);
