@@ -51,6 +51,12 @@
 				</tr>
 				<tr>
 					<td colspan="3">
+						Título Síntese<br />
+						<input type="text" class="formTxt obrigatorio" name="novidade_360_titulo_sintese" id="novidade_360_titulo_sintese" style="width:98%" value="<?=$aRow['novidade_360_titulo_sintese']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
 						Resumo<br />
 						<textarea name="novidade_360_resumo" id="novidade_360_resumo" rows="5" style="width:99%"><?=$aRow['novidade_360_resumo']?></textarea>
 					</td>
