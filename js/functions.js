@@ -454,9 +454,6 @@ $(document).ready(function(){
       location.href="#content";
     });
     shortcut.add("Ctrl+4",function() {
-      location.href="#content-r";
-    });
-    shortcut.add("Ctrl+5",function() {
       location.href="#footer";
     });
 
