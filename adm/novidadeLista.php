@@ -71,6 +71,7 @@
 				<td width="40" align="center">#</td>
 				<td>Data</td>
 				<td>Agenda</td>
+				<td>Titulo Síntese</td>
 				<td>Titulo</td>
 				<td>Fonte</td>
 				<td>Banner Principal?</td>
@@ -87,6 +88,7 @@
 				<td align="center"><?=$v['novidade_360_id']?></td>
 				<td><?=$v['novidade_360_dthr']?></td>
 				<td><?=$v['novidade_360_dt_agenda']?></td>
+				<td><?=$v['novidade_360_titulo_sintese']?></td>
 				<td><?=$v['novidade_360_titulo']?></td>
 				<td><?=$v['novidade_360_fonte']?></td>
 				<td><?=$v['novidade_360_exibir_destaque_home_label']?></td>
