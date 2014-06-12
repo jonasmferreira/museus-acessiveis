@@ -5,8 +5,13 @@
 	include_once "{$path_root_tipo_servicoEdicao}adm{$DS}includes{$DS}header.php";
 	include_once("{$path_root_tipo_servicoEdicao}adm{$DS}class{$DS}tipo_servico.class.php");
 	$obj = new tipo_servico();
-	$obj->setValues($_REQUEST);
-	$aRow = $obj->getOne();
+
+	//CORRIGINDO BUG DE CARREGAR UM ITEM QUANDO CLICAMOS EM 'CADASTRAR NOVO'
+	if(isset($_REQUEST['tipo_servico_id']) && trim($_REQUEST['tipo_servico_id'])!=''){
+		$obj->setValues($_REQUEST);
+		$aRow = $obj->getOne();
+	}
+	
 	$session = $obj->getSessions();
 	if(trim($session['erro'])!='' && isset($session['erro'])){
 		$obj->alert($session['erro']);
