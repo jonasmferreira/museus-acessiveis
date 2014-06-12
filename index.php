@@ -99,7 +99,7 @@
 						<img <?=($k!=0) ? 'style="display:none;"' : '';?> id="outi_<?=$k?>" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_banner'];?>" width="515" height="226" alt="<?=$v['novidade_360_destaque_home_desc'];?>" title="<?=$v['novidade_360_destaque_home_desc'];?>" /> 
 						<dl <?=($k!=0) ? 'style="display:none;"' : '';?> id="outdd_<?=$k?>">
 							<dt><span tabIndex=""><a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a></span></dt>
-							<dd><i tabIndex=""><a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_resumo'];?></a></i></dd>
+							<!--dd><i tabIndex=""><a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_resumo'];?></a></i></dd-->
 						</dl>
 <?php
 						}
