@@ -300,7 +300,7 @@ h3 {
 	color: #632d8b;
 }
 
-#news360 p#news-spotlight{
+div.news-spotlight{
 	display: block;
 	padding: 10px 20px 40px 110px;
 	font-size: 16px;
