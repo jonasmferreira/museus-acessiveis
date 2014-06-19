@@ -100,7 +100,7 @@
         	<strong tabIndex="121">Mapa do Site</strong>
             <ul>
             	<li><a tabIndex="122" href="<?=$linkAbsolute;?>home">Home</a></li>
-            	<li><a tabIndex="123" href="<?=$linkAbsolute;?>quemsomos">Quem Somos</a></li>
+            	<li><a tabIndex="123" href="<?=$linkAbsolute;?>quem_somos">Quem Somos</a></li>
 
 				<!-- CARREGAR OS TIPOS DE SERVIÇOS -->
 <?php 
