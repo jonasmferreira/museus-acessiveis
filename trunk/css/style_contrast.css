@@ -148,7 +148,6 @@ body.contrast {
 	color: #FFF;
 }
 
-
 .contrast .info-head .date{
 	background: #231f20;
 }
@@ -333,6 +332,13 @@ body.contrast {
 	background: #FFF;
 }
 
+.contrast #news360 .content-box p#news-spotlight{
+	color: #FFF;
+}
+
+.contrast #news360 p#news-spotlight{
+	color: #FFF;
+}
 
 
 
