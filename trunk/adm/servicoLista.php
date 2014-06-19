@@ -14,6 +14,11 @@
 			,'rows'=>'10'
 		));
 	}
+	$obj->setAOrderBy(array(
+		'tc.tipo_servico_titulo' => 'ASC'
+		,'t.servico_dt_ini' => 'DESC'
+	));
+
 	$aRows = $obj->getLista();
 	$aControlePaginacao = $obj->controlePaginacao($aRows);
 	$session = $obj->getSessions();
