@@ -2,7 +2,13 @@
 
 	//itens dos contatos no footer
 	include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
+	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_servico.class.php");
+	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_curso.class.php");
+
 	$objContato = new contato();
+	$objTipoServico = new tipo_servico();
+	$objTipoCurso = new tipo_curso();
+
 	$objContato->setValues(array(
 		'contato_exibir'=>'S'
 		,'page'=>'1'
@@ -10,6 +16,19 @@
 	));
 	$aContato = $objContato->getLista();
 
+	$objTipoServico->setValues(array(
+		'page'=>'1'
+		,'rows'=>'10000'
+	));
+	$aTipoServico = $objTipoServico->getLista();
+	
+	$objTipoCurso->setValues(array(
+		'page'=>'1'
+		,'rows'=>'10000'
+	));
+	$aTipoCurso = $objTipoCurso->getLista();
+	
+	
 ?>
 <div class="clear"></div>    
 	<div id="footer" href="footer" accesskey="5">
@@ -80,20 +99,59 @@
         <div id="sitemap">
         	<strong tabIndex="121">Mapa do Site</strong>
             <ul>
-            	<li><a tabIndex="122" href="">Home</a></li>
-            	<li><a tabIndex="123" href="">Quem Somos</a></li>
-            	<li><a tabIndex="124" href="">Serviços</a></li>
+            	<li><a tabIndex="122" href="<?=$linkAbsolute;?>home">Home</a></li>
+            	<li><a tabIndex="123" href="<?=$linkAbsolute;?>quemsomos">Quem Somos</a></li>
+
+				<!-- CARREGAR OS TIPOS DE SERVIÇOS -->
+<?php 
+				if($aTipoServico['records']==0){
+?>
+					<li><a tabIndex="129" href="<?=$linkAbsolute;?>servicos">Serviços</a></li>
+<?php			}else{
+?>
+					<li tabIndex="124">
+						<a tabIndex="129" href="<?=$linkAbsolute;?>servicos">Serviços</a>
+						<ul>
+<?php					
+						foreach($aTipoServico['rows'] as $k => $v){
+?>						
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>servicos/<?=$objTipoServico->toNormaliza($v['tipo_servico_titulo']);?>"><?php echo $v['tipo_servico_titulo'];?></a></li>
+<?php
+						}
+				}
+?>
+						</ul>
+					</li>
             	<li tabIndex="125">
-                	Projetos
+                	<a tabIndex="129" href="<?=$linkAbsolute;?>projetos">Projetos</a>
                     <ul>
-                    	<li><a tabIndex="126" href="">Projetos abertos para capacitação</a></li>
-                    	<li><a tabIndex="127" href="">Portifólio de projetos realizados</a></li>
-                    	<li><a tabIndex="128" href="">Projetos em andamento</a></li>
+                    	<li><a tabIndex="126" href="<?=$linkAbsolute;?>projetos/abertos">Projetos abertos para capacitação</a></li>
+                    	<li><a tabIndex="127" href="<?=$linkAbsolute;?>projetos/realizados">Portifólio de projetos realizados</a></li>
+                    	<li><a tabIndex="128" href="<?=$linkAbsolute;?>projetos/em_andamento">Projetos em andamento</a></li>
                     </ul>
                 </li>
-            	<li><a tabIndex="129" href="">Cursos</a></li>
-            	<li><a tabIndex="130" href="">Downloads</a></li>
-                <li><a tabIndex="131" href="">Imprensa</a></li>
+				<!-- CARREGAR OS TIPOS DE CURSOS -->
+<?php 
+				if($aTipoCurso['records']==0){
+?>
+					<li><a tabIndex="129" href="<?=$linkAbsolute;?>cursos">Cursos</a></li>
+<?php			}else{
+?>
+					<li tabIndex="124">
+						<a tabIndex="129" href="<?=$linkAbsolute;?>cursos">Cursos</a>
+						<ul>
+<?php					
+						foreach($aTipoCurso['rows'] as $k => $v){
+?>						
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>cursos/<?=$objTipoCurso->toNormaliza($v['tipo_curso_titulo']);?>"><?php echo $v['tipo_curso_titulo'];?></a></li>
+<?php
+						}
+				}
+?>
+                    </ul>
+                </li>
+            	<li><a tabIndex="130" href="<?=$linkAbsolute;?>downloads">Downloads</a></li>
+                <li><a tabIndex="131" href="<?=$linkAbsolute;?>imprensa">Imprensa</a></li>
             </ul>
         </div>
     	<div class="clear"></div>

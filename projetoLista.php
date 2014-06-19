@@ -10,8 +10,10 @@
 
 		//Carregando os conteúdos da página
 		include_once("{$path_root_page}adm{$DS}class{$DS}projeto.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}servProjCurInfo.class.php");
 
 		$objProjeto = new projeto();
+		$objServProjCurInfo = new servProjCurInfo();
 
 		$sTipo = (isset($_REQUEST['projeto_tipo_desc'])?$_REQUEST['projeto_tipo_desc']:'');
 		$sTipoLabel='';
@@ -52,6 +54,13 @@
 		$aMeses = $objProjeto->getMeses();
 		//$objProjeto->debug($aRows);
 
+		$objServProjCurInfo->setValues(
+			array(
+				'serv_proj_cur_id'=>1
+			)
+		);
+		$aServProjCurInfo = $objServProjCurInfo->getOne();
+		
 	?>	
 </head>
 <body>
@@ -65,6 +74,11 @@
 			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
            	  <h1 tabIndex="31" class="orange-color">Projetos <?=$sTipoLabel;?></h1>
+			  <p id="news-spotlight">
+				  <?php 
+						echo $aServProjCurInfo['projeto_descr'];
+				  ?>
+			  </p>
               <ul id="list-itens">
               	
 <?php
