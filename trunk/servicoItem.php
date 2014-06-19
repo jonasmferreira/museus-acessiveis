@@ -46,7 +46,7 @@
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<p id="news-spotlight"  tabIndex="34"><?=$aServicos['servico_resumo'];?></p>
+						<div class="news-spotlight"  tabIndex="34"><?=$aServicos['servico_resumo'];?></p>
 						<?=$aServicos['servico_conteudo'];?>
 						<div class="clear"><br /><br /></div>
 						<div>

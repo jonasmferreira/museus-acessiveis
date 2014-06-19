@@ -43,7 +43,7 @@
 				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.$v['glossario_palavra'].'</a>';
 				$linkGlossario2 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtolower($v['glossario_palavra']).'</a>';
 				$linkGlossario3 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
-				$linkGlossario4 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.ucwords($v['glossario_palavra']).'</a>';
+				$linkGlossario4 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
 				foreach($caracEspeciais AS $carac){
 					$sConteudo = str_replace("\t{$v['glossario_palavra']}{$carac}","\t".$linkGlossario.$carac,$sConteudo);
 					$sConteudo = str_replace(" {$v['glossario_palavra']}{$carac}"," ".$linkGlossario.$carac,$sConteudo);
@@ -78,7 +78,7 @@
 						</div>
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><?=$aNovidade['novidade_360_resumo'];?></p>
-						<?=$sConteudo;?>
+						<?php echo $sConteudo; ?>
 					</div>
         	</div>
         	<div class="clear"></div>
