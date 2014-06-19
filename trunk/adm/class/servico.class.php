@@ -9,10 +9,17 @@ class servico extends defaultClass{
 	protected $filterFieldName = array(
 		't.servico_titulo'=>array(
 			'fieldNameId'=>'t.servico_titulo'
-			,'fieldNameLabel'=>'Nome'
+			,'fieldNameLabel'=>'Nome do Serviço'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'tc.tipo_servico_titulo'=>array(
+			'fieldNameId'=>'tc.tipo_servico_titulo'
+			,'fieldNameLabel'=>'Tipo do Serviço'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
+		
 	);
 	public function __construct() {
 		$path_root_servicoClass = dirname(__FILE__);
