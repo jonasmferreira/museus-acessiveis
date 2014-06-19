@@ -296,6 +296,21 @@ h3 {
 	padding: 0 10px 0 0;
 }
 
+#news360 .content-box p#news-spotlight{
+	color: #632d8b;
+}
+
+#news360 p#news-spotlight{
+	display: block;
+	padding: 10px 20px 40px 110px;
+	font-size: 16px;
+	color: #632d8b;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 25px;
+}
+
+
 .content-box dl{
 	display:block;
 	padding: 5px 15px 15px 0;
@@ -467,7 +482,7 @@ h3 {
 
 #footer #contact{
 	float: left;
-	width: 323px;	
+	width: 400px;	
 	font-size: 17px;
 }
 
@@ -749,6 +764,7 @@ table#list tbody td a{
 
 #content-news{
 	font-size: 16px;
+
 	font-style: normal;
 	padding: 30px 30px 60px 0 !important;
 }
@@ -824,9 +840,11 @@ table#list tbody td a{
 	padding:0 0 20px 0;
 }
 
-
-
-
+/*
+#root .content-box p{
+	line-height: 19px;
+}
+*/
 
 
 
