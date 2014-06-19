@@ -12,9 +12,11 @@
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}servico.class.php");
 		include_once("{$path_root_page}adm{$DS}class{$DS}tipo_servico.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}servProjCurInfo.class.php");
 
 		$objServico = new servico();
 		$objTipoServico = new tipo_servico();
+		$objServProjCurInfo = new servProjCurInfo();
 
 		$sTipo = (isset($_REQUEST['tipo_servico_titulo'])?$_REQUEST['tipo_servico_titulo']:'');
 		if(trim($sTipo)!=''){
@@ -52,6 +54,13 @@
 		$aMeses = $objServico->getMeses();
 		//$objServico->debug($aRows);
 
+		$objServProjCurInfo->setValues(
+			array(
+				'serv_proj_cur_id'=>1
+			)
+		);
+		$aServProjCurInfo = $objServProjCurInfo->getOne();
+		
 	?>	
 </head>
 <body>
@@ -65,6 +74,11 @@
 			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
            	  <h1 tabIndex="31" class="orange-color">Serviços <?=$sTipoLabel;?></h1>
+			  <p id="news-spotlight">
+				  <?php 
+						echo $aServProjCurInfo['servico_descr'];
+				  ?>
+			  </p>
               <ul id="list-itens">
               	
 <?php
