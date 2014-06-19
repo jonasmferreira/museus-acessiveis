@@ -47,8 +47,12 @@
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<div class="news-spotlight"  tabIndex="34"><?=$aProjeto['projeto_resumo'];?></p>
-						<?=$aProjeto['projeto_conteudo'];?>
+						<p id="news-spotlight"  tabIndex="34">
+							<?=$aProjeto['projeto_resumo'];?>
+						</p>
+						<div id="project-content">
+							<?=$aProjeto['projeto_conteudo'];?>
+						</div>
 						<div class="clear"><br /><br /></div>
 						<div>
 							<?php
