@@ -60,7 +60,7 @@
 			)
 		);
 		$aServProjCurInfo = $objServProjCurInfo->getOne();
-		
+		//$objServico->debug($aRows);
 	?>	
 </head>
 <body>
@@ -74,11 +74,11 @@
 			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
            	  <h1 tabIndex="31" class="orange-color">Serviços <?=$sTipoLabel;?></h1>
-			  <p id="news-spotlight">
+			  <div class="news-spotlight">
 				  <?php 
 						echo $aServProjCurInfo['servico_descr'];
 				  ?>
-			  </p>
+			  </div>
               <ul id="list-itens">
               	
 <?php
@@ -113,11 +113,19 @@
 	                        <td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['servico_thumb'];?>" width="152" height="116"  alt="<?=$v['servico_thumb_desc'];?>" title="<?=$v['servico_titulo'];?>"/></td>
 							<td valign="top" align="left">
                                 <div class="info-head">
-									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['servico_agenda'];?></span></div>
+									<div class="date">
+										<span class="purple-color" tabIndex="32">
+											<?=($v['servico_agenda']!='00/00/0000')?$v['servico_agenda']:'';?>
+										</span>
+									</div>
 									<div class="social-media">
-										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
+										<span class="purple-color">
+											<a tabIndex="36" class="purple-color" href="">facebook</a>
+										</span>
 										<span class="separator">|</span>
-										<span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
+										<span class="purple-color">
+											<a tabIndex="37" class="purple-color" href="">twitter</a>
+										</span>
 									</div>
 									<div class="clear"></div>
 								</div> 

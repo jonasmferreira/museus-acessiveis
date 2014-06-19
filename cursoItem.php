@@ -20,7 +20,7 @@
 			)
 		);
 		$aCurso = $objCurso->getOne();
-
+		
 		//$objCurso->debug($aCurso);
 		
 	?>	
@@ -47,8 +47,8 @@
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<p id="news-spotlight"  tabIndex="34"><?=$aCurso['curso_resumo'];?></p>
-						<?=$aCurso['curso_conteudo'];?>
+						<div class="news-spotlight"  tabIndex="34"><?php $aCurso['curso_resumo'];?></p>
+						<?php echo $aCurso['curso_conteudo'];?>
 					</div>
         	</div>
         	<div class="clear"></div>
