@@ -91,8 +91,17 @@
 				<td><?=$v['novidade_360_titulo_sintese']?></td>
 				<td><?=$v['novidade_360_titulo']?></td>
 				<td><?=$v['novidade_360_fonte']?></td>
-				<td><?=$v['novidade_360_exibir_destaque_home_label']?></td>
 				<td><?=$v['novidade_360_exibir_banner_label']?></td>
+				<td>
+					<?php
+						$exibe= strtolower($v['novidade_360_exibir_destaque_home_label']);
+						if($exibe=='sim'){
+							echo '<div style="font-weight:bold; color:#0000FF;">' . $v['novidade_360_exibir_destaque_home_label'] . '</div>';
+						}else{
+							echo $v['novidade_360_exibir_destaque_home_label'];
+						}
+					?>
+				</td>
 				<td>
 					<a href="novidadeEdicao.php?novidade_360_id=<?=$v['novidade_360_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['novidade_360_id']?>" class="btDel">Excluir</a>
