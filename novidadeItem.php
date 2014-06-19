@@ -77,7 +77,7 @@
 							<span class="orange-color" tabIndex="32"><?=$aNovidade['novidade_360_dt_agenda'];?></span>
 						</div>
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
-						<p id="news-spotlight"  tabIndex="34"><?=$aNovidade['novidade_360_resumo'];?></p>
+						<p id="news-spotlight"  tabIndex="34"><strong><?=$aNovidade['novidade_360_resumo'];?></strong></p>
 						<?php echo $sConteudo; ?>
 					</div>
         	</div>
