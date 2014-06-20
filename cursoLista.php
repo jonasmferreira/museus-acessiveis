@@ -105,7 +105,7 @@
                                 <div class="info-head">
 									<div class="date">
 										<span class="purple-color" tabIndex="32">
-											<?=($v['curso_agenda']!='00/00/0000'?$v['curso_agenda']:'';?>
+											<?=($v['curso_agenda']!='00/00/0000')?$v['curso_agenda']:'';?>
 										</span>
 									</div>
 									<div class="social-media">
