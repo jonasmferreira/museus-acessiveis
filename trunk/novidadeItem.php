@@ -78,7 +78,9 @@
 						</div>
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><strong><?=$aNovidade['novidade_360_resumo'];?></strong></p>
-						<?php echo $sConteudo; ?>
+						<div id="project-content">
+							<?php echo $sConteudo; ?>
+						</div>
 					</div>
         	</div>
         	<div class="clear"></div>

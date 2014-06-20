@@ -47,7 +47,9 @@
 						<?php } ?>
 						</span>
 						<div class="news-spotlight"  tabIndex="34"><?=$aServicos['servico_resumo'];?></p>
-						<?=$aServicos['servico_conteudo'];?>
+						<div id="project-content">
+							<?=$aServicos['servico_conteudo'];?>
+						</div>
 						<div class="clear"><br /><br /></div>
 						<div>
 							<?php
