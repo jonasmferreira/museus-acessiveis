@@ -20,7 +20,7 @@
 			)
 		);
 		$aCurso = $objCurso->getOne();
-		
+		$aRow = $aCurso;
 		//$objCurso->debug($aCurso);
 		
 	?>	
@@ -35,20 +35,22 @@
 			<?php include_once("{$path_root_page}logo.php"); ?>
 			<div id="news360">
            	  <h1 tabIndex="31" class="orange-color">Curso <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>cursos">| Lista de Cursos</a></h1>
-					<div id="content-news" class="content-box">
+				<div id="content-news" class="content-box">
                         <div class="date">
-							<span class="orange-color" tabIndex="32"><?=$aCurso['curso_agenda'];?></span>
+							<span class="orange-color" tabIndex="32"><?php echo $aRow['curso_agenda'];?></span>
 						</div>
-						<h2 id="title-news" tabIndex="33"><?=$aCurso['curso_titulo'];?></h2>
+						<h2 id="title-news" tabIndex="33"><?=$aRow['curso_titulo'];?></h2>
 						<span class="curso-info orange-color">
-						<?php if($v['curso_sob_demanda']=='N'){  ?>
-							Período: de <?=$v['curso_dt_ini'];?> até <?=$v['curso_dt_fim'];?>
+						<?php if($aRow['curso_sob_demanda']=='N'){  ?>
+							<?php if($aRow['curso_dt_ini']!='00/00/0000'){  ?>
+								Período: de <?=$aRow['curso_dt_ini'];?> até <?=$aRow['curso_dt_fim'];?>
+							<?php } ?>
 						<?php }else { ?>
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<div class="news-spotlight"  tabIndex="34"><?php $aCurso['curso_resumo'];?></p>
-						<?php echo $aCurso['curso_conteudo'];?>
+						<p id="news-spotlight"  tabIndex="34"><?=$aRow['curso_resumo'];?></p>
+						<?=$aRow['curso_conteudo'];?>
 					</div>
         	</div>
         	<div class="clear"></div>
