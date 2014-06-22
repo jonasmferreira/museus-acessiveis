@@ -106,7 +106,6 @@
 			$nPos++;
 		}
 ?>
-				  
               </ul>
         	</div>
             <div class="clear"></div>
@@ -119,7 +118,8 @@
 		<?php include_once("{$path_root_page}boxAgenda.php"); ?>
 		<?php include_once("{$path_root_page}boxNewsletter.php"); ?>
 		<?php include_once("{$path_root_page}boxGlossario.php"); ?>
-    </div>	
+    </div>
+		<div class="clear"></div>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
 </body>
