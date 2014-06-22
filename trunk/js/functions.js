@@ -574,6 +574,8 @@ $(document).ready(function(){
 });
 
 function resizeContent(){
+	$('#content-l').css('display','block');
+	$('#content-l').css('overflow','visible');
 	var cr = $('#content-r').css('height');
 	var cl = $('#content').css('height');
 	cr=cr.split('px');
@@ -583,7 +585,9 @@ function resizeContent(){
 	if(parseInt(l) < parseInt(r)){
 		$('#content').css('height',r+'px');
 	}
-	
+	$('#content').css('overflow','visible');
+	$('#content').css('height','auto');
+
 }
 
 function controlerFontSize(obj,container,multipleSize,dontChangeMe){
