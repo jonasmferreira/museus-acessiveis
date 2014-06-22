@@ -148,6 +148,60 @@ class download extends defaultClass{
 		return $this->utf8_array_encode($rs);
 	}
 
+	public function getDownsByProject(){
+		$page = $this->values['page']; 
+		$limit = $this->values['rows']; 
+		
+		$sql = array();
+		$sql[] = $this->getSql();
+		$sql[] = "AND		t.download_id IN ('{$this->values['download_list_id']}')";
+
+		$count = $this->getTotalData(implode("\n",$sql));
+		$page = ($page < 1)?1:$page;
+		if($count>0) {
+			$total_pages = ceil($count/$limit);
+		} else {
+			$total_pages = 0;
+		}
+		if ($page > $total_pages){
+			$page=$total_pages; 
+		}
+		$start = ($limit * $page) - $limit;
+		$start = ($start < 0)?0:$start;
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$sql[] = $sOrder;
+		}else{
+			$sql[] = "ORDER BY t.download_tipo ASC, t.download_titulo ASC ";
+		}
+
+		$sql[] = "LIMIT {$start},{$limit}";
+		
+		$aRet = array(
+			'page'=>$page
+			,'total'=>$total_pages	
+			,'records'=>$count
+			,'rows'=>$limit
+		);
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['download_tipo_label'] = $this->tipoDownload[$rs['download_tipo']]['tipo_download_titulo'];
+					$rs['download_dt_hr'] = $this->dateDB2BR($rs['download_dt'])." às ".$rs['download_hr'];
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$aRet['rows'] = $arr;
+		return $aRet;
+
+	}
+	
 	public function edit(){
 		if(isset($this->values['download_id'])&&trim($this->values['download_id'])!=''){
 			$result = $this->update();
