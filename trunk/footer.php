@@ -122,7 +122,7 @@
 <?php					
 						foreach($aTipoServico['rows'] as $k => $v){
 ?>						
-							<li><a tabIndex="125" href="<?=$linkAbsolute;?>servicos/<?=$objTipoServico->toNormaliza($v['tipo_servico_titulo']);?>"><?php echo $v['tipo_servico_titulo'];?></a></li>
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>servicos/<?=$v['tipo_servico_id'];?>/<?=$objTipoServico->toNormaliza($v['tipo_servico_titulo']);?>"><?php echo $v['tipo_servico_titulo'];?></a></li>
 <?php
 						}
 				}
@@ -144,7 +144,7 @@
 <?php					
 						foreach($aTipoProjeto['rows'] as $k => $v){
 ?>						
-							<li><a tabIndex="125" href="<?=$linkAbsolute;?>projetos/<?=$objTipoProjeto->toNormaliza($v['tipo_projeto_titulo']);?>"><?php echo $v['tipo_projeto_titulo'];?></a></li>
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>projetos/<?=$v['tipo_projeto_id'];?>/<?=$objTipoProjeto->toNormaliza($v['tipo_projeto_titulo']);?>"><?php echo $v['tipo_projeto_titulo'];?></a></li>
 <?php
 						}
 				}
@@ -167,7 +167,7 @@
 <?php					
 						foreach($aTipoCurso['rows'] as $k => $v){
 ?>						
-							<li><a tabIndex="125" href="<?=$linkAbsolute;?>cursos/<?=$objTipoCurso->toNormaliza($v['tipo_curso_titulo']);?>"><?php echo $v['tipo_curso_titulo'];?></a></li>
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>cursos/<?=$v['tipo_curso_id'];?>/<?=$objTipoCurso->toNormaliza($v['tipo_curso_titulo']);?>"><?php echo $v['tipo_curso_titulo'];?></a></li>
 <?php
 						}
 				}
