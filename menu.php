@@ -42,7 +42,7 @@
 <?php
 							foreach($aServico['rows'] as $k =>$v){ 
 					?>
-                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>servicos/<?=strtolower($objServico->toNormaliza($v['tipo_servico_titulo']));?>"><?=$v['tipo_servico_titulo'];?></a></li>
+                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>servicos/<?=$v['tipo_servico_id'];?>/<?=strtolower($objServico->toNormaliza($v['tipo_servico_titulo']));?>"><?=$v['tipo_servico_titulo'];?></a></li>
 					<?php 
 							} 
 ?>
@@ -61,7 +61,9 @@
 <?php
 							foreach($aTipoProjeto['rows'] as $k =>$v){ 
 					?>
-                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>projetos/<?=strtolower($objTipoProjeto->toNormaliza($v['tipo_projeto_titulo']));?>"><?=$v['tipo_projeto_titulo'];?></a></li>
+                            <li class="fontSize">
+								<a tabIndex="9" href="<?=$linkAbsolute;?>projetos/<?=$v['tipo_projeto_id'];?>/<?=strtolower($objTipoProjeto->toNormaliza($v['tipo_projeto_titulo']));?>"><?=$v['tipo_projeto_titulo'];?></a>
+							</li>
 					<?php 
 							} 
 ?>
@@ -80,7 +82,7 @@
 <?php
 							foreach($aCurso['rows'] as $k =>$v){ 
 					?>
-                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>cursos/<?=strtolower($objCurso->toNormaliza($v['tipo_curso_titulo']));?>"><?=$v['tipo_curso_titulo'];?></a></li>
+                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>cursos/<?=$v['tipo_curso_id'];?>/<?=strtolower($objCurso->toNormaliza($v['tipo_curso_titulo']));?>"><?=$v['tipo_curso_titulo'];?></a></li>
 					<?php 
 							} 
 ?>
