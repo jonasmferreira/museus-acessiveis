@@ -69,7 +69,8 @@
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
 						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Serviço</a><br />
                     	<a href="servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
-                    	<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
+						<a href="tipoProjetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Projeto</a><br />
+						<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
 						<a href="servProjCurInfoEdicao.php?serv_proj_cur_id=1" style="background-image:url(imgs/icon-jogos.png);">Descrição Produtos</a><br />                        
 						<a href="extraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
                     </div>

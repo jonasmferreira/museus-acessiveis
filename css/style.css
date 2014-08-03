@@ -727,7 +727,7 @@ table#list{
 	color: #4d4d4d;
 }
 table#list thead tr td{
-	padding: 0 0 25px 0;
+	padding: 0 5px 25px 5px;
 	font-style: italic;
 	text-align: left;
 	vertical-align: middle;
@@ -744,7 +744,7 @@ table#list tbody tr td{
 	border-bottom: 1px solid #632d8b;
 	text-align: left;
 	vertical-align: middle;
-	padding: 5px 0 5px 5px;
+	padding: 5px 5px 5px 5px;
 	font-style: italic;
 }
 
@@ -764,7 +764,6 @@ table#list tbody td a{
 
 #content-news{
 	font-size: 16px;
-
 	font-style: normal;
 	padding: 30px 30px 60px 0 !important;
 }
@@ -846,7 +845,9 @@ table#list tbody td a{
 }
 */
 
-
+#project-content p{
+	padding: 0 0 35px 0;	
+}
 
 
 

@@ -125,7 +125,7 @@
 				<tr>
 					<td colspan="3">
 						Descrição do Outdoor<br />
-						<textarea name="novidade_360_banner_desc" <?=$aRow['novidade_360_exibir_banner']=='S'?'readonly="yes"':''?> id="novidade_360_banner_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_banner_desc']?></textarea>
+						<textarea name="novidade_360_banner_desc" <?=$aRow['novidade_360_exibir_banner']!='S'?'readonly="yes"':''?> id="novidade_360_banner_desc" rows="5" style="width:99%"><?=$aRow['novidade_360_banner_desc']?></textarea>
 					</td>
 				</tr>
 				<!-- Sessão B - Exibir no Destaque -->

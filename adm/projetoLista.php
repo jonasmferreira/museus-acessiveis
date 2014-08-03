@@ -92,7 +92,7 @@
 				<td><?=$v['projeto_dt_fim']?></td>
 				<td><?=$v['projeto_sob_demanda_label']?></td>
 				<td><?=$v['projeto_titulo']?></td>
-				<td><?=$v['projeto_tipo_label']?></td>
+				<td><?=$v['tipo_projeto_titulo']?></td>
 				<td><?=$v['projeto_resumo']?></td>
 				<td><?=$v['projeto_agenda']?></td>
 				<td>

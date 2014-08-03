@@ -38,18 +38,23 @@
 						<strong>Dados do Projeto</strong>
 					</td>
 				</tr>
+
 				<tr>
-					<td>
-						Tipo do Projeto<br />
-						<select id="projeto_tipo" name="projeto_tipo" class="formTxt obrigatorio">
-							<?php	foreach($aTipoProjeto as $k => $v):
-									$selected = ($v['tipo_projeto_id']==$aRow['projeto_tipo'])?' selected="selected"':'';
+					<td colspan="3">
+						Tipo de Projeto<br />
+						<select id="tipo_projeto_id" name="tipo_projeto_id" style="width:40%;">
+							<?	if(count($aTipoProjeto) > 0):?>
+							<?		foreach($aTipoProjeto AS $v):
+										$selected = $v['tipo_projeto_id']==$aRow['tipo_projeto_id']?' selected="selected"':'';
 							?>
 							<option<?=$selected?> value="<?=$v['tipo_projeto_id']?>"><?=$v['tipo_projeto_titulo']?></option>
-							<?php	endforeach;?>
+							<?		endforeach;?>
+							<?	endif;?>
 						</select>
 					</td>
-					<td colspan="2">
+				</tr>
+				<tr>
+					<td colspan="3">
 						Nome<br />
 						<input type="text" class="formTxt obrigatorio" name="projeto_titulo" id="projeto_titulo" style="width:98%" value="<?=$aRow['projeto_titulo']?>" />
 					</td>
@@ -92,43 +97,49 @@
 					<td>
 						Tags<br />
 						<select class="formTxt" name="tags[]" id="tags" multiple="yes" style="width:99%;">
-							<?	foreach($aTags AS $k=>$v):
-									if(is_array($aRow['tags'])){
-										$selected = in_array($v['tag_id'], $aRow['tags'])!==false?' selected="selected"':'';
-									}else{
+							<?php	foreach($aTags as $k =>$v){
 										$selected = "";
-									}
+										foreach($aRow['tags'] as $k2 => $v2){
+											if($v['tag_id']==$v2['tag_id']){
+												$selected = ' selected="selected"';
+												break;
+											}
+										}
 							?>
-							<option value="<?=$v['tag_id']?>"<?=$selected?>><?=$v['tag_titulo']?></option>
-							<?	endforeach;?>
+										<option value="<?=$v['tag_id']?>"<?=$selected?>><?=$v['tag_titulo']?></option>
+							<?php	} ;?>
 						</select>
 					</td>
 					<td>
 						Termo Relacionado<br />
 						<select class="formTxt" name="glossarios[]" id="glossarios" multiple="yes" style="width:99%;">
-							<?	foreach($aGlossarios AS $k=>$v):
-									if(is_array($aRow['glossarios'])){
-										$selected = in_array($v['glossario_id'], $aRow['glossarios'])!==false?' selected="selected"':'';
-									}else{
+							<?php	foreach($aGlossarios as $k =>$v){
 										$selected = "";
-									}
+										foreach($aRow['glossarios'] as $k2 => $v2){
+											if($v['glossario_id']==$v2['glossario_id']){
+												$selected = ' selected="selected"';
+												break;
+											}
+										}
 							?>
-							<option value="<?=$v['glossario_id']?>"<?=$selected?>><?=$v['glossario_palavra']?></option>
-							<?	endforeach;?>
+										<option value="<?=$v['glossario_id']?>"<?=$selected?>><?=$v['glossario_palavra']?></option>
+							<?php	} ;?>
 						</select>
 					</td>
 					<td>
 						Download<br />
 						<select class="formTxt" name="downloads[]" id="downloads" multiple="yes" style="width:99%;">
-							<?	foreach($aDownloads AS $k=>$v):
-									if(is_array($aRow['downloads'])){
-										$selected = in_array($v['download_id'], $aRow['downloads'])!==false?' selected="selected"':'';
-									}else{
+							<?php	foreach($aDownloads as $k =>$v){
 										$selected = "";
-									}
+										foreach($aRow['downloads'] as $k2 => $v2){
+											if($v['download_id']==$v2['download_id']){
+												$selected = ' selected="selected"';
+												break;
+											}
+										}
 							?>
-							<option value="<?=$v['download_id']?>"<?=$selected?>><?=$v['download_titulo']?></option>
-							<?	endforeach;?>
+										<option value="<?=$v['download_id']?>"<?=$selected?>><?=$v['download_titulo']?></option>
+							<?php	} ;?>
 						</select>
 					</td>
 				</tr>
@@ -168,17 +179,30 @@
 						<strong>Informações Extras</strong>
 					</td>
 				</tr>
-				<?	foreach($aExtras AS $v):?>
-				<td>
-					<?=$v['extra_nome_campo']?><br />
-					<input type="text" class="formTxt" name="extras[<?=$v['extra_id']?>]" id="extras_<?=$v['extra_id']?>" style="width:98%" value="<?=$aRow['extras'][$v['extra_id']]?>" />
-				</td>
-				<?	endforeach;?>
+				<?php	
+				foreach($aExtras as $k => $v){ ?>
+				<tr>
+					<td colspan="3">
+					<?php echo $v['extra_nome_campo']; ?><br />
+					
+					<?php
+						$value='';
+						if(is_array($aRow['extras'])){
+							foreach($aRow['extras'] as $k2 => $v2){
+								if($v['extra_id']==$v2['extra_id']){
+									$value = $v2['projeto_extra_valor'];
+									break;
+								}
+							}
+						}
+					?>
+					<textarea name="extras[<?php echo $v['extra_id'];?>]" id="extras_<?php echo $v['extra_id'];?>" rows="5" style="width:99%"><?php echo $value;?></textarea>					
+					</td>
+				</tr>
+				<?php }	?>
 				<?	endif;?>
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td align="right">
+					<td align="right" colspan="3">
 						<a href="projetoLista.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
 					</td>

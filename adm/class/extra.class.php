@@ -7,7 +7,7 @@ class extra extends defaultClass{
 	protected $dbConn;
 	protected $filterFieldName = array(
 		't.extra_titulo'=>array(
-			'fieldNameId'=>'t.extra_titulo'
+			'fieldNameId'=>'t.extra_nome_campo'
 			,'fieldNameLabel'=>'Nome'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
@@ -30,6 +30,19 @@ class extra extends defaultClass{
 		";
 		return implode("\n",$sql);
 	}
+
+	protected function getExtraSql(){
+		$sql = array();
+		$sql[] = "
+			SELECT	*
+			FROM	tb_extra t
+			JOIN	tb_projeto_extra tx
+			ON		tx.extra_id = t.extra_id
+			WHERE	1 = 1
+		";
+		return implode("\n",$sql);
+	}
+	
 	public function getLista(){
 		$page = $this->values['page']; 
 		// get the requested page 
@@ -54,7 +67,7 @@ class extra extends defaultClass{
 		}
 		$start = ($limit * $page) - $limit;
 		$start = ($start < 0)?0:$start;
-		$sql[] = "ORDER BY t.extra_titulo ASC";
+		$sql[] = "ORDER BY t.extra_nome_campo ASC";
 		$sql[] = "LIMIT {$start},{$limit}";
 		
 		$aRet = array(
@@ -146,4 +159,7 @@ class extra extends defaultClass{
 		}
 		return $result;
 	}
+	
+	
+	
 }

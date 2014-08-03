@@ -13,6 +13,26 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}servico.class.php");
 		$objServico = new servico();
 
+		//LISTA DE ARQUIVOS DE DOWNLOAD RELACIONADOS COM O PROJETO
+		include_once("{$path_root_page}adm{$DS}class{$DS}download.class.php");
+		$objDown = new download();
+		$aDown= array();
+		
+		//LISTA DE ARQUIVOS DE TAGS RELACIONADOS COM O PROJETO
+		include_once("{$path_root_page}adm{$DS}class{$DS}tag.class.php");
+		$objTag = new tag();
+		$aTag= array();
+
+		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS COM O PROJETO
+		include_once("{$path_root_page}adm{$DS}class{$DS}glossario.class.php");
+		$objGloss = new glossario();
+		$aGloss= array();
+
+		//LISTA DE ARQUIVOS DE EXTRAS RELACIONADOS COM O PROJETO
+		include_once("{$path_root_page}adm{$DS}class{$DS}extra.class.php");
+		$objExtra = new extra();
+		$aExtra= array();
+		
 		$nId = (isset($_REQUEST['servico_id'])?$_REQUEST['servico_id']:0);
 		$objServico->setValues(
 			array(
@@ -20,7 +40,65 @@
 			)
 		);
 		$aServicos = $objServico->getOne();
-		//$objServico->debug($aServico);
+		$objServico->debug($aServicos);
+
+		//Verificando se há tags para exibir
+		if(is_array($aServicos['tags']) && count($aServicos['tags'])>0){
+			$objTag->setValues(array(
+				'page'=>'1'
+				,'rows'=>'10000'
+				,'tag_list_id'=>implode(',',$aServicos['tags'])
+			));
+			$objTag->setAOrderBy(array(
+				'tag_titulo'=> 'ASC'
+			));
+			$aTag = $objTag->getTagsByServico();
+			//$objTag->debug($aTag);
+		}
+
+		//Verificando se há glossários para exibir
+		if(is_array($aServicos['glossarios']) && count($aServicos['glossarios'])>0){
+			$objGloss->setValues(array(
+				'page'=>'1'
+				,'rows'=>'10000'
+				,'glossario_list_id'=>implode(',',$aServicos['glossarios'])
+			));
+			$objGloss->setAOrderBy(array(
+				't.glossario_palavra'=> 'ASC'
+			));
+			$aGloss = $objGloss->getGlossByServico();
+			$objGloss->debug($aGloss);
+		}
+		
+		//Verificando se há extras para exibir
+		if(is_array($aServicos['extras']) && count($aServicos['extras'])>0){
+			$objExtra->setValues(array(
+				'page'=>'1'
+				,'rows'=>'10000'
+				,'extra_list_id'=>implode(',',$aServicos['extras'])
+			));
+			$objExtra->setAOrderBy(array(
+				't.extra_nome_campo'=> 'ASC'
+			));
+			$aExtra = $objExtra->getExtraByServico();
+			$objExtra->debug($aExtra);
+		}
+
+		//Verificando se há downloads para exibir
+		if(is_array($aProjeto['downloads']) && count($aProjeto['downloads'])>0){
+			$objDown->setValues(array(
+				'page'=>'1'
+				,'rows'=>'10000'
+				,'download_list_id'=>implode(',',$aServicos['downloads'])
+			));
+			$objDown->setAOrderBy(array(
+				't.download_dt' => 'DESC'
+				,'t.download_hr' => 'DESC'
+				,'t.download_titulo'=> 'ASC'
+			));
+			$aDown = $objDown->getDownsByProject();
+			//$objDown->debug($aDown);
+		}
 		
 	?>	
 </head>
@@ -61,11 +139,126 @@
 							?>
 						</div>
 						
+					</div
+					
+					<!-- EXTRAS -->
+					<div>
+					<?php
+						foreach($aExtra['rows'] as $k => $v){					
+					?>
+							<span class="orange-color"><?php echo $v['extra_nome_campo'] ;?></span>
+							<p><?php echo $v['projeto_extra_valor'] ;?></p><br />
+					<?php } ?>	
 					</div>
+					<div class="clear"></div>
+					
+					<!-- TAGS -->
+					<div>
+					<?php
+						if(count($aTag['rows'])>0){
+							$aTg=array();
+					?>
+							<span class="orange-color">Tags: </span>
+							<span>
+					<?php	
+							foreach($aTag['rows'] as $k => $v){					
+								$aTg[] = $v['tag_titulo'];
+							} 
+						}
+						echo implode(', ',$aTg);
+					?>	
+						</span>
+					</div>
+					<div class="clear"><br /></div>
+
+					<!-- GLOSSÁRIO -->
+					<div>
+					<?php
+						if(count($aGloss['rows'])>0){
+							$aGl=array();
+					?>
+							<span class="orange-color">Glossário: </span>
+							<span>
+					<?php	
+							foreach($aGloss['rows'] as $k => $v){					
+								$aGl[] = $v['glossario_palavra'];
+							} 
+						}
+						echo implode(', ',$aGl);
+					?>	
+						</span>
+					</div>
+					<div class="clear"><br /></div>
+					
+					<!-- FONTE -->
+					<div>
+						<?php
+							if(trim($aProjeto['projeto_link_fonte'])){
+								echo '<span class="purple-color">fonte: </span><a class="orange-color" class="orange-color" href="' . $aProjeto['projeto_link_fonte'] . '">'. $aProjeto['projeto_fonte'] .'</a>';
+							}elseif(trim($aProjeto['projeto_fonte'])){
+								echo '<span class="purple-color">fonte: </span><span  class="purple-color">' . $aProjeto['projeto_fonte'] . '</span>';
+							}
+						?>
+					</div>
+
+	<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+	<?php 
+		if(count($aDown)>0){
+	?>	
+
+		<div id="download-box" style="padding-left:0 !important;">
+           	  <h3 tabIndex="31" class="orange-color">Downloads</h2>
+              <table id="list" width="100%" cellpading="0" cellspacing="0">
+              		<thead>
+                    	<tr>
+                        	<td tabIndex="">
+                            	<span>Data</span>
+                            </td>
+                        	<td tabIndex="7">
+                            	Descrição
+                            </td>
+                        	<td tabIndex="">
+                            	Formato
+                            </td>
+                        	<td tabIndex="19">
+                            	Tamanho
+                            </td>
+                        </tr>
+                    </thead>
+              		<tbody>
+<?php 
+					foreach($aDown['rows'] as $k => $v){
+?>
+						<tr>
+                        	<td>
+                            	<span><?=$v['download_dt'];?></span>
+                            </td>
+                        	<td>
+                            	<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
+                            </td>
+                        	<td>
+                            	<span><?=$v['download_tipo_label'];?></span>
+                            </td>
+                        	<td>
+                            	<span><?=$v['download_tamanho_label'];?></span>
+                            </td>
+                        </tr>
+<?php
+		}
+?>						
+                    </tbody>
+              </table>
+            </div>
+<?php } ?>
+            <div class="clear"></div>
+<!-- FIM DOWNLOADS -->
+
+					
         	</div>
         	<div class="clear"></div>
         </div>
         <div class="clear"></div>
+  </div>
   </div>
 
 	<div id="content-r" href="content-r" accesskey="4">

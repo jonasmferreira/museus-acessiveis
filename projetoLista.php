@@ -10,11 +10,40 @@
 
 		//Carregando os conteúdos da página
 		include_once("{$path_root_page}adm{$DS}class{$DS}projeto.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}tipoProjeto.class.php");
 		include_once("{$path_root_page}adm{$DS}class{$DS}servProjCurInfo.class.php");
 
 		$objProjeto = new projeto();
+		$objTipoProjeto = new tipoProjeto();
 		$objServProjCurInfo = new servProjCurInfo();
 
+		$sTipo = (isset($_REQUEST['tipo_projeto_titulo'])?$_REQUEST['tipo_projeto_titulo']:'');
+		if(trim($sTipo)!=''){
+			$objTipoProjeto->setValues(
+				array(
+					'tipo_projeto_titulo'=>$sTipo
+				)
+			);
+		
+			$aTipo = $objTipoProjeto->getOne();
+			$nTipoId = $aTipo['tipo_projeto_id'];
+
+			//Serviços - Lista
+			$objProjeto->setValues(array(
+				'tipo_projeto_id'=>$nTipoId
+				,'page'=>'1'
+				,'rows'=>'100000'
+			));
+			
+		}else{
+			//Serviços - Lista
+			$objProjeto->setValues(array(
+				'page'=>'1'
+				,'rows'=>'100000'
+			));
+			
+		}
+/*
 		$sTipo = (isset($_REQUEST['projeto_tipo_desc'])?$_REQUEST['projeto_tipo_desc']:'');
 		$sTipoLabel='';
 		if(trim($sTipo)!=''){
@@ -42,10 +71,11 @@
 			));
 			
 		}
-
+*/
+		
 		//Projetos - Lista
 		$objProjeto->setAOrderBy(array(
-			't.projeto_tipo' => 'ASC'
+			'tc.tipo_projeto_titulo' => 'ASC'
 			,'t.projeto_agenda' => 'DESC'
 			,'t.projeto_titulo' => 'ASC'
 		));

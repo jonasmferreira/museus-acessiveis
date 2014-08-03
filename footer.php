@@ -4,10 +4,12 @@
 	include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_servico.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_curso.class.php");
+	include_once("{$path_root_page}adm{$DS}class{$DS}tipoProjeto.class.php");
 
 	$objContato = new contato();
 	$objTipoServico = new tipo_servico();
 	$objTipoCurso = new tipo_curso();
+	$objTipoProjeto = new tipoProjeto();
 
 	$objContato->setValues(array(
 		'contato_exibir'=>'S'
@@ -28,6 +30,11 @@
 	));
 	$aTipoCurso = $objTipoCurso->getLista();
 	
+	$objTipoProjeto->setValues(array(
+		'page'=>'1'
+		,'rows'=>'10000'
+	));
+	$aTipoProjeto = $objTipoProjeto->getLista();
 	
 ?>
 <div class="clear"></div>    
@@ -122,14 +129,31 @@
 ?>
 						</ul>
 					</li>
-            	<li tabIndex="125">
-                	<a tabIndex="129" href="<?=$linkAbsolute;?>projetos">Projetos</a>
-                    <ul>
-                    	<li><a tabIndex="126" href="<?=$linkAbsolute;?>projetos/abertos">Projetos abertos para capacitação</a></li>
-                    	<li><a tabIndex="127" href="<?=$linkAbsolute;?>projetos/realizados">Portifólio de projetos realizados</a></li>
-                    	<li><a tabIndex="128" href="<?=$linkAbsolute;?>projetos/em_andamento">Projetos em andamento</a></li>
-                    </ul>
-                </li>
+
+					
+				<!-- CARREGAR OS TIPOS DE PROJETOS -->
+<?php 
+				if($aTipoProjeto['records']==0){
+?>
+					<li><a tabIndex="129" href="<?=$linkAbsolute;?>projetos">Projetos</a></li>
+<?php			}else{
+?>
+					<li tabIndex="124">
+						<a tabIndex="129" href="<?=$linkAbsolute;?>projetos">Projetos</a>
+						<ul>
+<?php					
+						foreach($aTipoProjeto['rows'] as $k => $v){
+?>						
+							<li><a tabIndex="125" href="<?=$linkAbsolute;?>projetos/<?=$objTipoProjeto->toNormaliza($v['tipo_projeto_titulo']);?>"><?php echo $v['tipo_projeto_titulo'];?></a></li>
+<?php
+						}
+				}
+?>
+						</ul>
+					</li>
+					
+					
+					
 				<!-- CARREGAR OS TIPOS DE CURSOS -->
 <?php 
 				if($aTipoCurso['records']==0){

@@ -757,17 +757,26 @@ class defaultClass {
 		//13824.00
 		$sLabel='';
 		$nVal=0;
+		$nChange=0;
+		$sRet = '';
+		
 		if($value<1024){
-			$nVal = $value;
-			$sLabel='b';
-		}elseif($value/1024 <=1024){
-			$nVal = $value/1024;
-			$sLabel='kb';
+			$sRet = $value . 'b';
 		}else{
-			$sLabel='mb';	
-			$nVal = $value/1024;
+			$nVal = intval($value / 1024);
+			if($nVal<1024){
+				$sRet = $nVal . 'kb';
+			}else{
+				$nChange = ($nVal % 1024);
+				$nVal = intval($nVal / 1024);
+				if($nVal<1024){
+					$sRet = $nVal . '.' . $nChange . 'mb';
+				}
+				
+			}
 		}
-		return number_format($nVal,2) . $sLabel;
+
+		return $sRet;
 	}
 	
 	

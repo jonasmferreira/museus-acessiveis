@@ -30,6 +30,7 @@ class tag extends defaultClass{
 		";
 		return implode("\n",$sql);
 	}
+
 	public function getLista(){
 		$page = $this->values['page']; 
 		// get the requested page 
@@ -147,4 +148,7 @@ class tag extends defaultClass{
 		}
 		return $result;
 	}
+
+	
+	
 }
