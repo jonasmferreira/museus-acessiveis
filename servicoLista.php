@@ -19,15 +19,16 @@
 		$objServProjCurInfo = new servProjCurInfo();
 
 		$sTipo = (isset($_REQUEST['tipo_servico_titulo'])?$_REQUEST['tipo_servico_titulo']:'');
-		if(trim($sTipo)!=''){
+		$nTipoId = (isset($_REQUEST['tipo_servico_id'])?$_REQUEST['tipo_servico_id']:'');
+		if(trim($nTipoId)!=''){
 			$objTipoServico->setValues(
 				array(
-					'tipo_servico_titulo'=>$sTipo
+					'tipo_servico_id'=>$nTipoId
 				)
 			);
 		
 			$aTipo = $objTipoServico->getOne();
-			$nTipoId = $aTipo['tipo_servico_id'];
+			//$objTipoServico->debug($aTipo);
 
 			//Serviços - Lista
 			$objServico->setValues(array(
@@ -44,11 +45,14 @@
 			));
 			
 		}
-
+		
+		//Serviços - Lista
 		$objServico->setAOrderBy(array(
-			't.servico_agenda' => 'DESC'
+			'tc.tipo_servico_titulo' => 'ASC'
+			,'t.servico_agenda' => 'DESC'
 			,'t.servico_dt_ini' => 'DESC'
 		));
+
 		$aRows = $objServico->getLista();
 
 		$aMeses = $objServico->getMeses();
