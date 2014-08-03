@@ -86,7 +86,7 @@ class tipo_curso extends defaultClass{
 		if(isset($this->values['tipo_curso_titulo'])&&trim($this->values['tipo_curso_titulo'])!=''){
 			$sql[] = "AND		t.tipo_curso_titulo = '{$this->values['tipo_curso_titulo']}'";
 		}
-		
+
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){

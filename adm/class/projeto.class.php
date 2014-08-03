@@ -123,6 +123,10 @@ class projeto extends defaultClass{
 			$sql[] = "AND tc.tipo_projeto_titulo = '{$this->values['tipo_projeto_titulo']}'";
 		}
 
+		if(isset($this->values['tipo_projeto_id'])&&trim($this->values['tipo_projeto_id'])!=''){
+			$sql[] = "AND 		tc.tipo_projeto_id = '{$this->values['tipo_projeto_id']}'";
+		}
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
