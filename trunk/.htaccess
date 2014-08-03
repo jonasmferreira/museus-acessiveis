@@ -25,17 +25,17 @@
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^cursos/?$ cursoLista.php
-	RewriteRule ^cursos/([^/]+)/?$ cursoLista.php?tipo_curso_titulo=$1
+	RewriteRule ^cursos/([^/]+)/([^/]+)/?$ cursoLista.php?tipo_curso_id=$1&tipo_curso_titulo=$2
 	RewriteRule ^curso/([^/]+)/?$ cursoItem.php?curso_id=$1
 	RewriteRule ^curso/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2
 
 	RewriteRule ^servicos/?$ servicoLista.php
-	RewriteRule ^servicos/([^/]+)/?$ servicoLista.php?tipo_servico_titulo=$1
+	RewriteRule ^servicos/([^/]+)/([^/]+)/?$ servicoLista.php?tipo_servico_id=$1&tipo_servico_titulo=$2
 	RewriteRule ^servico/([^/]+)/?$ servicoItem.php?servico_id=$1
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
 
 	RewriteRule ^projetos/?$ projetoLista.php
-	RewriteRule ^projetos/([^/]+)/?$ projetoLista.php?tipo_projeto_titulo=$1
+	RewriteRule ^projetos/([^/]+)/([^/]+)/?$ projetoLista.php?tipo_projeto_id=$1&tipo_projeto_titulo=$2
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 
