@@ -18,15 +18,17 @@
 		$objServProjCurInfo = new servProjCurInfo();
 
 		$sTipo = (isset($_REQUEST['tipo_projeto_titulo'])?$_REQUEST['tipo_projeto_titulo']:'');
-		if(trim($sTipo)!=''){
+		$nTipoId = (isset($_REQUEST['tipo_projeto_id'])?$_REQUEST['tipo_projeto_id']:'');
+		if(trim($nTipoId)!=''){
 			$objTipoProjeto->setValues(
 				array(
-					'tipo_projeto_titulo'=>$sTipo
+					'tipo_projeto_id'=>$nTipoId
 				)
 			);
 		
 			$aTipo = $objTipoProjeto->getOne();
-			$nTipoId = $aTipo['tipo_projeto_id'];
+			//$objTipoProjeto->debug($aTipo);
+			//$nTipoId = $aTipo['tipo_projeto_id'];
 
 			//Serviços - Lista
 			$objProjeto->setValues(array(
@@ -43,35 +45,6 @@
 			));
 			
 		}
-/*
-		$sTipo = (isset($_REQUEST['projeto_tipo_desc'])?$_REQUEST['projeto_tipo_desc']:'');
-		$sTipoLabel='';
-		if(trim($sTipo)!=''){
-			if(strtoupper(substr($sTipo,0,1))=='A'){
-				$sTipo='A';
-				$sTipoLabel='Abertos';
-			}elseif(strtoupper(substr($sTipo,0,1))=='R'){
-				$sTipo='R';
-				$sTipoLabel='Realizados';
-			}else{
-				$sTipo='EA';
-				$sTipoLabel='em Andamento';
-			}
-
-			$objProjeto->setValues(array(
-				'projeto_tipo'=>$sTipo
-				,'page'=>'1'
-				,'rows'=>'500000'
-			));
-
-		}else{
-			$objProjeto->setValues(array(
-				'page'=>'1'
-				,'rows'=>'500000'
-			));
-			
-		}
-*/
 		
 		//Projetos - Lista
 		$objProjeto->setAOrderBy(array(
@@ -79,10 +52,11 @@
 			,'t.projeto_agenda' => 'DESC'
 			,'t.projeto_titulo' => 'ASC'
 		));
+
 		$aRows = $objProjeto->getLista();
+		//$objProjeto->debug($aRows);
 
 		$aMeses = $objProjeto->getMeses();
-		//$objProjeto->debug($aRows);
 
 		$objServProjCurInfo->setValues(
 			array(

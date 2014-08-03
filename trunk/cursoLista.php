@@ -19,15 +19,16 @@
 		$objServProjCurInfo = new servProjCurInfo();
 
 		$sTipo = (isset($_REQUEST['tipo_curso_titulo'])?$_REQUEST['tipo_curso_titulo']:'');
-		if(trim($sTipo)!=''){
+		$nTipoId = (isset($_REQUEST['tipo_curso_id'])?$_REQUEST['tipo_curso_id']:'');
+		if(trim($nTipoId)!=''){
 			$objTipoCurso->setValues(
 				array(
-					'tipo_curso_titulo'=>$sTipo
+					'tipo_curso_id'=>$nTipoId
 				)
 			);
 		
 			$aTipo = $objTipoCurso->getOne();
-			$nTipoId = $aTipo['tipo_curso_id'];
+			//$objTipoCurso->debug($aTipo);
 
 			//Cursos - Lista
 			$objCurso->setValues(array(
@@ -44,11 +45,14 @@
 			));
 			
 		}
-
+		
+		//Projetos - Lista
 		$objCurso->setAOrderBy(array(
-			't.curso_agenda' => 'DESC'
+			'tc.tipo_curso_titulo' => 'ASC'
+			,'t.curso_agenda' => 'DESC'
 			,'t.curso_dt_ini' => 'DESC'
 		));
+		
 		$aRows = $objCurso->getLista();
 
 		$aMeses = $objCurso->getMeses();
