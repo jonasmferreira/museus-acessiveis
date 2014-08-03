@@ -37,7 +37,8 @@ class glossario extends defaultClass{
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
-			SELECT	t.*
+			SELECT	UPPER(SUBSTRING(t.glossario_palavra,1,1)) AS glossario_letra
+					,t.*
 			FROM	tb_glossario t
 			WHERE	1 = 1
 		";
@@ -83,6 +84,10 @@ class glossario extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.glossario_dt <= '{$this->values['data_fim']}'";
 		}
+		if(isset($this->values['glossario_exibir'])&&trim($this->values['glossario_exibir'])!=''){
+			$sql[] = "AND t.glossario_exibir = '{$this->values['glossario_exibir']}'";
+		}
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
@@ -395,4 +400,6 @@ class glossario extends defaultClass{
 		}
 		return $arr;
 	}
+	
+	
 }

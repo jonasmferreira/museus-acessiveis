@@ -62,6 +62,17 @@
 			)
 		});
 		
+		$('#novidade_360_exibir_banner').click(function () {
+			console.log($(this).prop("checked"));
+			if($(this).prop("checked")){
+				$('#novidade_360_banner_desc').removeAttr('readonly');
+			}else{
+				$('#novidade_360_banner_desc').attr('readonly','yes');
+			}
+			
+		});		
+	
+		
 	});
 	
 })(jQuery);

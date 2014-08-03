@@ -35,7 +35,7 @@
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
 
 	RewriteRule ^projetos/?$ projetoLista.php
-	RewriteRule ^projetos/([^/]+)/?$ projetoLista.php?projeto_tipo_desc=$1
+	RewriteRule ^projetos/([^/]+)/?$ projetoLista.php?tipo_projeto_titulo=$1
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 

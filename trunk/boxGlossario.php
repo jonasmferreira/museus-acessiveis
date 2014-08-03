@@ -10,7 +10,8 @@
 	));
 	
 	$objGlossario->setAOrderBy(array(
-		't.glossario_palavra' => 'ASC'
+		'glossario_letra' => 'ASC'
+		,'t.glossario_palavra' => 'ASC'
 	));
 	
 	
@@ -30,8 +31,8 @@
 				$sLetra = '';
 				$sCloseUl = '';
 				foreach($aRows['rows'] as $k => $v){
-					if($sLetra != substr($v['glossario_palavra'],0,1)){
-						$sLetra=substr($v['glossario_palavra'],0,1);
+					if($sLetra != $v['glossario_letra']){
+						$sLetra=$v['glossario_letra'];
 						if(trim($sCloseUl)!=''){
 							echo '</ul>';
 							echo '<h3>'.strtoupper($sLetra).'</h3>';
@@ -41,10 +42,10 @@
 							echo '<h3>'.$sLetra.'</h3>';
 							echo '<ul class="tag">';
 						}
-?>
-				            <li><a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>"><?=$v['glossario_palavra'];?></a></li>
-<?php				
 					}
+?>
+				        <li><a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>"><?=$v['glossario_palavra'];?></a></li>
+<?php				
 				}
 			
 			?>

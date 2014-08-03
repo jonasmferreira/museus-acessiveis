@@ -78,7 +78,7 @@
 				<tr>
 					<td>
 						Agenda<br />
-						<input type="text" class="formTxt obrigatorio datepicker" name="anunciante_dt_agenda" id="anunciante_dt_agenda" style="width:98%" value="<?=$aRow['anunciante_dt_agenda']?>" />
+						<input type="text" class="formTxt datepicker" name="anunciante_dt_agenda" id="anunciante_dt_agenda" style="width:98%" value="<?=$aRow['anunciante_dt_agenda']?>" />
                     </td>
 					<td colspan="2">
 						Tags<br />

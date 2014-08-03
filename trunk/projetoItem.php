@@ -13,9 +13,20 @@
 		$objProjeto = new projeto();
 
 		//LISTA DE ARQUIVOS DE DOWNLOAD RELACIONADOS COM O PROJETO
-		include_once("{$path_root_page}adm{$DS}class{$DS}download.class.php");
-		$objDown = new download();
 		$aDown= array();
+		
+		//LISTA DE ARQUIVOS DE TAGS RELACIONADOS COM O PROJETO
+		$aTag= array();
+		$aTg=array();
+
+		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS COM O PROJETO
+		include_once("{$path_root_page}adm{$DS}class{$DS}glossario.class.php");
+		$objGloss = new glossario();
+		$aGloss= array();
+		$aGl=array();
+
+		//LISTA DE ARQUIVOS DE EXTRAS RELACIONADOS COM O PROJETO
+		$aExtra= array();
 		
 		$nId = (isset($_REQUEST['projeto_id'])?$_REQUEST['projeto_id']:0);
 		$objProjeto->setValues(
@@ -24,26 +35,32 @@
 			)
 		);
 		$aProjeto = $objProjeto->getOne();
-
 		//$objProjeto->debug($aProjeto);
+	
+		//Verificando se há tags para exibir
+		if(is_array($aProjeto['tags']) && count($aProjeto['tags'])>0){
+			$aTag = $aProjeto['tags'];
+			//$objProjeto->debug($aTag);
+		}
 
-		
+		//Verificando se há glossários para exibir
+		if(is_array($aProjeto['glossarios']) && count($aProjeto['glossarios'])>0){
+			$aGloss = $aProjeto['glossarios'];
+			//$objProjeto->debug($aGloss);
+		}
+
+		//Verificando se há extras para exibir
+		if(is_array($aProjeto['extras']) && count($aProjeto['extras'])>0){
+			$aExtra = $aProjeto['extras'];
+			//$objProjeto->debug($aExtra);
+		}
+
 		//Verificando se há downloads para exibir
 		if(is_array($aProjeto['downloads']) && count($aProjeto['downloads'])>0){
-			$objDown->setValues(array(
-				'page'=>'1'
-				,'rows'=>'1'
-				,'download_list_id'=>implode(',',$aProjeto['downloads'])
-			));
-			$objDown->setAOrderBy(array(
-				't.download_dt' => 'DESC'
-				,'t.download_hr' => 'DESC'
-				,'t.download_titulo'=> 'ASC'
-			));
-			$aDown = $objDown->getDownsByProject();
-			//$objDown->debug($aDown);
+			$aDown = $aProjeto['downloads'];
+			//$objProjeto->debug($aDown);
 		}
-	
+		
 		
 	?>	
 </head>
@@ -76,6 +93,19 @@
 						<?=$aProjeto['projeto_conteudo'];?>
 					</div>
 					<div class="clear"></div>
+
+					<!-- EXTRAS -->
+					<div>
+					<?php
+						foreach($aExtra as $k => $v){					
+					?>
+							<span class="orange-color"><?php echo $v['extra_nome_campo'] ;?></span>
+							<p><?php echo $v['projeto_extra_valor'] ;?></p><br />
+					<?php } ?>	
+					</div>
+					<div class="clear"></div>
+					
+					<!-- FONTE -->
 					<div>
 						<?php
 							if(trim($aProjeto['projeto_link_fonte'])){
@@ -86,7 +116,47 @@
 						?>
 					</div>
 
-<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+					<!-- TAGS -->
+					<div>
+					<?php
+						if(is_array($aTag) && count($aTag)>0){
+					?>
+							<div class="clear"><br /></div>
+							<span class="orange-color">Tags: </span>
+							<span>
+					<?php	
+							foreach($aTag as $k => $v){					
+								$aTg[] = $v['tag_titulo'];
+							} 
+							
+							echo implode(', ',$aTg);
+						}
+						
+					?>	
+						</span>
+					</div>
+
+					<!-- GLOSSÁRIO -->
+					<div>
+					<?php
+						if(count($aGloss)>0){
+					?>
+							<div class="clear"><br /></div>
+							<span class="orange-color">Glossário: </span>
+							<span>
+					<?php	
+							foreach($aGloss as $k => $v){					
+								$aGl[] = $v['glossario_palavra'];
+							} 
+							echo implode(', ',$aGl);
+						}
+						
+					?>	
+						</span>
+					</div>
+					<div class="clear"><br /></div>
+					
+	<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
 	<?php 
 		if(count($aDown)>0){
 	?>	
@@ -112,7 +182,7 @@
                     </thead>
               		<tbody>
 <?php 
-					foreach($aDown['rows'] as $k => $v){
+					foreach($aDown as $k => $v){
 ?>
 						<tr>
                         	<td>

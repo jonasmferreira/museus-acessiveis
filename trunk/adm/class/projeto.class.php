@@ -13,6 +13,12 @@ class projeto extends defaultClass{
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'tc.tipo_projeto_titulo'=>array(
+			'fieldNameId'=>'tc.tipo_projeto_titulo'
+			,'fieldNameLabel'=>'Tipo do Projeto'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
 	);
 	protected $tipoProjeto = array(
 		'A'=>array(
@@ -28,6 +34,34 @@ class projeto extends defaultClass{
 			,'tipo_projeto_titulo'=>'Em Andamento'
 		)
 	);
+
+	protected $tipoDownload = array(
+		1=>array(
+			'tipo_download_id'=>1
+			,'tipo_download_titulo'=>'PDF'
+		)
+		,2=>array(
+			'tipo_download_id'=>2
+			,'tipo_download_titulo'=>'DOC'
+		)
+		,3=>array(
+			'tipo_download_id'=>3
+			,'tipo_download_titulo'=>'PPT'
+		)
+		,4=>array(
+			'tipo_download_id'=>4
+			,'tipo_download_titulo'=>'IMG'
+		)
+		,5=>array(
+			'tipo_download_id'=>5
+			,'tipo_download_titulo'=>'Excel'
+		)
+		,6=>array(
+			'tipo_download_id'=>6
+			,'tipo_download_titulo'=>'Vídeo'
+		)
+	);
+	
 	public function __construct() {
 		$path_root_projetoClass = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
@@ -40,19 +74,27 @@ class projeto extends defaultClass{
 		$this->dbConn = new DataBaseClass();
 	}
 	
+/*
 	public function getTipoProjeto() {
 		return $this->tipoProjeto;
 	}
-			
+*/			
 	public function getFilterFieldName() {
 		return $this->filterFieldName;
+	}
+
+	public function getTipoDownload() {
+		return $this->tipoDownload;
 	}
 		
 	protected function getSql(){
 		$sql = array();
 		$sql[] = "
 			SELECT	t.*
+					,tc.tipo_projeto_titulo
 			FROM	tb_projeto t
+			JOIN	tb_tipo_projeto tc
+			ON		tc.tipo_projeto_id = t.tipo_projeto_id
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -77,8 +119,8 @@ class projeto extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.projeto_agenda <= '{$this->values['data_fim']}'";
 		}
-		if(isset($this->values['projeto_tipo'])&&trim($this->values['projeto_tipo'])!=''){
-			$sql[] = "AND t.projeto_tipo = '{$this->values['projeto_tipo']}'";
+		if(isset($this->values['tipo_projeto_titulo'])&&trim($this->values['tipo_projeto_titulo'])!=''){
+			$sql[] = "AND tc.tipo_projeto_titulo = '{$this->values['tipo_projeto_titulo']}'";
 		}
 
 		$count = $this->getTotalData(implode("\n",$sql));
@@ -119,7 +161,7 @@ class projeto extends defaultClass{
 					$rs['projeto_dt_ini'] = $this->dateDB2BR($rs['projeto_dt_ini']);
 					$rs['projeto_dt_fim'] = $this->dateDB2BR($rs['projeto_dt_fim']);
 					$rs['projeto_agenda'] = $this->dateDB2BR($rs['projeto_agenda']);
-					$rs['projeto_tipo_label'] = $this->tipoProjeto[$rs['projeto_tipo']]['tipo_projeto_titulo'];
+					//$rs['tipo_projeto_titulo'] = $this->tipoProjeto[$rs['tipo_projeto_titulo']]['tipo_projeto_titulo'];
 					$rs['tags'] = $this->getTagsCadatradas($rs['projeto_id']);
 					$rs['glossarios'] = $this->getGlossarioCadatradas($rs['projeto_id']);
 					$rs['downloads'] = $this->getDownloadCadastrados($rs['projeto_id']);
@@ -146,7 +188,7 @@ class projeto extends defaultClass{
 				$rs['projeto_dt_ini'] = $this->dateDB2BR($rs['projeto_dt_ini']);
 				$rs['projeto_dt_fim'] = $this->dateDB2BR($rs['projeto_dt_fim']);
 				$rs['projeto_agenda'] = $this->dateDB2BR($rs['projeto_agenda']);
-				$rs['projeto_tipo_label'] = $this->tipoProjeto[$rs['projeto_tipo']]['tipo_projeto_titulo'];
+				//$rs['tipo_projeto_titulo_label'] = $this->tipoProjeto[$rs['tipo_projeto_titulo']]['tipo_projeto_titulo'];
 				$rs['tags'] = $this->getTagsCadatradas($rs['projeto_id']);
 				$rs['glossarios'] = $this->getGlossarioCadatradas($rs['projeto_id']);
 				$rs['downloads'] = $this->getDownloadCadastrados($rs['projeto_id']);
@@ -181,7 +223,7 @@ class projeto extends defaultClass{
 					projeto_dt_ini = '{$this->values['projeto_dt_ini']}'
 					,projeto_dt_fim = '{$this->values['projeto_dt_fim']}'
 					,projeto_sob_demanda = '{$this->values['projeto_sob_demanda']}'
-					,projeto_tipo = '{$this->values['projeto_tipo']}'
+					,tipo_projeto_id = '{$this->values['tipo_projeto_id']}'
 					,projeto_titulo = '{$this->values['projeto_titulo']}'
 					,projeto_resumo = '{$this->values['projeto_resumo']}'
 					,projeto_thumb_desc = '{$this->values['projeto_thumb_desc']}'
@@ -265,7 +307,7 @@ class projeto extends defaultClass{
 				,projeto_dt_fim = '{$this->values['projeto_dt_fim']}'
 				,projeto_sob_demanda = '{$this->values['projeto_sob_demanda']}'
 				,projeto_titulo = '{$this->values['projeto_titulo']}'
-				,projeto_tipo = '{$this->values['projeto_tipo']}'
+				,tipo_projeto_id = '{$this->values['tipo_projeto_id']}'
 				,projeto_resumo = '{$this->values['projeto_resumo']}'
 				,projeto_thumb = '{$this->values['projeto_thumb']}'
 				,projeto_thumb_desc = '{$this->values['projeto_thumb_desc']}'
@@ -452,8 +494,10 @@ class projeto extends defaultClass{
 	public function getTagsCadatradas($projeto_id){
 		$sql = array();
 		$sql[] = "
-			SELECT	tag_id
-			FROM	tb_projeto_tag
+			SELECT	tp.tag_id, t.tag_titulo
+			FROM	tb_projeto_tag tp
+			JOIN	tb_tag t
+			ON		tp.tag_id = t.tag_id
 			WHERE	1 = 1
 			AND		projeto_id = '{$projeto_id}'
 		";
@@ -462,7 +506,7 @@ class projeto extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$arr[] = $rs['tag_id'];
+					array_push($arr,$this->utf8_array_encode($rs));					
 				}
 			}
 		}
@@ -471,8 +515,10 @@ class projeto extends defaultClass{
 	public function getDownloadCadastrados($projeto_id){
 		$sql = array();
 		$sql[] = "
-			SELECT	download_id
-			FROM	tb_projeto_download
+			SELECT	pd.projeto_id, d.*
+			FROM	tb_projeto_download pd
+			JOIN	tb_download d
+			ON		pd.download_id = d.download_id
 			WHERE	1 = 1
 			AND		projeto_id = '{$projeto_id}'
 		";
@@ -481,7 +527,9 @@ class projeto extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$arr[] = $rs['download_id'];
+					$rs['download_tipo_label'] = $this->tipoDownload[$rs['download_tipo']]['tipo_download_titulo'];
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
+					array_push($arr,$this->utf8_array_encode($rs));					
 				}
 			}
 		}
@@ -491,9 +539,19 @@ class projeto extends defaultClass{
 	public function getGlossarioCadatradas($projeto_id){
 		$sql = array();
 		$sql[] = "
-			SELECT	glossario_id
-			FROM	tb_projeto_glossario
+			SELECT	pg.projeto_id
+					,pg.glossario_id
+					,g.glossario_palavra 
+					,g.glossario_definicao
+					,g.glossario_fonte
+					,g.glossario_link_fonte
+					,g.glossario_conteudo 
+					,g.glossario_exibir
+			FROM	tb_projeto_glossario pg
+			JOIN	tb_glossario g
+			ON		pg.glossario_id = g.glossario_id
 			WHERE	1 = 1
+			AND		g.glossario_exibir = 'S'
 			AND		projeto_id = '{$projeto_id}'
 		";
 		$arr = array();
@@ -501,7 +559,7 @@ class projeto extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$arr[] = $rs['glossario_id'];
+					array_push($arr,$this->utf8_array_encode($rs));					
 				}
 			}
 		}
@@ -511,10 +569,15 @@ class projeto extends defaultClass{
 	public function getExtraCadastrados($projeto_id){
 		$sql = array();
 		$sql[] = "
-			SELECT	extra_id
-					,projeto_extra_valor
-			FROM	tb_projeto_extra
+			SELECT	e.extra_id
+					,e.extra_nome_campo
+					,pe.projeto_extra_valor
+			FROM	tb_projeto_extra pe
+			JOIN  tb_extra e
+			ON    pe.extra_id = e.extra_id
 			WHERE	1 = 1
+			AND		pe.projeto_extra_valor IS NOT NULL
+			AND		TRIM(pe.projeto_extra_valor) != ''
 			AND		projeto_id = '{$projeto_id}'
 		";
 		$arr = array();
@@ -522,11 +585,12 @@ class projeto extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$arr[$rs['extra_id']] = $rs['projeto_extra_valor'];
+					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
 		}
 		return $arr;
+		
 	}
 	
 	public function getTags(){
@@ -620,4 +684,27 @@ class projeto extends defaultClass{
 		}
 		return $result;
 	}
+	
+	public function getTipoProjeto(){
+		$sql = array();
+		$sql[] = "
+			SELECT	t.*
+			FROM	tb_tipo_projeto t
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	
 }
+
+
