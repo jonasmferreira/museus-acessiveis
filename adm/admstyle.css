@@ -109,7 +109,7 @@ tr.tableItem{background-color: #ffffff;}
 tr.tableItem td{border-bottom: 1px solid #dddddd;}
 tr.even {background-color: #f1f2f5;}
 
-.btEdit, .btDel {
+.btEdit, .btDel, .btView {
 	background-color:#edf2f1;
 	color:#333;
 	text-decoration:none;
@@ -124,8 +124,9 @@ tr.even {background-color: #f1f2f5;}
 	}
 .btEdit {background-image:url(imgs/icon-edit.png);}
 .btDel {background-image:url(imgs/icon-del.png);}
+.btView {background-image:url(imgs/busca.png);}
 
-.btEdit:hover, .btDel:hover {background-color: #dfe5e4;}
+.btEdit:hover, .btDel:hover .btView:hover {background-color: #dfe5e4;}
 
 #paginacao {text-align:center;  margin:30px 0 0;}
 #paginacao a, #paginacao span {display:inline-block; color:#000; text-decoration:none; padding:2px 6px; }

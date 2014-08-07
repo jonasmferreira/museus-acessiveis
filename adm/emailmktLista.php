@@ -84,7 +84,7 @@
 				<td align="left">Titulo</td>
 				<td align="left">Data</td>
 				<td align="left">Status</td>
-				<td width="174">&nbsp;</td>
+				<td width="250">&nbsp;</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -100,6 +100,7 @@
 				<td>
 					<a href="emailmktEdicao.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['emailmkt_id']?>" class="btDel">Excluir</a>
+					<a href="../newsletter.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
 				</td>
 			</tr>
 			<?		endforeach;?>
