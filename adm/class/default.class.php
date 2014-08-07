@@ -164,6 +164,10 @@ class defaultClass {
 		return $this->meses;
 	}
 
+	public function getMes($nMes){
+		return $this->meses[$nMes];
+	}
+	
 	public function setFiles($files) {
 		$this->files = $files;
 	}
