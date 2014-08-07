@@ -23,9 +23,9 @@
 		//Acrescentando os links para aumentar e diminuir tamanho da fonte	
 		pailink = d.tipoPaiLink;
 		if(pailink == 'ul'){
-		   $(this).html('<ul><li><a href="javascript:;" class="menos">A-</a></li><li><a href="javascript:;" class="mais">A+</a></li></ul>');			
+		   $(this).html('<ul><li><a href="javascript:void(0);" class="menos">A-</a></li><li><a href="javascript:void(0);" class="mais">A+</a></li></ul>');			
 		} else {
-	       $(this).html('<a href="javascript:;" class="menos">A-</a> <a href="javascript:;" class="mais">A+</a>');
+	       $(this).html('<a href="javascript:void(0);" class="menos">A-</a> <a href="javascript:void(0);" class="mais">A+</a>');
 		}
 
 		alvo = d.alvo;

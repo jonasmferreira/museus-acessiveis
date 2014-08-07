@@ -396,38 +396,6 @@ $(document).ready(function(){
 	$(function() {
 		controlerFontSize('#fontSize','body',2,'.fixedSize');
 	});
-
-/*
-	$('#font-minus').click(function(){
-		//a função para diminuir o texto
-		$('.fontSize').each(function( index ) {
-			//console.log( index + ": " + $( this ).css('font-size') );
-			var s = $(this).css('font-size').replace('px','');
-			s-=1;
-			v = s+'px';
-			$(this).css('font-size',v);
-		});
-	}).mouseover(function(){
-		$(this).css('cursor','pointer');	
-	}).mouseout(function(){
-		$(this).css('cursor','normal');	
-	});
-
-	$('#font-plus').click(function(){
-		//a função para diminuir o texto
-		$('.fontSize').each(function( index ) {
-			//console.log( index + ": " + $( this ).css('font-size') );
-			var s = $(this).css('font-size').replace('px','');
-			s+=1;
-			v = s+'px';
-			$(this).css('font-size',v);
-		});
-	}).mouseover(function(){
-		$(this).css('cursor','pointer');	
-	}).mouseout(function(){
-		$(this).css('cursor','normal');	
-	});
-*/
 	
 	$('.event-day').live('mouseover',function(){
 		$(this).css('cursor', 'pointer');
@@ -479,16 +447,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	//Controlando a listagem de novidades
-	$('.news-list').click(function(){
-		var obj = $(this).parent().parent().find('div:first');
-		if(obj.hasClass('inactive')){
-			obj.removeClass('inactive')
-		}else{
-			obj.addClass('inactive')
-		}
-		return false;
-	});
+	
 	
 	//selecionando o conteúdo do campo no focus
 	$('input.field').focus(function(){
@@ -553,11 +512,13 @@ $(document).ready(function(){
 	});
 	
 	//SLIDER do Fique Atento
-	$('.atento-item ul').cycle({
-		fx:      'scrollUp'
-		,speed:    1000
-		,timeout:  2000
-	});
+	if($('.atento-item ul').length > 0){
+		$('.atento-item ul').cycle({
+			fx:      'scrollUp'
+			,speed:    1000
+			,timeout:  2000
+		});
+	}
 
 	
 	//controlando tamanho dos conteudos (content-r e content-l)
