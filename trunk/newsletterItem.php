@@ -2,12 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php
+
+		$path_root_page = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_page = "{$path_root_page}{$DS}";
+
 		//configuração de url absoluta
 		include_once("{$path_root_page}adm{$DS}class{$DS}configuracao.class.php");
 		$objConfig = new configuracao();
 		$aConfig = $objConfig->getOne();
 
-		//$objConfig->debug($aConfig);
+		$objConfig->debug($aConfig);
 		$linkAbsolute=$aConfig['configuracao_baseurl'];
 		$seqAleatoria = "rnd=".str_replace(".","",microtime(true));
 
