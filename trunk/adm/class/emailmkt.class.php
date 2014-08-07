@@ -192,13 +192,13 @@ class emailmkt extends defaultClass{
 		return $aRet['rows'];
 	}
 
-	public function getProjetosByIds($projeto_list_id){
+	public function getProjetosByIds($list_id){
 		$sql = array();
 		$sql[] = "
 			SELECT	*
 			FROM	tb_projeto t
 			WHERE	1 = 1
-			AND		projeto_id IN ({$projeto_list_id})
+			AND		projeto_id IN ({$list_id})
 		";
 		$arr = array();
 		$result = $this->dbConn->db_query(implode("\n",$sql));
@@ -212,6 +212,25 @@ class emailmkt extends defaultClass{
 		return $arr;
 	}
 	
+	public function getGlossariosByIds($list_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	*
+			FROM	tb_glossario t
+			WHERE	1 = 1
+			AND		glossario_id IN ({$list_id})
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
 	
 	
 	
