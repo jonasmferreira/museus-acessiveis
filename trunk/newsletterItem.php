@@ -33,7 +33,7 @@
 			)
 		);
 		$aNewsletter = $objEmkt->getOne();
-		$objEmkt->debug($aNewsletter);
+		//$objEmkt->debug($aNewsletter);
 		
 		
 		
@@ -73,7 +73,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
     	<tr>
         	<td align="center" class="news-info" height="30">
-            	Se você não consegue visualizar este e-mail, <a href="#" target="_blank">clique aqui!</a>
+            	Se você não consegue visualizar este e-mail, <a href="<?=$linkAbsolute?>newsletter/<?=$v['emailmkt_id'];?>/<?=$v['emailmkt_emkt'];?>" target="_blank">clique aqui!</a>
             </td>
         </tr>
     </table>
