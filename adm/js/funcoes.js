@@ -426,13 +426,9 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 		});
 		
 		
-		$('.popups').magnificPopup({
-			disableOn: 700,
-			type: 'iframe',
-			mainClass: 'mfp-fade',
-			removalDelay: 160,
-			preloader: false,
-			fixedContentPos: false
+		$('.popups').click(function(event) {
+			event.preventDefault();
+			window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
 		});
 		
 		$("#antPage").click(function(){
