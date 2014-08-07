@@ -67,22 +67,7 @@
                     </td>
 					<td>&nbsp;</td>
 				</tr>
-				<tr>
-					<td colspan="3">
-						Serviços<br />
-						<select class="formTxt obrigatorio" name="emailmkt_servico_ids[]" style="width:98%" multiple="yes" id="emailmkt_servico_ids">
-							<?	$aServs = array();
-								if(trim($aRow['emailmkt_servico_ids'])!=""){
-									$aServs = explode(",",$aRow['emailmkt_servico_ids']);
-								}
-								foreach($aServicoIds AS $k=>$v):
-									$selected = in_array($v['servico_id'], $aServs)!==false?' selected="selected"':'';
-							?>
-							<option value="<?=$v['servico_id']?>"<?=$selected?>><?=$v['servico_titulo']?></option>
-							<?	endforeach;?>
-						</select>
-					</td>
-				</tr>
+				
 				<tr>
 					<td colspan="3">
 						Projeto<br />
@@ -99,6 +84,25 @@
 						</select>
 					</td>
 				</tr>
+				
+				<tr>
+					<td colspan="3">
+						Serviços<br />
+						<select class="formTxt obrigatorio" name="emailmkt_servico_ids[]" style="width:98%" multiple="yes" id="emailmkt_servico_ids">
+							<?	$aServs = array();
+								if(trim($aRow['emailmkt_servico_ids'])!=""){
+									$aServs = explode(",",$aRow['emailmkt_servico_ids']);
+								}
+								foreach($aServicoIds AS $k=>$v):
+									$selected = in_array($v['servico_id'], $aServs)!==false?' selected="selected"':'';
+							?>
+							<option value="<?=$v['servico_id']?>"<?=$selected?>><?=$v['servico_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
+				
 				<tr>
 					<td colspan="3">
 						Glossário<br />
@@ -144,22 +148,7 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="3">
-						Agenda<br />
-						<select class="formTxt obrigatorio" name="emailmkt_agenda_ids[]" style="width:98%" multiple="yes" id="emailmkt_agenda_ids">
-							<?	$aProjs = array();
-								if(trim($aRow['emailmkt_agenda_ids'])!=""){
-									$aProjs = explode(",",$aRow['emailmkt_agenda_ids']);
-								}
-								foreach($aAgendas AS $k=>$v):
-									$selected = in_array($v['item_id']."=>".$v['item_tipo'], $aProjs)!==false?' selected="selected"':'';
-							?>
-							<option value="<?=$v['item_id']."=>".$v['item_tipo']?>"<?=$selected?>><?=$v['item_dt_agenda_label']?> - <?=$v['item_tipo_label']?> - <?=$v['item_titulo']?></option>
-							<?	endforeach;?>
-						</select>
-					</td>
-				</tr>
+				
 				<tr class="tableHead">
 					<td colspan="3">
 						<strong>Seção Aqui Tem</strong>
@@ -169,18 +158,6 @@
 					<td colspan="3">
 						Titulo<br />
 						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_titulo" id="emailmkt_aqui_tem_titulo" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_titulo']?>" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						Resumo<br />
-						<textarea class="formTxt obrigatorio" rows="5" name="emailmkt_aqui_tem_resumo" id="emailmkt_aqui_tem_resumo" style="width:98%"><?=$aRow['emailmkt_aqui_tem_resumo']?></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						URL<br />
-						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_url" id="emailmkt_aqui_tem_url" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_url']?>" />
 					</td>
 				</tr>
 				<tr>
@@ -198,6 +175,36 @@
 						<?	endif;?>
                     </td>
 				</tr>
+				<tr>
+					<td colspan="3">
+						Resumo<br />
+						<textarea class="formTxt obrigatorio" rows="5" name="emailmkt_aqui_tem_resumo" id="emailmkt_aqui_tem_resumo" style="width:98%"><?=$aRow['emailmkt_aqui_tem_resumo']?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						URL<br />
+						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_url" id="emailmkt_aqui_tem_url" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_url']?>" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3">
+						Agenda<br />
+						<select class="formTxt obrigatorio" name="emailmkt_agenda_ids[]" style="width:98%" multiple="yes" id="emailmkt_agenda_ids">
+							<?	$aProjs = array();
+								if(trim($aRow['emailmkt_agenda_ids'])!=""){
+									$aProjs = explode(",",$aRow['emailmkt_agenda_ids']);
+								}
+								foreach($aAgendas AS $k=>$v):
+									$selected = in_array($v['item_id']."=>".$v['item_tipo'], $aProjs)!==false?' selected="selected"':'';
+							?>
+							<option value="<?=$v['item_id']."=>".$v['item_tipo']?>"<?=$selected?>><?=$v['item_dt_agenda_label']?> - <?=$v['item_tipo_label']?> - <?=$v['item_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
             		<td colspan="3">
 						Propaganda<br />
