@@ -136,7 +136,7 @@
 <?php
 	//Aqui vai o foreach para os projetos cadastrados
 	$aGloss = $objEmkt->getGlossariosByIds($aNews['emailmkt_glossario_ids']);
-	$objEmkt->debug($aGloss);
+	//$objEmkt->debug($aGloss);
 	foreach($aGloss as $k => $v){
 ?>
 <div id="acessibilidade">
