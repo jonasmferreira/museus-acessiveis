@@ -192,6 +192,29 @@ class emailmkt extends defaultClass{
 		return $aRet['rows'];
 	}
 
+	public function getProjetosByIds($projeto_list_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	*
+			FROM	tb_projeto t
+			WHERE	1 = 1
+			AND		projeto_id IN ({$projeto_list_id})
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	
+	
+	
 	public function edit(){
 		if(isset($this->values['emailmkt_id'])&&trim($this->values['emailmkt_id'])!=''){
 			$result = $this->update();
