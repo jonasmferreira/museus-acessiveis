@@ -100,7 +100,7 @@
 				<td>
 					<a href="emailmktEdicao.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['emailmkt_id']?>" class="btDel">Excluir</a>
-					<a href="../newsletter.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
+					<a href="../newsletterItem.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
 				</td>
 			</tr>
 			<?		endforeach;?>
