@@ -11,8 +11,8 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}configuracao.class.php");
 		$objConfig = new configuracao();
 		$aConfig = $objConfig->getOne();
+		//$objConfig->debug($aConfig);
 
-		$objConfig->debug($aConfig);
 		$linkAbsolute=$aConfig['configuracao_baseurl'];
 		$seqAleatoria = "rnd=".str_replace(".","",microtime(true));
 
@@ -23,6 +23,17 @@
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}emailmkt.class.php");
 		$objEmkt = new emailmkt();
+
+		$nId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
+		$nEmkt = (isset($_REQUEST['emailmkt_emkt'])?$_REQUEST['emailmkt_emkt']:0);
+
+		$objEmkt->setValues(
+			array(
+				'emailmkt_id'=>$nId
+			)
+		);
+		$aNews = $objEmkt->getOne();
+		$objEmkt->debug($aNews);
 		
 		
 		
