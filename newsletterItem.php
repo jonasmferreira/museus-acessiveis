@@ -96,7 +96,7 @@
 <div id="header">
 	<table border="0" cellpadding="0" cellspacing="0" width="654">
 	  <tr>
-		<td width="248" valign="middle" align="right"><img src="img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/></td>
+		<td width="248" valign="middle" align="right"><img src="<?=$linkAbsolute?>img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/></td>
         <td class="title" valign="middle" align="center">
 			<?php
 				$sDt = $aNews['emailmkt_dt_agendada'];
@@ -117,7 +117,7 @@
 		$aProj = $objEmkt->getProjetosByIds($aNews['emailmkt_projeto_ids']);
 		//$objEmkt->debug($aProj);
 		foreach($aProj as $k => $v){
-?>
+	?>
 	<div class="outdoor">
     	<img src="<?=$linkAbsolute?>images/<?=$v['projeto_thumb']?>" width="569" height="227"  alt=""/>
 	</div>
@@ -127,31 +127,37 @@
     <a href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objEmkt->toNormaliza($v['projeto_titulo']);?>" class="saibamais">Leia mais</a>
 	<p>&nbsp;</p>
     </div>
-	<?php			
-		}
-	?>
-	
-  </div>
-	
-	
-  <img class="separator" src="img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
+	<?php } ?>
+
+</div>
+
+<img class="separator" src="<?=$linkAbsolute?>img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
+
+<?php
+	//Aqui vai o foreach para os projetos cadastrados
+	$aGloss = $objEmkt->getGlossariosByIds($aNews['emailmkt_glossario_ids']);
+	$objEmkt->debug($aGloss);
+	foreach($aGloss as $k => $v){
+?>
 <div id="acessibilidade">
 	<div class="box">
     	<div class="word-box">
-        	<h2 class="word">Acessibilidade</h2>
+        	<h2 class="word"><?=$v['glossario_palavra'];?></h2>
             <p class="description">
-O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas com audiodescrição, através do audioguia, ou acompanhadospor educadores preparados para recebê-los. Além disso...há obras em exposição podem ser tocadas mediante acompanhamento e uso de luvas.
+				<?=$v['glossario_definicao'];?>
             </p>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
         	<tr>
             	<td align="center">
-    				<a href="#" class="glossario">Conheça o Glossário da Acessibilidade</a>
+    				<a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objEmkt->toNormaliza($v['glossario_palavra']);?>" class="glossario">Conheça o Glossário da Acessibilidade</a>
                 </td>
             </tr>
         </table>
         </div>
     </div>
 </div> 
+<?php } ?>
+
 <img class="separator" src="img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
 <div id="news">
 	<h1 class="news-title">Novidades 360º</h1>
