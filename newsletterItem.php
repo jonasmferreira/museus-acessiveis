@@ -204,27 +204,37 @@
         </tr>
     </table>
 </div>
+
 <img class="separator" src="img/emkt_bg_separator.png" width="564" height="19"  alt=""/>
+
 <div id="aquitem">
 	<h1 class="news-title">Aqui tem Acessibilidade</h1>
     <table cellpading="0" cellspacing="0" border="0" width="87%">
     	<tr>
         	<td colspan="2">&nbsp;</td>
         </tr>
-      <tr>
-        	<td width="185" align="left" valign="top">
-       	  <img src="img/emkt_aquitem_imagem.jpg" alt="" /></td>
-        	<td width="362" class="news-resumo">
-            	<h3 class="title">Reatec apresenta novos produtose discute conceitos sobre deficiência</h3>
-				<br class="clear" />
-                <p class="description">
-O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas. O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas.                
-                </p>
-				<a href="#" class="saibamais">Saiba mais</a>                
-            </td>
-      </tr>
+		<tr>
+			<td width="185" align="left" valign="top">
+			<img src="<?=$linkAbsolute;?>imgEmkt/<?=$aNewsletter['emailmkt_aqui_tem_thumb'];?>" alt="" /></td>
+				<td width="362" class="news-resumo">
+					<h3 class="title"><?=$aNewsletter['emailmkt_aqui_tem_titulo'];?></h3>
+					<br class="clear" />
+					<p class="description">
+						<?=$aNewsletter['emailmkt_aqui_tem_resumo'];?>
+					</p>
+					<?php
+						$aLink = explode('http://', $aNewsletter['emailmkt_aqui_tem_url']);
+						if(count($aLink)>1){
+							$sLink = $aNewsletter['emailmkt_aqui_tem_url'];
+						}else{
+							$sLink = 'http://'.$aNewsletter['emailmkt_aqui_tem_url'];
+						}
+					?>
+					<a target="_blank" href="<?=$sLink;?>" class="saibamais">Saiba mais</a>                
+				</td>
+		</tr>
         <tr>
-        	<td colspan="2" valign="middle" align="center" height="350"><a href="#"><img src="img/emkt_contact_bt.png" width="261" height="269"  alt=""/></a></td>
+        	<td colspan="2" valign="middle" align="center" height="350"><a href="mailto:viviane@museusacessiveis.com.br"><img src="img/emkt_contact_bt.png" width="261" height="269"  alt=""/></a></td>
         </tr>
     </table>
 </div>
