@@ -262,7 +262,7 @@ var popup = function(mensagem,titulo,tempo){
 		'title':titulo,
 		'show': "explode",
 		'hide': 'explode',
-		'width':450,
+		'width':700,
 		'height':450,
 		'buttons':{
 			'OK':function(){
