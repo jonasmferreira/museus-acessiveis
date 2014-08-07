@@ -20,6 +20,12 @@
 		$keywords = $aConfig['configuracao_meta_keywords'];
 		$description = $aConfig['configuracao_meta_description'];
 
+		
+		include_once("{$path_root_page}adm{$DS}class{$DS}emailmkt.class.php");
+		$objEmkt = new emailmkt();
+		
+		
+		
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
