@@ -425,6 +425,16 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 			showButtonPanel: true
 		});
 		
+		
+		$('.popups').magnificPopup({
+			disableOn: 700,
+			type: 'iframe',
+			mainClass: 'mfp-fade',
+			removalDelay: 160,
+			preloader: false,
+			fixedContentPos: false
+		});
+		
 		$("#antPage").click(function(){
 			var pagAtual = $("#paginacao span").text();
 			var pagAnterior = pagAtual-1;

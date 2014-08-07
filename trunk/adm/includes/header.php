@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="../plugins/jquery.multiselect.filter.css" />
 		<link rel="stylesheet" type="text/css" href="../plugins/jqueryFileTree.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="../plugins/css/south-street/jquery-ui-1.10.4.custom.min.css" />
+		<link rel="stylesheet" type="text/css" href="../plugins/magnific-popup.css" />
 		
 		<script src="../plugins/jquery-1.10.2.min.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="../plugins/jquery-migrate.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
@@ -40,6 +41,7 @@
 		<script src="../lib/ckfinder/ckfinder.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script> 
 		<script src="../plugins/i18n/grid.locale-pt-br.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="../plugins/jquery.jqGrid.min.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
+		<script src="../plugins/jquery.magnific-popup.min.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="js/funcoes.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 	</head>
 	<body>
