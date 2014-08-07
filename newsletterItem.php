@@ -40,7 +40,7 @@
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Museus Acessíveis</title>
+	<title>Museus Acessíveis - <?=$aNews['emailmkt_titulo'];?></title>
 
 	<meta name="description" content="<?=$description;?>">
 	<meta name="keywords" content="<?=$keywords;?>">
@@ -96,9 +96,14 @@
 <div id="header">
 	<table border="0" cellpadding="0" cellspacing="0" width="654">
 	  <tr>
-        	<td width="248" valign="middle" align="right"><img src="img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/></td>
+		<td width="248" valign="middle" align="right"><img src="img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/></td>
         <td class="title" valign="middle" align="center">
-        	<span id="edicao"><a href="#" target="_blank">Edição Junho | 2014</a></span>
+			<?php
+				$sDt = $aNews['emailmkt_dt_agendada'];
+				$aDt = explode('-',$sDt);
+				$sMes = $objEmkt->getMes($aDt[1]);
+			?>
+			<span id="edicao"><a href="#" target="_blank">Edição <?php echo $sMes;?> | <?php echo $aDt[0];?></a></span>
         </td>
       </tr>
    		
@@ -106,19 +111,29 @@
 </div>
 	
 <div id="project">
+
+	<?php
+		//Aqui vai o foreach para os projetos cadastrados
+		$aProj = $objEmkt->getProjetosByIds($aNews['emailmkt_projeto_ids']);
+		//$objEmkt->debug($aProj);
+		foreach($aProj as $k => $v){
+?>
 	<div class="outdoor">
-    	<img src="img/emkt_projeto_img.jpg" width="569" height="227"  alt=""/>
+    	<img src="<?=$linkAbsolute?>images/<?=$v['projeto_thumb']?>" width="569" height="227"  alt=""/>
 	</div>
-    <h1 class="project-title">Título do projeto</h1>
+    <h1 class="project-title"><?=$v['projeto_titulo']?></h1>
     <div class="description">
-<p>O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas com audiodescrição, através do audioguia, ou acompanhados por educadores preparados para recebê-los. Além disso, há obras em exposição podem ser tocadas mediante acompanhamento e uso de luvas.</p>
-<p>As pessoas surdas podem fazer visitas educativas agendadas em Libras com educador surdo ou utilizando o videoguia em Libras disponível na recepção.
-A programação de cursos do museu oferece oportunidades inclusivas nas áreas de artes, história e crítica de arte.</p>
-<p>Na exposição em cartaz “A Vontade Construtiva na Coleção Fadel” há esculturas e relevos de artistas brasileiros concretos e neoconcretos para serem apreciados pelo tato sob orientação de educadores do museu. </p>
-<p>Os audioguias com audiodescrição das exposições do MAM são elaborados pela Museus Acessíveis desde 2009 e a seleção de obras para toque são selecionadas pela equipe educativa do museu em conjunto com a Museus Acessíveis e aprovação do departamento de acervo do museu ou do responsável pela coleção particular em cartaz.</p>    
-    <a href="#" class="saibamais">Leia mais</a>
+	<p><?=$v['projeto_resumo']?></p>
+    <a href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objEmkt->toNormaliza($v['projeto_titulo']);?>" class="saibamais">Leia mais</a>
+	<p>&nbsp;</p>
     </div>
-  </div>   
+	<?php			
+		}
+	?>
+	
+  </div>
+	
+	
   <img class="separator" src="img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
 <div id="acessibilidade">
 	<div class="box">
