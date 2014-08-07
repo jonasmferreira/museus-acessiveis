@@ -32,15 +32,15 @@
 				'emailmkt_id'=>$nId
 			)
 		);
-		$aNews = $objEmkt->getOne();
-		$objEmkt->debug($aNews);
+		$aNewsletter = $objEmkt->getOne();
+		$objEmkt->debug($aNewsletter);
 		
 		
 		
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Museus Acessíveis - <?=$aNews['emailmkt_titulo'];?></title>
+	<title>Museus Acessíveis - <?=$aNewsletter['emailmkt_titulo'];?></title>
 
 	<meta name="description" content="<?=$description;?>">
 	<meta name="keywords" content="<?=$keywords;?>">
@@ -99,7 +99,7 @@
 		<td width="248" valign="middle" align="right"><img src="<?=$linkAbsolute?>img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/></td>
         <td class="title" valign="middle" align="center">
 			<?php
-				$sDt = $aNews['emailmkt_dt_agendada'];
+				$sDt = $aNewsletter['emailmkt_dt_agendada'];
 				$aDt = explode('-',$sDt);
 				$sMes = $objEmkt->getMes($aDt[1]);
 			?>
@@ -110,14 +110,13 @@
     </table>
 </div>
 	
+<?php
+	$aProj = $objEmkt->getProjetosByIds($aNewsletter['emailmkt_projeto_ids']);
+	//$objEmkt->debug($aProj);
+	foreach($aProj as $k => $v){
+?>
 <div id="project">
 
-	<?php
-		//Aqui vai o foreach para os projetos cadastrados
-		$aProj = $objEmkt->getProjetosByIds($aNews['emailmkt_projeto_ids']);
-		//$objEmkt->debug($aProj);
-		foreach($aProj as $k => $v){
-	?>
 	<div class="outdoor">
     	<img src="<?=$linkAbsolute?>images/<?=$v['projeto_thumb']?>" width="569" height="227"  alt=""/>
 	</div>
@@ -125,17 +124,14 @@
     <div class="description">
 	<p><?=$v['projeto_resumo']?></p>
     <a href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objEmkt->toNormaliza($v['projeto_titulo']);?>" class="saibamais">Leia mais</a>
-	<p>&nbsp;</p>
     </div>
-	<?php } ?>
-
 </div>
+<?php } ?>
 
 <img class="separator" src="<?=$linkAbsolute?>img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
 
 <?php
-	//Aqui vai o foreach para os projetos cadastrados
-	$aGloss = $objEmkt->getGlossariosByIds($aNews['emailmkt_glossario_ids']);
+	$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
 	//$objEmkt->debug($aGloss);
 	foreach($aGloss as $k => $v){
 ?>
@@ -159,41 +155,51 @@
 <?php } ?>
 
 <img class="separator" src="img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
+
+
 <div id="news">
 	<h1 class="news-title">Novidades 360º</h1>
     <table cellpading="0" cellspacing="0" border="0" width="87%">
     	<tr>
         	<td colspan="2">&nbsp;</td>
         </tr>
-      <tr>
-        	<td width="171" align="left" valign="top">
-       	  <img src="img/emkt_news360_imagem.jpg" alt="" width="158" height="157"/></td>
+		<?php
+			$aNovidade = $objEmkt->getNovidadesByIds($aNewsletter['emailmkt_novidade360_id']);
+			//$objEmkt->debug($aNew);
+			foreach($aNovidade as $k => $v){
+		?>
+		<tr>
+	      <td width="171" align="left" valign="top">
+       	  <img src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_thumb'];?>" alt="<?=$v['novidade_360_thumb_desc'];?>" width="158" height="157"/></td>
         	<td width="403" class="news-resumo">
-            	<h3 class="title">Reatec apresenta novos produtose discute conceitos sobre deficiência</h3>
+            	<h3 class="title"><?=$v['novidade_360_titulo'];?></h3>
 				<br class="clear" />
                 <p class="description">
-O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas. O MAM oferece dispositivos acessíveis para pessoas com deficiência. Nas exposições as pessoas com deficiência visual podem realizar visitas.                
+					<?=$v['novidade_360_resumo'];?>
                 </p>
-				<a href="#" class="saibamais">Saiba mais</a>                
+				<a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objEmkt->toNormaliza($v['novidade_360_titulo']);?>" class="saibamais">Saiba mais</a>                
             </td>
       </tr>
+	  <?php } ?>
+
         <tr>
         	<td>&nbsp;</td>
             <td align="left" valign="top">
                 <ul class="news-list">
-                	<li>
+					<?php
+						$aNovidades360 = $objEmkt->getNovidadesByIds($aNewsletter['emailmkt_novidade360_ids']);
+						//$objEmkt->debug($aNew);
+						foreach($aNovidades360 as $k => $v){
+					?>
+					<li>
                         <h3 class="title">
-                        	<a href="#">Reatec apresenta novos produtose discute conceitos sobre deficiência</a>
+							<a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objEmkt->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a>
                         </h3>                    
                     </li>
-                	<li>
-                        <h3 class="title">
-                        	<a href="#">Reatec apresenta novos produtose discute conceitos sobre deficiência</a>
-                        </h3>                    
-                    </li>
+					<?php } ?>
                 </ul>
                 <br class="clear" />            
-				<a href="#" class="saibamais">Mais novidades</a>
+				<a href="<?=$linkAbsolute;?>novidade360" class="saibamais" class="saibamais">Mais novidades</a>
             </td>
         </tr>
     </table>
