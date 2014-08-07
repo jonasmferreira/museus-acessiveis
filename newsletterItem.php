@@ -64,7 +64,7 @@
 	<script type="text/javascript">
 		linkAbsolute = '<?=$linkAbsolute?>';
 	</script>
-	<script src="<?=$linkAbsolute?>js/functions.js?<?=$seqAleatoria?>"></script>
+	<script src="<?=$linkAbsolute?>js/functions2.js?<?=$seqAleatoria?>"></script>
 
 </head>
 
@@ -194,7 +194,7 @@
 					<li>
                         <h3 class="title">
 							<a href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objEmkt->toNormaliza($v['novidade_360_titulo']);?>"><?=$v['novidade_360_titulo'];?></a>
-                        </h3>                    
+                        </h3>  
                     </li>
 					<?php } ?>
                 </ul>
