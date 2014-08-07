@@ -56,30 +56,37 @@
                     	<a href="quemSomosEdicao.php?texto_id=1" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
 		           		<a href="acessibilidadeEdicao.php?texto_id=2" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
                         <a href="contatoLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a><br />
-                        <a href="mailingLista.php" style="background-image:url(imgs/icon-jogos.png);">Mailing</a><br />
-                    	<a href="downloadLista.php" style="background-image:url(imgs/icon-jogos.png);">Downloads</a><br />
+                    	<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
                     	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
-                        <a href="emailmktLista.php" style="background-image:url(imgs/icon-jogos.png);">E-mail MKT</a>
                     </div>
                 </span>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Produtos
                 	<div>
-						<a href="tagLista.php" style="background-image:url(imgs/icon-jogos.png);">Tags</a><br />
-						<a href="glossarioLista.php" style="background-image:url(imgs/icon-jogos.png);">Glossário</a><br />
-						<a href="tipo_cursoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Curso</a><br />
+						<a href="tagLista.php" style="background-image:url(imgs/icon-blog.png);">Tags</a><br />
+						<a href="glossarioLista.php" style="background-image:url(imgs/icon-blog.png);">Glossário</a><br />
+						<a href="tipo_cursoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipos de Curso</a><br />
 						<a href="cursoLista.php" style="background-image:url(imgs/icon-videos.png);">Cursos</a><br />
-						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Serviço</a><br />
-                    	<a href="servicoLista.php" style="background-image:url(imgs/icon-jogos.png);">Serviços</a><br />
-						<a href="tipoProjetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Tipos de Projeto</a><br />
-						<a href="projetoLista.php" style="background-image:url(imgs/icon-jogos.png);">Projetos</a><br />
-						<a href="servProjCurInfoEdicao.php?serv_proj_cur_id=1" style="background-image:url(imgs/icon-jogos.png);">Descrição Produtos</a><br />                        
-						<a href="extraLista.php" style="background-image:url(imgs/icon-jogos.png);">Informações Extras</a>                        
+						<a href="tipo_servicoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipos de Serviço</a><br />
+                    	<a href="servicoLista.php" style="background-image:url(imgs/icon-blog.png);">Serviços</a><br />
+						<a href="tipoProjetoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipos de Projeto</a><br />
+						<a href="projetoLista.php" style="background-image:url(imgs/icon-blog.png);">Projetos</a><br />
+						<a href="servProjCurInfoEdicao.php?serv_proj_cur_id=1" style="background-image:url(imgs/icon-blog.png);">Descrição Produtos</a><br />                        
+						<a href="extraLista.php" style="background-image:url(imgs/icon-blog.png);">Informações Extras</a>                        
                     </div>
                 </span>                
-           		<a href="novidadeLista.php" style="background-image:url(imgs/icon-jogos.png);">Novidades 360º</a>
-                <!--a href="agendaLista.php" style="background-image:url(imgs/icon-jogos.png);">Agenda</a-->
+           		<a href="novidadeLista.php" style="background-image:url(imgs/icon-blog.png);">Novidades 360º</a>
+                <!--a href="agendaLista.php" style="background-image:url(imgs/icon-blog.png);">Agenda</a-->
            		<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
+
+				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
+                	Newsletter
+                	<div>
+                        <a href="mailingLista.php" style="background-image:url(imgs/icon-blog.png);">Mailing</a><br />
+                        <a href="emailmktLista.php" style="background-image:url(imgs/icon-blog.png);">E-mail MKT</a>
+                    </div>
+                </span>                
+				
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Configurações
                 	<div>
