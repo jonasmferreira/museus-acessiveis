@@ -57,7 +57,7 @@
                         <a href="mailingLista.php" style="background-image:url(imgs/icon-jogos.png);">Mailing</a><br />
                     	<a href="downloadLista.php" style="background-image:url(imgs/icon-jogos.png);">Downloads</a><br />
                     	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
-                        <a href="emktLista.php" style="background-image:url(imgs/icon-jogos.png);">E-mail MKT</a>
+                        <a href="emailmktLista.php" style="background-image:url(imgs/icon-jogos.png);">E-mail MKT</a>
                     </div>
                 </span>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
