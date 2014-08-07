@@ -4,7 +4,7 @@ $DS = DIRECTORY_SEPARATOR;
 $path_root_ltic = "{$path_root_ltic}{$DS}..{$DS}";
 require_once "{$path_root_ltic}lib{$DS}phpMailler{$DS}class.phpmailer.php";
 class emailClass {
-	protected $hostEmail = "anjomob.com.br";
+	/*protected $hostEmail = "anjomob.com.br";
 	protected $smtpUsuario = "admin@anjomob.com.br";
 	protected $smtpSenha = "cat200200";
 	protected $emailUsuario = "admin@anjomob.com.br";
@@ -16,22 +16,31 @@ class emailClass {
 	protected $url_log_error;
 	protected $show_log = true;
 	protected $show_log_screen = true;
+	protected $enviaEmailCC = null;*/
+	
+	protected $hostEmail = "mx1.hostinger.com.br";
+	protected $smtpUsuario = "disparo@sisfinan.url.ph";
+	protected $smtpSenha = "destino2002";
+	protected $emailUsuario = "disparo@sisfinan.url.ph";
+	protected $emailNomeUsuario = "Sistema Financeiro";
+	protected $assunto = "Sistema Financeiro";
+	public $conteudo = "";
+	protected $dbConn = null;
+	protected $url_log;
+	protected $url_log_error;
+	protected $show_log = true;
+	protected $show_log_screen = true;
 	protected $enviaEmailCC = null;
-
-
+	
 	public function __construct() {
 		//$this->config();
 	}
-
 	public function setAssunto($assunto) {
 		$this->assunto = $assunto;
 	}
-
 	public function setEnviaEmailCC($enviaEmailCC) {
 		$this->enviaEmailCC = $enviaEmailCC;
 	}
-
-	
 	public function config() {
 		$this->mail = new PHPMailer();
 		$this->mail->IsSMTP();
@@ -39,7 +48,7 @@ class emailClass {
 		$this->mail->SMTPDebug = true;
 		$this->mail->SMTPAuth = true;
 		$this->mail->CharSet = 'utf-8';
-		$this->mail->Port = 26;
+		$this->mail->Port = 2525;
 		$this->mail->Username = "{$this->smtpUsuario}";
 		$this->mail->Password = "{$this->smtpSenha}";
 		$this->mail->SetFrom("{$this->emailUsuario}", $this->emailNomeUsuario);
@@ -63,20 +72,11 @@ class emailClass {
 	}
 
 	public function enviaEmail($aEmail) {
-		$this->mail = new PHPMailer();
-		$this->mail->IsSMTP();
-		$this->mail->Host = "{$this->hostEmail}";
-		$this->mail->SMTPDebug = true;
-		$this->mail->SMTPAuth = true;
-		$this->mail->CharSet = 'utf-8';
-		$this->mail->Port = 26;
-		$this->mail->Username = "{$this->smtpUsuario}";
-		$this->mail->Password = "{$this->smtpSenha}";
-		$this->mail->SetFrom("{$this->emailUsuario}", $this->emailNomeUsuario);
+		$this->config();
 		$body = htmlspecialchars_decode($this->utf8Encode2Decode($this->conteudo));
 		$this->mail->Subject = htmlspecialchars_decode($this->utf8Encode2Decode($this->assunto));
 		$bPulaoPrimeiro = false;
-		$this->mail->AddAddress($this->emailNomeUsuario,$this->smtpUsuario);
+		//$this->mail->AddAddress($this->emailNomeUsuario,$this->smtpUsuario);
 		if(is_array($aEmail)&&count($aEmail)>0){
 			foreach($aEmail AS $v){
 				$this->mail->AddAddress($v['email'],$v['nome']);
@@ -84,6 +84,7 @@ class emailClass {
 		}
 		$this->mail->MsgHTML($body);
 		if(!$this->mail->Send()){
+			echo $this->mail->ErrorInfo;
 			$this->mail->ClearAddresses();
 			$this->mail->ClearCCs();
 			return false;
@@ -92,7 +93,5 @@ class emailClass {
 			$this->mail->ClearCCs();
 			return true;
 		}
-		
 	}
 }
-?>

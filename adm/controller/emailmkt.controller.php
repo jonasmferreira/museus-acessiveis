@@ -58,4 +58,14 @@ switch($_REQUEST['action']){
 		}
 		echo $msg;
 	break;
+	case 'disparoTeste':
+		$obj->setValues($_REQUEST);
+		$exec = $obj->disparoEmailTeste();
+		if($exec){
+			$msg = "CMD_SUCCESS|E-mail Enviado com Sucesso!";
+		}else{
+			$msg = "CMD_FAILED|Erro ao tentar enviar e-mail!";
+		}
+		echo $msg;
+	break;
 }

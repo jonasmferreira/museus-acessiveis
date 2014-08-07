@@ -3,6 +3,7 @@ $path_root_emailmktClass = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
 $path_root_emailmktClass = "{$path_root_emailmktClass}{$DS}..{$DS}..{$DS}";
 require_once "{$path_root_emailmktClass}adm{$DS}class{$DS}default.class.php";
+require_once "{$path_root_emailmktClass}lib{$DS}EmailClass.php";
 class emailmkt extends defaultClass{
 	protected $dbConn;
 	protected $pathImg;
@@ -28,6 +29,10 @@ class emailmkt extends defaultClass{
 			,'titulo'=>'Enviado'
 		)
 		,'C'=>array(
+			'id'=>'L'
+			,'titulo'=>'Liberado para disparo'
+		)
+		,'L'=>array(
 			'id'=>'C'
 			,'titulo'=>'Cancelado'
 		)
@@ -184,6 +189,34 @@ class emailmkt extends defaultClass{
 		$path_root_servicoLista = "{$path_root_servicoLista}{$DS}..{$DS}..{$DS}";
 		include_once("{$path_root_servicoLista}adm{$DS}class{$DS}glossario.class.php");
 		$obj = new glossario();
+		$obj->setValues(array(
+			'page'=>'1'
+			,'rows'=>'10000000000000'
+		));
+		$aRet = $obj->getLista();
+		return $aRet['rows'];
+	}
+	
+	public function getContatos(){
+		$path_root_servicoLista = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_servicoLista = "{$path_root_servicoLista}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_servicoLista}adm{$DS}class{$DS}contato.class.php");
+		$obj = new contato();
+		$obj->setValues(array(
+			'page'=>'1'
+			,'rows'=>'10000000000000'
+		));
+		$aRet = $obj->getLista();
+		return $aRet['rows'];
+	}
+	
+	public function getMailing(){
+		$path_root_servicoLista = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_servicoLista = "{$path_root_servicoLista}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_servicoLista}adm{$DS}class{$DS}mailing.class.php");
+		$obj = new mailing();
 		$obj->setValues(array(
 			'page'=>'1'
 			,'rows'=>'10000000000000'
@@ -479,6 +512,107 @@ class emailmkt extends defaultClass{
 		}
 		return $arr;
 	}
+	
+	public function getAgendaByIds($aN,$aP,$aC,$aS){
+		$path_root_agendaClass = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_agendaClass = "{$path_root_agendaClass}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_agendaClass}adm{$DS}class{$DS}configuracao.class.php");
+		$objConfig = new configuracao();
+		$aConfig = $objConfig->getOne();
+
+		//$objConfig->debug($aConfig);
+		$linkAbsolute=$aConfig['configuracao_baseurl'];
+		$sql = array();
+		$dataPadrao = date("Y-m-01");
+		//novidade 360
+		$sql[] = "
+			SELECT	
+					t.novidade_360_id as item_id
+					,'novidade360' as item_tipo_link
+					,t.novidade_360_titulo as item_titulo
+					,t.novidade_360_dt_agenda as item_dt_agenda
+					,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
+					,MONTH(t.novidade_360_dt_agenda) as item_dt_agenda_mes
+					,'N' AS item_tipo
+					,'Novidade 360º' AS item_tipo_label
+			FROM	tb_novidade_360 t
+			WHERE	1 = 1 
+			AND		t.novidade_360_id IN ({$aN})
+		";
+		//Projetos
+		$sql[] = "
+			SELECT	
+					t.projeto_id as item_id
+					,'projeto' as item_tipo_link
+					,t.projeto_titulo as item_titulo
+					,t.projeto_agenda as item_dt_agenda
+					,DAY(t.projeto_agenda) as item_dt_agenda_dia
+					,MONTH(t.projeto_agenda) as item_dt_agenda_mes
+					,'P' AS item_tipo
+					,'Projeto' AS item_tipo_label
+			FROM	tb_projeto t
+			WHERE	1 = 1 
+			AND		t.projeto_id IN ({$aP})
+		";
+
+		//cursos
+		$sql[] = "
+			SELECT	
+					t.curso_id as item_id
+					,'curso' as item_tipo_link
+					,t.curso_titulo as item_titulo
+					,t.curso_agenda as item_dt_agenda
+					,DAY(t.curso_agenda) as item_dt_agenda_dia
+					,MONTH(t.curso_agenda) as item_dt_agenda_mes
+					,'C' AS item_tipo
+					,'Curso' AS item_tipo_label
+			FROM	tb_curso t
+			WHERE	1 = 1 
+			AND		t.curso_id IN ({$aC})
+		";
+
+		//servicos
+		$sql[] = "
+			SELECT	
+					t.servico_id as item_id
+					,'servico' as item_tipo_link
+					,t.servico_titulo as item_titulo
+					,t.servico_agenda as item_dt_agenda
+					,DAY(t.servico_agenda) as item_dt_agenda_dia
+					,MONTH(t.servico_agenda) as item_dt_agenda_mes
+					,'S' AS item_tipo
+					,'Serviço' AS item_tipo_label
+			FROM	tb_servico t
+			WHERE	1 = 1 
+			AND		t.servico_id IN ({$aS})
+		";
+			
+		$aSql = Array();
+		$aSql[] = "SELECT * FROM (";
+		$aSql[] = implode(" UNION \n",$sql);
+		$aSql[] = ") AS item_busca ";
+		$aSql[] = "
+			WHERE 1 = 1 
+			ORDER BY item_dt_agenda ASC, item_titulo ASC
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$aSql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$sLink = "{$linkAbsolute}{$rs['item_tipo_link']}/{$rs['item_id']}/{$rs['item_titulo']}";
+					$rs['item_link'] = $sLink;
+					$rs['item_dt_agenda_label'] = $this->dateDB2BR($rs['item_dt_agenda']);
+					$rs['item_dt_agenda_mes'] = str_pad($rs['item_dt_agenda_mes'], 2,"0",STR_PAD_LEFT);
+					$rs['item_dt_agenda_mes_label'] = strtolower($this->meses[$rs['item_dt_agenda_mes']]);
+					$rs = $this->utf8_array_encode($rs);
+					array_push($arr,$rs);
+				}
+			}
+		}
+		return $arr;
+	}
 	public function removeImage(){
 		$aReg = $this->getOne();
 		$this->dbConn->db_start_transaction();
@@ -496,6 +630,148 @@ class emailmkt extends defaultClass{
 			$this->dbConn->db_commit();
 		}
 		return $result;
+	}
+	public function disparoEmailTeste(){
+		$emailmkt_id = $this->values['emailmkt_id'];
+		$email = $this->values['email'];
+		$nome = $this->values['nome'];
+		$aEmails = array(
+			array(
+				'email'=>$email
+				,'nome'=>$nome
+			)
+		);
+		return $this->disparoEmail($aEmails,$emailmkt_id);
+	}
+	protected function disparoEmail($aEmails,$emailmkt_id){
+		$path_root_emailmktClass = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_emailmktClass = "{$path_root_emailmktClass}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_emailmktClass}adm{$DS}class{$DS}configuracao.class.php");
 		
+		
+		$objConfig = new configuracao();
+		$aConfig = $objConfig->getOne();
+		$linkAbsolute=$aConfig['configuracao_baseurl'];
+		$this->values['emailmkt_id'] = $emailmkt_id;
+		$aNewsletter = $this->getOne();
+		$objEmail = new emailClass();
+		$objEmail->setAssunto("Museus Acessíveis - {$aNewsletter['emailmkt_titulo']}");
+		$objEmail->conteudo = file_get_contents("{$linkAbsolute}newsletterItem.php?emailmkt_id={$emailmkt_id}");
+		return $objEmail->enviaEmail($aEmails);
+	}
+	protected function updateStatus($emailmkt_id,$emailmkt_status){
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		$sql[] = "
+			UPDATE tb_emailmkt SET
+				emailmkt_status = '{$emailmkt_status}'
+			WHERE	emailmkt_id = '{$emailmkt_id}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			$this->dbConn->db_commit();
+		}
+		return $result;
+	}
+	protected function updateDtDisparo($emailmkt_id){
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		
+		$sql[] = "
+			UPDATE tb_emailmkt SET
+				emailmkt_dt_disparo = CURDATE()
+				,emailmkt_hr_disparo = CURTIME()
+			WHERE	emailmkt_id = '{$emailmkt_id}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			$this->dbConn->db_commit();
+		}
+		return $result;
+	}
+	protected function insertEmailConferencia($aArr){
+		$sql = array();
+		$sql[] = "
+			INSERT INTO tb_emailmkt_conferencia SET
+				emailmkt_id = '{$aArr['emailmkt_id']}'
+				,mailing_id = '{$aArr['mailing_id']}'
+				,mailing_email = '{$aArr['mailing_email']}'
+				,emailmkt_conferencia_dt_disparo = '{$aArr['emailmkt_conferencia_dt_disparo']}'
+				,emailmkt_conferencia_hr_disparo = '{$aArr['emailmkt_conferencia_hr_disparo']}'
+		";
+		return $this->dbConn->db_execute(implode("\n",$sql));
+	}
+	protected function updateEmailConferencia($aArr){
+		$sql = array();
+		$sql[] = "
+			UPDATE tb_emailmkt_conferencia SET
+				emailmkt_id = '{$aArr['emailmkt_id']}'
+				,mailing_id = '{$aArr['mailing_id']}'
+				,mailing_email = '{$aArr['mailing_email']}'
+				,emailmkt_conferencia_dt_disparo = '{$aArr['emailmkt_conferencia_dt_disparo']}'
+				,emailmkt_conferencia_hr_disparo = '{$aArr['emailmkt_conferencia_hr_disparo']}'
+			WHERE emailmkt_conferencia_id = '{$aArr['emailmkt_conferencia_id']}'
+		";
+		return $this->dbConn->db_execute(implode("\n",$sql));
+	}
+	protected function verifyEmailConferencia($aArr){
+		$sql = array();
+		$sql[] = "
+			SELECT	*
+			FROM	tb_emailmkt_conferencia
+			WHERE	mailing_email = '{$aArr['mailing_email']}'
+		";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+				$rs = $this->utf8_array_encode($rs);
+				return $rs['emailmkt_conferencia_id'];
+			}
+		}
+		return "";
+	}
+	public function disparo(){
+		$this->values['emailmkt_status'] = "L";
+		$aEmailMkt = $this->getLista();
+		$aEmailMkt = $aEmailMkt['rows'];
+		if(count($aEmailMkt) > 0){
+			$aMailing = $this->getMailing();
+			foreach($aEmailMkt AS $v){
+				$this->updateStatus($v['emailmkt_id'],"X");
+				foreach($aMailing AS $mail){
+					$emailmkt_id = $v['emailmkt_id'];
+					$email = $mail['mailing_email'];
+					$nome = $mail['mailing_nome'];
+					$aEmails = array(
+						array(
+							'email'=>$email
+							,'nome'=>$nome
+						)
+					);
+					$this->disparoEmail($aEmails,$emailmkt_id);
+					$aArr = array();
+					$aArr['emailmkt_id'] = $emailmkt_id;
+					$aArr['mailing_id'] = $mail['mailing_id'];
+					$aArr['mailing_email'] = $email;
+					$aArr['emailmkt_conferencia_dt_disparo'] = date("Y-m-d");
+					$aArr['emailmkt_conferencia_hr_disparo'] = date("H:i:s");
+					$aArr['emailmkt_conferencia_id'] = $this->verifyEmailConferencia($aArr);
+					if(trim($aArr['emailmkt_conferencia_id'])!=""){
+						$this->updateEmailConferencia($aArr);
+					}else{
+						$this->insertEmailConferencia($aArr);
+					}
+				}
+				$this->updateDtDisparo($v['emailmkt_id']);
+				$this->updateStatus($v['emailmkt_id'],"E");
+			}
+		}
 	}
 }
