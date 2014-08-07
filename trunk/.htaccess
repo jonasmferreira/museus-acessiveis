@@ -39,8 +39,8 @@
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 
-	RewriteRule ^newsletter/([^/]+)/?$ newsletterItem.php?newsletter_id=$1
-	RewriteRule ^newsletter/([^/]+)/([^/]+)/?$ newsletterItem.php?newsletter_id=$1&newsletter_emkt=$2
+	RewriteRule ^newsletter/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
+	RewriteRule ^newsletter/([^/]+)/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1&emailmkt_emkt=$2
 
 	
 </IfModule>
