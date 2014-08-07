@@ -232,6 +232,25 @@ class emailmkt extends defaultClass{
 		return $arr;
 	}
 	
+	public function getNovidadesByIds($list_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	*
+			FROM	tb_novidade_360 t
+			WHERE	1 = 1
+			AND		novidade_360_id IN ({$list_id})
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
 	
 	
 	public function edit(){
