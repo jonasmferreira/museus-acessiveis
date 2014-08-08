@@ -33,7 +33,7 @@
 			)
 		);
 		$aNewsletter = $objEmkt->getOne();
-		$objEmkt->debug($aNewsletter);
+		//$objEmkt->debug($aNewsletter);
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
