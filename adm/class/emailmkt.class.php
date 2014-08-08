@@ -203,6 +203,13 @@ class emailmkt extends defaultClass{
 		$path_root_servicoLista = "{$path_root_servicoLista}{$DS}..{$DS}..{$DS}";
 		include_once("{$path_root_servicoLista}adm{$DS}class{$DS}contato.class.php");
 		$obj = new contato();
+		
+		if(isset($this->values['contato_exibir'])&&trim($this->values['contato_exibir'])!=''){
+			$obj->setValues(array(
+				'contato_exibir'=>$this->values['contato_exibir']
+			));
+		}
+	
 		$obj->setValues(array(
 			'page'=>'1'
 			,'rows'=>'10000000000000'

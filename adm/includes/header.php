@@ -55,6 +55,7 @@
                 	<div>
                     	<a href="quemSomosEdicao.php?texto_id=1" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
 		           		<a href="acessibilidadeEdicao.php?texto_id=2" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
+                    	<a href="contatoTipoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipo de Contato</a><br />
                         <a href="contatoLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a><br />
                     	<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
                     	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
@@ -91,7 +92,6 @@
                 	Configurações
                 	<div>
                     	<a href="usuarioLista.php" style="background-image:url(imgs/icon-blog.png);">Usuários</a><br />
-                    	<a href="contatoTipoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipo de Contato</a><br />
 						<a href="configuracaoEdicao.php" style="background-image:url(imgs/icon-blog.png);">Configurações Gerais</a>
                     </div>
                 </span> 
