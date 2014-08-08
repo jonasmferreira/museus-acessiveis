@@ -5,20 +5,17 @@
 } 
 
 /* Tags Gerais */
+
 *, html, body {
-	margin:0; 
-	padding:0; 
-	border:0;
-	}
+	margin:0; padding:0; border:0;
+}
 
 a{
 	text-decoration: none !important;
 }
 	
 body {
-	background: #FFF url(../img/emkt_bg.gif) left top repeat;
-	font-family:Verdana, Helvetica, sans-serif;
-	color: #565652;
+	background: #FFF url(../img/emkt_bg.gif) left top repeat; font-family:Verdana, Helvetica, sans-serif; color: #565652;
 }
 
 a{
@@ -26,65 +23,50 @@ a{
 }
 	
 /* Títulos */
+
 h1 {
 	font-size:28px;
 }
 
 h3 {
-	font-size:19px;
-	font-weight:normal;
+	font-size:19px;font-weight:normal;
 }
 
 #root{
-	width: 680px;
-	margin: 0 auto;
-	background-color: #FFF;
+	width: 680px;margin: 0 auto;background-color: #FFF;
 }
 
 #access-bar{
-	height: 28px;
-	padding: 11px 0 0 24px;
-	margin: 0 auto;
-	color:#FFF;
-	font-size:9px;
-	background-color: #000;
+	height: 28px;padding: 11px 0 0 24px;margin: 0 auto;color:#FFF;font-size:9px;background-color: #000;
 }
 
 #access-bar a{
-	color: #FFF;
-	padding: 0 3px 0 0;
-	text-decoration:underline;
+	color: #FFF;padding: 0 3px 0 0;text-decoration:underline;
 }
 
 #access-bar .title{
-	font-weight: bold;
-	text-transform: uppercase;
+	font-weight: bold;text-transform: uppercase;
 }
 
 #access-bar p#fontSize{
 	display:inline;
 }
+
 #access-bar .option{
-	font-weight: normal;
-	text-decoration: underline;
+	font-weight: normal;text-decoration: underline;
 } 
-	
+
 #header{
-	height: 255px;
-	background: #FFF url(../img/emkt_bg_top.gif) left top repeat-x;
+	height: 255px;background: #FFF url(../img/emkt_bg_top.gif) left top repeat-x;
 }
 #header td.title{
-	background: url(../img/emkt_title.png) left 35px no-repeat;
-	padding:200px 0 0 0;
+	background: url(../img/emkt_title.png) left 35px no-repeat;padding:200px 0 0 0;
 }
 
 #header td.title #edicao{
-	background: #666;
-	padding: 2px 5px;
-	font-size: 13px;
-	color: #FFF;
-	margin: 0 0 0 10px;
+	background: #666;padding: 2px 5px;font-size: 13px;color: #FFF;margin: 0 0 0 10px;
 }
+
 #header td.title #edicao a{
 	color: #FFF;
 }
@@ -93,88 +75,50 @@ h3 {
 	padding: 34px 31px 30px 16px;
 }
 #project .outdoor{
-	margin: 0 0 17px 46px;	
-	background: url(../img/emkt_projeto_bg.png) left top no-repeat;
-	width: 568px;
-	height: 227px;
-	padding: 10px;
+	margin: 0 0 17px 46px;background: url(../img/emkt_projeto_bg.png) left top no-repeat;width: 568px;height: 227px;padding: 10px;
 }
 
 h1.project-title{
-	display: block;
-	background: url(../img/emkt_projeto_ico.png) left top no-repeat;
-	padding: 7px 0 0 56px;
-	color: #632d8b;
-	height: 48px;
-	overflow: visible;
+	display: block;background: url(../img/emkt_projeto_ico.png) left top no-repeat;padding: 7px 0 0 56px;color: #632d8b;height: 48px;overflow: visible;
 }
+
 #project .description{	
 	padding: 18px 0 0 40px;
 }
+
 #project .description p{
-	font-size: 14px;
-	color: #565652;
-	line-height: 21px;
-	padding: 0 0 20px 0;
+	font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;
 }
+
 #project a.saibamais{
-	padding: 5px;
-	background: #000;
-	font-weight: bold;
-	font-size: 14px;
-	color: #FFF;	
+	padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;
 }
 
 img.separator{
-	margin: 30px 0 30px 30px;;
+	margin: 30px 0 30px 30px;
 }
 
 #acessibilidade{
-	margin: 0 0 10px 47px;
-	background: url(../img/emkt_access_bg_purple2.png) left bottom no-repeat;
-	width: 594px;
-	padding: 0 0 5px 0;
-/*	height: 347px;*/
-	overflow: visible;
+	margin: 0 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url(../img/emkt_access_bg_purple2.png) left bottom no-repeat;
 }
 #acessibilidade .box{
-	background: url(../img/emkt_access_bg_purple1.png) left top no-repeat;
-	padding: 10px 0 5px 0;
+	padding: 10px 0 5px 0;background: url(../img/emkt_access_bg_purple1.png) left top no-repeat;
+	
 }
 #acessibilidade .box .word-box{
-	background: url(../img/emkt_access_bg_yellow.png) left top repeat-y;
-	margin: 0px 0 0 4px;	
-	width: 565px;
-/*	height: 325px;*/
-	overflow: visible;
-	padding: 20px 0 25px 15px;
+	margin: 0px 0 0 4px;width: 565px;overflow: visible;padding: 20px 0 25px 15px;background: url(../img/emkt_access_bg_yellow.png) left top repeat-y;
 }
+
 #acessibilidade .box .word-box h2.word{
-	color: #632d8b;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	width:548px;
-	font-size: 65px;
-	padding: 20px 0 0 0;
-	text-align: center;
-	font-weight: normal;
-	background: url(../img/emkt_access_word_bg.png) left top no-repeat;
+	color: #632d8b;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;width:548px;font-size: 65px;padding: 20px 0 0 0;text-align: center;font-weight: normal;background: url(../img/emkt_access_word_bg.png) left top no-repeat;
 }
 
 #acessibilidade .box .word-box .description{
-	width: 488px;
-	padding: 20px 0 20px 58px;
-	text-align: center;
-	color: #632d8b;
-	font-size: 14px;
-	font-weight: bold;
+	margin:0;width: 488px;padding: 20px 0 20px 58px;text-align: center;color: #632d8b;font-size: 14px;font-weight: bold;
 }
 
 a.glossario{
-	padding: 5px;
-	background: #000;
-	font-weight: bold;
-	font-size: 14px;
-	color: #FFF;	
+	padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;	
 }
 
 #news{
@@ -182,13 +126,7 @@ a.glossario{
 }
 
 h1.news-title{
-	display: block;
-	background: url(../img/emkt_news360_ico.png) left top no-repeat;
-	padding: 7px 0 0 56px;
-	color: #28b297;
-	height: 48px;
-	overflow: visible;
-	text-transform: uppercase;
+	display: block;padding: 7px 0 0 56px;color: #28b297;height: 48px;overflow: visible;text-transform: uppercase;background: url(../img/emkt_news360_ico.png) left top no-repeat;
 }
 
 #news table{
@@ -196,10 +134,7 @@ h1.news-title{
 }
 
 #news h3.title{
-	color: #28b297;
-	font-size: 19px;
-	font-style: italic;
-	font-weight: bold;
+	color: #28b297;font-size: 19px;font-style: italic;font-weight: bold;
 }
 
 td.news-resumo{
@@ -207,45 +142,29 @@ td.news-resumo{
 }
 
 #news p.description{
-	font-size: 14px;
-	color: #565652;
-	line-height: 21px;
-	padding: 0 0 20px 0;
+	font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;
 }
 
 
 #news a.saibamais{
-	padding: 5px;
-	background: #000;
-	font-weight: bold;
-	font-size: 14px;
-	color: #FFF;	
+	padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;	
 }
 
 #news ul{
-	display: block;
-	margin: 0;
-	padding: 0;
+	display: block;margin: 0;padding: 0;
 }
 
 #news ul li{
-	display: block;
-	margin: 0;
-	padding: 10px 0;
-	border-bottom: 1px solid #6f6f6e;
+	display: block;margin: 0;padding: 10px 0;border-bottom: 1px solid #6f6f6e;
 }
 
 #news ul li h3.title a{
-	color: #28b297;
-	font-size: 19px;
-	font-style: italic;
-	font-weight: bold;
+	color: #28b297;font-size: 19px;font-style: italic;font-weight: bold;
 }
 
 
 #aquitem{
-	padding: 0 31px 30px 16px;
-	background: url(../img/emkt_bg_bottom.png) left bottom no-repeat;
+	padding: 0 31px 30px 16px;background: url(../img/emkt_bg_bottom.png) left bottom no-repeat;
 }
 
 #aquitem table{
@@ -253,20 +172,11 @@ td.news-resumo{
 }
 
 #aquitem h1.news-title{
-	display: block;
-	background: url(../img/emkt_aquitem_ico.png) left top no-repeat;
-	padding: 7px 0 0 56px;
-	color: #4d4d4d;
-	height: 48px;
-	overflow: visible;
-	text-transform: uppercase;
+	display: block;padding: 7px 0 0 56px;color: #4d4d4d;height: 48px;overflow: visible;text-transform: uppercase;background: url(../img/emkt_aquitem_ico.png) left top no-repeat;
 }
 
 #aquitem h3.title{
-	color: #4d4d4d;
-	font-size: 19px;
-	font-style: italic;
-	font-weight: bold;
+	color: #4d4d4d;font-size: 19px;font-style: italic;font-weight: bold;
 }
 
 td.news-resumo{
@@ -274,40 +184,21 @@ td.news-resumo{
 }
 
 #aquitem p.description{
-	font-size: 14px;
-	color: #565652;
-	line-height: 21px;
-	padding: 0 0 20px 0;
+	font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin: 0;
 }
 
 
 #aquitem a.saibamais{
-	padding: 5px;
-	background: #000;
-	font-weight: bold;
-	font-size: 14px;
-	color: #FFF;	
+	padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;	
 }
-
-
-
-
 
 
 #schedule{
-	padding: 40px 31px 30px 16px;
-	background: url(../img/emkt_schedule_box_bg.gif) left bottom repeat-x;
+	padding: 40px 31px 30px 16px;background: #f3fefe url(../img/emkt_schedule_box_bg.gif) left bottom repeat-x;
 }
 
 #schedule h1.title{
-	display: block;
-	background: url(../img/emkt_schedule_ico.png) left top no-repeat;
-	padding: 7px 0 0 56px;
-	color: #632d8b;
-	height: 48px;
-	overflow: visible;
-	text-transform: uppercase;
-	line-height: 32px;
+	display: block;padding: 7px 0 0 56px;color: #632d8b;height: 48px;overflow: visible;text-transform: uppercase;line-height: 32px;background: url(../img/emkt_schedule_ico.png) left top no-repeat;
 }
 
 #schedule #schedule-box{
@@ -315,94 +206,60 @@ td.news-resumo{
 }
 
 #schedule a.saibamais{
-	padding: 5px;
-	background: #000;
-	font-weight: bold;
-	font-size: 14px;
-	color: #FFF;	
+	padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;	
 }
 
 #schedule #schedule-box .day-box{
-	background: url(../img/emkt_schedule_bg.png) left top no-repeat;
-	width: 123px;
-	height: 122px;	
-	padding: 22px 0 0 0;
-	text-align: center;
-	margin: 0 auto;
+	width: 123px;height: 122px;	padding: 22px 0 0 0;text-align: center;margin: 0 auto;background: url(../img/emkt_schedule_bg.png) left top no-repeat;
 }
 #schedule #schedule-box .day-box .day{
-	font-size: 80px;
-	font-weight: bold;
-	color: #f37920;
+	font-size: 80px;font-weight: bold;color: #f37920;
 }
 
 #schedule #schedule-box .day-box .month{
-	font-size: 15px;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #f37920;
+	font-size: 15px;font-weight: bold;text-transform: uppercase;color: #f37920;
 }
 #schedule #schedule-box .title{
-	margin: 20px 0 0 0;
-	font-size:17px;
-	font-style: italic;
-	font-weight: bold;
-	color: #f37920;
-	text-align: center;
+	margin: 20px 0 0 0;font-size:17px;font-style: italic;font-weight: bold;color: #f37920;text-align: center;
 }
 #schedule #schedule-box .title a{
 	color: #f37920;
 }
 
 #propaganda{
-	padding: 23px 0;
-	text-align: center;
+	padding: 23px 0;text-align: center;
 }
 
 /* FOOTER */
 #footer{
-	background: #632d8b;
-	padding: 65px 0 0 37px;
-	font-size: 17px;
-	color: #FFF;
+	background: #632d8b;padding: 65px 0 0 37px;font-size: 17px;color: #FFF;
 }
 
 #footer table{
-	border: 0;
-	padding: 0 0 30px 0;
-	margin: 0;
-	background: url(../img/emkt_footer_bg.png) 370px bottom no-repeat;
+	border: 0;padding: 0 0 30px 0;margin: 0;background: url(../img/emkt_footer_bg.png) 370px bottom no-repeat;
 }
 
 #footer td.contact{
-	width: 370px;	
-	font-size: 17px;
+	width: 370px;font-size: 17px;
 }
 
 #footer td.opcoes{
-	width: 220px;
-	font-size: 11px;
-	text-transform: uppercase;
-	text-align: right;
+	width: 220px;font-size: 11px;text-transform: uppercase;text-align: right;
 }
 
 #footer td.opcoes a{
-	color: #FFF !important;
-	text-decoration: none;
+	color: #FFF !important;text-decoration: none;
 }
 
 #footer #devices{
 	padding: 25px 0 3px 0;
 }
 #footer #devices a{
-	color: #FFF;
-	text-decoration: none;
+	color: #FFF;text-decoration: none;
 }
 
 #footer #devices .facebook{
-	display: block;
-	padding: 0 0 0 20px;	
-	background: url(../img/ico_facebook.png) left center no-repeat;
+	display: block;padding: 0 0 0 20px;	background: url(../img/ico_facebook.png) left center no-repeat;
 }
 
 #footer #web{
@@ -410,8 +267,7 @@ td.news-resumo{
 }
 
 #footer #web a{
-	text-decoration: none;
-	color: #FFF;
+	text-decoration: none;color: #FFF;
 }
 #footer .ico{
 	margin: 0 5px;
