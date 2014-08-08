@@ -262,7 +262,7 @@ var popup = function(mensagem,titulo,tempo){
 		'title':titulo,
 		'show': "explode",
 		'hide': 'explode',
-		'width':700,
+		'width':450,
 		'height':450,
 		'buttons':{
 			'OK':function(){
@@ -428,7 +428,7 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 		
 		$('.popups').click(function(event) {
 			event.preventDefault();
-			window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+			window.open($(this).attr("href"), "popupWindow", "width=750,height=550,scrollbars=yes");
 		});
 		
 		$("#antPage").click(function(){
