@@ -33,7 +33,7 @@
 			)
 		);
 		$aNewsletter = $objEmkt->getOne();
-		//$objEmkt->debug($aNewsletter);
+		$objEmkt->debug($aNewsletter);
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -328,6 +328,10 @@
 						//$objEmkt->debug($aContato);
 						$devices=array();
 						$sites=array();
+						$aEmail = array();
+						$aSite = array();
+						$aFacebook = array();
+						
 						foreach($aContato as $k => $v){
 							$tipo=strtolower($v['contato_tipo']);
 							if(strtolower($v['contato_tipo'])=='e-mail'){
