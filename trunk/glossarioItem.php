@@ -22,6 +22,9 @@
 		);
 		$aGlossario = $objGlossario->getOne();
 		//$objGlossario->debug($aGlossario);
+
+		//Verificando se a página foi aberta a partir do Newsletter
+		$nNewsId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
 		
 	?>	
 </head>
@@ -55,6 +58,13 @@
 					</div>
         	</div>
         	<div class="clear"></div>
+			<div style="text-align: right; font-weight: bold; padding: 10px 10px 10px 0;">
+			<?php
+				if($nNewsId!=0){
+			?>
+				<a href="<?=$linkAbsolute?>newsletter/<?=$nNewsId;?>">Voltar</a>
+			<?php } ?>
+			</div>
         </div>
         <div class="clear"></div>
   </div>
