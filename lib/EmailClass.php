@@ -22,8 +22,8 @@ class emailClass {
 	protected $smtpUsuario = "disparo@sisfinan.url.ph";
 	protected $smtpSenha = "destino2002";
 	protected $emailUsuario = "disparo@sisfinan.url.ph";
-	protected $emailNomeUsuario = "Sistema Financeiro";
-	protected $assunto = "Sistema Financeiro";
+	protected $emailNomeUsuario = "Museus Acessíveis";
+	protected $assunto = "Museus Acessíveis";
 	public $conteudo = "";
 	protected $dbConn = null;
 	protected $url_log;
