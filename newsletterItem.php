@@ -416,7 +416,7 @@
 						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_email_ico.png" width="25" height="25"  alt=""/>
 					</a>
 				</td>
-				<td align="center">&nbsp</td>
+				<td align="center">&nbsp;</td>
 			</tr>
 		</table>
 		<div class="clear" style="clear:both;"></div>
