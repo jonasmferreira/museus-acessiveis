@@ -13,10 +13,15 @@
 	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
 
 	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
+	RewriteRule ^glossario/([^/]+)/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2&emailmkt_id=$3
 
 	RewriteRule ^novidade360/?$ novidadeLista.php
+	RewriteRule ^novidade360/([^/]+)/?$ novidadeLista.php?emailmkt_id=$1
+
 	RewriteRule ^novidade360/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1
 	RewriteRule ^novidade360/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2
+	RewriteRule ^novidade360/([^/]+)/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2&emailmkt_id=$3
+
 
 	RewriteRule ^downloads/?$ downloadLista.php
 	RewriteRule ^imprensa/?$ imprensaLista.php
@@ -28,20 +33,21 @@
 	RewriteRule ^cursos/([^/]+)/([^/]+)/?$ cursoLista.php?tipo_curso_id=$1&tipo_curso_titulo=$2
 	RewriteRule ^curso/([^/]+)/?$ cursoItem.php?curso_id=$1
 	RewriteRule ^curso/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2
+	RewriteRule ^curso/([^/]+)/([^/]+)/([^/]+)/?$ cursoItem.php?curso_id=$1&curso_titulo=$2&emailmkt_id=$3
 
 	RewriteRule ^servicos/?$ servicoLista.php
 	RewriteRule ^servicos/([^/]+)/([^/]+)/?$ servicoLista.php?tipo_servico_id=$1&tipo_servico_titulo=$2
 	RewriteRule ^servico/([^/]+)/?$ servicoItem.php?servico_id=$1
 	RewriteRule ^servico/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2
+	RewriteRule ^servico/([^/]+)/([^/]+)/([^/]+)/?$ servicoItem.php?servico_id=$1&servico_titulo=$2&emailmkt_id=$3
 
 	RewriteRule ^projetos/?$ projetoLista.php
 	RewriteRule ^projetos/([^/]+)/([^/]+)/?$ projetoLista.php?tipo_projeto_id=$1&tipo_projeto_titulo=$2
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
+	RewriteRule ^projeto/([^/]+)/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2&emailmkt_id=$3
 
 	RewriteRule ^newsletter/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
-	RewriteRule ^newsletter/([^/]+)/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1&emailmkt_emkt=$2
-
 	
 </IfModule>
 <IfModule !mod_rewrite.c>
