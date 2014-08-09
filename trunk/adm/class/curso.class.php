@@ -132,9 +132,13 @@ class curso extends defaultClass{
 				$rs['curso_dt_fim'] = $this->dateDB2BR($rs['curso_dt_fim']);
 				$rs['curso_agenda'] = $this->dateDB2BR($rs['curso_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['curso_id']);
+				$rs['tag_list'] = $this->getTagsByCurso($rs['curso_id']);
 				$rs['glossarios'] = $this->getGlossarioCadatradas($rs['curso_id']);
+				$rs['glossario_list'] = $this->getGlossarioByCurso($rs['curso_id']);
 				$rs['downloads'] = $this->getDownloadCadastrados($rs['curso_id']);
+				$rs['download_list'] = $this->getDownloadByCurso($rs['curso_id']);
 				$rs['extras'] = $this->getExtraCadastrados($rs['curso_id']);
+				$rs['extra_list'] = $this->getExtraByCurso($rs['curso_id']);
 			}
 		}
 		return $this->utf8_array_encode($rs);
@@ -452,6 +456,105 @@ class curso extends defaultClass{
 		}
 		return $arr;
 	}
+	
+	public function getTagsByCurso($curso_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	tp.tag_id, t.tag_titulo
+			FROM	tb_curso_tag tp
+			JOIN	tb_tag t
+			ON		tp.tag_id = t.tag_id
+			WHERE	1 = 1
+			AND		curso_id = '{$curso_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	public function getGlossarioByCurso($curso_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	pg.curso_id
+					,pg.glossario_id
+					,g.glossario_palavra
+					,g.glossario_definicao
+					,g.glossario_fonte
+					,g.glossario_link_fonte
+					,g.glossario_conteudo
+					,g.glossario_exibir
+			FROM	tb_curso_glossario pg
+			JOIN	tb_glossario g
+			ON		pg.glossario_id = g.glossario_id
+			WHERE	1 = 1
+			AND		g.glossario_exibir = 'S'
+			AND		curso_id = '{$curso_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	public function getDownloadByCurso($curso_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	pd.curso_id, d.*
+			FROM	tb_curso_download pd
+			JOIN	tb_download d
+			ON		pd.download_id = d.download_id
+			WHERE	1 = 1
+			AND		curso_id = '{$curso_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	public function getExtraByCurso($curso_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	e.extra_id
+					,e.extra_nome_campo
+					,pe.curso_extra_valor
+			FROM	tb_curso_extra pe
+		    JOIN	tb_extra e
+			ON		pe.extra_id = e.extra_id
+			WHERE	1 = 1
+			AND		pe.curso_extra_valor IS NOT NULL
+			AND		TRIM(pe.curso_extra_valor) != ''
+			AND		curso_id = '{$curso_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	
 	public function getDownloadCadastrados($curso_id){
 		$sql = array();
 		$sql[] = "

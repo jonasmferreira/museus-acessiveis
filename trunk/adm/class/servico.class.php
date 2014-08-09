@@ -139,9 +139,13 @@ class servico extends defaultClass{
 				$rs['servico_dt_fim'] = $this->dateDB2BR($rs['servico_dt_fim']);
 				$rs['servico_agenda'] = $this->dateDB2BR($rs['servico_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['servico_id']);
+				$rs['tag_list'] = $this->getTagsByServico($rs['servico_id']);
 				$rs['glossarios'] = $this->getGlossarioCadatradas($rs['servico_id']);
+				$rs['glossario_list'] = $this->getGlossarioByServico($rs['servico_id']);
 				$rs['downloads'] = $this->getDownloadCadastrados($rs['servico_id']);
+				$rs['download_list'] = $this->getDownloadByServico($rs['servico_id']);
 				$rs['extras'] = $this->getExtraCadastrados($rs['servico_id']);
+				$rs['extra_list'] = $this->getExtraByServico($rs['servico_id']);
 			}
 		}
 		return $this->utf8_array_encode($rs);
@@ -459,6 +463,30 @@ class servico extends defaultClass{
 		}
 		return $arr;
 	}
+	
+	public function getTagsByServico($servico_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	tp.tag_id, t.tag_titulo
+			FROM	tb_servico_tag tp
+			JOIN	tb_tag t
+			ON		tp.tag_id = t.tag_id
+			WHERE	1 = 1
+			AND		servico_id = '{$servico_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	
 	public function getDownloadCadastrados($servico_id){
 		$sql = array();
 		$sql[] = "
@@ -473,6 +501,28 @@ class servico extends defaultClass{
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
 					$arr[] = $rs['download_id'];
+				}
+			}
+		}
+		return $arr;
+	}
+
+	public function getDownloadByServico($servico_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	pd.servico_id, d.*
+			FROM	tb_servico_download pd
+			JOIN	tb_download d
+			ON		pd.download_id = d.download_id
+			WHERE	1 = 1
+			AND		servico_id = '{$servico_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
 				}
 			}
 		}
@@ -499,6 +549,37 @@ class servico extends defaultClass{
 		return $arr;
 	}
 	
+	public function getGlossarioByServico($servico_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	pg.servico_id
+					,pg.glossario_id
+					,g.glossario_palavra
+					,g.glossario_definicao
+					,g.glossario_fonte
+					,g.glossario_link_fonte
+					,g.glossario_conteudo
+					,g.glossario_exibir
+			FROM	tb_servico_glossario pg
+			JOIN	tb_glossario g
+			ON		pg.glossario_id = g.glossario_id
+			WHERE	1 = 1
+			AND		g.glossario_exibir = 'S'
+			AND		servico_id = '{$servico_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+
+	
 	public function getExtraCadastrados($servico_id){
 		$sql = array();
 		$sql[] = "
@@ -519,6 +600,33 @@ class servico extends defaultClass{
 		}
 		return $arr;
 	}
+	
+	public function getExtraByServico($servico_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	e.extra_id
+					,e.extra_nome_campo
+					,pe.servico_extra_valor
+			FROM	tb_servico_extra pe
+		    JOIN	tb_extra e
+			ON		pe.extra_id = e.extra_id
+			WHERE	1 = 1
+			AND		pe.servico_extra_valor IS NOT NULL
+			AND		TRIM(pe.servico_extra_valor) != ''
+			AND		servico_id = '{$servico_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+
 	
 	public function getTags(){
 		$sql = array();
