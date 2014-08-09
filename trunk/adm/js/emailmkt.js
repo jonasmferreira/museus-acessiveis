@@ -4,7 +4,7 @@
 		name = $( "#nome_teste_disparo" ),
 		email = $( "#email_teste_disparo" ),
 		allFields = $( [] ).add( name ).add( email ),emailmkt_id_email;
-		dialog_disparo = $( "#dialog-form" ).dialog({
+		$( "#dialog-form-emailmkt" ).dialog({
 			autoOpen: false,
 			height: 300,
 			width: 350,
@@ -27,14 +27,14 @@
 
 						}
 					});
-					dialog_disparo.dialog( "close" );
+					$(this).dialog( "close" );
 				},
 				"Cancelar": function() {
-					dialog_disparo.dialog( "close" );
+					$(this).dialog( "close" );
 				}
 			},
 			close: function() {
-				$("#dialog-form form").reset();
+				$("#dialog-form-emailmkt form").reset();
 				allFields.removeClass( "ui-state-error" );
 			}
 		});
@@ -100,7 +100,7 @@
 		});
 		$(".btDisparo").click(function(){
 			emailmkt_id_email = $(this).attr('rel');
-			dialog_disparo.dialog('open');
+			$("#dialog-form-emailmkt").dialog("open");
 		});
 	});
 })(jQuery);

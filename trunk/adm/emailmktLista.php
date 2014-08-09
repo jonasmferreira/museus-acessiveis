@@ -25,20 +25,21 @@
 		$obj->unRegisterSession($aErro);
 	}
 	//$obj->debug($aRows);
+	$rnd = date("ymdhis");
 ?>
-<script type="text/javascript" src="js/emailmkt.js"></script>
+<script type="text/javascript" src="js/emailmkt.js?rnd=<?=$rnd?>"></script>
 <style>
-	#dialog-form label, #dialog-form input { display:block; }
-	#dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
-	#dialog-form fieldset { padding:0; border:0; margin-top:25px; }
-	#dialog-form h1 { font-size: 1.2em; margin: .6em 0; }
-	#dialog-form div#users-contain { width: 350px; margin: 20px 0; }
-	#dialog-form div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-	#dialog-form div#users-contain table td, #dialog-form div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-	#dialog-form .ui-dialog .ui-state-error { padding: .3em; }
-	#dialog-form .validateTips { border: 1px solid transparent; padding: 0.3em; }
+	#dialog-form-emailmkt label, #dialog-form-emailmkt input { display:block; }
+	#dialog-form-emailmkt input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	#dialog-form-emailmkt fieldset { padding:0; border:0; margin-top:25px; }
+	#dialog-form-emailmkt h1 { font-size: 1.2em; margin: .6em 0; }
+	#dialog-form-emailmkt div#users-contain { width: 350px; margin: 20px 0; }
+	#dialog-form-emailmkt div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+	#dialog-form-emailmkt div#users-contain table td, #dialog-form-emailmkt div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+	#dialog-form-emailmkt .ui-dialog .ui-state-error { padding: .3em; }
+	#dialog-form-emailmkt .validateTips { border: 1px solid transparent; padding: 0.3em; }
 </style>
-<div id="dialog-form" title="Teste de Disparo" style="display:none">
+<div id="dialog-form-emailmkt" title="Teste de Disparo" style="display:none">
 	<form>
 		<fieldset>
 			<label for="name">Nome</label>
