@@ -34,7 +34,10 @@
 				}
 			},
 			close: function() {
-				$("#dialog-form-emailmkt form").reset();
+				$("#nome_teste_disparo").val('');
+				$("#email_teste_disparo").val('');
+				//$("#dialog-form-emailmkt form").reset();
+				$(this).dialog( "close" );
 				allFields.removeClass( "ui-state-error" );
 			}
 		});
