@@ -430,6 +430,157 @@ class agenda extends defaultClass{
 		return $aArr;
 	}
 	
+	
+	public function getAgendaLista(){
+		$path_root_agendaClass = dirname(__FILE__);
+		$DS = DIRECTORY_SEPARATOR;
+		$path_root_agendaClass = "{$path_root_agendaClass}{$DS}..{$DS}..{$DS}";
+		include_once("{$path_root_agendaClass}adm{$DS}class{$DS}configuracao.class.php");
+		$objConfig = new configuracao();
+		$aConfig = $objConfig->getOne();
+
+		//$objConfig->debug($aConfig);
+		$linkAbsolute=$aConfig['configuracao_baseurl'];
+		$sql = array();
+
+/*
+		$month = trim($month!="")?$month:date("m");
+		$year = trim($year!="")?$year:date("Y");
+*/
+		//novidade 360
+		$sQuery = "
+			SELECT	
+					t.novidade_360_id as item_id
+					,'novidade360' as item_tipo_link
+					,t.novidade_360_titulo as item_titulo
+					,t.novidade_360_resumo as item_resumo
+					,t.novidade_360_dt_agenda as item_dt_agenda
+					,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
+					,novidade_360_thumb as item_thumb
+					,novidade_360_thumb_desc as item_thumb_desc					
+			FROM	tb_novidade_360 t
+			WHERE	1 = 1 ";
+/*
+			if(trim($month)!='' && trim($year)!=''){		
+
+				$sQuery .= 	"
+						AND		MONTH(t.novidade_360_dt_agenda) = '{$month}'
+						AND		YEAR(t.novidade_360_dt_agenda) = '{$year}'
+					";
+			}
+*/		
+		$sql[] = $sQuery;
+			
+		//Projetos
+		$sQuery = "
+			SELECT	
+					t.projeto_id as item_id
+					,'projeto' as item_tipo_link
+					,t.projeto_titulo as item_titulo
+					,t.projeto_resumo as item_resumo
+					,t.projeto_agenda as item_dt_agenda
+					,DAY(t.projeto_agenda) as item_dt_agenda_dia
+					,projeto_thumb as item_thumb
+					,projeto_thumb_desc as item_thumb_desc					
+			FROM	tb_projeto t
+			WHERE	1 = 1 ";
+/*
+			if(trim($month)!='' && trim($year)!=''){		
+
+				$sQuery .= 	"
+						AND		MONTH(t.projeto_agenda) = '{$month}'
+						AND		YEAR(t.projeto_agenda) = '{$year}'
+					";
+			}
+*/
+			$sql[] = $sQuery;
+			
+			
+		//cursos
+		$sQuery = "
+			SELECT	
+					t.curso_id as item_id
+					,'curso' as item_tipo_link
+					,t.curso_titulo as item_titulo
+					,t.curso_resumo as item_resumo
+					,t.curso_agenda as item_dt_agenda
+					,DAY(t.curso_agenda) as item_dt_agenda_dia
+					,curso_thumb as item_thumb
+					,curso_thumb_desc as item_thumb_desc					
+			FROM	tb_curso t
+			WHERE	1 = 1 ";
+/*
+			if(trim($month)!='' && trim($year)!=''){		
+
+				$sQuery .= 	"
+					AND		MONTH(t.curso_agenda) = '{$month}'
+					AND		YEAR(t.curso_agenda) = '{$year}'
+				";
+			}
+*/
+			$sql[] = $sQuery;
+
+		//servicos
+		$sQuery = "
+			SELECT	
+					t.servico_id as item_id
+					,'servico' as item_tipo_link
+					,t.servico_titulo as item_titulo
+					,t.servico_resumo as item_resumo
+					,t.servico_agenda as item_dt_agenda
+					,DAY(t.servico_agenda) as item_dt_agenda_dia
+					,servico_thumb as item_thumb
+					,servico_thumb_desc as item_thumb_desc					
+			FROM	tb_servico t
+			WHERE	1 = 1 ";
+/*
+			if(trim($month)!='' && trim($year)!=''){		
+
+				$sQuery .= 	"
+					AND		MONTH(t.servico_agenda) = '{$month}'
+					AND		YEAR(t.servico_agenda) = '{$year}'
+				";
+			}
+*/
+			$sql[] = $sQuery;
+			
+		$aSql = Array();
+		$aSql[] = "SELECT * FROM (";
+		$aSql[] = implode(" UNION \n",$sql);
+		$aSql[] = ") AS item_busca ";
+		$aSql[] = "WHERE 1 = 1 ";
+		$aSql[] = "AND item_dt_agenda_dia > 0 ";
+
+		$count = $this->getTotalData(implode("\n",$aSql));
+		
+		$sOrder = $this->getAOrderBy();
+		if(isset($sOrder)&&trim($sOrder)!=''){
+			$aSql[] = $sOrder;
+		}else{
+			$aSql[] = "ORDER BY item_dt_agenda DESC";
+		}
+		
+		$aRet = array(
+			'records'=>$count
+		);
+		$arr = array();
+		
+		$result = $this->dbConn->db_query(implode("\n",$aSql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$sLink = "{$linkAbsolute}{$rs['item_tipo_link']}/{$rs['item_id']}/{$rs['item_titulo']}";
+					$rs['item_dt_agenda_dia'] = "<a href='{$sLink}'>{$rs['item_titulo']}</a>";
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$aRet['rows'] = $arr;
+		return $aRet;
+		
+	}
+	
+	
 	public function getFiqueAtento($month,$year){
 		$path_root_agendaClass = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
