@@ -87,7 +87,7 @@
 					<?php } ?>
 					</span>
 					<p id="news-spotlight"  tabIndex="34">
-						<?=$aProjeto['projeto_resumo'];?>
+						<b><?=$aProjeto['projeto_resumo'];?></b>
 					</p>
 					<div id="project-content">
 						<?=$aProjeto['projeto_conteudo'];?>
