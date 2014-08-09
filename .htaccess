@@ -12,6 +12,8 @@
 	RewriteRule ^downloads/?$ downloadLista.php
 	RewriteRule ^imprensa/?$ imprensaLista.php
 	RewriteRule ^quem_somos/?$ quemSomos.php
+	RewriteRule ^agenda/?$ agendaLista.php
+
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
