@@ -554,7 +554,7 @@ $(document).ready(function(){
 	
 	//SLIDER do Fique Atento
 	$('.atento-item ul').cycle({
-		fx:      'scrollUp'
+		fx:      'scrollLeft'
 		,speed:    1000
 		,timeout:  2000
 	});
