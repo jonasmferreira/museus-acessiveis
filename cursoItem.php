@@ -13,6 +13,20 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}curso.class.php");
 		$objCurso = new curso();
 
+		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS 
+		$aGloss= array();
+		$aGl=array();
+
+		//LISTA DE ARQUIVOS DE DOWNLOAD RELACIONADOS
+		$aDown= array();
+		
+		//LISTA DE ARQUIVOS DE TAGS RELACIONADOS
+		$aTag= array();
+		$aTg=array();
+
+		//LISTA DE ARQUIVOS DE EXTRAS RELACIONADOS
+		$aExtra= array();
+		
 		$nId = (isset($_REQUEST['curso_id'])?$_REQUEST['curso_id']:0);
 		$objCurso->setValues(
 			array(
@@ -21,8 +35,31 @@
 		);
 		$aCurso = $objCurso->getOne();
 		$aRow = $aCurso;
-		//$objCurso->debug($aCurso);
+		//$objCurso->debug($aRow);
 
+		//Verificando se há tags para exibir
+		if(is_array($aRow['tag_list']) && count($aRow['tag_list'])>0){
+			$aTag = $aRow['tag_list'];
+			//$objProjeto->debug($aTag);
+		}
+
+		//Verificando se há glossários para exibir
+		if(is_array($aRow['glossario_list']) && count($aRow['glossario_list'])>0){
+			$aGloss = $aRow['glossario_list'];
+		}
+		
+		//Verificando se há extras para exibir
+		if(is_array($aRow['extra_list']) && count($aRow['extra_list'])>0){
+			$aExtra = $aRow['extra_list'];
+			//$objProjeto->debug($aExtra);
+		}
+
+		//Verificando se há downloads para exibir
+		if(is_array($aRow['download_list']) && count($aRow['download_list'])>0){
+			$aDown = $aRow['download_list'];
+			//$objProjeto->debug($aDown);
+		}
+		
 		//Verificando se a página foi aberta a partir do Newsletter
 		$nNewsId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
 		
@@ -53,7 +90,126 @@
 						<?php } ?>
 						</span>
 						<p id="news-spotlight"  tabIndex="34"><b><?=$aRow['curso_resumo'];?></b></p>
-						<?=$aRow['curso_conteudo'];?>
+						<div id="project-content">
+							<?=$aRow['curso_conteudo'];?>
+						</div>
+						<div class="clear"></div>
+						
+						<!-- EXTRAS -->
+						<div>
+						<?php
+							foreach($aExtra as $k => $v){					
+						?>
+								<span class="orange-color"><?php echo $v['extra_nome_campo'] ;?></span>
+								<p><?php echo $v['curso_extra_valor'] ;?></p><br />
+						<?php } ?>	
+						</div>
+						<div class="clear"></div>
+					
+						<!-- FONTE -->
+						<div>
+							<?php
+								if(trim($aRow['curso_link_fonte'])){
+									echo '<span class="purple-color">fonte: </span><a target="_blank" class="orange-color" class="orange-color" href="' . $aRow['curso_link_fonte'] . '">'. $aRow['curso_fonte'] .'</a>';
+								}elseif(trim($aRow['curso_fonte'])){
+									echo '<span class="purple-color">fonte: </span><span  class="purple-color">' . $aRow['curso_fonte'] . '</span>';
+								}
+							?>
+						</div>
+
+						<!-- TAGS -->
+						<div>
+						<?php
+							if(is_array($aTag) && count($aTag)>0){
+						?>
+								<div class="clear"><br /></div>
+								<span class="orange-color">Tags: </span>
+								<span>
+						<?php	
+								foreach($aTag as $k => $v){					
+									$aTg[] = $v['tag_titulo'];
+								} 
+
+								echo implode(', ',$aTg);
+							}
+
+						?>	
+							</span>
+						</div>
+
+						<!-- GLOSSÁRIO -->
+						<div>
+						<?php
+							if(count($aGloss)>0){
+						?>
+								<div class="clear"><br /></div>
+								<span class="orange-color">Glossário: </span>
+								<span>
+						<?php	
+								foreach($aGloss as $k => $v){					
+									$aGl[] = $v['glossario_palavra'];
+								} 
+								echo implode(', ',$aGl);
+							}
+
+						?>	
+							</span>
+						</div>
+						<div class="clear"><br /></div>
+					
+						<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+						<?php 
+							if(count($aDown)>0){
+						?>	
+
+							<div id="download-box" style="padding-left:0 !important;">
+								<h3 tabIndex="31" class="orange-color">Downloads</h2>
+								<table id="list" width="100%" cellpading="0" cellspacing="0">
+										<thead>
+											<tr>
+												<td tabIndex="">
+													<span>Data</span>
+												</td>
+												<td tabIndex="7">
+													Descrição
+												</td>
+												<td tabIndex="">
+													Formato
+												</td>
+												<td tabIndex="19">
+													Tamanho
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+					<?php 
+										foreach($aDown as $k => $v){
+					?>
+											<tr>
+												<td>
+													<span><?=$v['download_dt'];?></span>
+												</td>
+												<td>
+													<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
+												</td>
+												<td>
+													<span><?=$v['download_tipo_label'];?></span>
+												</td>
+												<td>
+													<span><?=$v['download_tamanho_label'];?></span>
+												</td>
+											</tr>
+					<?php
+							}
+					?>						
+										</tbody>
+								</table>
+								</div>
+					<?php } ?>
+								<div class="clear"></div>
+					<!-- FIM DOWNLOADS -->
+						
+						
 					</div>
         	</div>
         	<div class="clear"></div>

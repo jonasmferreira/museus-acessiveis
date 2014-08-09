@@ -12,18 +12,16 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}projeto.class.php");
 		$objProjeto = new projeto();
 
+		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS COM O PROJETO
+		$aGloss= array();
+		$aGl=array();
+
 		//LISTA DE ARQUIVOS DE DOWNLOAD RELACIONADOS COM O PROJETO
 		$aDown= array();
 		
 		//LISTA DE ARQUIVOS DE TAGS RELACIONADOS COM O PROJETO
 		$aTag= array();
 		$aTg=array();
-
-		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS COM O PROJETO
-		include_once("{$path_root_page}adm{$DS}class{$DS}glossario.class.php");
-		$objGloss = new glossario();
-		$aGloss= array();
-		$aGl=array();
 
 		//LISTA DE ARQUIVOS DE EXTRAS RELACIONADOS COM O PROJETO
 		$aExtra= array();
@@ -111,7 +109,7 @@
 					<div>
 						<?php
 							if(trim($aProjeto['projeto_link_fonte'])){
-								echo '<span class="purple-color">fonte: </span><a class="orange-color" class="orange-color" href="' . $aProjeto['projeto_link_fonte'] . '">'. $aProjeto['projeto_fonte'] .'</a>';
+								echo '<span class="purple-color">fonte: </span><a target="_blank" class="orange-color" class="orange-color" href="' . $aProjeto['projeto_link_fonte'] . '">'. $aProjeto['projeto_fonte'] .'</a>';
 							}elseif(trim($aProjeto['projeto_fonte'])){
 								echo '<span class="purple-color">fonte: </span><span  class="purple-color">' . $aProjeto['projeto_fonte'] . '</span>';
 							}
@@ -158,57 +156,57 @@
 					</div>
 					<div class="clear"><br /></div>
 					
-	<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
-	<?php 
-		if(count($aDown)>0){
-	?>	
+					<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+					<?php 
+						if(count($aDown)>0){
+					?>	
 
-		<div id="download-box" style="padding-left:0 !important;">
-           	  <h3 tabIndex="31" class="orange-color">Downloads</h2>
-              <table id="list" width="100%" cellpading="0" cellspacing="0">
-              		<thead>
-                    	<tr>
-                        	<td tabIndex="">
-                            	<span>Data</span>
-                            </td>
-                        	<td tabIndex="7">
-                            	Descrição
-                            </td>
-                        	<td tabIndex="">
-                            	Formato
-                            </td>
-                        	<td tabIndex="19">
-                            	Tamanho
-                            </td>
-                        </tr>
-                    </thead>
-              		<tbody>
-<?php 
-					foreach($aDown as $k => $v){
-?>
-						<tr>
-                        	<td>
-                            	<span><?=$v['download_dt'];?></span>
-                            </td>
-                        	<td>
-                            	<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
-                            </td>
-                        	<td>
-                            	<span><?=$v['download_tipo_label'];?></span>
-                            </td>
-                        	<td>
-                            	<span><?=$v['download_tamanho_label'];?></span>
-                            </td>
-                        </tr>
-<?php
-		}
-?>						
-                    </tbody>
-              </table>
-            </div>
-<?php } ?>
-            <div class="clear"></div>
-<!-- FIM DOWNLOADS -->
+						<div id="download-box" style="padding-left:0 !important;">
+							<h3 tabIndex="31" class="orange-color">Downloads</h2>
+							<table id="list" width="100%" cellpading="0" cellspacing="0">
+									<thead>
+										<tr>
+											<td tabIndex="">
+												<span>Data</span>
+											</td>
+											<td tabIndex="7">
+												Descrição
+											</td>
+											<td tabIndex="">
+												Formato
+											</td>
+											<td tabIndex="19">
+												Tamanho
+											</td>
+										</tr>
+									</thead>
+									<tbody>
+				<?php 
+									foreach($aDown as $k => $v){
+				?>
+										<tr>
+											<td>
+												<span><?=$v['download_dt'];?></span>
+											</td>
+											<td>
+												<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
+											</td>
+											<td>
+												<span><?=$v['download_tipo_label'];?></span>
+											</td>
+											<td>
+												<span><?=$v['download_tamanho_label'];?></span>
+											</td>
+										</tr>
+				<?php
+						}
+				?>						
+									</tbody>
+							</table>
+							</div>
+				<?php } ?>
+							<div class="clear"></div>
+				<!-- FIM DOWNLOADS -->
 
 					
 				</div>
