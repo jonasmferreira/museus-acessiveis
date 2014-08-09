@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+.contrast body {
+	background: #000 url(../img/emkt_bg_contrast.gif) left top repeat !important; 
+	color: #FFF !important;
+}
+
+.contrast a{
+	color: #FFF !important;
+}
+
+.contrast .separator{
+	background: url(../img/emkt_bg_separator_contrast.png) left top no-repeat !important;
+}
+	
+.contrast #root{
+	background-color: #000 !important;
+}
+
+.contrast #access-bar{
+	color:#000 !important;
+	background-color: #FFF !important;
+}
+
+.contrast #access-bar a{
+	color: #000 !important;
+}
+
+.contrast #header{
+	background: #000 url(../img/emkt_bg_top_contrast.gif) left top repeat-x !important;
+}
+.contrast #header td.title{
+	background: url(../img/emkt_title_contrast.png) left 35px no-repeat !important;
+}
+
+.contrast #header td.title #edicao{
+	background: #FFF !important;
+	color: #000 !important;
+}
+
+.contrast #header td.title #edicao a{
+	color: #000 !important;
+}
+
+.contrast #project .outdoor{
+	background: url(../img/emkt_projeto_bg_contrast.png) left top no-repeat !important;
+}
+
+.contrast h1.project-title{
+	background: url(../img/emkt_projeto_ico_contrast.png) left top no-repeat !important;color: #FFF !important;
+}
+
+.contrast #project .description p{
+	color: #FFF !important;
+}
+
+.contrast #project a.saibamais{
+	background: #FFF !important;
+	color: #000 !important;
+}
+
+.contrast #acessibilidade{
+	background: url(../img/emkt_access_bg_purple2_contrast.png) left bottom no-repeat !important;
+}
+.contrast #acessibilidade .box{
+	background: url(../img/emkt_access_bg_purple1_contrast.png) left top no-repeat !important;
+	
+}
+.contrast #acessibilidade .box .word-box{
+	background: url(../img/emkt_access_bg_yellow.png) left top repeat-y !important;
+}
+
+.contrast #acessibilidade .box .word-box h2.word{
+	color: #000 !important;
+	background: url(../img/emkt_access_word_bg_contrast.png) left top no-repeat !important;
+}
+
+.contrast #acessibilidade .box .word-box .description{
+	color: #000 !important;
+}
+
+.contrast a.glossario{
+	background: #FFF !important;
+	color: #000 !important;	
+}
+
+.contrast h1.news-title{
+	color: #FFF !important;background: url(../img/emkt_news360_ico_contrast.png) left top no-repeat !important;
+}
+
+.contrast #news h3.title{
+	color: #FFF !important;
+}
+
+.contrast #news p.description{
+	color: #FFF !important;
+}
+
+.contrast #news a.saibamais{
+	background: #FFF !important;color: #000 !important;	
+}
+
+.contrast #news ul li{
+	border-bottom: 1px solid #FFF !important;
+}
+
+.contrast #news ul li h3.title a{
+	color: #FFF !important;
+}
+
+.contrast #aquitem{
+	background: url(../img/emkt_bg_bottom_contrast.png) left bottom no-repeat !important;
+}
+
+.contrast #aquitem h1.news-title{
+	color: #FFF !important;background: url(../img/emkt_aquitem_ico_contrast.png) left top no-repeat !important;
+}
+
+.contrast #aquitem h3.title{
+	color: #FFF !important;
+}
+
+.contrast #aquitem p.description{
+	color: #FFF !important;
+}
+
+.contrast #aquitem a.saibamais{
+	background: #FFF !important;color: #000 !important;	
+}
+
+.contrast #schedule{
+	background: #000 url(../img/emkt_schedule_box_bg_contrast.gif) left bottom repeat-x !important;
+}
+
+.contrast #schedule h1.title{
+	color: #FFF !important;background: url(../img/emkt_schedule_ico_contrast.png) left top no-repeat !important;
+}
+
+.contrast #schedule a.saibamais{
+	background: #FFF !important;color: #000 !important;	
+}
+
+.contrast #schedule #schedule-box .day-box{
+	background: url(../img/emkt_schedule_bg_contrast.png) left top no-repeat !important;
+}
+
+.contrast #schedule #schedule-box .day-box .day{
+	color: #000 !important;
+}
+
+.contrast #schedule #schedule-box .day-box .month{
+	color: #000 !important;
+}
+
+.contrast #schedule #schedule-box .title{
+	color: #FFF !important;
+}
+.contrast #schedule #schedule-box .title a{
+	color: #FFF !important;
+}
+
+.contrast #footer{
+	background: #fcee21 !important;color: #000 !important;
+}
+
+.contrast #footer table{
+	background: url(../img/emkt_footer_bg_contrast.png) 370px bottom no-repeat !important;
+}
+
+.contrast #footer td.opcoes a{
+	color: #000 !important;
+}
+
+.contrast #footer #devices a{
+	color: #000 !important;
+}
+
+.contrast #footer #devices .facebook{
+	background: url(../img/ico_facebook_contrast.png) left center no-repeat !important;
+}
+
+.contrast #footer #web a{
+	color: #000 !important;
+}
+
+.contrast .news-info{
+	color: #FFF !important;
+}
+
+.contrast .news-info a{
+	color: #FFF !important;
+}
