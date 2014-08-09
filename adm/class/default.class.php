@@ -172,6 +172,13 @@ class defaultClass {
 		$this->files = $files;
 	}
 
+	public function str_to_utf8($str) { 
+		if (mb_detect_encoding($str, 'UTF-8', true) === false) { 
+			$str = utf8_encode($str); 
+		}
+		return $str;
+	}
+	
 	public function utf8Encode2Decode($string) {
 		if (strtoupper(mb_detect_encoding($string . "x", 'UTF-8, ISO-8859-1')) == 'UTF-8') {
 			return str_replace(array("\'",'\"'),array("'",'"'),$string);
