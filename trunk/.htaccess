@@ -9,8 +9,14 @@
 	RewriteRule ^(.*)$ $1.php
 
 	RewriteRule ^home/?$ index.php
+	RewriteRule ^downloads/?$ downloadLista.php
+	RewriteRule ^imprensa/?$ imprensaLista.php
+	RewriteRule ^quem_somos/?$ quemSomos.php
+	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
+
+	RewriteRule ^boletim/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
 
 	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
 	RewriteRule ^glossario/([^/]+)/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2&emailmkt_id=$3
@@ -21,13 +27,6 @@
 	RewriteRule ^novidade360/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1
 	RewriteRule ^novidade360/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2
 	RewriteRule ^novidade360/([^/]+)/([^/]+)/([^/]+)/?$ novidadeItem.php?novidade_360_id=$1&novidade_360_titulo=$2&emailmkt_id=$3
-
-
-	RewriteRule ^downloads/?$ downloadLista.php
-	RewriteRule ^imprensa/?$ imprensaLista.php
-
-	RewriteRule ^quem_somos/?$ quemSomos.php
-	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
 	RewriteRule ^cursos/?$ cursoLista.php
 	RewriteRule ^cursos/([^/]+)/([^/]+)/?$ cursoLista.php?tipo_curso_id=$1&tipo_curso_titulo=$2
@@ -46,8 +45,6 @@
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 	RewriteRule ^projeto/([^/]+)/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2&emailmkt_id=$3
-
-	RewriteRule ^newsletter/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
 	
 </IfModule>
 <IfModule !mod_rewrite.c>

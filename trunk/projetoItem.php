@@ -219,7 +219,7 @@
 			<?php
 				if($nNewsId!=0){
 			?>
-				<a href="<?=$linkAbsolute?>newsletter/<?=$nNewsId;?>">Voltar</a>
+				<a href="<?=$linkAbsolute?>boletim/<?=$nNewsId;?>">Voltar</a>
 			<?php } ?>
 			</div>
 			
