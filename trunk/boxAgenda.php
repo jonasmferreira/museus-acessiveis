@@ -60,7 +60,10 @@
 			   </div>
 			</div>
 		</div>
+		
+		
 		<?php if($aFiqueAtento['records']>0){  ?>
+		
 		<div id="atento">
 			<h1 tabIndex="102">Fique atento!</h1>
 			<div class="atento-item">
@@ -71,14 +74,23 @@
 					<li>
 						<div tabIndex="103" id="day"><?=$v['item_dt_agenda_dia'];?></div>
 						<h3 tabIndex="104" id="month"><?=$aFiqueAtento['mesExtenso'];?></h3>
-						<span tabIndex="105" id="event">
-							<a href="<?=$linkAbsolute;?><?=$v['item_tipo_link'];?>/<?=$v['item_id'];?>/<?=$v['item_titulo'];?>"><?=$v['item_titulo'];?></a>
-						</span>
+						<div style="height:10px;"></div>
+						<span tabIndex="105" id="event"><a href="<?=$linkAbsolute;?><?=$v['item_tipo_link'];?>/<?=$v['item_id'];?>/<?=$v['item_titulo'];?>"><?=$v['item_titulo'];?></a></span>
 					</li>
 <?php			
 				}
 			?>
 				</ul>
 			</div>
+			<div id="agenda-link">
+				<a href="<?=$linkAbsolute;?>agenda" class="purple-color">
+					<b>Fique pro dentro da<br />
+					Agenda Brasil de Acessibilidade</b>
+				</a>
+			</div>
+			
 		</div>
+		
+		
+		
 <?php } ?>
