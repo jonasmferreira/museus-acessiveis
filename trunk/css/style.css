@@ -685,19 +685,29 @@ div.news-spotlight{
 	color: #FFF !important;
 }
 
+#atento .atento-item{
+	width: 123px;
+	/*height:143px;*/
+	background: url(../img/schedule_box.png) left top no-repeat;	
+}
+
+
 #atento #day{
-	font-size: 109px;
-	line-height: 99px;
+	font-size: 80px;
+	line-height: 70px;
 	font-weight: bold;
 	color: #f37920;
-	margin: 0 0 0 -10px;
+	/*margin: 0 0 0 -10px;*/
+	padding: 35px 0 0 0;
+	text-align: center;
 }
 #atento h3#month{
 	text-transform: uppercase;
 	color: #f37920;
 	font-size: 17px;
 	font-weight: bold;
-	padding: 0 0 7px 0;
+	padding: 12px 0 7px 0;
+	text-align: center;
 }
 
 #atento span#event{
@@ -714,6 +724,10 @@ div.news-spotlight{
 	background: #f37920;
 }
 
+#atento #agenda-link{
+	padding: 10px 0;
+	font-size: 14px;
+}
 
 /* PÁGINA DE DOWNLOADS E IMPRENSA */
 
