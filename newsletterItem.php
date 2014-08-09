@@ -68,7 +68,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
     	<tr>
         	<td align="center" class="news-info" height="30" style="font-size:11px; color:#000;">
-            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?=$linkAbsolute?>newsletter/<?=$aNewsletter['emailmkt_id'];?>" target="_blank">clique aqui!</a>
+            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?=$linkAbsolute?>boletim/<?=$aNewsletter['emailmkt_id'];?>" target="_blank">clique aqui!</a>
             </td>
         </tr>
     </table>
@@ -101,7 +101,7 @@
 					$sMes = $objEmkt->getMes($aDt[1]);
 				?>
 				<span style="background: #666;padding: 2px 5px;font-size: 13px;color: #FFF;margin: 0 0 0 10px;" id="edicao">
-					<a style="color: #FFF;text-decoration: none !important;" href="<?=$linkAbsolute?>newsletter/<?=$aNewsletter['emailmkt_id'];?>" target="_blank">
+					<a style="color: #FFF;text-decoration: none !important;" href="<?=$linkAbsolute?>boletim/<?=$aNewsletter['emailmkt_id'];?>" target="_blank">
 						Edição <?php echo $sMes;?> | <?php echo $aDt[0];?>
 					</a>
 				</span>
