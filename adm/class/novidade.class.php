@@ -149,6 +149,7 @@ class novidade extends defaultClass{
 				$rs['novidade_360_dthr'] = $this->dateDB2BR($rs['novidade_360_dt'])." às ".$rs['novidade_360_hr'];
 				$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
+				//$rs['novidade_360_conteudo'] = $this->str_to_utf8($rs['novidade_360_conteudo']);
 			}
 		}
 		return $this->utf8_array_encode($rs);
