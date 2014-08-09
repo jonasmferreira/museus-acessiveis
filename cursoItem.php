@@ -89,7 +89,9 @@
 							Período: Sob demanda
 						<?php } ?>
 						</span>
-						<p id="news-spotlight"  tabIndex="34"><b><?=$aRow['curso_resumo'];?></b></p>
+						<p id="news-spotlight"  tabIndex="34">
+							<b><?=$aRow['curso_resumo'];?></b>
+						</p>
 						<div id="project-content">
 							<?=$aRow['curso_conteudo'];?>
 						</div>
