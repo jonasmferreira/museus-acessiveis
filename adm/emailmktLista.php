@@ -1,9 +1,27 @@
 <?php
+
 	$path_root_emailmktLista = dirname(__FILE__);
 	$DS = DIRECTORY_SEPARATOR;
 	$path_root_emailmktLista = "{$path_root_emailmktLista}{$DS}..{$DS}";
 	include_once "{$path_root_emailmktLista}adm{$DS}includes{$DS}header.php";
 	include_once("{$path_root_emailmktLista}adm{$DS}class{$DS}emailmkt.class.php");
+
+	//configuração de url absoluta
+	include_once("{$path_root_emailmktLista}adm{$DS}class{$DS}configuracao.class.php");
+	$objConfig = new configuracao();
+	$aConfig = $objConfig->getOne();
+	//$objConfig->debug($aConfig);
+
+	$linkAbsolute=$aConfig['configuracao_baseurl'];
+	$seqAleatoria = "rnd=".str_replace(".","",microtime(true));
+
+	$author = $aConfig['configuracao_meta_author'];
+	$keywords = $aConfig['configuracao_meta_keywords'];
+	$description = $aConfig['configuracao_meta_description'];
+	
+	
+	
+	
 	$obj = new emailmkt();
 	$aStatus = $obj->getStatus();
 	$aFilterField = $obj->getFilterFieldName();
@@ -29,6 +47,7 @@
 ?>
 <script type="text/javascript" src="js/emailmkt.js?rnd=<?=$rnd?>"></script>
 <style>
+	#dialog-form-emailmkt{display:none;}
 	#dialog-form-emailmkt label, #dialog-form-emailmkt input { display:block; }
 	#dialog-form-emailmkt input.text { margin-bottom:12px; width:95%; padding: .4em; }
 	#dialog-form-emailmkt fieldset { padding:0; border:0; margin-top:25px; }
@@ -39,7 +58,7 @@
 	#dialog-form-emailmkt .ui-dialog .ui-state-error { padding: .3em; }
 	#dialog-form-emailmkt .validateTips { border: 1px solid transparent; padding: 0.3em; }
 </style>
-<div id="dialog-form-emailmkt" title="Teste de Disparo" style="display:none">
+<div id="dialog-form-emailmkt" title="Teste de Disparo">
 	<form>
 		<fieldset>
 			<label for="name">Nome</label>
@@ -122,7 +141,7 @@
 				<td>
 					<a href="emailmktEdicao.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['emailmkt_id']?>" class="btDel">Excluir</a>
-					<a href="../newsletterItem.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
+					<a href="<?=$linkAbsolute;?>boletim/<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
 					<a href="javascript:void(0)" rel="<?=$v['emailmkt_id']?>"  class="btDisparo btView">Testar Disparo</a>
 				</td>
 			</tr>
