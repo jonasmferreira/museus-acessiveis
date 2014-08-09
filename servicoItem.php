@@ -88,7 +88,7 @@
 						</span>
 						
 						<p id="news-spotlight"  tabIndex="34">
-							<?=$aServicos['servico_resumo'];?>
+							<b><?=$aServicos['servico_resumo'];?></b>
 						</p>
 						<div id="project-content">
 							<?=$aServicos['servico_conteudo'];?>
