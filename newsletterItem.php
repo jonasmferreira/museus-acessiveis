@@ -62,13 +62,15 @@
 	</script>
 	<script src="<?=$linkAbsolute?>js/functions2.js?<?=$seqAleatoria?>"></script>
 	<!--link rel="stylesheet" href="<?=$linkAbsolute?>css/newsletter.css?<?=$seqAleatoria?>" type="text/css" media="screen" /-->
+	<link rel="stylesheet" href="<?=$linkAbsolute?>css/newsletter_contrast.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
+
 </head>
 <body style="margin:0; padding:0; border:0; background: #FFF url('<?=$linkAbsolute;?>img/emkt_bg.gif') left top repeat; font-family:Verdana, Helvetica, sans-serif; color: #565652;">
 <div id="root" style="width:680px; margin:0 auto; background-color:#FFF;">
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
     	<tr>
         	<td align="center" class="news-info" height="30" style="font-size:11px; color:#000;">
-            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?=$linkAbsolute?>boletim/<?=$aNewsletter['emailmkt_id'];?>" target="_blank">clique aqui!</a>
+            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?=$linkAbsolute?>boletim/<?=$aNewsletter['emailmkt_id'];?>" target="_blank"><b>clique aqui!</b></a>
             </td>
         </tr>
     </table>
@@ -132,7 +134,7 @@
 	</div>
 	<?php } ?>
 
-	<img class="separator" style="margin: 30px 0 30px 30px;" src="<?=$linkAbsolute?>img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
 
 	<?php
 		$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
@@ -160,8 +162,7 @@
 	</div> 
 	<?php } ?>
 
-	<img class="separator" style="margin: 30px 0 30px 30px;" src="<?=$linkAbsolute?>img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
-
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
 
 	<div id="news" style="padding: 0 0 30px 16px;">
 		<h1 class="news-title" style="font-size:28px;display: block;margin:0;padding: 7px 0 0 56px;color: #28b297;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_news360_ico.png') left top no-repeat;">
@@ -215,7 +216,7 @@
 		</table>
 	</div>
 
-	<img class="separator" style="margin: 30px 0 30px 30px;" src="<?=$linkAbsolute?>img/emkt_bg_separator.png" width="564" height="19"  alt=""/> 
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
 
 	<div id="aquitem" style="padding: 0 31px 30px 16px;background: url('<?=$linkAbsolute;?>img/emkt_bg_bottom.png') left bottom no-repeat;">
 		<h1 style="font-size:28px;display: block;padding: 7px 0 0 56px;margin:0;color: #4d4d4d;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_aquitem_ico.png') left top no-repeat;" class="news-title">Aqui tem Acessibilidade</h1>
@@ -425,7 +426,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
 			<td align="center" class="news-info" height="30" style="font-size:11px; color:#000;">
-				<span style="font-weight:bold;">Política anti-spam:</span> Se você não deseja mais receber este e-mail, <a style="color: #FF0000;text-decoration: none !important;" href="#" target="_blank">clique aqui!</a>
+				<span style="font-weight:bold;">Política anti-spam:</span> Se você não deseja mais receber este e-mail, <a style="color: #FF0000;text-decoration: none !important;" href="#" target="_blank"><b>clique aqui!</b></a>
 			</td>
 		</tr>
 	</table>

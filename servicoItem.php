@@ -261,13 +261,8 @@
         	<div class="clear"></div>
         </div>
         <div class="clear"></div>
-			<div style="text-align: right; font-weight: bold; padding: 10px 10px 10px 0;">
-			<?php
-				if($nNewsId!=0){
-			?>
-				<a href="<?=$linkAbsolute?>boletim/<?=$nNewsId;?>">Voltar</a>
-			<?php } ?>
-			</div>
+
+		<?php include_once("{$path_root_page}newsletterVoltar.php"); ?>
 		
   </div>
   </div>
