@@ -27,7 +27,7 @@
 										foreach($aDown as $k => $v){
 											$sLinkFile='';
 											if($v['download_tipo']!=7){
-												$sLinkFile = '<?=$linkAbsolute;?>arquivosDown/';
+												$sLinkFile = $linkAbsolute .'arquivosDown/';
 											}
 					?>
 											<tr>
