@@ -15,7 +15,7 @@
 		$obj->unRegisterSession($aErro);
 	}
 	$aTipoDownload = $obj->getTipoDownload();
-	$obj->debug($aRow);
+	//$obj->debug($aRow);
 ?>
 <script type="text/javascript" src="js/download.js"></script>
 <div id="contentWrapper">
