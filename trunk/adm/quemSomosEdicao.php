@@ -7,6 +7,7 @@
 	$obj = new quemSomos();
 	$obj->setValues($_REQUEST);
 	$aRow = $obj->getOne();
+	//$obj->debug($aRow);
 	$session = $obj->getSessions();
 	if(trim($session['erro'])!='' && isset($session['erro'])){
 		$obj->alert($session['erro']);
@@ -14,47 +15,49 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$readOnly = ' readonly="yes"';
-	$class = '';
-	
-	//$obj->debug($aRow);
 	
 ?>
-<script type="text/javascript" src="js/quemSomos.js"></script>
+<script type="text/javascript" src="js/curso.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-		Painel Administrativo / Institucional / Quem Somos <strong>/ Editar</strong>
+		Painel Administrativo / Quem Somos <strong>/ <?=isset($aRow['quemsomos_id'])?'Editar':'Cadastrar'?> Quem Somos</strong>
 	</div>
 	<form action="controller/quemSomos.controller.php" method="post" id="formSalvar" name="formSalvar" enctype="multipart/form-data">
 		<input type="hidden" name="action" id="action" value="edit-item" />
-		<input type="hidden" name="texto_id" id="post_id" value="<?=$aRow['texto_id']?>" />
-		<input type="hidden" name="volta" id="volta" value="quemSomosEdicao.php" />
+		<input type="hidden" name="quemsomos_id" id="curso_id" value="<?=$aRow['quemsomos_id']?>" />
+		<input type="hidden" name="voltar" id="voltar" value="quemSomosEdicao.php" />
 		<table cellpadding="0" cellspacing="0" id="formCadastro">
 			<tbody>
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Institucional - Quem Somos</strong>
+						<strong>Dados do Quem Somos</strong>
 					</td>
 				</tr>
 				<tr>
             		<td colspan="3">
-                    	Data (dd/mm/yyyy)<br />
-                        <input <?=$readOnly?> value="<?=$obj->dateDB2BR($aRow['texto_dt'])?>" type="text" class="formTxt <?=$class?> dt" name="texto_dt" id="texto_dt" />
+						Exibir?<br />
+						<input value="S" type="checkbox" <?=$aRow['quemsomos_exibir']=='S'?'checked="checked"':''?> name="quemsomos_exibir" id="quemsomos_exibir"/>&nbsp; Sim
                     </td>
                 </tr>
-            	<tr>
-            		<td colspan="3">
-                    	Conteúdo<br />
-                    	<div class="formTxt" style="width:926px;">
-							<textarea name="texto_conteudo" id="texto_conteudo" class="editor obrigatorio" rows="6" style="width:926px"><?=$aRow['texto_conteudo']?></textarea>
-                        </div>
-                    </td>
-                </tr>
-            	<tr>
-                    <td colspan="3" align="right">
-    	        		<a href="home.php" class="butVoltar">Voltar</a>&nbsp;
-                    	<input type="button" value="Salvar" id="salvar" class="butSalvar" />
-                    </td>
+				<tr>
+					<td colspan="3">
+						Título<br />
+						<input type="text" class="formTxt obrigatorio" name="quemsomos_titulo" id="quemsomos_titulo" style="width:98%" value="<?=$aRow['quemsomos_titulo']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Conteúdo<br />
+						<textarea name="quemsomos_conteudo" id="quemsomos_conteudo" class="editor" rows="5" style="width:99%"><?=$aRow['quemsomos_conteudo']?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td align="right">
+						<a href="quemSomosLista.php" class="butVoltar">Voltar</a>&nbsp;
+						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
+					</td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,8 +1,8 @@
 <?php
-$path_root_quemSomosClass = dirname(__FILE__);
+$path_root_quemSomosController = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
-$path_root_quemSomosClass = "{$path_root_quemSomosClass}{$DS}..{$DS}..{$DS}";
-require_once "{$path_root_quemSomosClass}adm{$DS}class{$DS}quemSomos.class.php";
+$path_root_quemSomosController = "{$path_root_quemSomosController}{$DS}..{$DS}..{$DS}";
+require_once "{$path_root_quemSomosController}adm{$DS}class{$DS}quemSomos.class.php";
 $obj = new quemSomos();
 switch($_REQUEST['action']){
 	case 'edit-item':
@@ -13,24 +13,49 @@ switch($_REQUEST['action']){
 		$obj->setValues($_POST);
 		$obj->setFiles($_FILES);
 		$exec = $obj->edit();
-		if(isset($_POST['texto_id']) && trim($_POST['texto_id'])!=''){
+		if(isset($_POST['quemsomos_id']) && trim($_POST['quemsomos_id'])!=''){
 			if($exec['success']){
-				$msg = "Conteudo atualizado com Sucesso!";
-				$url = "{$volta}?texto_id={$_POST['texto_id']}";
+				$msg = "Cadastro Atualizado com Sucesso!";
+				$url = "{$volta}?quemsomos_id={$_POST['quemsomos_id']}";
 			}else{
-				$msg = "Erro ao atualizar o conteudo!";
-				$url = "{$volta}?texto_id={$_POST['texto_id']}";
+				$msg = "Erro ao atualizar o cadastro!";
+				$url = "{$volta}?quemsomos_id={$_POST['quemsomos_id']}";
 			}
 		}else{
 			if($exec['success']){
-				$msg = "Cadastrado com Sucesso!";
+				$msg = "Cadastrado realizado com Sucesso!";
 				$url = "{$volta}";
 			}else{
-				$msg = "Erro ao cadastrar!";
+				$msg = "Erro ao realizar o cadastro!";
 				$url = "{$volta}";
 			}
 		}
 		$obj->registerSession(array('erro'=>$msg));
 		header("Location: ../{$url}");
+	break;
+	case 'deleteItem':
+		$obj->setValues($_REQUEST);
+		$exec = $obj->deleteItem();
+		if($exec['success']){
+			$msg = "CMD_SUCCESS|Item Excluido com Sucesso!";
+		}else{
+			$msg = "CMD_FAILED|Não é possivel excluir!";
+		}
+		echo $msg;
+	break;
+	case 'getLista':
+		$obj->setValues($_REQUEST);
+		$aResult = $obj->getLista();
+		echo json_encode($aResult);
+	break;
+	case 'removeImage':
+		$obj->setValues($_REQUEST);
+		$exec = $obj->removeImage();
+		if($exec['success']){
+			$msg = "CMD_SUCCESS|Imagem Removida com Sucesso!";
+		}else{
+			$msg = "CMD_FAILED|Não é possivel remover a imagem!";
+		}
+		echo $msg;
 	break;
 }

@@ -53,7 +53,7 @@
            		<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Institucional
                 	<div>
-                    	<a href="quemSomosEdicao.php?texto_id=1" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
+                    	<a href="quemSomosLista.php" style="background-image:url(imgs/icon-videos.png);">Quem Somos</a><br />
 		           		<a href="acessibilidadeEdicao.php?texto_id=2" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
                     	<a href="contatoTipoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipo de Contato</a><br />
                         <a href="contatoLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a><br />
