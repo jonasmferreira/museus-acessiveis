@@ -26,6 +26,7 @@
 		$aDown = $objDown->getLista();
 
 		//$objDown->debug($aDown);
+		
 	?>	
 </head>
 <body>
@@ -41,17 +42,17 @@
               <table id="list" width="100%" cellpading="0" cellspacing="0">
               		<thead>
                     	<tr>
-                        	<td tabIndex="">
-                            	Data
+                        	<td tabIndex="" id="DT">
+								<a class="down_ordem" href="javascript:void(0);">Data</a>
                             </td>
-                        	<td tabIndex="7">
-                            	<span>Descrição</span>
+                        	<td tabIndex="7" id="D">
+                            	<a class="down_ordem" href="javascript:void(0);"><span>Descrição</span></a>
                             </td>
-                        	<td tabIndex="">
-                            	Formato
+                        	<td tabIndex="" id="F">
+								<a class="down_ordem" href="javascript:void(0);">Formato</a>
                             </td>
-                        	<td tabIndex="19">
-                            	Tamanho
+                        	<td tabIndex="19" id="S">
+								<a class="down_ordem" href="javascript:void(0);">Tamanho</a>
                             </td>
                         </tr>
                     </thead>
@@ -83,6 +84,7 @@
 ?>						
                     </tbody>
               </table>
+			  
             </div>
             <div class="clear"></div>
         </div>
