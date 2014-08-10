@@ -19,7 +19,7 @@
 		$objGlossario = new glossario();
 		$aGlossario = array();
 		$aTodosGlossario = $objGlossario->getAll();
-		$objNovidade->debug($aTodosGlossario);
+		//$objNovidade->debug($aTodosGlossario);
 		
 		$nId = (isset($_REQUEST['novidade_360_id'])?$_REQUEST['novidade_360_id']:0);
 		$objNovidade->setValues(
@@ -29,7 +29,7 @@
 		);
 		$aNovidade = $objNovidade->getOne();
 		
-		$objNovidade->debug($aNovidade);
+		//$objNovidade->debug($aNovidade);
 		
 		$sConteudo = $aNovidade['novidade_360_conteudo'];
 		$caracEspeciais = array(
