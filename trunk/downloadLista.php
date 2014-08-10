@@ -57,14 +57,19 @@
                     </thead>
               		<tbody>
 <?php 
-		foreach($aDown['rows'] as $k => $v){
+					foreach($aDown['rows'] as $k => $v){
+						$sLinkFile='';
+						if($v['download_tipo']!=7){
+							$sLinkFile = $linkAbsolute .'arquivosDown/';
+						}
+			
 ?>
 						<tr>
                         	<td>
                             	<span><?=$v['download_dt'];?></span>
                             </td>
                         	<td>
-                            	<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
+                            	<span><a target="_BLANK" href="<?=$sLinkFile;?><?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
                             </td>
                         	<td>
                             	<span><?=$v['download_tipo_label'];?></span>
