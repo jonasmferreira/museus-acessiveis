@@ -863,5 +863,13 @@ table#list tbody td a{
 	padding: 0 0 35px 0;	
 }
 
-
-
+.quemsomos_item{
+	padding: 0 0 20px 0;
+}
+.quemsomos_item h3.title{
+	font-weight: bold;;
+	font-size: 18px;
+}
+.quemsomos_item .quemsomos_texto{
+	padding: 5px 0 0 0;
+}
