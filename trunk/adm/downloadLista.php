@@ -79,7 +79,7 @@
 				<td align="center"><?=$v['download_id']?></td>
 				<td align="left"><?=$v['download_dt_hr']?></td>
 				<td align="left"><?=$v['download_titulo']?></td>
-				<td align="left"><?=$v['download_tipo_label']?></td>
+				<td align="left"><?=$v['download_tipo_desc']?></td>
 				<td align="left"><?=$v['download_tamanho']?></td>
 				<td align="left"><?=$v['download_arquivo']?></td>
 				<td>
