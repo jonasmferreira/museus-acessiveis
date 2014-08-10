@@ -231,6 +231,7 @@ class download extends defaultClass{
 			UPDATE	tb_download SET
 					download_titulo = '{$this->values['download_titulo']}'
 					,download_tipo = '{$this->values['download_tipo']}'
+					,download_tipo_desc = '{$this->values['download_tipo_desc']}'
 		";
 		if(trim($this->values['download_arquivo'])!=""){
 			if($this->values['download_tipo']!=7){
@@ -268,6 +269,7 @@ class download extends defaultClass{
 			INSERT	INTO tb_download SET
 					download_titulo = '{$this->values['download_titulo']}'
 					,download_tipo = '{$this->values['download_tipo']}'
+					,download_tipo_desc = '{$this->values['download_tipo_desc']}'
 					,download_dt = CURDATE()
 					,download_hr = CURTIME()
 		";
