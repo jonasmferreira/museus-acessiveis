@@ -48,4 +48,53 @@ switch($_REQUEST['action']){
 		$aResult = $obj->getLista();
 		echo json_encode($aResult);
 	break;
+
+	case 'down-order':
+		
+		$sOrderField = $_POST['order_field'];
+		$linkAbsolute = $_POST['linkAbsolute'];
+		
+		if($sOrderField=='D'){
+			$sOrder = 't.download_titulo';
+		}elseif($sOrderField=='DT'){
+			$sOrder = 't.download_dt';
+		}elseif($sOrderField=='F'){
+			$sOrder = 't.download_tipo_desc';
+		}elseif($sOrderField=='S'){
+			$sOrder = 't.download_tamanho';
+		}
+
+		$obj->setAOrderBy(array(
+			$sOrder => 'ASC'
+		));
+		$obj->setValues(array(
+			'page'=>'1'
+			,'rows'=>'500000'
+		));
+
+		$aResult = $obj->getLista();
+		if($aResult['records']>0){
+			$sTable="";
+			foreach($aResult['rows'] as $k => $v){
+				$sLinkFile='';
+				if($v['download_tipo']!=7){
+					$sLinkFile = $linkAbsolute .'arquivosDown/';
+				}
+				$sTable .= "<tr><td><span>" .$v['download_dt'];
+				$sTable .= "</span></td><td><span><a target='_BLANK' href='"; 
+				$sTable .= $sLinkFile . $v['download_arquivo'] . "'>";
+				$sTable .= $v['download_titulo'];
+				$sTable .= "</a></span></td><td><span>"; 
+				$sTable .= $v['download_tipo_label'] . "</span></td><td><span>";
+				$sTable .= $v['download_tamanho_label'] . "</span></td></tr>";
+			}
+		}
+		$aRet = array(
+			'success'=>true
+			,'rows'=> $sTable
+		);
+		echo json_encode($aRet);
+		
+	break;
+
 }
