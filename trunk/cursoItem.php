@@ -99,12 +99,12 @@
 						
 						<!-- EXTRAS -->
 						<div>
-						<?php
-							foreach($aExtra as $k => $v){					
-						?>
-								<span class="orange-color"><?php echo $v['extra_nome_campo'] ;?></span>
-								<p><?php echo $v['curso_extra_valor'] ;?></p><br />
-						<?php } ?>	
+							<?php
+								foreach($aExtra as $k => $v){					
+							?>
+									<span class="orange-color"><?php echo $v['extra_nome_campo'] ;?></span>
+									<p><?php echo $v['curso_extra_valor'] ;?></p><br />
+							<?php } ?>	
 						</div>
 						<div class="clear"></div>
 					
@@ -120,97 +120,13 @@
 						</div>
 
 						<!-- TAGS -->
-						<div>
-						<?php
-							if(is_array($aTag) && count($aTag)>0){
-						?>
-								<div class="clear"><br /></div>
-								<span class="orange-color">Tags: </span>
-								<span>
-						<?php	
-								foreach($aTag as $k => $v){					
-									$aTg[] = $v['tag_titulo'];
-								} 
-
-								echo implode(', ',$aTg);
-							}
-
-						?>	
-							</span>
-						</div>
+						<?php include_once("{$path_root_page}includeTags.php"); ?>
 
 						<!-- GLOSSÁRIO -->
-						<div>
-						<?php
-							if(count($aGloss)>0){
-						?>
-								<div class="clear"><br /></div>
-								<span class="orange-color">Glossário: </span>
-								<span>
-						<?php	
-								foreach($aGloss as $k => $v){					
-									$aGl[] = $v['glossario_palavra'];
-								} 
-								echo implode(', ',$aGl);
-							}
-
-						?>	
-							</span>
-						</div>
-						<div class="clear"><br /></div>
-					
-						<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
-						<?php 
-							if(count($aDown)>0){
-						?>	
-
-							<div id="download-box" style="padding-left:0 !important;">
-								<h3 tabIndex="31" class="orange-color">Downloads</h2>
-								<table id="list" width="100%" cellpading="0" cellspacing="0">
-										<thead>
-											<tr>
-												<td tabIndex="">
-													<span>Data</span>
-												</td>
-												<td tabIndex="7">
-													Descrição
-												</td>
-												<td tabIndex="">
-													Formato
-												</td>
-												<td tabIndex="19">
-													Tamanho
-												</td>
-											</tr>
-										</thead>
-										<tbody>
-					<?php 
-										foreach($aDown as $k => $v){
-					?>
-											<tr>
-												<td>
-													<span><?=$v['download_dt'];?></span>
-												</td>
-												<td>
-													<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
-												</td>
-												<td>
-													<span><?=$v['download_tipo_label'];?></span>
-												</td>
-												<td>
-													<span><?=$v['download_tamanho_label'];?></span>
-												</td>
-											</tr>
-					<?php
-							}
-					?>						
-										</tbody>
-								</table>
-								</div>
-					<?php } ?>
-								<div class="clear"></div>
-					<!-- FIM DOWNLOADS -->
+						<?php include_once("{$path_root_page}includeGlossario.php"); ?>
 						
+						<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+						<?php include_once("{$path_root_page}includeDownload.php"); ?>
 						
 					</div>
         	</div>
