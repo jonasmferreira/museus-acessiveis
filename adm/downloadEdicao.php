@@ -15,7 +15,7 @@
 		$obj->unRegisterSession($aErro);
 	}
 	$aTipoDownload = $obj->getTipoDownload();
-	//$obj->debug($aRow);
+	$obj->debug($aRow);
 ?>
 <script type="text/javascript" src="js/download.js"></script>
 <div id="contentWrapper">
@@ -50,6 +50,12 @@
 					<td colspan="3">
 						Titulo<br />
 						<input type="text" class="formTxt obrigatorio" name="download_titulo" id="download_titulo" style="width:98%" value="<?=$aRow['download_titulo']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Link Internet<br />
+						<input type="text" class="formTxt" name="download_link" id="download_link" style="width:98%" value="<?=$aRow['download_arquivo']?>" />
 					</td>
 				</tr>
 				<tr>
