@@ -63,7 +63,17 @@
 				}else{
 ?>				
 				<li class="month-list">
-					<h3><a class="orange-color news-list" href=""><?=$aMeses[$nMes];?>/<?=$nAno?></a></h3>
+					<h3>
+						<a class="orange-color news-list" href="">
+							<?php 
+								if($nAno!=0){
+									echo $aMeses[$nMes] .'/'. $nAno;
+								}else{
+									echo 'Sob Demanda';
+								}
+							?>
+						</a>
+					</h3>
 					<div class="itens <?=($k!=0)? ' inactive': '';?>">
 <?php				
 				
