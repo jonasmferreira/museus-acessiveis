@@ -572,6 +572,39 @@ $(document).ready(function(){
 		$(this).removeAttr('tabindex').attr('tabindex',idx);
 		idx++;
 	});
+	
+	//recarregando os downloads na ordem desejada
+	$(".down_ordem").click(function(){
+		var val = '';
+		val = $('table#list thead tr td a span').text();
+		$('table#list thead tr td a span').parent().html(val);
+		
+		val = $(this).html();
+		$(this).html('<span>'+val+'</span>');
+
+		//Ajax para recarregar a tabela de downloads
+		$.ajax({
+			type: "POST"
+			,async:false
+			,url: linkAbsolute+'adm/controller/download.controller.php'
+			,data: {
+				action:'down-order'
+				,'order_field': $(this).parent('td').attr('id')
+				,'linkAbsolute': linkAbsolute
+			}
+			,success:function(msg){
+				if(msg.success){
+					$('table#list tbody').html(msg.rows);
+				}else{
+					alert('Ocorreu um erro, por favor, tente novamente!');
+				}
+			}
+			,dataType: 'json'
+		});
+		
+		
+	});
+	
 
 });
 
