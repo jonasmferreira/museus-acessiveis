@@ -11,10 +11,13 @@
 	RewriteRule ^home/?$ index.php
 	RewriteRule ^downloads/?$ downloadLista.php
 	RewriteRule ^imprensa/?$ imprensaLista.php
-	RewriteRule ^quem_somos/?$ quemSomos.php
 	RewriteRule ^agenda/?$ agendaLista.php
 
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
+
+	RewriteRule ^quem_somos/?$ quemSomosLista.php
+	RewriteRule ^quem_somos/([^/]+)/?$ quemSomosLista.php?quemsomos_id=$1
+	RewriteRule ^quem_somos/([^/]+)/([^/]+)/?$ quemSomosLista.php?quemsomos_id=$1&quemsomos_titulo=$2
 
 	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
 

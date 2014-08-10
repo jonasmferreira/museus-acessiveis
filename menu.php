@@ -4,6 +4,7 @@
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_curso.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_servico.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipoProjeto.class.php");
+	include_once("{$path_root_page}adm{$DS}class{$DS}quemSomos.class.php");
 
 	$objCurso = new tipo_curso();
 	$objCurso->setValues(array(
@@ -27,13 +28,40 @@
 		,'rows'=>'10000'
 	));
 	$aTipoProjeto = $objTipoProjeto->getLista();
+
+	$objQuemSomos = new quemSomos();
+	$objQuemSomos->setValues(array(
+		'quemsomos_exibir'=>'S'
+		,'page'=>'1'
+		,'rows'=>'100000'
+	));
+	$aQuemSomos = $objQuemSomos->getLista();
+	//$objQuemSomos->debug($aQuemSomos);
 	
 ?>
 	<div id="menu" href="menu" accesskey="2" >
         	<ul id="principal">
             	<li class="fontSize"><a tabIndex="5" href="<?=$linkAbsolute;?>home">home</a></li>
-            	<li class="fontSize"><a tabIndex="6" href="<?=$linkAbsolute;?>quem_somos">quem somos</a></li>
-            	<li class="sub-mn fontSize"><a tabIndex="7" href="<?=$linkAbsolute;?>servicos">serviços</a>
+            	<li class="sub-mn fontSize"><a tabIndex="6" href="<?=$linkAbsolute;?>quem_somos">quem somos</a>
+					<?php 
+						if(count($aQuemSomos['rows']>0)){
+?>
+						<div class="submenu">
+							<ul>
+<?php
+							foreach($aQuemSomos['rows'] as $k =>$v){ 
+					?>
+                            <li class="fontSize"><a tabIndex="9" href="<?=$linkAbsolute;?>quem_somos/<?=$v['quemsomos_id'];?>/<?=strtolower($objQuemSomos->toNormaliza($v['quemsomos_titulo']));?>"><?=$v['quemsomos_titulo'];?></a></li>
+					<?php 
+							} 
+?>
+                       </ul>
+                    </div>
+<?php
+						} 
+					?>
+				</li>
+				<li class="sub-mn fontSize"><a tabIndex="7" href="<?=$linkAbsolute;?>servicos">serviços</a>
 					<?php 
 						if(count($aServico['rows']>0)){
 ?>

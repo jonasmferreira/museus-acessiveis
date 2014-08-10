@@ -5,6 +5,7 @@
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_servico.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipo_curso.class.php");
 	include_once("{$path_root_page}adm{$DS}class{$DS}tipoProjeto.class.php");
+	include_once("{$path_root_page}adm{$DS}class{$DS}quemSomos.class.php");
 
 	$objContato = new contato();
 	$objTipoServico = new tipo_servico();
@@ -35,6 +36,16 @@
 		,'rows'=>'10000'
 	));
 	$aTipoProjeto = $objTipoProjeto->getLista();
+	
+	$objQuemSomos = new quemSomos();
+	$objQuemSomos->setValues(array(
+		'quemsomos_exibir'=>'S'
+		,'page'=>'1'
+		,'rows'=>'100000'
+	));
+	$aQuemSomos = $objQuemSomos->getLista();
+	//$objQuemSomos->debug($aQuemSomos);
+	
 	
 ?>
 <div class="clear"></div>    
@@ -107,8 +118,27 @@
         	<strong tabIndex="121">Mapa do Site</strong>
             <ul>
             	<li><a tabIndex="122" href="<?=$linkAbsolute;?>home">Home</a></li>
-            	<li><a tabIndex="123" href="<?=$linkAbsolute;?>quem_somos">Quem Somos</a></li>
-
+				<!-- CARREGAR QUEM SOMOS -->
+<?php 
+				if($aQuemSomos['records']==0){
+?>
+					<li><a tabIndex="123" href="<?=$linkAbsolute;?>quem_somos">Quem Somos</a></li>
+<?php			}else{
+?>
+					<li tabIndex="124">
+						<a tabIndex="125" href="<?=$linkAbsolute;?>quem_somos">Quem Somos</a>
+						<ul>
+<?php					
+						foreach($aQuemSomos['rows'] as $k => $v){
+?>						
+							<li><a tabIndex="126" href="<?=$linkAbsolute;?>quem_somos/<?=$v['quemsomos_id'];?>/<?=$objQuemSomos->toNormaliza($v['quemsomos_titulo']);?>"><?php echo $v['quemsomos_titulo'];?></a></li>
+<?php
+						}
+				}
+?>
+						</ul>
+					</li>
+				
 				<!-- CARREGAR OS TIPOS DE SERVIÇOS -->
 <?php 
 				if($aTipoServico['records']==0){
