@@ -33,6 +33,17 @@
 					}
 			)
 		});
+		
+		$('#download_tipo').change(function() {
+			//Link de Internet
+			if($(this).val()!=7){
+				$("#download_link").attr('disabled','disabled');
+			}else{
+				$("#download_link").removeAttr('disabled');
+			}
+		});
+		$('#download_tipo').change();
+		
 	});
 })(jQuery);
 
