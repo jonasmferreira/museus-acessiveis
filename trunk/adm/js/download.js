@@ -41,6 +41,7 @@
 			}else{
 				$("#download_link").removeAttr('disabled');
 			}
+			$("#download_tipo_desc").val($('#download_tipo option:selected').text());
 		});
 		$('#download_tipo').change();
 		
