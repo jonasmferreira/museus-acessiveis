@@ -46,6 +46,11 @@ class download extends defaultClass{
 			'tipo_download_id'=>6
 			,'tipo_download_titulo'=>'Vídeo'
 		)
+		,7=>array(
+			'tipo_download_id'=>7
+			,'tipo_download_titulo'=>'Link Internet'
+		)
+		
 	);
 	
 	public function __construct() {
@@ -212,7 +217,14 @@ class download extends defaultClass{
 	}
 
 	private function update(){
-		$this->values['download_arquivo'] = $this->uploadFile($this->pathImg, $this->files['download_arquivo']);
+
+		if($this->values['download_tipo']!=7){
+			$this->values['download_arquivo'] = $this->uploadFile($this->pathImg, $this->files['download_arquivo']);
+		}else{
+			//Link Internet
+			$this->values['download_arquivo'] = $this->values['download_link'];
+		}
+		
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -221,7 +233,11 @@ class download extends defaultClass{
 					,download_tipo = '{$this->values['download_tipo']}'
 		";
 		if(trim($this->values['download_arquivo'])!=""){
-			$this->values['download_tamanho'] = filesize("{$this->pathImg}{$this->values['download_arquivo']}");
+			if($this->values['download_tipo']!=7){
+				$this->values['download_tamanho'] = filesize("{$this->pathImg}{$this->values['download_arquivo']}");
+			}else{
+				$this->values['download_tamanho']=0;
+			}
 			$sql[] = "
 				,download_tamanho = '{$this->values['download_tamanho']}'
 				,download_arquivo = '{$this->values['download_arquivo']}'
@@ -238,7 +254,14 @@ class download extends defaultClass{
 	}
 
 	private function insert(){
-		$this->values['download_arquivo'] = $this->uploadFile($this->pathImg, $this->files['download_arquivo']);
+
+		if($this->values['download_tipo']!=7){
+			$this->values['download_arquivo'] = $this->uploadFile($this->pathImg, $this->files['download_arquivo']);
+		}else{
+			//Link Internet
+			$this->values['download_arquivo'] = $this->values['download_link'];
+		}
+		
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -249,7 +272,12 @@ class download extends defaultClass{
 					,download_hr = CURTIME()
 		";
 		if(trim($this->values['download_arquivo'])!=""){
-			$this->values['download_tamanho'] = filesize("{$this->pathImg}{$this->values['download_arquivo']}");
+			if($this->values['download_tipo']!=7){
+				$this->values['download_tamanho'] = filesize("{$this->pathImg}{$this->values['download_arquivo']}");
+			}else{
+				$this->values['download_tamanho']=0;
+			}
+
 			$sql[] = "
 				,download_tamanho = '{$this->values['download_tamanho']}'
 				,download_arquivo = '{$this->values['download_arquivo']}'
