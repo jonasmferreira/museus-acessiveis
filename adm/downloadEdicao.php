@@ -35,7 +35,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="3">
+					<td colspan="2">
 						Tipo Download<br />
 						<select class="formTxt obrigatorio" name="download_tipo" id="download_tipo">
 							<?	foreach($aTipoDownload AS $k=>$v):
@@ -44,6 +44,10 @@
 							<option value="<?=$v['tipo_download_id']?>"<?=$selected?>><?=$v['tipo_download_titulo']?></option>
 							<?	endforeach;?>
 						</select>
+					</td>
+					<td align="right">
+						<!-- campo de 1pixel não mudar -->
+						<input type="text" name="download_tipo_desc" id="download_tipo_desc" style="width:1px; height: 1px;" value="<?=$aRow['download_tipo_desc']?>" />
 					</td>
 				</tr>
 				<tr>
