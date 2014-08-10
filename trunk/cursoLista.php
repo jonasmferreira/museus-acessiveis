@@ -129,7 +129,7 @@
 											<strong><a tabIndex="33" href="<?=$linkAbsolute;?>curso/<?=$v['curso_id'];?>/<?=$objCurso->toNormaliza($v['curso_titulo']);?>"><?=$v['curso_titulo'];?></a></strong>
 										</span>
 										<span class="curso-info orange-color">
-										<?php if($v['curso_sob_demanda']=='N'){  ?>
+										<?php if($v['curso_sob_demanda']=='N' && $v['curso_dt_ini']!='00/00/0000'){  ?>
 											Período: de <?=$v['curso_dt_ini'];?> até <?=$v['curso_dt_fim'];?>
 										<?php }else { ?>
 											Período: Sob demanda
