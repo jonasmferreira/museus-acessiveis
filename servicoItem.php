@@ -75,12 +75,14 @@
 			<div id="news360">
            	  <h1 tabIndex="31" class="orange-color">Servico <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>servicos">| Lista de Serviços</a></h1>
 					<div id="content-news" class="content-box">
+						<?php if($aServicos['servico_agenda']!='00/00/0000'){ ?>
                         <div class="date">
 							<span class="orange-color" tabIndex="32"><?=$aServicos['servico_agenda'];?></span>
 						</div>
+						<?php } ?>
 						<h2 id="title-news" tabIndex="33"><?=$aServicos['servico_titulo'];?></h2>
 						<span class="curso-info orange-color">
-						<?php if($aServicos['servico_sob_demanda']=='N'){  ?>
+						<?php if($aServicos['servico_sob_demanda']=='N' && $aServicos['servico_agenda']!='00/00/0000'){  ?>
 							Período: de <?=$aServicos['servico_dt_ini'];?> até <?=$aServicos['servico_dt_fim'];?>
 						<?php }else { ?>
 							Período: Sob demanda

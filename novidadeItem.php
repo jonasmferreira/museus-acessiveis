@@ -79,9 +79,11 @@
 			<div id="news360">
            	  <h1 tabIndex="31" class="orange-color">Novidades 360º <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>novidade360">| Lista de Notícias</a></h1>
 					<div id="content-news" class="content-box">
+						<?php if($aNovidade['novidade_360_dt_agenda']!='00/00/0000'){ ?>
                         <div class="date">
 							<span class="orange-color" tabIndex="32"><?=$aNovidade['novidade_360_dt_agenda'];?></span>
 						</div>
+						<?php } ?>
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><strong><?=$aNovidade['novidade_360_resumo'];?></strong></p>
 						<div id="project-content">

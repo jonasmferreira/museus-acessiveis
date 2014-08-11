@@ -75,9 +75,11 @@
 			<div id="news360">
 				<h1 tabIndex="31" class="orange-color">Projeto <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>projetos">| Lista de Projetos</a></h1>
 				<div id="content-news" class="content-box">
+					<?php if($aProjeto['projeto_agenda']!='00/00/0000'){ ?>
 					<div class="date">
 						<span class="orange-color" tabIndex="32"><?=$aProjeto['projeto_agenda'];?></span>
 					</div>
+					<?php } ?>
 					<h2 id="title-news" tabIndex="33"><?=$aProjeto['projeto_titulo'];?></h2>
 					<span class="curso-info orange-color">
 					<?php if($v['projeto_sob_demanda']=='N'){  ?>

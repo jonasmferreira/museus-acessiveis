@@ -39,9 +39,9 @@
 			<div id="news360">
            	  <h1 tabIndex="31" class="orange-color">Glossário</h1>
 					<div id="content-news" class="content-box">
-                        <div class="date">
+                        <!--div class="date">
 							<span class="orange-color" tabIndex="32"><?=$aGlossario['glossario_dt'];?></span>
-						</div>
+						</div-->
 						<h2 id="title-news" tabIndex="33"><?=$aGlossario['glossario_palavra'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><?=$aGlossario['glossario_definicao'];?></p>
 						<?=$aGlossario['glossario_conteudo'];?>

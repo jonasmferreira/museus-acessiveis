@@ -76,9 +76,11 @@
 			<div id="news360">
            	  <h1 tabIndex="31" class="orange-color">Curso <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>cursos">| Lista de Cursos</a></h1>
 				<div id="content-news" class="content-box">
-                        <div class="date">
-							<span class="orange-color" tabIndex="32"><?php echo $aRow['curso_agenda'];?></span>
-						</div>
+					<?php if($aRow['curso_agenda']!='00/00/0000'){ ?>
+					<div class="date">
+						<span class="orange-color" tabIndex="32"><?php echo $aRow['curso_agenda'];?></span>
+					</div>
+					<?php } ?>
 						<h2 id="title-news" tabIndex="33"><?=$aRow['curso_titulo'];?></h2>
 						<span class="curso-info orange-color">
 						<?php if($aRow['curso_sob_demanda']=='N'){  ?>
