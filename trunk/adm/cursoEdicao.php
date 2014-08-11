@@ -165,6 +165,7 @@
 						<input type="text" class="formTxt datepicker" name="curso_agenda" id="curso_agenda" style="width:98%" value="<?=$aRow['curso_agenda']?>" />
                     </td>
                 </tr>
+				
 				<?	if(count($aExtras) > 0):?>
 				<tr class="tableHead">
 					<td colspan="3">
@@ -172,16 +173,17 @@
 					</td>
 				</tr>
 				<?	foreach($aExtras AS $v):?>
-				<td>
-					<?=$v['extra_nome_campo']?><br />
-					<input type="text" class="formTxt" name="extras[<?=$v['extra_id']?>]" id="extras_<?=$v['extra_id']?>" style="width:98%" value="<?=$aRow['extras'][$v['extra_id']]?>" />
-				</td>
+				<tr>
+					<td colspan="3">
+						<?=$v['extra_nome_campo']?><br />
+						<!--input type="text" class="formTxt" name="extras[<?=$v['extra_id']?>]" id="extras_<?=$v['extra_id']?>" style="width:98%" value="<?=$aRow['extras'][$v['extra_id']]?>" /-->
+						<textarea name="extras[<?php echo $v['extra_id'];?>]" id="extras_<?php echo $v['extra_id'];?>" rows="5" style="width:99%"><?=$aRow['extras'][$v['extra_id']]?></textarea>						
+					</td>
+				</tr>
 				<?	endforeach;?>
 				<?	endif;?>
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td align="right">
+					<td align="right" colspan="3" align="right">
 						<a href="cursoLista.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
 					</td>

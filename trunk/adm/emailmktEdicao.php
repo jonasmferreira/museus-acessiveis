@@ -205,9 +205,19 @@
 					</td>
 				</tr>
 				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Seção Propaganda</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						URL<br />
+						<input type="text" class="formTxt obrigatorio" name="emailmkt_propaganda_url" id="emailmkt_propaganda_url" style="width:98%" value="<?=$aRow['emailmkt_propaganda_url']?>" />
+					</td>
+				</tr>
 				<tr>
             		<td colspan="3">
-						Propaganda<br />
 						<?	if(is_file("../imgEmkt/{$aRow['emailmkt_propaganda_img']}")):?>
 						<span>(<a href="javascript:void(0)" rel="emailmkt_propaganda_img" class="delImg">Remover Imagem</a>)</span>
 						<?	endif;?>

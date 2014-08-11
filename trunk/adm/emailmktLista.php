@@ -19,9 +19,6 @@
 	$keywords = $aConfig['configuracao_meta_keywords'];
 	$description = $aConfig['configuracao_meta_description'];
 	
-	
-	
-	
 	$obj = new emailmkt();
 	$aStatus = $obj->getStatus();
 	$aFilterField = $obj->getFilterFieldName();
