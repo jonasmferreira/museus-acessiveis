@@ -190,3 +190,9 @@
 .contrast .news-info a{
 	color: #FFF !important;
 }
+
+.contrast #footer #access-option a{
+	color: #000 !important; text-decoration: none;
+}
+
+

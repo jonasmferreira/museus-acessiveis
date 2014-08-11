@@ -584,17 +584,20 @@ div.news-spotlight{
 #glossary-search .tag-box ul.tag{
 	color: #ff931e;
 	display: block;
-	padding:2px 0;	
+	padding:2px 0;
+	list-style: none !important;	
 }
 #glossary-search .tag-box ul.tag li{
 	color: #ff931e;
 	display: block;
+	list-style: none !important;		
 }
 #glossary-search .tag-box ul.tag li a{
 	color: #ff931e;
 	display: block;
 	width:200px;
 	border-bottom: 1px dotted #ff931e;
+	list-style: none !important;		
 }
 
 

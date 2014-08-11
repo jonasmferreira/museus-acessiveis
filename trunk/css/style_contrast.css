@@ -340,6 +340,9 @@ body.contrast {
 	color: #FFF;
 }
 
+.contrast #footer #access-option a{
+	color: #000 !important;
+}
 
 
 

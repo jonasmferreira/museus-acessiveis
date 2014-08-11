@@ -271,6 +271,16 @@ td.news-resumo{
 #footer #web a{
 	text-decoration: none;color: #FFF;
 }
+
+#footer #access-option{
+	font-size: 11px;
+	text-transform: uppercase;
+}
+#footer #access-option a{
+	color: #FFF !important; text-decoration: none;
+}
+
+
 #footer .ico{
 	margin: 0 5px;
 }
