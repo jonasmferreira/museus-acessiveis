@@ -432,16 +432,16 @@ $(document).ready(function(){
 	$('.event-day').live('mouseover',function(){
 		$(this).css('cursor', 'pointer');
 		
-		//aqui o ajax que busca a informação para exibir no hover
 		var obj = $(this);
 		$('.event-info').addClass("hidden");
 		obj.find('.event-info').removeClass("hidden");
 	});
 
-	$('.event-day').live('mouseover',function(){
-		
+	$('.event-day').live('mouseout',function(){
+		$(this).css('cursor', 'normal');
+		var obj = $(this);
+		obj.find('.event-info').delay(5000).addClass("hidden");
 	});
-
 
 	//ACESSIBILIDADE POR TECLADO
     shortcut.add("Ctrl+1",function() {
