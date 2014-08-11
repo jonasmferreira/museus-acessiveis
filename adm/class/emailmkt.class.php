@@ -329,6 +329,7 @@ class emailmkt extends defaultClass{
 					,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 					,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 					,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
+					,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
 		";
 		if(trim($this->values['emailmkt_aqui_tem_thumb'])!=''){
 			$sql[] = ",emailmkt_aqui_tem_thumb = '{$this->values['emailmkt_aqui_tem_thumb']}'";
@@ -373,6 +374,8 @@ class emailmkt extends defaultClass{
 				,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 				,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 				,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
+				,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
+				
 		";
 		if(trim($this->values['emailmkt_aqui_tem_thumb'])!=''){
 			$sql[] = ",emailmkt_aqui_tem_thumb = '{$this->values['emailmkt_aqui_tem_thumb']}'";
