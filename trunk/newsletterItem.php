@@ -126,15 +126,17 @@
 			<?=$v['projeto_titulo']?>
 		</h1>
 		<div class="description" style="padding: 18px 0 0 40px;">
-		<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
-			<?=$v['projeto_resumo']?>
-		</p>
-		<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objEmkt->toNormaliza($v['projeto_titulo']);?>/<?=$aNewsletter['emailmkt_id'];?>" class="saibamais">Leia mais</a>
+			<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
+				<?=$v['projeto_resumo']?>
+			</p>
+			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>projeto/<?=$v['projeto_id'];?>/<?=$objEmkt->toNormaliza($v['projeto_titulo']);?>/<?=$aNewsletter['emailmkt_id'];?>" class="saibamais">
+				Leia mais
+			</a>
 		</div>
 	</div>
 	<?php } ?>
 
-	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
 	<?php
 		$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
@@ -162,7 +164,7 @@
 	</div> 
 	<?php } ?>
 
-	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
 	<div id="news" style="padding: 0 0 30px 16px;">
 		<h1 class="news-title" style="font-size:28px;display: block;margin:0;padding: 7px 0 0 56px;color: #28b297;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_news360_ico.png') left top no-repeat;">
@@ -216,7 +218,7 @@
 		</table>
 	</div>
 
-	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_projeto_bg.png') left top no-repeat;" ></div>
+	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
 	<div id="aquitem" style="padding: 0 31px 30px 16px;background: url('<?=$linkAbsolute;?>img/emkt_bg_bottom.png') left bottom no-repeat;">
 		<h1 style="font-size:28px;display: block;padding: 7px 0 0 56px;margin:0;color: #4d4d4d;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_aquitem_ico.png') left top no-repeat;" class="news-title">Aqui tem Acessibilidade</h1>
@@ -299,7 +301,7 @@
 				<?	endforeach;?>
 				<tr>
 					<td align="center" colspan="3" style="padding-top: 10px">
-						<a style="padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;text-decoration: none !important;" class="saibamais" href="javascript:void(0);">
+						<a style="padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;text-decoration: none !important;" class="saibamais" href="<?=$linkAbsolute;?>/agenda">
 							Fique por dentro da Agenda Brasil de Acessibilidade
 						</a>
 					</td>
@@ -390,7 +392,9 @@
 					</div>
 				</td>
 				<td class="opcoes" style="width: 220px;font-size: 11px;text-transform: uppercase;text-align: right;">
-					opções de acessibilidade
+					<span id="access-option">
+					<a style="color: #FFF !important; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">opções de acessibilidade</a>
+					</span>
 				</td>
 			</tr>
 			<tr>

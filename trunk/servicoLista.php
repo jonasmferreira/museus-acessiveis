@@ -145,7 +145,7 @@
 												}
 											?>
 											<span class="curso-info orange-color">
-											<?php if($v['servico_sob_demanda']=='N'){  ?>
+											<?php if($v['servico_sob_demanda']=='N' && $v['servico_agenda']!='00/00/0000'){  ?>
 												Período: de <?=$v['servico_dt_ini'];?> até <?=$v['servico_dt_fim'];?>
 											<?php }else { ?>
 												Período: Sob demanda
