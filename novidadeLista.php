@@ -24,6 +24,7 @@
 			,'t.novidade_360_hr' => 'DESC'
 		));
 		$aRows = $objNovidade->getLista();
+		//$objNovidade->debug($aRows);
 
 		$aMeses = $objNovidade->getMeses();
 		//$objNovidade->debug($aRows);
@@ -86,7 +87,11 @@
                         	<td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_thumb'];?>" width="152" height="116"  alt="<?=$v['novidade_360_thumb_desc'];?>" title="<?=$v['novidade_360_titulo'];?>"/></td>
 	                        <td valign="top" align="left">
                                 <div class="info-head">
-									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['novidade_360_dt_agenda'];?></span></div>
+									<div class="date">
+										<span class="purple-color" tabIndex="32">
+											<?=($v['novidade_360_dt_agenda']!='00/00/0000')?$v['novidade_360_dt_agenda']:'';?>
+										</span>
+									</div>
 									<div class="social-media">
 										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
 										<span class="separator">|</span>

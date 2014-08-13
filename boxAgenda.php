@@ -84,7 +84,7 @@
 			</div>
 			<div id="agenda-link">
 				<a href="<?=$linkAbsolute;?>agenda" class="purple-color">
-					<b>Fique pro dentro da<br />
+					<b>Fique por dentro da<br />
 					Agenda Brasil de Acessibilidade</b>
 				</a>
 			</div>

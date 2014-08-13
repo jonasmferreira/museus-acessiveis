@@ -54,6 +54,7 @@
 		));
 
 		$aRows = $objServico->getLista();
+		//$objServico->debug($aRows);
 
 		$aMeses = $objServico->getMeses();
 		//$objServico->debug($aRows);
@@ -64,7 +65,6 @@
 			)
 		);
 		$aServProjCurInfo = $objServProjCurInfo->getOne();
-		//$objServico->debug($aRows);
 	?>	
 </head>
 <body>
@@ -140,9 +140,7 @@
 										</span>
 										<div class="purple-color">
 											<?php
-												if($sTipo==''){
-													echo 'categoria: ' . $v['servico_tipo_label'];
-												}
+													echo 'categoria: ' . $v['tipo_servico_titulo'];
 											?>
 											<span class="curso-info orange-color">
 											<?php if($v['servico_sob_demanda']=='N' && $v['servico_agenda']!='00/00/0000'){  ?>

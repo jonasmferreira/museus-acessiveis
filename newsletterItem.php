@@ -393,7 +393,7 @@
 				</td>
 				<td class="opcoes" style="width: 220px;font-size: 11px;text-transform: uppercase;text-align: right;">
 					<span id="access-option">
-					<a style="color: #FFF !important; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">opções de acessibilidade</a>
+					<a style="color: #FFF; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">opções de acessibilidade</a>
 					</span>
 				</td>
 			</tr>
