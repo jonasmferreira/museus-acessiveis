@@ -140,9 +140,7 @@
 										</span>
 										<div class="purple-color">
 											<?php
-												if($sTipo==''){
-													echo 'categoria: ' . $v['projeto_tipo_label'];
-												}
+													echo 'categoria: ' . $v['tipo_projeto_titulo'];
 											?>
 											<span class="curso-info orange-color">
 											<?php if($v['projeto_sob_demanda']=='N' && $v['projeto_agenda']!='00/00/0000'){  ?>

@@ -125,7 +125,11 @@
                         	<td valign="top" align="left" width="264"><img tabIndex="26" src="<?=$linkAbsolute;?>images/<?=$aDestaque['novidade_360_destaque_home'];?>" width="264" height="262"  alt="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" title="<?=$aDestaque['novidade_360_destaque_home_desc'];?>"/></td>
                             <td valign="top" align="left">
                                 <div class="info-head">
-                                                        <div class="date"><span tabIndex="23" class="purple-color"><?=$aDestaque['novidade_360_dt_agenda'];?></span></div>
+                                                        <div class="date">
+															<span tabIndex="23" class="purple-color">
+																<?=($aDestaque['novidade_360_dt_agenda']!='00/00/0000')?$aDestaque['novidade_360_dt_agenda']:'';?>
+															</span>
+														</div>
                                                         <div class="social-media">
                                                             <span class="purple-color"><a class="purple-color" href="" tabIndex="28">facebook</a></span>
                                                             <span class="separator">|</span>
@@ -167,7 +171,11 @@
                         	<td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['novidade_360_thumb'];?>" width="152" height="116"  alt="<?=$v['novidade_360_thumb_desc'];?>" title="<?=$v['novidade_360_thumb_desc'];?>"/></td>
                           <td valign="top" align="left">
                                 <div class="info-head">
-									<div class="date"><span class="purple-color" tabIndex="32"><?=$v['novidade_360_dt_agenda'];?></span></div>
+									<div class="date">
+										<span class="purple-color" tabIndex="32">
+											<?=($v['novidade_360_dt_agenda']!='00/00/0000')?$v['novidade_360_dt_agenda']:'';?>											
+										</span>
+									</div>
 									<div class="social-media">
 										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
 										<span class="separator">|</span>
