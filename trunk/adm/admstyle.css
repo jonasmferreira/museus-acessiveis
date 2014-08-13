@@ -43,6 +43,7 @@ margin:0 auto 10px;
 .left{
    float: left;
    width: 80%;
+   z-index: 10;
 }
 .right{
    float: left;
@@ -62,15 +63,15 @@ margin:0 auto 10px;
 	background-repeat:no-repeat;
 	}
 #topo a:hover, .catHead:hover {
--webkit-box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.5);
-box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.5);
-color: #999;
-	}
+	-webkit-box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.5);
+	box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.5);
+	color: #999;
+}
 
 /* Menu Drop down */
 
-.catHead {cursor:pointer;}
-.catHead div {display:none; position:absolute; background-color: #373738;
+.catHead {cursor:pointer;	z-index: 11;}
+.catHead div {display:none; position:absolute; background-color: #373738;	z-index: 11;
    padding: 10px 0;
    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
