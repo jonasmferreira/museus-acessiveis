@@ -29,7 +29,7 @@
 		);
 		$aNovidade = $objNovidade->getOne();
 		
-		//$objNovidade->debug($aNovidade);
+		$objNovidade->debug($aNovidade);
 		
 		$sConteudo = $aNovidade['novidade_360_conteudo'];
 		$caracEspeciais = array(
@@ -65,6 +65,14 @@
 
 		//Verificando se a página foi aberta a partir do Newsletter
 		$nNewsId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
+
+		//LISTA DE ARQUIVOS DE DOWNLOAD RELACIONADOS
+		$aDown= array();
+		//Verificando se há downloads para exibir
+		if(is_array($aNovidade['download_list']) && count($aNovidade['download_list'])>0){
+			$aDown = $aNovidade['download_list'];
+			//$objProjeto->debug($aDown);
+		}
 		
 	?>	
 </head>
@@ -89,6 +97,10 @@
 						<div id="project-content">
 							<?php echo $sConteudo; ?>
 						</div>
+						
+						<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
+						<?php include_once("{$path_root_page}includeDownload.php"); ?>
+						
 					</div>
         	</div>
         	<div class="clear"></div>
@@ -99,12 +111,7 @@
         <div class="clear"></div>
   </div>
 
-	<div id="content-r" href="content-r" accesskey="4">
-		<?php include_once("{$path_root_page}boxBusca.php"); ?>
-		<?php include_once("{$path_root_page}boxAgenda.php"); ?>
-		<?php include_once("{$path_root_page}boxNewsletter.php"); ?>
-		<?php include_once("{$path_root_page}boxGlossario.php"); ?>
-    </div>	
+	<?php include_once("{$path_root_page}contentRight.php"); ?>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
 </body>

@@ -205,7 +205,12 @@
                     </ul>
                 </li>
             	<li><a tabIndex="130" href="<?=$linkAbsolute;?>downloads">Downloads</a></li>
-                <li><a tabIndex="131" href="<?=$linkAbsolute;?>imprensa">Imprensa</a></li>
+                <li>
+					<a tabIndex="131" href="<?=$linkAbsolute;?>imprensa">Imprensa</a>
+					<ul>
+						<li><a tabIndex="132" href="<?=$linkAbsolute;?>agenda">Agenda</a></li>
+					</ul>
+				</li>
             </ul>
         </div>
     	<div class="clear"></div>

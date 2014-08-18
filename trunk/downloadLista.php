@@ -45,7 +45,10 @@
                         	<td tabIndex="" id="DT">
 								<a class="down_ordem" href="javascript:void(0);">Data</a>
                             </td>
-                        	<td tabIndex="7" id="D">
+                        	<td tabIndex="" id="CT">
+								<a class="down_ordem" href="javascript:void(0);">Categoria</a>
+                            </td>
+							<td tabIndex="7" id="D">
                             	<a class="down_ordem" href="javascript:void(0);"><span>Descrição</span></a>
                             </td>
                         	<td tabIndex="" id="F">
@@ -70,6 +73,9 @@
                             	<span><?=$v['download_dt'];?></span>
                             </td>
                         	<td>
+                            	<span><?=$v['download_categoria_titulo'];?></span>
+                            </td>
+							<td>
                             	<span><a target="_BLANK" href="<?=$sLinkFile;?><?=$v['download_arquivo'];?>"><?=$v['download_titulo'];?></a></span>
                             </td>
                         	<td>

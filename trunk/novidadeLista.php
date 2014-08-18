@@ -17,6 +17,7 @@
 		$objNovidade->setValues(array(
 			'page'=>'1'
 			,'rows'=>'100000'
+			,'novidade_360_exibir_listagem' => 'S'
 		));
 		$objNovidade->setAOrderBy(array(
 			't.novidade_360_dt_agenda' => 'DESC'
@@ -128,13 +129,8 @@
             <div class="clear"></div>
   </div>
 
-	<div id="content-r" href="content-r" accesskey="4">
-		<?php include_once("{$path_root_page}boxBusca.php"); ?>
-		<?php include_once("{$path_root_page}boxAgenda.php"); ?>
-		<?php include_once("{$path_root_page}boxNewsletter.php"); ?>
-		<?php include_once("{$path_root_page}boxGlossario.php"); ?>
-    </div>
-		<div class="clear"></div>
+	<?php include_once("{$path_root_page}contentRight.php"); ?>
+	<div class="clear"></div>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
 </body>
