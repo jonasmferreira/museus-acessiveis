@@ -13,12 +13,25 @@ class download extends defaultClass{
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'t.download_tipo_titulo'=>array(
+			'fieldNameId'=>'t.download_tipo_titulo'
+			,'fieldNameLabel'=>'Tipo'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
 		,'t.download_arquivo'=>array(
 			'fieldNameId'=>'t.download_arquivo'
 			,'fieldNameLabel'=>'Arquivo'
 			,'fieldNameType'=>'text'
 			,'fieldNameOp'=>'LIKE'
 		)
+		,'tc.download_categoria_titulo'=>array(
+			'fieldNameId'=>'tc.download_categoria_titulo'
+			,'fieldNameLabel'=>'Categoria'
+			,'fieldNameType'=>'text'
+			,'fieldNameOp'=>'LIKE'
+		)
+		
 	);
 	
 	protected $tipoDownload = array(
@@ -77,7 +90,10 @@ class download extends defaultClass{
 		$sql = array();
 		$sql[] = "
 			SELECT	t.*
+					,tc.download_categoria_titulo
 			FROM	tb_download t
+			JOIN	tb_download_categoria tc
+			ON		t.download_categoria_id = tc.download_categoria_id
 			WHERE	1 = 1
 		";
 		return implode("\n",$sql);
@@ -94,6 +110,15 @@ class download extends defaultClass{
 				$sql[] = "AND {$this->values['fieldName']} LIKE '%{$this->values['txtPesquisar']}%'";
 			}
 		}
+		
+		if(isset($this->values['download_categoria_id'])&&trim($this->values['download_categoria_id'])!=''){
+			$sql[] = "AND tc.download_categoria_id = '{$this->values['download_categoria_id']}'";
+		}
+		
+		if(isset($this->values['download_categoria_titulo'])&&trim($this->values['download_categoria_titulo'])!=''){
+			$sql[] = "AND tc.download_categoria_titulo = '{$this->values['download_categoria_titulo']}'";
+		}
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
@@ -111,7 +136,7 @@ class download extends defaultClass{
 		if(isset($sOrder)&&trim($sOrder)!=''){
 			$sql[] = $sOrder;
 		}else{
-			$sql[] = "ORDER BY t.download_tipo ASC, t.download_titulo ASC ";
+			$sql[] = "ORDER BY t.download_tipo ASC, t.download_titulo ASC, tc.download_categoria_titulo ASC ";
 		}
 
 		$sql[] = "LIMIT {$start},{$limit}";
@@ -232,6 +257,8 @@ class download extends defaultClass{
 					download_titulo = '{$this->values['download_titulo']}'
 					,download_tipo = '{$this->values['download_tipo']}'
 					,download_tipo_desc = '{$this->values['download_tipo_desc']}'
+					,download_categoria_id = '{$this->values['download_categoria_id']}'
+					
 		";
 		if(trim($this->values['download_arquivo'])!=""){
 			if($this->values['download_tipo']!=7){
@@ -272,6 +299,8 @@ class download extends defaultClass{
 					,download_tipo_desc = '{$this->values['download_tipo_desc']}'
 					,download_dt = CURDATE()
 					,download_hr = CURTIME()
+					,download_categoria_id = '{$this->values['download_categoria_id']}'
+					
 		";
 		if(trim($this->values['download_arquivo'])!=""){
 			if($this->values['download_tipo']!=7){

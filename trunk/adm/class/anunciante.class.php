@@ -53,11 +53,11 @@ class anunciante extends defaultClass{
 		}
 		if(isset($this->values['data_ini'])&&trim($this->values['data_ini'])!=''){
 			$this->values['data_ini'] = $this->dateBR2DB($this->values['data_ini']);
-			$sql[] = "AND t.anunciante_dt_agenda >= '{$this->values['data_ini']}'";
+			$sql[] = "AND t.anunciante_dt >= '{$this->values['data_ini']}'";
 		}
 		if(isset($this->values['data_fim'])&&trim($this->values['data_fim'])!=''){
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
-			$sql[] = "AND t.anunciante_dt_agenda <= '{$this->values['data_fim']}'";
+			$sql[] = "AND t.anunciante_dt <= '{$this->values['data_fim']}'";
 		}
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -76,7 +76,7 @@ class anunciante extends defaultClass{
 		if(isset($sOrder)&&trim($sOrder)!=''){
 			$sql[] = $sOrder;
 		}else{
-			$sql[] = "ORDER BY t.anunciante_dt_agenda ASC";
+			$sql[] = "ORDER BY t.anunciante_dt ASC";
 		}
 		
 		$sql[] = "LIMIT {$start},{$limit}";
@@ -93,7 +93,7 @@ class anunciante extends defaultClass{
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
 					$rs['anunciante_dt_hr'] = $this->dateDB2BR($rs['anunciante_dt'])." às ".$rs['anunciante_hr'];
-					$rs['anunciante_dt_agenda'] = $this->dateDB2BR($rs['anunciante_dt_agenda']);
+					$rs['anunciante_dt'] = $this->dateDB2BR($rs['anunciante_dt']);
 					$rs['anunciante_tipo_banner_label'] = trim($rs['anunciante_tipo_banner'])=='FB'?'Full Banner':'Retângulo';
 					$rs['tags'] = $this->getTagsCadatradas($rs['anunciante_id']);
 					array_push($arr,$this->utf8_array_encode($rs));
@@ -114,7 +114,7 @@ class anunciante extends defaultClass{
 			if($result['total'] > 0){
 				$rs = $this->dbConn->db_fetch_assoc($result['result']);
 				$rs['anunciante_dt_hr'] = $this->dateDB2BR($rs['anunciante_dt'])." às ".$rs['anunciante_hr'];
-					$rs['anunciante_dt_agenda'] = $this->dateDB2BR($rs['anunciante_dt_agenda']);
+					$rs['anunciante_dt'] = $this->dateDB2BR($rs['anunciante_dt']);
 					$rs['tags'] = $this->getTagsCadatradas($rs['anunciante_id']);
 			}
 		}
@@ -133,7 +133,6 @@ class anunciante extends defaultClass{
 	private function update(){
 		$this->values['anunciante_banner_desc'] = $this->escape_string($this->values['anunciante_banner_desc']);
 		$this->values['anunciante_banner'] = $this->uploadFile($this->pathImg, $this->files['anunciante_banner']);
-		$this->values['anunciante_dt_agenda'] = $this->dateBR2DB($this->values['anunciante_dt_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -142,7 +141,7 @@ class anunciante extends defaultClass{
 					,anunciante_tipo_banner = '{$this->values['anunciante_tipo_banner']}'
 					,anunciante_banner_desc = '{$this->values['anunciante_banner_desc']}'
 					,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
-					,anunciante_dt_agenda = '{$this->values['anunciante_dt_agenda']}'
+					,anunciante_dt = '{$this->values['anunciante_dt']}'
 		";
 		if(trim($this->values['anunciante_banner'])!=''){
 			$sql[] = ",anunciante_banner = '{$this->values['anunciante_banner']}'";
@@ -172,7 +171,6 @@ class anunciante extends defaultClass{
 	private function insert(){
 		$this->values['anunciante_banner_desc'] = $this->escape_string($this->values['anunciante_banner_desc']);
 		$this->values['anunciante_banner'] = $this->uploadFile($this->pathImg, $this->files['anunciante_banner']);
-		$this->values['anunciante_dt_agenda'] = $this->dateBR2DB($this->values['anunciante_dt_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -183,7 +181,6 @@ class anunciante extends defaultClass{
 				,anunciante_tipo_banner = '{$this->values['anunciante_tipo_banner']}'
 				,anunciante_banner_desc = '{$this->values['anunciante_banner_desc']}'
 				,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
-				,anunciante_dt_agenda = '{$this->values['anunciante_dt_agenda']}'
 		";
 
 		if(trim($this->values['anunciante_banner'])!=''){

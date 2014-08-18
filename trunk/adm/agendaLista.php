@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="agendaEdicao.php" class="butCadastro">Cadastrar novo agenda</a>
+		<a href="agendaEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">

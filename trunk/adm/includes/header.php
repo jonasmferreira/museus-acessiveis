@@ -57,8 +57,11 @@
 		           		<a href="acessibilidadeEdicao.php?texto_id=2" style="background-image:url(imgs/icon-blog.png);">Acessibilidade</a><br />
                     	<a href="contatoTipoLista.php" style="background-image:url(imgs/icon-blog.png);">Tipo de Contato</a><br />
                         <a href="contatoLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a><br />
-                    	<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
+                    	<a href="downloadCategoriaLista.php" style="background-image:url(imgs/icon-blog.png);">Categorias de Downloads</a><br />
+						<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
                     	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
+                    	<a href="depoimentoLista.php" style="background-image:url(imgs/icon-videos.png);">Depoimento</a><br />
+
                     </div>
                 </span>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">

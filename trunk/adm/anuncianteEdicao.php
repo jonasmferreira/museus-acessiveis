@@ -76,11 +76,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
-						Agenda<br />
-						<input type="text" class="formTxt datepicker" name="anunciante_dt_agenda" id="anunciante_dt_agenda" style="width:98%" value="<?=$aRow['anunciante_dt_agenda']?>" />
-                    </td>
-					<td colspan="2">
+					<td colspan="3">
 						Tags<br />
 						<select class="formTxt" name="tags[]" id="tags" multiple="yes" style="width:99%;">
 							<?	foreach($aTags AS $k=>$v):

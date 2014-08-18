@@ -67,7 +67,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="servicoEdicao.php" class="butCadastro">Cadastrar novo servico</a>
+		<a href="servicoEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">

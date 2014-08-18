@@ -4,6 +4,8 @@
 	$path_root_downloadEdicao = "{$path_root_downloadEdicao}{$DS}..{$DS}";
 	include_once "{$path_root_downloadEdicao}adm{$DS}includes{$DS}header.php";
 	include_once("{$path_root_downloadEdicao}adm{$DS}class{$DS}download.class.php");
+	include_once("{$path_root_downloadEdicao}adm{$DS}class{$DS}downloadCategoria.class.php");
+
 	$obj = new download();
 	$obj->setValues($_REQUEST);
 	$aRow = $obj->getOne();
@@ -16,6 +18,16 @@
 	}
 	$aTipoDownload = $obj->getTipoDownload();
 	//$obj->debug($aRow);
+	
+	$objCategoria = new downloadCategoria();
+	$objCategoria->setValues(array(
+		'page'=>'1'
+		,'rows'=>'500000'
+	));
+	
+	$aCategoriaDownload = $objCategoria->getLista();
+	//$objCategoria->debug($aCategoriaDownload);
+
 ?>
 <script type="text/javascript" src="js/download.js"></script>
 <div id="contentWrapper">
@@ -50,6 +62,20 @@
 						<input type="text" name="download_tipo_desc" id="download_tipo_desc" style="width:1px; height: 1px;" value="<?=$aRow['download_tipo_desc']?>" />
 					</td>
 				</tr>
+
+				<tr>
+					<td colspan="3">
+						Categoria de Download<br />
+						<select class="formTxt obrigatorio" name="download_categoria_id" id="download_categoria_id">
+							<?	foreach($aCategoriaDownload['rows'] AS $k=>$v):
+									$selected = $aRow['download_categoria_id']==$v['download_categoria_id']?' selected="selected"':'';
+							?>
+							<option value="<?=$v['download_categoria_id']?>"<?=$selected?>><?=$v['download_categoria_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<td colspan="3">
 						Titulo<br />

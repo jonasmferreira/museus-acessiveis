@@ -62,6 +62,8 @@ switch($_REQUEST['action']){
 			$sOrder = 't.download_tipo_desc';
 		}elseif($sOrderField=='S'){
 			$sOrder = 't.download_tamanho';
+		}elseif($sOrderField=='CT'){
+			$sOrder = 'tc.download_categoria_titulo';
 		}
 
 		$obj->setAOrderBy(array(
@@ -80,13 +82,13 @@ switch($_REQUEST['action']){
 				if($v['download_tipo']!=7){
 					$sLinkFile = $linkAbsolute .'arquivosDown/';
 				}
-				$sTable .= "<tr><td><span>" .$v['download_dt'];
-				$sTable .= "</span></td><td><span><a target='_BLANK' href='"; 
-				$sTable .= $sLinkFile . $v['download_arquivo'] . "'>";
-				$sTable .= $v['download_titulo'];
-				$sTable .= "</a></span></td><td><span>"; 
-				$sTable .= $v['download_tipo_label'] . "</span></td><td><span>";
-				$sTable .= $v['download_tamanho_label'] . "</span></td></tr>";
+				$sTable .= "<tr>";
+				$sTable .= "	<td><span>" .$v['download_dt']."</span></td>";
+				$sTable .= "	<td><span>" . $v['download_categoria_titulo'] . "</span></td>"; 
+				$sTable .= "	<td><span><a target='_BLANK' href='" . $v['download_arquivo'] . "'>" . $v['download_titulo'] . "</a></span></td>"; 
+				$sTable .= "	<td><span>" . $v['download_tipo_label'] . "</span></td>"; 
+				$sTable .= "	<td><span>" . $v['download_tamanho_label'] . "</span></td>";
+				$sTable .= "</tr>";
 			}
 		}
 		$aRet = array(

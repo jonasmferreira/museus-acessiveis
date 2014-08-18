@@ -89,6 +89,11 @@ class novidade extends defaultClass{
 			$this->values['novidade_360_exibir_destaque_home'] = $this->values['novidade_360_exibir_destaque_home'];
 			$sql[] = "AND t.novidade_360_exibir_destaque_home = '{$this->values['novidade_360_exibir_destaque_home']}'";
 		}
+
+		if(isset($this->values['novidade_360_exibir_listagem'])&&trim($this->values['novidade_360_exibir_listagem'])!=''){
+			$this->values['novidade_360_exibir_listagem'] = $this->values['novidade_360_exibir_listagem'];
+			$sql[] = "AND t.novidade_360_exibir_listagem = '{$this->values['novidade_360_exibir_listagem']}'";
+		}
 		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
@@ -127,7 +132,9 @@ class novidade extends defaultClass{
 					$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
 					$rs['novidade_360_exibir_destaque_home_label'] = $rs['novidade_360_exibir_destaque_home']=='S'?'Sim':'Não';
 					$rs['novidade_360_exibir_banner_label'] = $rs['novidade_360_exibir_banner']=='S'?'Sim':'Não';
+					$rs['novidade_360_exibir_listagem_label'] = $rs['novidade_360_exibir_listagem']=='S'?'Sim':'Não';
 					$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
+					$rs['download_list'] = $this->getDownloadByNovidade($rs['novidade_360_id']);
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
 			}
@@ -149,7 +156,8 @@ class novidade extends defaultClass{
 				$rs['novidade_360_dthr'] = $this->dateDB2BR($rs['novidade_360_dt'])." às ".$rs['novidade_360_hr'];
 				$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
-				//$rs['novidade_360_conteudo'] = $this->str_to_utf8($rs['novidade_360_conteudo']);
+				$rs['download_list'] = $this->getDownloadByNovidade($rs['novidade_360_id']);
+				
 			}
 		}
 		return $this->utf8_array_encode($rs);
@@ -183,6 +191,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_destaque_home'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_destaque_home']);
 		$this->values['novidade_360_destaque_home_desc'] = $this->escape_string($this->values['novidade_360_destaque_home_desc']);
 		$this->values['novidade_360_destaque_home_frase'] = $this->escape_string($this->values['novidade_360_destaque_home_frase']);
+		$this->values['novidade_360_exibir_listagem'] = trim($this->values['novidade_360_exibir_listagem'])!=''?$this->values['novidade_360_exibir_listagem']:'N';
 		
 		$this->dbConn->db_start_transaction();
 		$sql = array();
@@ -203,6 +212,8 @@ class novidade extends defaultClass{
 					,novidade_360_exibir_destaque_home = '{$this->values['novidade_360_exibir_destaque_home']}'
 					,novidade_360_destaque_home_desc = '{$this->values['novidade_360_destaque_home_desc']}'
 					,novidade_360_destaque_home_frase = '{$this->values['novidade_360_destaque_home_frase']}'
+					,novidade_360_exibir_listagem = '{$this->values['novidade_360_exibir_listagem']}'
+					
 		";
 		if(trim($this->values['novidade_360_thumb'])!=""){
 			$sql[] = ",novidade_360_thumb = '{$this->values['novidade_360_thumb']}'";
@@ -226,12 +237,26 @@ class novidade extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		$result = $this->deleteDownload();
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
+		
 		$novidade_360_id = $this->values['novidade_360_id'];
 		$result = $this->insertTags($this->values['tags'], $novidade_360_id);
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->insertDownload($this->values['downloads'], $novidade_360_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
 	}
@@ -255,6 +280,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_destaque_home'] = $this->uploadFile($this->pathImg, $this->files['novidade_360_destaque_home']);
 		$this->values['novidade_360_destaque_home_desc'] = $this->escape_string($this->values['novidade_360_destaque_home_desc']);
 		$this->values['novidade_360_destaque_home_frase'] = $this->escape_string($this->values['novidade_360_destaque_home_frase']);
+		$this->values['novidade_360_exibir_listagem'] = trim($this->values['novidade_360_exibir_listagem'])!=''?$this->values['novidade_360_exibir_listagem']:'N';
 		
 		$this->dbConn->db_start_transaction();
 		$sql = array();
@@ -278,6 +304,8 @@ class novidade extends defaultClass{
 					,novidade_360_destaque_home = '{$this->values['novidade_360_destaque_home']}'
 					,novidade_360_destaque_home_desc = '{$this->values['novidade_360_destaque_home_desc']}'
 					,novidade_360_destaque_home_frase = '{$this->values['novidade_360_destaque_home_frase']}'
+					,novidade_360_exibir_listagem = '{$this->values['novidade_360_exibir_listagem']}'
+					
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -399,6 +427,80 @@ class novidade extends defaultClass{
 		}
 		return $result;
 		
+	}
+	
+	public function getDownload(){
+		$sql = array();
+		$sql[] = "
+			SELECT	t.*
+			FROM	tb_download t
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	protected function deleteDownload(){
+		$sql = array();
+		$sql[] = "
+			DELETE FROM tb_novidade_360_download
+			WHERE	novidade_360_id = '{$this->values['novidade_360_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		return $result;
+	}
+	protected function insertDownload($downloads,$novidade_360_id){
+		if(count($downloads) > 0){
+			foreach($downloads AS $download){
+				$sql = array();
+				$sql[] = "
+					INSERT INTO tb_novidade_360_download SET
+						novidade_360_id = '{$novidade_360_id}'
+						,download_id = '{$download}'
+				";
+				$result = $this->dbConn->db_execute(implode("\n",$sql));
+				if($result['success']===false){
+					return $result; 
+				}
+			}
+			return $result;
+		}
+		return array('success'=>'true');
+	}
+
+	public function getDownloadByNovidade($novidade_360_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	pd.novidade_360_id, t.*, tc.download_categoria_titulo
+			FROM	tb_novidade_360_download pd
+			JOIN	tb_download t
+			ON		pd.download_id = t.download_id
+			JOIN	tb_download_categoria tc
+			ON		t.download_categoria_id = tc.download_categoria_id			
+			WHERE	1 = 1
+			AND		novidade_360_id = '{$novidade_360_id}'
+			ORDER BY t.download_dt DESC
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
 	}
 	
 }
