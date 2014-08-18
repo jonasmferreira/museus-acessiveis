@@ -15,7 +15,7 @@
 				display:none !important;
 			}
 		</style>
-		<div id="diary">
+		<div id="diary" style="background:none !important; padding-bottom: 0px;">
         	<h1 tabIndex="61">Agenda Brasil de Acessibilidade</h1>
             <p tabIndex="62" class="description">
 				Clique e saiba mais sobreos principais eventosda área de acessibilidade!!!

@@ -11,6 +11,9 @@
 												<td tabIndex="">
 													<span>Data</span>
 												</td>
+												<td tabIndex="">
+													Categoria
+												</td>
 												<td tabIndex="7">
 													Descrição
 												</td>
@@ -35,6 +38,9 @@
 													<span><?=$v['download_dt'];?></span>
 												</td>
 												<td>
+													<span><?=$v['download_categoria_titulo'];?></span>
+												</td>
+												<td>
 													<span>
 														<a target="_BLANK" href="<?=$sLinkFile;?><?=$v['download_arquivo'];?>">
 															<?=$v['download_titulo'];?>
@@ -42,7 +48,7 @@
 													</span>
 												</td>
 												<td>
-													<span><?=$v['download_tipo_label'];?></span>
+													<span><?=$v['download_tipo_desc'];?></span>
 												</td>
 												<td>
 													<span><?=$v['download_tamanho_label'];?></span>

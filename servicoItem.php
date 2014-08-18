@@ -139,12 +139,7 @@
   </div>
   </div>
 
-	<div id="content-r" href="content-r" accesskey="4">
-		<?php include_once("{$path_root_page}boxBusca.php"); ?>
-		<?php include_once("{$path_root_page}boxAgenda.php"); ?>
-		<?php include_once("{$path_root_page}boxNewsletter.php"); ?>
-		<?php include_once("{$path_root_page}boxGlossario.php"); ?>
-    </div>	
+	<?php include_once("{$path_root_page}contentRight.php"); ?>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
 </body>

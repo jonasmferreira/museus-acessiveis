@@ -12,6 +12,7 @@
 	RewriteRule ^downloads/?$ downloadLista.php
 	RewriteRule ^imprensa/?$ imprensaLista.php
 	RewriteRule ^agenda/?$ agendaLista.php
+	RewriteRule ^depoimento/?$ depoimentoLista.php
 
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 

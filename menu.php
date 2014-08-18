@@ -101,7 +101,8 @@
 						} 
 					?>
 				</li>
-            	<li class="sub-mn fontSize"><a tabIndex="12" href="<?=$linkAbsolute;?>cursos">cursos</a>
+            	<li class="sub-mn fontSize">
+					<a tabIndex="12" href="<?=$linkAbsolute;?>cursos">cursos</a>
 					<?php 
 						if(count($aCurso['rows']>0)){
 ?>
@@ -121,6 +122,15 @@
 					?>
 				</li>
             	<li class="fontSize"><a tabIndex="13" href="<?=$linkAbsolute;?>downloads">downloads</a></li>
-            	<li class="fontSize"><a tabIndex="14" href="<?=$linkAbsolute;?>imprensa" style="padding-right:none !important;">imprensa</a></li>
+				<li class="sub-mn fontSize">
+					<a tabIndex="14" href="<?=$linkAbsolute;?>imprensa" style="padding-right:none !important;">imprensa</a>
+					<div class="submenu">
+						<ul>
+							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>agenda">Agenda</a></li>
+						</ul>
+					</div>
+				</li>
+				
+				
             </ul>
         </div>
