@@ -15,6 +15,8 @@
 		$obj->unRegisterSession($aErro);
 	}
 	$aTags = $obj->getTags();
+	$aDownloads = $obj->getDownload();
+	
 ?>
 <script type="text/javascript" src="js/novidade.js"></script>
 <div id="contentWrapper">
@@ -41,7 +43,9 @@
                     	Data (dd/mm/yyyy)<br />
                         <input disabled="disabled" <?=$readOnly?> value="<?=$obj->dateDB2BR($aRow['novidade_360_dt'])?>" type="text" class="formTxt <?=$class?> dt" name="novidade_360_dt" id="novidade_360_dt" style="width:95%" />
                     </td>
-					<td>&nbsp;</td>
+            		<td>
+						<input value="S" type="checkbox" <?=$aRow['novidade_360_exibir_listagem']=='N'?'':'checked="checked"'?> name="novidade_360_exibir_listagem" id="novidade_360_exibir_listagem"/>&nbsp; Exibir na Listagem de Novidades?
+                    </td>
                 </tr>
 				<tr>
 					<td colspan="3">
@@ -153,7 +157,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3">
+					<td>
 						Tags<br />
 						<select class="formTxt" name="tags[]" id="tags" multiple="yes" style="width:99%;">
 							<?	foreach($aTags AS $k=>$v):
@@ -167,6 +171,21 @@
 							<?	endforeach;?>
 						</select>
 					</td>
+					<td colspan="2">
+						Download<br />
+						<select class="formTxt" name="downloads[]" id="downloads" multiple="yes" style="width:99%;">
+							<?	foreach($aDownloads AS $k=>$v):
+									if(is_array($aRow['downloads'])){
+										$selected = in_array($v['download_id'], $aRow['downloads'])!==false?' selected="selected"':'';
+									}else{
+										$selected = "";
+									}
+							?>
+							<option value="<?=$v['download_id']?>"<?=$selected?>><?=$v['download_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+					
 				</tr>
 				<tr>
 					<td align="right" colspan="3">

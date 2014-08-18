@@ -61,7 +61,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="contatoTipoEdicao.php" class="butCadastro">Cadastrar novo tipo de contato</a>
+		<a href="contatoTipoEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">

@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="downloadEdicao.php" class="butCadastro">Cadastrar novo Download</a>
+		<a href="downloadEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
@@ -63,6 +63,7 @@
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
 				<td align="left">Data</td>
+				<td align="left">Categoria</td>
 				<td align="left">Titulo</td>
 				<td align="left">Tipo</td>
 				<td align="left">Tamanho</td>
@@ -78,6 +79,7 @@
 			<tr class="tableItem<?=$evenOdd?>">
 				<td align="center"><?=$v['download_id']?></td>
 				<td align="left"><?=$v['download_dt_hr']?></td>
+				<td align="left"><?=$v['download_categoria_titulo']?></td>
 				<td align="left"><?=$v['download_titulo']?></td>
 				<td align="left"><?=$v['download_tipo_desc']?></td>
 				<td align="left"><?=$v['download_tamanho']?></td>

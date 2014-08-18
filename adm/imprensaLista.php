@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="imprensaEdicao.php" class="butCadastro">Cadastrar novo Imprensa</a>
+		<a href="imprensaEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">

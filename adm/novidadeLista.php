@@ -15,6 +15,8 @@
 		));
 	}
 	$aRows = $obj->getLista();
+	//$obj->debug($aRows);
+	
 	$aControlePaginacao = $obj->controlePaginacao($aRows);
 	$session = $obj->getSessions();
 	if(trim($session['erro'])!='' && isset($session['erro'])){
@@ -62,20 +64,21 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="novidadeEdicao.php" class="butCadastro">Cadastrar novo novidade_360</a>
+		<a href="novidadeEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
 		<thead>
 			<tr class="tableHead">
-				<td width="40" align="center">#</td>
+				<td width="40" align="center">ID</td>
 				<td>Data</td>
 				<td>Agenda</td>
+				<td>Exibir <br />Listagem?</td>
 				<td>Titulo Síntese</td>
 				<td>Titulo</td>
-				<td>Fonte</td>
-				<td>Banner Principal?</td>
-				<td>Destaque Home?</td>
+				<!--td>Fonte</td-->
+				<td>Banner <br />Principal?</td>
+				<td>Destaque <br />Home?</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -88,10 +91,30 @@
 				<td align="center"><?=$v['novidade_360_id']?></td>
 				<td><?=$v['novidade_360_dthr']?></td>
 				<td><?=$v['novidade_360_dt_agenda']?></td>
+				<td>
+					<?php
+						$exibe= strtolower($v['novidade_360_exibir_listagem']);
+						if($exibe=='n'){
+							echo '<div style="font-weight:bold; color:#FF0000;">' . $v['novidade_360_exibir_listagem_label'] . '</div>';
+						}else{
+							echo $v['novidade_360_exibir_listagem_label'];
+						}
+					?>
+				</td>
+
 				<td><?=$v['novidade_360_titulo_sintese']?></td>
 				<td><?=$v['novidade_360_titulo']?></td>
-				<td><?=$v['novidade_360_fonte']?></td>
-				<td><?=$v['novidade_360_exibir_banner_label']?></td>
+				<!--td><?=$v['novidade_360_fonte']?></td-->
+				<td>
+					<?php
+						$exibe= strtolower($v['novidade_360_exibir_banner_label']);
+						if($exibe=='sim'){
+							echo '<div style="font-weight:bold; color:#FF0000;">' . $v['novidade_360_exibir_banner_label'] . '</div>';
+						}else{
+							echo $v['novidade_360_exibir_banner_label'];
+						}
+					?>
+				</td>
 				<td>
 					<?php
 						$exibe= strtolower($v['novidade_360_exibir_destaque_home_label']);

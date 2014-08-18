@@ -1,10 +1,16 @@
 <?php
-	$path_root_usuarioLista = dirname(__FILE__);
+	$path_root_downloadCategoriaLista = dirname(__FILE__);
 	$DS = DIRECTORY_SEPARATOR;
-	$path_root_usuarioLista = "{$path_root_usuarioLista}{$DS}..{$DS}";
-	include_once "{$path_root_usuarioLista}adm{$DS}includes{$DS}header.php";
-	include_once("{$path_root_usuarioLista}adm{$DS}class{$DS}usuario.class.php");
-	$obj = new usuario();
+	$path_root_downloadCategoriaLista = "{$path_root_downloadCategoriaLista}{$DS}..{$DS}";
+	include_once "{$path_root_downloadCategoriaLista}adm{$DS}includes{$DS}header.php";
+	include_once("{$path_root_downloadCategoriaLista}adm{$DS}class{$DS}configuracao.class.php");
+	include_once("{$path_root_downloadCategoriaLista}adm{$DS}class{$DS}downloadCategoria.class.php");
+	
+	$config = new configuracao();
+	$aConfig = $config->getOne();
+	$urlBase = $aConfig['configuracao_baseurl'];
+	
+	$obj = new downloadCategoria();
 	$aFilterField = $obj->getFilterFieldName();
 	if(isset($_POST['submitado'])){
 		$obj->setValues($_REQUEST);
@@ -23,15 +29,15 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
+	//$obj->debug($aRows);
 ?>
-<script type="text/javascript" src="js/usuario.js"></script>
+<script type="text/javascript" src="js/downloadCategoria.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-          Painel Administrativo <strong>/ Usuários</strong>
+          Painel Administrativo <strong>/ Categoria de Download</strong>
 	</div>
-
 	<div class="left" style="width:auto;">
-		<form action="usuarioLista.php" method="post" id="formBusca" name="formbusca">
+		<form action="contatoTipoLista.php" method="post" id="formBusca" name="formbusca">
 			<input type="hidden" name="submitado" value="1" />
 			<input type="hidden" name="page" id="pagePag" value="<?=$aRows['page']?>" />
 			<input type="hidden" name="rows" id="rowsPag" value="10" />
@@ -54,16 +60,14 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="usuarioEdicao.php" class="butCadastro">Adicionar</a>
+		<a href="downloadCategoriaEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
 		<thead>
 			<tr class="tableHead">
-				<td width="40" align="center">#</td>
-				<td>Nome</td>
-				<td width="200" align="center">Login</td>
-				<td width="100" align="center">Status</td>
+				<td width="40" align="center">ID</td>
+				<td>Categoria de Download</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -73,13 +77,11 @@
 						$evenOdd = (($k+1)%2 > 0)?" even":"";
 			?>
 			<tr class="tableItem<?=$evenOdd?>">
-				<td align="center"><?=$v['usuario_id']?></td>
-				<td><?=$v['usuario_nome']?></td>
-				<td align="center"><?=$v['usuario_login']?></td>
-				<td align="center"><?=$v['usuario_status_label']?></td>
+				<td align="center"><?=$v['download_categoria_id']?></td>
+				<td><?=$v['download_categoria_titulo']?></td>
 				<td>
-					<a href="usuarioEdicao.php?usuario_id=<?=$v['usuario_id']?>" class="btEdit">Editar</a>
-					<a href="javascript:void(0);" rel="<?=$v['usuario_id']?>" class="btDel">Excluir</a>
+					<a href="downloadCategoriaEdicao.php?download_categoria_id=<?=$v['download_categoria_id']?>" class="btEdit">Editar</a>
+					<a href="javascript:void(0);" rel="<?=$v['download_categoria_id']?>" class="btDel">Excluir</a>
 				</td>
 			</tr>
 			<?		endforeach;?>
@@ -99,4 +101,4 @@
 	</div>
 	<?	endif;?>
 </div>
-<?php include_once "{$path_root_usuarioLista}adm{$DS}includes{$DS}footer.php"; ?>
+<?php include_once "{$path_root_downloadCategoriaLista}adm{$DS}includes{$DS}footer.php"; ?>

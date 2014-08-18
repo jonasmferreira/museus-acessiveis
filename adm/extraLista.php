@@ -54,7 +54,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="extraEdicao.php" class="butCadastro">Cadastrar novo extra</a>
+		<a href="extraEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">

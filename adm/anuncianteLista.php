@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="right" style="float:right;width:auto;">
-		<a href="anuncianteEdicao.php" class="butCadastro">Cadastrar novo anunciante</a>
+		<a href="anuncianteEdicao.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
@@ -72,7 +72,6 @@
 				<td>Data</td>
 				<td>Nome do Anunciante</td>
 				<td>Tipo Banner</td>
-				<td>Agenda</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -86,7 +85,6 @@
 				<td><?=$v['anunciante_dt_hr']?></td>
 				<td><?=$v['anunciante_nome']?></td>
 				<td><?=$v['anunciante_tipo_banner_label']?></td>
-				<td><?=$v['anunciante_dt_agenda']?></td>
 				<td>
 					<a href="anuncianteEdicao.php?anunciante_id=<?=$v['anunciante_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['anunciante_id']?>" class="btDel">Excluir</a>
