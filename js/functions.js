@@ -556,9 +556,15 @@ $(document).ready(function(){
 	$('.atento-item ul').cycle({
 		fx:      'scrollLeft'
 		,speed:    1000
-		,timeout:  2000
+		,timeout:  3000
 	});
 
+	//SLIDER do Depoimentos
+	$('.depoimento-box ul').cycle({
+		fx:      'scrollLeft'
+		,speed:    1000
+		,timeout:  5000
+	});
 	
 	//controlando tamanho dos conteudos (content-r e content-l)
 	if($('#content').length > 0){
