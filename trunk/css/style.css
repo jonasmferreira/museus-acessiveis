@@ -532,7 +532,8 @@ div.news-spotlight{
 #diary,
 #atento,
 #newsletter,
-#glossary-search{
+#glossary-search,
+#depoimento{
 	padding: 10px 0 30px 10px;
 	background: url(../img/right-col_bg.png) left bottom no-repeat;
 }
@@ -541,7 +542,8 @@ div.news-spotlight{
 #diary h1, 
 #atento h1,
 #newsletter h1,
-#glossary-search h1{
+#glossary-search h1,
+#depoimento h1{
 	font-size: 17px;
 	color: #632d8b;
 }
@@ -872,3 +874,57 @@ table#list tbody td a{
 .quemsomos_item .quemsomos_texto{
 	padding: 5px 0 0 0;
 }
+
+#depoimento .depoimento-box{
+	width: 200px;
+}
+
+#depoimento .depoimento-box ul{
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style-image: none;
+}
+#depoimento .depoimento-box ul li{
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style-image: none;
+}
+#depoimento .depoimento-box ul li .description{
+	font-size: 11px;
+	font-style: italic;
+	font-weight: bold;
+	color: #FFF;
+	background: #7ecce7;
+	padding: 3px;
+	margin: 0 0 5px 0;
+}
+#depoimento .depoimento-box ul li .author{
+	font-size: 9px;
+	font-style: italic;
+	font-weight: bold;
+	color: #FFF;
+	background: #7ecce7;
+	padding: 3px;
+	text-transform: uppercase;
+}
+#depoimento .depoimento-box ul li .company{
+	font-size: 9px;
+	font-style: italic;
+	font-weight: bold;
+	color: #FFF;
+	background: #7ecce7;
+	padding: 3px;
+}
+
+#depoimento #link{
+	padding: 10px 0;
+	font-size: 14px;
+}
+
+
+
+
+
+

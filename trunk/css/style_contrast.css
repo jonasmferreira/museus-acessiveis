@@ -86,6 +86,9 @@ body.contrast {
 	background: url(../img/outdoor_contrast_bg.png) left top no-repeat;
 }
 
+
+
+
 .contrast #outdoor #item-box ul{
 	border-right: 2px solid #000;
 }
@@ -120,8 +123,20 @@ body.contrast {
 
 
 .contrast #outdoor,#destaque,#news360{
-	background: url(../img/content-dest_contrast_bg.png) right bottom no-repeat;
+	background: url(../img/content-dest_bg_contrast.png) right bottom no-repeat !important;
 }
+
+.contrast #outdoor-news{
+	background: url(../img/content-dest_bg_contrast.png) right bottom no-repeat;
+}
+
+.contrast #list-itens li.month-list{
+	background: url(../img/content-dest_bg_contrast.png) right bottom no-repeat;
+}
+
+
+
+
 
 .contrast .content-box dl dd{
 	color: #FFF;
@@ -315,6 +330,12 @@ body.contrast {
 	color: #000 !important;
 }
 
+
+.contrast #atento .atento-item{
+	background: url(../img/schedule_box_contrast.png) left top no-repeat;	
+}
+
+
 .contrast #atento #day{
 	color: #FFF;
 }
@@ -345,6 +366,17 @@ body.contrast {
 }
 
 
-
+.contrast #depoimento .depoimento-box ul li .description{
+	color: #000;
+	background: #fcee21;
+}
+.contrast #depoimento .depoimento-box ul li .author{
+	color: #000;
+	background: #fcee21;
+}
+.contrast #depoimento .depoimento-box ul li .company{
+	color: #000;
+	background: #fcee21;
+}
 
 
