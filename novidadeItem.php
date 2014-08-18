@@ -28,8 +28,7 @@
 			)
 		);
 		$aNovidade = $objNovidade->getOne();
-		
-		$objNovidade->debug($aNovidade);
+		//$objNovidade->debug($aNovidade);
 		
 		$sConteudo = $aNovidade['novidade_360_conteudo'];
 		$caracEspeciais = array(
