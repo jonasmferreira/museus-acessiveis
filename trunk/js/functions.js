@@ -582,21 +582,33 @@ $(document).ready(function(){
 	//recarregando os downloads na ordem desejada
 	$(".down_ordem").click(function(){
 		var val = '';
+		var downPage = '';
+		var downId = 0;
+		var urlController = '';
+		
+		downPage = $('table#list').attr('downpage');
+		downId = $('table#list').attr('downid');
+		urlController = linkAbsolute + 'adm/controller/'+ downPage + '.controller.php';
+
 		val = $('table#list thead tr td a span').text();
 		$('table#list thead tr td a span').parent().html(val);
-		
+
 		val = $(this).html();
 		$(this).html('<span>'+val+'</span>');
+
+
 
 		//Ajax para recarregar a tabela de downloads
 		$.ajax({
 			type: "POST"
 			,async:false
-			,url: linkAbsolute+'adm/controller/download.controller.php'
+			,url: urlController
 			,data: {
 				action:'down-order'
 				,'order_field': $(this).parent('td').attr('id')
 				,'linkAbsolute': linkAbsolute
+				,'downPage': downPage
+				,'downId': downId
 			}
 			,success:function(msg){
 				if(msg.success){

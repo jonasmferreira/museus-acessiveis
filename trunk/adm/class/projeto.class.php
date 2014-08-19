@@ -540,6 +540,43 @@ class projeto extends defaultClass{
 		return $arr;
 	}
 	
+	public function getDownloadByProjeto($projeto_id, $sOrder='', $direction=''){
+		$sql = array();
+
+		if(trim($direction=='')){
+			$direction = 'DESC';
+		}
+		
+		if(trim($sOrder=='')){
+			$sOrder = 't.download_dt';
+		}
+		
+		$sql[] = "
+			SELECT	pd.projeto_id, t.*, tc.download_categoria_titulo
+			FROM	tb_projeto_download pd
+			JOIN	tb_download t
+			ON		pd.download_id = t.download_id
+			JOIN	tb_download_categoria tc
+			ON		t.download_categoria_id = tc.download_categoria_id			
+			WHERE	1 = 1
+			AND		projeto_id = {$projeto_id}
+			ORDER BY {$sOrder} {$direction}
+		";
+
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	
 	public function getGlossarioCadatradas($projeto_id){
 		$sql = array();
 		$sql[] = "

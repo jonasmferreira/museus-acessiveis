@@ -58,4 +58,59 @@ switch($_REQUEST['action']){
 		}
 		echo $msg;
 	break;
+	
+	case 'down-order':
+		
+		$sOrderField = $_POST['order_field'];
+		$linkAbsolute = $_POST['linkAbsolute'];
+		$downPage = $_POST['downPage'];
+		$downId = $_POST['downId'];
+		
+		if($sOrderField=='D'){
+			$sOrder = 't.download_titulo';
+		}elseif($sOrderField=='DT'){
+			$sOrder = 't.download_dt';
+		}elseif($sOrderField=='F'){
+			$sOrder = 't.download_tipo_desc';
+		}elseif($sOrderField=='S'){
+			$sOrder = 't.download_tamanho';
+		}elseif($sOrderField=='CT'){
+			$sOrder = 'tc.download_categoria_titulo';
+		}
+
+		$obj->setAOrderBy(array(
+			$sOrder => 'ASC'
+		));
+		$obj->setValues(array(
+			'page'=>'1'
+			,'rows'=>'500000'
+		));
+
+		$aResult = $obj->getDownloadByCurso($downId,$sOrder,'ASC');
+		if(count($aResult)>0){
+			$sTable="";
+			foreach($aResult['rows'] as $k => $v){
+				$sLinkFile='';
+				if($v['download_tipo']!=7){
+					$sLinkFile = $linkAbsolute .'arquivosDown/';
+				}
+				$sTable .= "<tr>";
+				$sTable .= "	<td><span>" .$v['download_dt']."</span></td>";
+				$sTable .= "	<td><span>" . $v['download_categoria_titulo'] . "</span></td>"; 
+				$sTable .= "	<td><span><a target='_BLANK' href='" . $v['download_arquivo'] . "'>" . $v['download_titulo'] . "</a></span></td>"; 
+				$sTable .= "	<td><span>" . $v['download_tipo_label'] . "</span></td>"; 
+				$sTable .= "	<td><span>" . $v['download_tamanho_label'] . "</span></td>";
+				$sTable .= "</tr>";
+			}
+		}
+		$aRet = array(
+			'success'=>true
+			,'rows'=> $sTable
+		);
+		echo json_encode($aRet);
+		
+	break;
+	
+	
+	
 }
