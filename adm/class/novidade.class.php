@@ -476,8 +476,17 @@ class novidade extends defaultClass{
 		return array('success'=>'true');
 	}
 
-	public function getDownloadByNovidade($novidade_360_id){
+	public function getDownloadByNovidade($novidade_360_id, $sOrder='', $direction=''){
 		$sql = array();
+		
+		if(trim($direction=='')){
+			$direction = 'DESC';
+		}
+		
+		if(trim($sOrder=='')){
+			$sOrder = 't.download_dt';
+		}
+		
 		$sql[] = "
 			SELECT	pd.novidade_360_id, t.*, tc.download_categoria_titulo
 			FROM	tb_novidade_360_download pd
@@ -486,8 +495,8 @@ class novidade extends defaultClass{
 			JOIN	tb_download_categoria tc
 			ON		t.download_categoria_id = tc.download_categoria_id			
 			WHERE	1 = 1
-			AND		novidade_360_id = '{$novidade_360_id}'
-			ORDER BY t.download_dt DESC
+			AND		novidade_360_id = {$novidade_360_id}
+			ORDER BY {$sOrder} {$direction}
 		";
 		$arr = array();
 		$result = $this->dbConn->db_query(implode("\n",$sql));

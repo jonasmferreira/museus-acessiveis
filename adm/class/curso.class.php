@@ -507,21 +507,35 @@ class curso extends defaultClass{
 		}
 		return $arr;
 	}
-	public function getDownloadByCurso($curso_id){
+	public function getDownloadByCurso($curso_id, $sOrder='', $direction=''){
 		$sql = array();
+
+		if(trim($direction=='')){
+			$direction = 'DESC';
+		}
+		
+		if(trim($sOrder=='')){
+			$sOrder = 't.download_dt';
+		}
+	
 		$sql[] = "
-			SELECT	pd.curso_id, d.*
+			SELECT	pd.curso_id, t.*, tc.download_categoria_titulo
 			FROM	tb_curso_download pd
-			JOIN	tb_download d
-			ON		pd.download_id = d.download_id
+			JOIN	tb_download t
+			ON		pd.download_id = t.download_id
+			JOIN	tb_download_categoria tc
+			ON		t.download_categoria_id = tc.download_categoria_id			
 			WHERE	1 = 1
-			AND		curso_id = '{$curso_id}'
+			AND		curso_id = {$curso_id}
+			ORDER BY {$sOrder} {$direction}
 		";
 		$arr = array();
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
 					array_push($arr,$this->utf8_array_encode($rs));					
 				}
 			}

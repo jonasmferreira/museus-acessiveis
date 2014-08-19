@@ -3,7 +3,9 @@ $path_root_downloadController = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
 $path_root_downloadController = "{$path_root_downloadController}{$DS}..{$DS}..{$DS}";
 require_once "{$path_root_downloadController}adm{$DS}class{$DS}download.class.php";
+
 $obj = new download();
+
 switch($_REQUEST['action']){
 	case 'edit-item':
 		$volta = "downloadEdicao.php";
@@ -53,6 +55,8 @@ switch($_REQUEST['action']){
 		
 		$sOrderField = $_POST['order_field'];
 		$linkAbsolute = $_POST['linkAbsolute'];
+		$downPage = $_POST['downPage'];
+		$downId = $_POST['downId'];
 		
 		if($sOrderField=='D'){
 			$sOrder = 't.download_titulo';
