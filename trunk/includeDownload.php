@@ -5,23 +5,25 @@
 
 							<div id="download-box" style="padding-left:0 !important;">
 								<h3 tabIndex="31" class="orange-color">Downloads</h2>
-								<table id="list" width="100%" cellpading="0" cellspacing="0">
+								<table id="list" width="100%" cellpading="0" cellspacing="0" downPage="<?=$downPage;?>" downId="<?=$downId;?>">
 										<thead>
 											<tr>
-												<td tabIndex="">
-													<span>Data</span>
+												<td tabIndex="" id="DT">
+													<a class="down_ordem" href="javascript:void(0);">
+														<span>Data</span>
+													</a>
 												</td>
-												<td tabIndex="">
-													Categoria
+												<td tabIndex="" id="CT">
+													<a class="down_ordem" href="javascript:void(0);">Categoria</a>
 												</td>
-												<td tabIndex="7">
-													Descrição
+												<td tabIndex="7" id="D">
+													<a class="down_ordem" href="javascript:void(0);">Descrição</a>
 												</td>
-												<td tabIndex="">
-													Formato
+												<td tabIndex="" id="F">
+													<a class="down_ordem" href="javascript:void(0);">Formato</a>
 												</td>
-												<td tabIndex="19">
-													Tamanho
+												<td tabIndex="19" id="S">
+													<a class="down_ordem" href="javascript:void(0);">Tamanho</a>
 												</td>
 											</tr>
 										</thead>

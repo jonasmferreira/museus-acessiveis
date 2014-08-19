@@ -62,6 +62,10 @@
 		
 		//Verificando se a página foi aberta a partir do Newsletter
 		$nNewsId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
+
+		//variáveis para a lista de download
+		$downPage = 'curso';
+		$downId = $nId;
 		
 	?>	
 </head>

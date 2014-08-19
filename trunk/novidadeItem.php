@@ -72,6 +72,10 @@
 			$aDown = $aNovidade['download_list'];
 			//$objProjeto->debug($aDown);
 		}
+
+		//variáveis para a lista de download
+		$downPage = 'novidade';
+		$downId = $nId;
 		
 	?>	
 </head>

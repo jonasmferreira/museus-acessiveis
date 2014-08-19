@@ -208,6 +208,7 @@
                 <li>
 					<a tabIndex="131" href="<?=$linkAbsolute;?>imprensa">Imprensa</a>
 					<ul>
+						<li><a tabIndex="132" href="<?=$linkAbsolute;?>novidade360">Novidades 360º</a></li>
 						<li><a tabIndex="132" href="<?=$linkAbsolute;?>agenda">Agenda</a></li>
 					</ul>
 				</li>
