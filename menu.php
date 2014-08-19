@@ -126,6 +126,7 @@
 					<a tabIndex="14" href="<?=$linkAbsolute;?>imprensa" style="padding-right:none !important;">imprensa</a>
 					<div class="submenu">
 						<ul>
+							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>novidade360">Novidades 360º</a></li>
 							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>agenda">Agenda</a></li>
 						</ul>
 					</div>

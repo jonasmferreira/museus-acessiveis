@@ -26,6 +26,10 @@
 		$aDown = $objDown->getLista();
 
 		//$objDown->debug($aDown);
+
+		//variáveis para a lista de download
+		$downPage = 'download';
+		$downId = 0;
 		
 	?>	
 </head>
@@ -39,7 +43,7 @@
 			<?php include_once("{$path_root_page}logo.php"); ?>
             <div id="download-box">
            	  <h1 tabIndex="31" class="orange-color">Downloads</h1>
-              <table id="list" width="100%" cellpading="0" cellspacing="0">
+              <table id="list" width="100%" cellpading="0" cellspacing="0" downPage="<?=$downPage;?>" downId="<?=$downId;?>">
               		<thead>
                     	<tr>
                         	<td tabIndex="" id="DT">
