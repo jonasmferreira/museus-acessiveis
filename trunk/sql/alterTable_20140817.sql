@@ -17,6 +17,8 @@ CREATE TABLE  `tb_download_categoria` (
   PRIMARY KEY (`download_categoria_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
+INSERT INTO tb_download_categoria
+	SET download_categoria_titulo = 1;
 
 ALTER TABLE `tb_download` 
 	ADD COLUMN `download_categoria_id` BIGINT(20) UNSIGNED NOT NULL DEFAULT 1 AFTER `download_tipo_desc`,
