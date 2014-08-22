@@ -42,7 +42,7 @@
 		);
 		if(count($aTodosGlossario) > 0){
 			foreach($aTodosGlossario AS $v){
-				$v['glossario_palavra'] = trim($v['glossario_palavra']);
+				$v['glossario_palavra'] = strtolower(trim($v['glossario_palavra']));
 				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.$v['glossario_palavra'].'</a>';
 				$linkGlossario2 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtolower($v['glossario_palavra']).'</a>';
 				$linkGlossario3 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
