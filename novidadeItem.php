@@ -38,6 +38,7 @@
 			,";"
 			,":"
 			," "
+			,"."
 		);
 		if(count($aTodosGlossario) > 0){
 			foreach($aTodosGlossario AS $v){
