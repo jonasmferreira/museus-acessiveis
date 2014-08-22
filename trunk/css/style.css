@@ -894,14 +894,19 @@ table#list tbody td a{
 #depoimento .depoimento-box ul li .description{
 	font-size: 11px;
 	font-style: italic;
+	line-height: 15px;
 	font-weight: bold;
 	color: #FFF;
 	background: #7ecce7;
 	padding: 3px;
 	margin: 0 0 5px 0;
 }
+#depoimento .depoimento-box ul li div{
+	margin: 0 0 2px 0;
+}
 #depoimento .depoimento-box ul li .author{
 	font-size: 9px;
+	line-height: 12px;
 	font-style: italic;
 	font-weight: bold;
 	color: #FFF;
@@ -911,6 +916,7 @@ table#list tbody td a{
 }
 #depoimento .depoimento-box ul li .company{
 	font-size: 9px;
+	line-height: 12px;
 	font-style: italic;
 	font-weight: bold;
 	color: #FFF;
