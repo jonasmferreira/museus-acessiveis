@@ -161,6 +161,7 @@ class glossario extends defaultClass{
 
 	private function update(){
 		$this->values['glossario_exibir'] = trim($this->values['glossario_exibir'])!=''?$this->values['glossario_exibir']:'N';
+		$this->values['glossario_palavra'] = $this->escape_string($this->values['glossario_palavra']);
 		$this->values['glossario_conteudo'] = $this->escape_string($this->values['glossario_conteudo']);
 		$this->values['glossario_definicao'] = $this->escape_string($this->values['glossario_definicao']);
 		$this->dbConn->db_start_transaction();
@@ -207,6 +208,7 @@ class glossario extends defaultClass{
 	}
 
 	private function insert(){
+		$this->values['glossario_palavra'] = $this->escape_string($this->values['glossario_palavra']);
 		$this->values['glossario_exibir'] = trim($this->values['glossario_exibir'])!=''?$this->values['glossario_exibir']:'N';
 		$this->values['glossario_conteudo'] = $this->escape_string($this->values['glossario_conteudo']);
 		$this->values['glossario_definicao'] = $this->escape_string($this->values['glossario_definicao']);
