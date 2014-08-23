@@ -41,7 +41,7 @@
            	  <h1 tabIndex="31" class="orange-color">Depoimentos</h1>
 			  <!--div class="news-spotlight">
 			  </div-->
-<?php	foreach($aRows['rows'] as $k => $v){ ?>				
+				<?php	foreach($aRows['rows'] as $k => $v){ ?>				
 					<div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
@@ -53,12 +53,19 @@
 										</span>
 									</div>
 									<div class="social-media">
+										<?php 
+											$urlPost = $linkAbsolute . 'depoimento/' . $v['depoimento_id'] . '/'. $objDepoimento->toNormaliza($v['depoimento_autor']);
+											$titlePost = $aNovidade['depoimento_autor'];
+										?>
+										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
 										<span class="purple-color">
-											<a tabIndex="36" class="purple-color" href="">facebook</a>
+											<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
 										</span>
 										<span class="separator">|</span>
 										<span class="purple-color">
-											<a tabIndex="37" class="purple-color" href="">twitter</a>
+											<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+												twitter
+											</a>										
 										</span>
 									</div>
 									<div class="clear"></div>

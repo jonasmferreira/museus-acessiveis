@@ -122,15 +122,25 @@
 											<?=($v['projeto_agenda']!='00/00/0000')?$v['projeto_agenda']:'';?>
 										</span>
 									</div>
-									<div class="social-media">
+									
+									<!--div class="social-media">
+										<?php 
+											$urlPost = $linkAbsolute . 'projeto/' . $v['projeto_id'] . '/'. $objProjeto->toNormaliza($v['projeto_titulo']);
+											$titlePost = $aNovidade['projeto_titulo'];
+										?>
+										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
 										<span class="purple-color">
-											<a tabIndex="36" class="purple-color" href="">facebook</a>
+											<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
 										</span>
 										<span class="separator">|</span>
 										<span class="purple-color">
-											<a tabIndex="37" class="purple-color" href="">twitter</a>
+											<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+												twitter
+											</a>										
 										</span>
-									</div>
+									</div-->
+									
+									
 									<div class="clear"></div>
 								</div> 
 								<dl class="content-list-itens">

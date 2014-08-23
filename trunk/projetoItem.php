@@ -131,6 +131,24 @@
 					<!-- AQUI FICAM OS DOWNLOADS QUANDO EXISTIREM -->			  
 					<?php include_once("{$path_root_page}includeDownload.php"); ?>
 					
+						<div class="social-media" style="text-align: right;">
+							<?php 
+								$urlPost = $linkAbsolute . 'projeto/' . $aProjeto['projeto_id'] . '/'. $objProjeto->toNormaliza($aProjeto['projeto_titulo']);
+								$titlePost = $aNovidade['projeto_titulo'];
+							?>
+							<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
+							<span class="purple-color">
+								<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
+							</span>
+							<span class="separator">|</span>
+							<span class="purple-color">
+								<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+									twitter
+								</a>										
+							</span>
+						</div>
+					
+					
 				</div>
 			
         	</div>
