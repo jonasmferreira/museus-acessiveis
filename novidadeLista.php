@@ -93,11 +93,22 @@
 											<?=($v['novidade_360_dt_agenda']!='00/00/0000')?$v['novidade_360_dt_agenda']:'';?>
 										</span>
 									</div>
-									<div class="social-media">
-										<span class="purple-color"><a tabIndex="36" class="purple-color" href="">facebook</a></span>
+									<!--div class="social-media">
+										<?php 
+											$urlPost = $linkAbsolute . 'novidade360/' . $v['novidade_360_id'] . '/'. $objNovidade->toNormaliza($v['novidade_360_titulo']);
+											$titlePost = $aNovidade['novidade_360_titulo'];
+										?>
+										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
+										<span class="purple-color">
+											<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
+										</span>
 										<span class="separator">|</span>
-										<span class="purple-color"><a tabIndex="37" class="purple-color" href="">twitter</a></span>
-									</div>
+										<span class="purple-color">
+											<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+												twitter
+											</a>										
+										</span>
+									</div-->
 									<div class="clear"></div>
                               </div>  
                             <dl>
@@ -113,7 +124,13 @@
                             </td>
                         </tr>
                         <tr>
-                        	<td colspan="2"><strong class="more"><a tabIndex="38" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">ver mais +</a></strong></td>
+                        	<td colspan="2">
+								<strong class="more">
+									<a tabIndex="38" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($v['novidade_360_titulo']);?>">
+											ver mais +
+									</a>
+								</strong>
+							</td>
                         </tr>
                     </table>
                 </div>  

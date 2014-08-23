@@ -41,3 +41,5 @@
 </script>
 <script src="<?=$linkAbsolute?>js/functions.js?<?=$seqAleatoria?>"></script>
 
+<?php include_once("{$path_root_page}includeSocialMedia.php"); ?>
+

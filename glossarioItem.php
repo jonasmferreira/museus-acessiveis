@@ -13,6 +13,14 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}glossario.class.php");
 		$objGlossario = new glossario();
 		$aGlossario = array();
+
+		//LISTA DE ARQUIVOS DE GLOSSARIOS RELACIONADOS 
+		$aGloss= array();
+		$aGl=array();
+		
+		//LISTA DE ARQUIVOS DE TAGS RELACIONADOS
+		$aTag= array();
+		$aTg=array();
 		
 		$nId = (isset($_REQUEST['glossario_id'])?$_REQUEST['glossario_id']:0);
 		$objGlossario->setValues(
@@ -23,6 +31,17 @@
 		$aGlossario = $objGlossario->getOne();
 		//$objGlossario->debug($aGlossario);
 
+		//Verificando se há glossários para exibir
+		if(is_array($aGlossario['glossario_list']) && count($aGlossario['glossario_list'])>0){
+			$aGloss = $aGlossario['glossario_list'];
+		}
+		
+		//Verificando se há tags para exibir
+		if(is_array($aGlossario['tag_list']) && count($aGlossario['tag_list'])>0){
+			$aTag = $aGlossario['tag_list'];
+			//$objProjeto->debug($aTag);
+		}
+		
 		//Verificando se a página foi aberta a partir do Newsletter
 		$nNewsId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
 		
@@ -55,6 +74,34 @@
 								}
 							?>
 						</div>
+						
+						<!-- TAGS -->
+						<?php include_once("{$path_root_page}includeTags.php"); ?>
+
+						<!-- GLOSSÁRIO -->
+						<?php 
+							$glossRel=true;
+							include_once("{$path_root_page}includeGlossario.php"); 
+						?>
+						
+						
+						<div class="social-media" style="text-align: right;">
+							<?php 
+								$urlPost = $linkAbsolute . 'glossario/' . $aGlossario['glossario_id'] . '/'. $objGlossario->toNormaliza($aGlossario['glossario_palavra']);
+								$titlePost = $aNovidade['glossario_palavra'];
+							?>
+							<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
+							<span class="purple-color">
+								<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
+							</span>
+							<span class="separator">|</span>
+							<span class="purple-color">
+								<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+									twitter
+								</a>										
+							</span>
+						</div>
+						
 					</div>
         	</div>
         	<div class="clear"></div>
