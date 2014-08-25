@@ -49,7 +49,7 @@
 <?php
 
 		//montando o array com os dados por mês/ano
-		//$aNovidades = array();
+		//$aRowss = array();
 		$nAno = 0;
 		$nMes = 0;
 		$nPos=0;
@@ -57,7 +57,7 @@
 		foreach($aRows['rows'] as $k => $v){
 			$aData = explode('-',$v['release_dt']);
 			if($nAno!=$aData[2]||$nMes!=$aData[1]){
-				$nAno = $aData[2];
+				$nAno = $aData[0];
 				$nMes = $aData[1];
 				$nPos=0;
 				if(trim($sCloseLi)!=''){
@@ -88,7 +88,7 @@
 									<div class="social-media">
 										<?php 
 											$urlPost = $linkAbsolute . 'release/' . $v['release_id'] . '/'. $objRelease->toNormaliza($v['release_titulo']);
-											$titlePost = $aNovidade['release_titulo'];
+											$titlePost = $aRows['release_titulo'];
 										?>
 										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
 										<span class="purple-color">
@@ -112,13 +112,6 @@
 												</a>
 											</strong>
 										</span>
-										<div class="purple-color">
-											<span class="curso-info orange-color">
-											<?php if($v['release_sob_demanda']=='N' && $v['release_dt_agenda']!='00/00/0000'){  ?>
-												Período: de <?=$v['servico_dt_ini'];?> até <?=$v['servico_dt_fim'];?>
-											<?php } ?>
-											</span>
-										</div>
 									</dt>
 									<dd tabIndex="34">
 										<i>

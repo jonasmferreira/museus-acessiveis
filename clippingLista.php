@@ -10,26 +10,26 @@
 
 		//Carregando os conteúdos da página
 		
-		include_once("{$path_root_page}adm{$DS}class{$DS}release.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}clipping.class.php");
 
-		$objRelease = new release();
+		$objClipping = new clipping();
 
 		//Lista
-		$objRelease->setValues(array(
+		$objClipping->setValues(array(
 			'page'=>'1'
 			,'rows'=>'100000'
 		));
 		
-		$objRelease->setAOrderBy(array(
-			't.release_dt' => 'DESC'
-			,'t.release_titulo' => 'ASC'
+		$objClipping->setAOrderBy(array(
+			't.clipping_dt' => 'DESC'
+			,'t.clipping_titulo' => 'ASC'
 		));
 
-		$aRows = $objRelease->getLista();
-		//$objRelease->debug($aRows);
+		$aRows = $objClipping->getLista();
+		//$objClipping->debug($aRows);
 
-		$aMeses = $objRelease->getMeses();
-		//$objRelease->debug($aRows);
+		$aMeses = $objClipping->getMeses();
+		//$objClipping->debug($aRows);
 
 	?>	
 </head>
@@ -43,21 +43,21 @@
 			<?php include_once("{$path_root_page}logo.php"); ?>
 			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
-           	  <h1 tabIndex="31" class="orange-color">Release</h1>
+           	  <h1 tabIndex="31" class="orange-color">Clipping</h1>
               <ul id="list-itens">
               	
 <?php
 
 		//montando o array com os dados por mês/ano
-		//$aNovidades = array();
+		//$aRowss = array();
 		$nAno = 0;
 		$nMes = 0;
 		$nPos=0;
 		$sCloseLi = '';
 		foreach($aRows['rows'] as $k => $v){
-			$aData = explode('-',$v['release_dt']);
+			$aData = explode('-',$v['clipping_dt']);
 			if($nAno!=$aData[2]||$nMes!=$aData[1]){
-				$nAno = $aData[2];
+				$nAno = $aData[0];
 				$nMes = $aData[1];
 				$nPos=0;
 				if(trim($sCloseLi)!=''){
@@ -76,19 +76,19 @@
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
 	                        <td valign="top" align="left" width="152">
-								<img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['release_thumb'];?>" width="152" height="116"  alt="<?=$v['release_thumb_desc'];?>" title="<?=$v['release_titulo'];?>"/>
+								<img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['clipping_thumb'];?>" width="152" height="116"  alt="<?=$v['clipping_thumb_desc'];?>" title="<?=$v['clipping_titulo'];?>"/>
 							</td>
 							<td valign="top" align="left">
                                 <div class="info-head">
 									<div class="date">
 										<span class="purple-color" tabIndex="32">
-											<?=$objRelease->dateDB2BR($v['release_dt']);?>
+											<?=$objClipping->dateDB2BR($v['clipping_dt']);?>
 										</span>
 									</div>
 									<div class="social-media">
 										<?php 
-											$urlPost = $linkAbsolute . 'release/' . $v['release_id'] . '/'. $objRelease->toNormaliza($v['release_titulo']);
-											$titlePost = $aNovidade['release_titulo'];
+											$urlPost = $linkAbsolute . 'clipping/' . $v['clipping_id'] . '/'. $objClipping->toNormaliza($v['clipping_titulo']);
+											$titlePost = $aRows['clipping_titulo'];
 										?>
 										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
 										<span class="purple-color">
@@ -107,22 +107,15 @@
 									<dt>
 										<span class="orange-color" tabIndex="32">
 											<strong>
-												<a tabIndex="33" href="<?=$linkAbsolute;?>release/<?=$v['release_id'];?>/<?=$objRelease->toNormaliza($v['release_titulo']);?>">
-													<?=$v['release_titulo'];?>
+												<a tabIndex="33" href="<?=$linkAbsolute;?>clipping/<?=$v['clipping_id'];?>/<?=$objClipping->toNormaliza($v['clipping_titulo']);?>">
+													<?=$v['clipping_titulo'];?>
 												</a>
 											</strong>
 										</span>
-										<div class="purple-color">
-											<span class="curso-info orange-color">
-											<?php if($v['release_sob_demanda']=='N' && $v['release_dt_agenda']!='00/00/0000'){  ?>
-												Período: de <?=$v['servico_dt_ini'];?> até <?=$v['servico_dt_fim'];?>
-											<?php } ?>
-											</span>
-										</div>
 									</dt>
 									<dd tabIndex="34">
 										<i>
-										<?=$v['release_resumo'];?>
+										<?=$v['clipping_resumo'];?>
 										</i>
 									</dd>
 								</dl>
@@ -131,7 +124,7 @@
                         <tr>
                         	<td colspan="2">
 								<strong class="more">
-									<a tabIndex="38" href="<?=$linkAbsolute;?>release/<?=$v['release_id'];?>/<?=$objRelease->toNormaliza($v['release_titulo']);?>">
+									<a tabIndex="38" href="<?=$linkAbsolute;?>clipping/<?=$v['clipping_id'];?>/<?=$objClipping->toNormaliza($v['clipping_titulo']);?>">
 										ver mais +
 									</a>
 								</strong>

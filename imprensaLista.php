@@ -71,10 +71,10 @@
 	<div class="clear"></div>    
 	<div id="content-l">
 		<?php include_once("{$path_root_page}menu.php"); ?>
-        <div id="content" href="content" accesskey="3">
+        <div id="content" class="imprensa" href="content" accesskey="3">
 			<?php include_once("{$path_root_page}logo.php"); ?>
 
-            <div id="outdoor" style="height:1px !important;"></div>
+            <div id="outdoor"></div>
 			
 			<div id="imprensa-info">
            	  <h1 tabIndex="31" class="orange-color">Imprensa</h1>
@@ -96,7 +96,7 @@
                 <div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-                        	<td valign="top" align="left" width="264">
+                        	<td valign="top" align="left" width="274">
 								<img tabIndex="26" src="<?=$linkAbsolute;?>images/<?=$aDestaque['novidade_360_destaque_home'];?>" width="264" height="262"  alt="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" title="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" />
 							</td>
                             <td valign="top" align="left">
@@ -158,7 +158,7 @@
 			</div>
 			
 			<!-- RELEASE -->
-            <div id="news360">
+            <div class="release-clipping">
             	<h1 tabIndex="31" class="orange-color">Release</h1>
 				<?php foreach($aRelease['rows'] as $k =>$v){ ?>
 				<div class="content-box">
@@ -168,42 +168,38 @@
                                 <div class="info-head">
 									<div class="date">
 										<span class="gray-color" tabIndex="32">
-											<?=($v['release_dt_agenda']!='00/00/0000')?$v['release_dt_agenda']:'';?>
+											<?=($v['release_dt']!='00/00/0000')?$v['release_dt']:'';?>
 										</span>
 									</div>
 									<div class="clear"></div>
                               </div>  
-                            <dl>
-                              	<dt>
-                                	<strong>
-										<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>release/<?=$v['release_id'];?>/<?=$objRelease->toNormaliza($v['release_titulo']);?>">
-											<?=$v['release_titulo'];?>
-										</a>
-									</strong>
-                                </dt>
-                            </dl>
+                            <div class="title-imp">
+								<strong>
+									<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>release/<?=$v['release_id'];?>/<?=$objRelease->toNormaliza($v['release_titulo']);?>">
+										<?=$v['release_titulo'];?>
+									</a>
+								</strong>
+                            </div>
                             </td>
                         </tr>
                         <tr>
                         	<td align="right">
-								<strong class="more">
-									<a tabIndex="38" href="javascript:void(0);"></a>
-								</strong>
+								<strong class="more"></strong>
 							</td>
                         </tr>
                     </table>
                 </div>  
 				<?php } ?>
-				<span class="gray-color">
+				<div class="gray-color more">
 					<a tabIndex="53" class="gray-color" href="<?=$linkAbsolute;?>release/">
-						ver +
+						ver todos
 					</a>
-				</span>
+				</div>
             </div>
             <div class="clear"></div>
 			
 			<!-- CLIPPING -->
-            <div id="news360">
+            <div class="release-clipping">
             	<h1 tabIndex="31" class="orange-color">Clipping</h1>
 				<?php foreach($aClipping['rows'] as $k =>$v){ ?>
 				<div class="content-box">
@@ -213,37 +209,33 @@
                                 <div class="info-head">
 									<div class="date">
 										<span class="gray-color" tabIndex="32">
-											<?=($v['clipping_dt_agenda']!='00/00/0000')?$v['clipping_dt_agenda']:'';?>											
+											<?=$v['clipping_dt'];?>
 										</span>
 									</div>
 									<div class="clear"></div>
                               </div>  
-                            <dl>
-                              	<dt>
-                                	<strong>
-										<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>clipping/<?=$v['clipping_id'];?>/<?=$objClipping->toNormaliza($v['clipping_titulo']);?>">
-											<?=$v['clipping_titulo'];?>
-										</a>
-									</strong>
-                                </dt>
-                            </dl>
+                            <div class="title-imp">
+								<strong>
+									<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>clipping/<?=$v['clipping_id'];?>/<?=$objClipping->toNormaliza($v['clipping_titulo']);?>">
+										<?=$v['clipping_titulo'];?>
+									</a>
+								</strong>
+                            </div>
                             </td>
                         </tr>
                         <tr>
                         	<td align="right">
-								<strong class="more">
-									<a tabIndex="38" href="javascript:void(0);"></a>
-								</strong>
+								<strong class="more"></strong>
 							</td>
                         </tr>
                     </table>
                 </div>  
 				<?php } ?>
-				<span class="gray-color">
+				<div class="gray-color more">
 					<a tabIndex="53" class="gray-color" href="<?=$linkAbsolute;?>clipping/">
-						ver +
+						ver todos
 					</a>
-				</span>
+				</div>
             </div>
             <div class="clear"></div>
 			
