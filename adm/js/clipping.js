@@ -14,11 +14,11 @@
 			var obj = $(this);
 			var id = trim($(this).attr('rel'));
 			var param = {
-				'imprensa_id':id
+				'clipping_id':id
 			}
 			deleteItem(
 					"Deseja excluir esse Item?"
-					,"controller/imprensa.controller.php?action=deleteItem"
+					,"controller/clipping.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');
@@ -37,15 +37,15 @@
 		$(".delImg").click(function(){
 			var obj = $(this);
 			var img = $(this).attr('rel');
-			var id = $("#imprensa_id").val();
+			var id = $("#clipping_id").val();
 			
 			var param = {
-				'imprensa_id':id
+				'clipping_id':id
 				,'img':img
 			}
 			deleteItem(
 					"Deseja remover essa imagem?"
-					,"controller/imprensa.controller.php?action=removeImage"
+					,"controller/clipping.controller.php?action=removeImage"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');
@@ -61,6 +61,30 @@
 					}
 			)
 		});
+		
+		$('#clipping_exibir_banner').click(function () {
+			//console.log($(this).prop("checked"));
+			if($(this).prop("checked")){
+				$('#clipping_banner_desc').removeAttr('readonly');
+			}else{
+				$('#clipping_banner_desc').attr('readonly','yes');
+			}
+			
+		});		
+
+		$('#clipping_exibir_destaque_home').click(function () {
+			//console.log($(this).prop("checked"));
+			if($(this).prop("checked")){
+				$('#clipping_destaque_home_desc').removeAttr('readonly');
+				$('#clipping_destaque_home_frase').removeAttr('readonly');
+			}else{
+				$('#clipping_destaque_home_desc').attr('readonly','yes');
+				$('#clipping_destaque_home_frase').attr('readonly','yes');
+			}
+			
+		});		
+
+
 		
 	});
 	

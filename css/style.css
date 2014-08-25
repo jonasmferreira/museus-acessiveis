@@ -39,12 +39,12 @@ a{
 h1 {
 	font-size:28px;
 	padding:15px 0 5px 0
-	}
+}
 
 h3 {
 	font-size:18px;
 	font-weight:normal;
-	}
+}
 
 .purple-color{
 	color: #632d8b;
@@ -52,6 +52,11 @@ h3 {
 .orange-color{
 	color: #f37920;
 }
+.gray-color{
+	color: #8e8e8e;
+}
+
+
 
 .fixedSize{}
 	
@@ -275,11 +280,16 @@ h3 {
 	padding: 30px 15px 17px 110px;
 }
 
-#news360{
+#news360,#imprensa-info{
 	padding: 30px 15px 39px 110px;
 }
 
-#outdoor,#destaque,#news360{
+#imprensa-info, #nossos-numeros{
+	padding: 30px 15px 20px 110px;
+}
+
+
+#outdoor,#destaque,#news360, #imprensa-info, #nossos-numeros{
 	background: url(../img/content-dest_bg.png) right bottom no-repeat;
 }
 
@@ -287,8 +297,21 @@ h3 {
 #news360 .content-box{
 	padding: 10px 0 5px 0;
 }
+
+#imprensa-info .content-box{
+	padding: 10px 0 5px 0;
+	margin: 0;
+}
+
+#imprensa-info #content-news{
+	font-size: 16px;
+	font-style: normal;
+	padding: 5px 30px 10px 0 !important;
+}
+
 #destaque .content-box img, 
-#news360 .content-box img{
+#news360 .content-box img,
+#imprensa-info .content-box img{
 	padding: 0 10px 0 0;
 }
 

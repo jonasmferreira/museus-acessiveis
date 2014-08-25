@@ -134,6 +134,8 @@ class novidade extends defaultClass{
 					$rs['novidade_360_exibir_banner_label'] = $rs['novidade_360_exibir_banner']=='S'?'Sim':'Não';
 					$rs['novidade_360_exibir_listagem_label'] = $rs['novidade_360_exibir_listagem']=='S'?'Sim':'Não';
 					$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
+					$rs['tags_list'] = $this->getTagsByNovidades($rs['novidade_360_id']);
+					$rs['downloads'] = $this->getDownloadCadastrados($rs['novidade_360_id']);
 					$rs['download_list'] = $this->getDownloadByNovidade($rs['novidade_360_id']);
 					array_push($arr,$this->utf8_array_encode($rs));
 				}
@@ -156,8 +158,9 @@ class novidade extends defaultClass{
 				$rs['novidade_360_dthr'] = $this->dateDB2BR($rs['novidade_360_dt'])." às ".$rs['novidade_360_hr'];
 				$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['novidade_360_id']);
+				$rs['tags_list'] = $this->getTagsByNovidades($rs['novidade_360_id']);
+				$rs['downloads'] = $this->getDownloadCadastrados($rs['novidade_360_id']);
 				$rs['download_list'] = $this->getDownloadByNovidade($rs['novidade_360_id']);
-				
 			}
 		}
 		return $this->utf8_array_encode($rs);
@@ -318,6 +321,13 @@ class novidade extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->insertDownload($this->values['downloads'], $novidade_360_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
 	}
@@ -506,6 +516,84 @@ class novidade extends defaultClass{
 					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
 					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
 					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+
+	public function getTagsByNovidades($novidade_360_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	tp.tag_id, t.tag_titulo
+			FROM	tb_novidade_360_tag tp
+			JOIN	tb_tag t
+			ON		tp.tag_id = t.tag_id
+			WHERE	1 = 1
+			AND		novidade_360_id = '{$novidade_360_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+
+	public function getDownloadByNovidades($novidade_360_id, $sOrder='', $direction=''){
+		$sql = array();
+		
+		if(trim($direction=='')){
+			$direction = 'DESC';
+		}
+		
+		if(trim($sOrder=='')){
+			$sOrder = 't.download_dt';
+		}
+		
+		$sql[] = "
+			SELECT	pd.novidade_360_id, t.*, tc.download_categoria_titulo
+			FROM	tb_novidade_360_download pd
+			JOIN	tb_download t
+			ON		pd.download_id = t.download_id
+			JOIN	tb_download_categoria tc
+			ON		t.download_categoria_id = tc.download_categoria_id
+			WHERE	1 = 1
+			AND		novidade_360_id = {$novidade_360_id}
+			ORDER BY {$sOrder} {$direction}
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$rs['download_dt'] = $this->dateDB2BR($rs['download_dt']);
+					$rs['download_tamanho_label'] = $this->getSizeName($rs['download_tamanho']);					
+					array_push($arr,$this->utf8_array_encode($rs));					
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	public function getDownloadCadastrados($novidade_360_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	download_id
+			FROM	tb_novidade_360_download
+			WHERE	1 = 1
+			AND		novidade_360_id = '{$novidade_360_id}'
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					$arr[] = $rs['download_id'];
 				}
 			}
 		}

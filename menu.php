@@ -128,6 +128,9 @@
 						<ul>
 							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>novidade360">Novidades 360º</a></li>
 							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>agenda">Agenda</a></li>
+							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>imprensa">Imprensa</a></li>
+							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>release">Release</a></li>
+							<li class="fontSize"><a tabIndex="15" href="<?=$linkAbsolute;?>clipping">Clipping</a></li>
 						</ul>
 					</div>
 				</li>

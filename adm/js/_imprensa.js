@@ -17,7 +17,7 @@
 				'imprensa_id':id
 			}
 			deleteItem(
-					"Deseja excluir esse Item?"
+					"Deseja excluir esse item?"
 					,"controller/imprensa.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
@@ -33,35 +33,6 @@
 					}
 			)
 		});
-		
-		$(".delImg").click(function(){
-			var obj = $(this);
-			var img = $(this).attr('rel');
-			var id = $("#imprensa_id").val();
-			
-			var param = {
-				'imprensa_id':id
-				,'img':img
-			}
-			deleteItem(
-					"Deseja remover essa imagem?"
-					,"controller/imprensa.controller.php?action=removeImage"
-					,param
-					,function(msg,oDialog){
-						oDialog.dialog('close');
-						oDialog.dialog('destroy');
-						obj.parent().parent().find('.images').remove();
-						obj.parent().remove();
-						newAlert(msg);
-					}
-					,function(msg,oDialog){
-						oDialog.dialog('close');
-						oDialog.dialog('destroy');
-						newAlert(msg);
-					}
-			)
-		});
-		
 	});
-	
 })(jQuery);
+

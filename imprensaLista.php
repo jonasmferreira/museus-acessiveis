@@ -8,25 +8,61 @@
 		$path_root_page = "{$path_root_page}{$DS}";
 		include_once("{$path_root_page}head.php"); 
 
-		//Carregando os conteúdos da página
-		
-		//itens do Outdoor / Destaque e Novidades 360º
 		include_once("{$path_root_page}adm{$DS}class{$DS}imprensa.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}release.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}clipping.class.php");
+		include_once("{$path_root_page}adm{$DS}class{$DS}novidade.class.php");
+
+		//Carregando os conteúdos da página
 		$objImprensa = new imprensa();
+		$objNovidade = new novidade();
+		$objRelease = new release();
+		$objClipping = new clipping();
 
-		//itens do outdoor
+		//Informações de Imprensa
 		$objImprensa->setValues(array(
+			'imprensa_id'=>1
+		));
+		$aRow = $objImprensa->getOne();
+		//$objImprensa->debug($aRow);
+		
+		//Novidades 360 - Destaque
+		$objNovidade->setValues(array(
+			'novidade_360_exibir_destaque_home'=>'S'
+			,'page'=>'1'
+			,'rows'=>'1'
+		));
+		$aNovidade = $objNovidade->getLista();
+		$aDestaque = $aNovidade['rows'][0];
+		//$objNovidade->debug($aDestaque);
+		
+		//Release
+		$objRelease->setValues(array(
 			'page'=>'1'
-			,'rows'=>'500000'
+			,'rows'=>'3'
 		));
-		$objImprensa->setAOrderBy(array(
-			't.imprensa_dt' => 'DESC'
-			,'t.imprensa_hr' => 'DESC'
-			,'t.imprensa_titulo'=> 'ASC'
+		$objRelease->setAOrderBy(array(
+			't.release_dt_agenda' => 'DESC'
+			,'t.release_dt' => 'DESC'
+			,'t.release_hr' => 'DESC'
 		));
-		$aImprensa = $objImprensa->getLista();
-
-		//$objImprensa->debug($aImprensa);
+		$aRelease = $objRelease->getLista();
+		//$objRelease->debug($aRelease);
+		
+		//Clipping
+		$objClipping->setValues(array(
+			'page'=>'1'
+			,'rows'=>'3'
+		));
+		$objClipping->setAOrderBy(array(
+			't.clipping_dt_agenda' => 'DESC'
+			,'t.clipping_dt' => 'DESC'
+			,'t.clipping_hr' => 'DESC'
+		));
+		$aClipping = $objClipping->getLista();
+		//$objClipping->debug($aClipping);
+		
+		
 	?>	
 </head>
 <body>
@@ -37,53 +73,184 @@
 		<?php include_once("{$path_root_page}menu.php"); ?>
         <div id="content" href="content" accesskey="3">
 			<?php include_once("{$path_root_page}logo.php"); ?>
-            <div id="download-box">
+
+            <div id="outdoor" style="height:1px !important;"></div>
+			
+			<div id="imprensa-info">
            	  <h1 tabIndex="31" class="orange-color">Imprensa</h1>
-              <table id="list" width="100%" cellpading="0" cellspacing="0">
-              		<thead>
+				<div id="content-news" class="content-box">
+						<h3 class="orange-color"  tabIndex="33">Acessoria: <?php echo $aRow['imprensa_assessoria_nome'];?></h3>
+						<span class="curso-info">
+							<?php echo $aRow['imprensa_assessoria_telefone'];?>
+							<br />
+							<?php echo $aRow['imprensa_assessoria_email'];?>
+						</span>
+						<div class="clear"></div>
+					</div>
+        	</div>
+        	<div class="clear"></div>
+
+			<!-- NOVIDADE 360º -->
+            <div id="destaque">
+            	<h1 tabIndex="22" class="orange-color">Destaque!</h1>
+                <div class="content-box">
+                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-                        	<td tabIndex="">
-                            	Data
-                            </td>
-                        	<td tabIndex="7">
-                            	<span>Descrição</span>
-                            </td>
-                        	<td tabIndex="">
-                            	Formato
-                            </td>
-                        	<td tabIndex="19">
-                            	Tamanho
+                        	<td valign="top" align="left" width="264">
+								<img tabIndex="26" src="<?=$linkAbsolute;?>images/<?=$aDestaque['novidade_360_destaque_home'];?>" width="264" height="262"  alt="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" title="<?=$aDestaque['novidade_360_destaque_home_desc'];?>" />
+							</td>
+                            <td valign="top" align="left">
+                                <div class="info-head">
+									<div class="date">
+										<span tabIndex="23" class="purple-color">
+											<?=($aDestaque['novidade_360_dt_agenda']!='00/00/0000')?$aDestaque['novidade_360_dt_agenda']:'';?>
+										</span>
+									</div>
+									<div class="social-media">
+										<?php 
+											$urlPost = $linkAbsolute . 'novidade360/' . $v['novidade_360_id'] . '/'. $objNovidade->toNormaliza($v['novidade_360_titulo']);
+											$titlePost = $aNovidade['novidade_360_titulo'];
+										?>
+										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
+										<span class="purple-color">
+											<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
+										</span>
+										<span class="separator">|</span>
+										<span class="purple-color">
+											<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+												twitter
+											</a>										
+										</span>
+									</div>
+									<div class="clear"></div>
+                              </div>  
+                              <dl>
+                              	<dt>
+                                	<strong>
+										<a tabIndex="24" href="<?=$linkAbsolute;?>novidade360/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>">
+											<?php echo $aDestaque['novidade_360_titulo']; ?>
+										</a>
+									</strong>
+                                </dt>
+                              	<dd>
+                                <i tabIndex="25">
+                                <?=$aDestaque['novidade_360_resumo'];?>
+                                </i>
+                                </dd>
+                              </dl>   
                             </td>
                         </tr>
-                    </thead>
-              		<tbody>
-<?php 
-		foreach($aImprensa['rows'] as $k => $v){
-?>
-						<tr>
-                        	<td>
-                            	<span><?=$v['imprensa_dt'];?></span>
-                            </td>
-                        	<td>
-                            	<span><a target="_BLANK" href="<?=$linkAbsolute;?>arquivosDown/<?=$v['imprensa_arquivo'];?>"><?=$v['imprensa_titulo'];?></a></span>
-                            </td>
-                        	<td>
-                            	<span><?=$v['imprensa_tipo_label'];?></span>
-                            </td>
-                        	<td>
-                            	<span><?=$v['imprensa_tamanho_label'];?></span>
+                    </table>
+                    
+                    
+                </div>
+           </div>
+
+			<!-- NOSSOS NÚMEROS -->
+			<div id="nossos-numeros">
+				<h1 tabIndex="22" class="orange-color">Nossos Números</h1>
+				<div class="content-box">
+						<div id="project-content">
+							<?=$aRow['imprensa_nossos_numeros'];?>
+						</div>
+						<div class="clear"></div>
+				</div>
+			</div>
+			
+			<!-- RELEASE -->
+            <div id="news360">
+            	<h1 tabIndex="31" class="orange-color">Release</h1>
+				<?php foreach($aRelease['rows'] as $k =>$v){ ?>
+				<div class="content-box">
+                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
+                    	<tr>
+                          <td valign="top" align="left">
+                                <div class="info-head">
+									<div class="date">
+										<span class="gray-color" tabIndex="32">
+											<?=($v['release_dt_agenda']!='00/00/0000')?$v['release_dt_agenda']:'';?>
+										</span>
+									</div>
+									<div class="clear"></div>
+                              </div>  
+                            <dl>
+                              	<dt>
+                                	<strong>
+										<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>release/<?=$v['release_id'];?>/<?=$objRelease->toNormaliza($v['release_titulo']);?>">
+											<?=$v['release_titulo'];?>
+										</a>
+									</strong>
+                                </dt>
+                            </dl>
                             </td>
                         </tr>
-<?php
-		}
-?>						
-                    </tbody>
-              </table>
+                        <tr>
+                        	<td align="right">
+								<strong class="more">
+									<a tabIndex="38" href="javascript:void(0);"></a>
+								</strong>
+							</td>
+                        </tr>
+                    </table>
+                </div>  
+				<?php } ?>
+				<span class="gray-color">
+					<a tabIndex="53" class="gray-color" href="<?=$linkAbsolute;?>release/">
+						ver +
+					</a>
+				</span>
             </div>
             <div class="clear"></div>
+			
+			<!-- CLIPPING -->
+            <div id="news360">
+            	<h1 tabIndex="31" class="orange-color">Clipping</h1>
+				<?php foreach($aClipping['rows'] as $k =>$v){ ?>
+				<div class="content-box">
+                	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
+                    	<tr>
+                          <td valign="top" align="left">
+                                <div class="info-head">
+									<div class="date">
+										<span class="gray-color" tabIndex="32">
+											<?=($v['clipping_dt_agenda']!='00/00/0000')?$v['clipping_dt_agenda']:'';?>											
+										</span>
+									</div>
+									<div class="clear"></div>
+                              </div>  
+                            <dl>
+                              	<dt>
+                                	<strong>
+										<a class="gray-color" tabIndex="33" href="<?=$linkAbsolute;?>clipping/<?=$v['clipping_id'];?>/<?=$objClipping->toNormaliza($v['clipping_titulo']);?>">
+											<?=$v['clipping_titulo'];?>
+										</a>
+									</strong>
+                                </dt>
+                            </dl>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td align="right">
+								<strong class="more">
+									<a tabIndex="38" href="javascript:void(0);"></a>
+								</strong>
+							</td>
+                        </tr>
+                    </table>
+                </div>  
+				<?php } ?>
+				<span class="gray-color">
+					<a tabIndex="53" class="gray-color" href="<?=$linkAbsolute;?>clipping/">
+						ver +
+					</a>
+				</span>
+            </div>
+            <div class="clear"></div>
+			
         </div>
             <div class="clear"></div>
   </div>
+
 	<?php include_once("{$path_root_page}contentRight.php"); ?>
 	<?php include_once("{$path_root_page}footer.php"); ?>
 </div>
