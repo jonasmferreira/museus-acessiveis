@@ -280,16 +280,11 @@ h3 {
 	padding: 30px 15px 17px 110px;
 }
 
-#news360,#imprensa-info{
+#news360{
 	padding: 30px 15px 39px 110px;
 }
 
-#imprensa-info, #nossos-numeros{
-	padding: 30px 15px 20px 110px;
-}
-
-
-#outdoor,#destaque,#news360, #imprensa-info, #nossos-numeros{
+#outdoor,#destaque,#news360{
 	background: url(../img/content-dest_bg.png) right bottom no-repeat;
 }
 
@@ -298,20 +293,8 @@ h3 {
 	padding: 10px 0 5px 0;
 }
 
-#imprensa-info .content-box{
-	padding: 10px 0 5px 0;
-	margin: 0;
-}
-
-#imprensa-info #content-news{
-	font-size: 16px;
-	font-style: normal;
-	padding: 5px 30px 10px 0 !important;
-}
-
 #destaque .content-box img, 
-#news360 .content-box img,
-#imprensa-info .content-box img{
+#news360 .content-box img{
 	padding: 0 10px 0 0;
 }
 
@@ -953,7 +936,115 @@ table#list tbody td a{
 }
 
 
+/* IMPRENSA */
+.imprensa #outdoor{
+	height: 1px;
+}
+
+#news360,
+#imprensa-info{
+	padding: 30px 15px 39px 110px;
+}
+
+#imprensa-info{
+	padding: 10px 15px 20px 110px;
+}
+
+#nossos-numeros{
+	padding: 0 15px 20px 110px;
+}
+
+
+#imprensa-info h3{
+	font-size: 15px;
+	font-weight: bold;
+	margin: 10px 0 3px 0;
+}
+
+#imprensa-info .curso-info{
+	font-size: 12px;
+	font-style: italic;
+}
+
+.imprensa #destaque{
+	padding-top: 0px;
+}
+
+
+#imprensa-info, 
+#nossos-numeros,
+.imprensa #destaque{
+	background: url(../img/content-dest_bg.png) right bottom no-repeat !important;
+}
+
+#imprensa-info .content-box{
+	padding: 10px 0 5px 0;
+	margin: 0;
+}
+
+.imprensa #destaque .content-box{
+	padding: 10px 0 20px 0;
+	margin: 0;
+}
+
+#imprensa-info #content-news{
+	font-size: 16px;
+	font-style: normal;
+	padding: 5px 30px 10px 0 !important;
+}
+
+#imprensa-info .content-box img{
+	padding: 0 10px 0 0;
+}
+
+#nossos-numeros #project-content{
+	font-size: 12px;
+	color: #4d4d4d;
+	font-style: italic;
+}
 
 
 
+.imprensa .release-clipping{
+	padding: 0 15px 39px 110px;
+}
+
+.imprensa .release-clipping{
+	background: url(../img/content-dest_bg.png) right bottom no-repeat;
+}
+
+.imprensa .release-clipping .content-box{
+	padding: 10px 0 5px 0;
+	color: #8e8e8e;
+}
+
+.imprensa .release-clipping .content-box a{
+	text-decoration: none;
+	color: #8e8e8e;
+}
+.imprensa .release-clipping .info-head{
+	border-bottom: none;
+	font-size: 12px;
+}
+
+.imprensa .release-clipping .title-imp{
+	font-size: 15px;
+	color: #8e8e8e;
+	padding-bottom: 5px;
+}
+
+.imprensa .release-clipping h1 a#news-list {
+	font-weight: normal;
+}
+
+.imprensa .release-clipping.list{
+	padding: 30px 15px 39px 0 !important;
+}
+.imprensa .release-clipping.list h1{
+	padding-left: 110px;
+}
+
+.imprensa .release-clipping .more{
+	text-align: right;
+}
 
