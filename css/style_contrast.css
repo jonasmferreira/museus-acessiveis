@@ -380,3 +380,32 @@ body.contrast {
 }
 
 
+
+
+/* IMPRENSA */
+.contrast #imprensa-info, 
+.contrast #nossos-numeros,
+.contrast .imprensa #destaque{
+	background: url(../img/content-dest_bg_contrast.png) right bottom no-repeat !important;
+}
+
+.contrast #nossos-numeros #project-content{
+	color: #FFF;
+}
+
+.contrast .imprensa .release-clipping{
+	background: url(../img/content-dest_bg_contrast.png) right bottom no-repeat;
+}
+
+.contrast .imprensa .release-clipping .content-box{
+	color: #FFF;
+}
+
+.contrast .imprensa .release-clipping .content-box a{
+	color: #FFF;
+}
+.contrast .imprensa .release-clipping .title-imp{
+	color: #FFF;
+}
+
+
