@@ -51,6 +51,17 @@
 	RewriteRule ^projeto/([^/]+)/?$ projetoItem.php?projeto_id=$1
 	RewriteRule ^projeto/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2
 	RewriteRule ^projeto/([^/]+)/([^/]+)/([^/]+)/?$ projetoItem.php?projeto_id=$1&projeto_titulo=$2&emailmkt_id=$3
+
+	RewriteRule ^release/?$ releaseLista.php
+	RewriteRule ^release/([^/]+)/?$ releaseItem.php?release_id=$1
+	RewriteRule ^release/([^/]+)/([^/]+)/?$ releaseItem.php?release_id=$1&release_titulo=$2
+	RewriteRule ^release/([^/]+)/([^/]+)/([^/]+)/?$ releaseItem.php?release_id=$1&release_titulo=$2&emailmkt_id=$3
+
+	RewriteRule ^clipping/?$ clippingLista.php
+	RewriteRule ^clipping/([^/]+)/?$ clippingItem.php?clipping_id=$1
+	RewriteRule ^clipping/([^/]+)/([^/]+)/?$ clippingItem.php?clipping_id=$1&clipping_titulo=$2
+	RewriteRule ^clipping/([^/]+)/([^/]+)/([^/]+)/?$ clippingItem.php?clipping_id=$1&clipping_titulo=$2&emailmkt_id=$3
+
 	
 </IfModule>
 <IfModule !mod_rewrite.c>

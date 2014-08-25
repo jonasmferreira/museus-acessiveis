@@ -14,11 +14,11 @@
 			var obj = $(this);
 			var id = trim($(this).attr('rel'));
 			var param = {
-				'imprensa_id':id
+				'release_id':id
 			}
 			deleteItem(
 					"Deseja excluir esse Item?"
-					,"controller/imprensa.controller.php?action=deleteItem"
+					,"controller/release.controller.php?action=deleteItem"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');
@@ -37,15 +37,15 @@
 		$(".delImg").click(function(){
 			var obj = $(this);
 			var img = $(this).attr('rel');
-			var id = $("#imprensa_id").val();
+			var id = $("#release_id").val();
 			
 			var param = {
-				'imprensa_id':id
+				'release_id':id
 				,'img':img
 			}
 			deleteItem(
 					"Deseja remover essa imagem?"
-					,"controller/imprensa.controller.php?action=removeImage"
+					,"controller/release.controller.php?action=removeImage"
 					,param
 					,function(msg,oDialog){
 						oDialog.dialog('close');
@@ -61,6 +61,30 @@
 					}
 			)
 		});
+		
+		$('#release_exibir_banner').click(function () {
+			//console.log($(this).prop("checked"));
+			if($(this).prop("checked")){
+				$('#release_banner_desc').removeAttr('readonly');
+			}else{
+				$('#release_banner_desc').attr('readonly','yes');
+			}
+			
+		});		
+
+		$('#release_exibir_destaque_home').click(function () {
+			//console.log($(this).prop("checked"));
+			if($(this).prop("checked")){
+				$('#release_destaque_home_desc').removeAttr('readonly');
+				$('#release_destaque_home_frase').removeAttr('readonly');
+			}else{
+				$('#release_destaque_home_desc').attr('readonly','yes');
+				$('#release_destaque_home_frase').attr('readonly','yes');
+			}
+			
+		});		
+
+
 		
 	});
 	

@@ -59,7 +59,6 @@
                         <a href="contatoLista.php" style="background-image:url(imgs/icon-blog.png);">Contatos</a><br />
                     	<a href="downloadCategoriaLista.php" style="background-image:url(imgs/icon-blog.png);">Categorias de Downloads</a><br />
 						<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
-                    	<a href="imprensaLista.php" style="background-image:url(imgs/icon-videos.png);">Imprensa</a><br />
                     	<a href="depoimentoLista.php" style="background-image:url(imgs/icon-videos.png);">Depoimento</a><br />
 
                     </div>
@@ -79,10 +78,16 @@
 						<a href="extraLista.php" style="background-image:url(imgs/icon-blog.png);">Informações Extras</a>                        
                     </div>
                 </span>                
-           		<a href="novidadeLista.php" style="background-image:url(imgs/icon-blog.png);">Novidades 360º</a>
-                <!--a href="agendaLista.php" style="background-image:url(imgs/icon-blog.png);">Agenda</a-->
-           		<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
-
+				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
+                	Notícias
+                	<div>
+						<a href="novidadeLista.php" style="background-image:url(imgs/icon-blog.png);">Novidades 360º</a><br />
+						<a href="imprensaEdicao.php?imprensa_id=1" style="background-image:url(imgs/icon-blog.png);">Imprensa</a><br />
+						<a href="releaseLista.php" style="background-image:url(imgs/icon-blog.png);">Releases</a><br />
+						<a href="clippingLista.php" style="background-image:url(imgs/icon-blog.png);">Clipping</a>
+                    </div>
+                </span>                
+				<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Newsletter
                 	<div>

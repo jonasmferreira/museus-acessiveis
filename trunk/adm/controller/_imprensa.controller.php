@@ -11,6 +11,7 @@ switch($_REQUEST['action']){
 			$volta = $_POST['volta'];
 		}
 		$obj->setValues($_POST);
+		$obj->setFiles($_FILES);
 		$exec = $obj->edit();
 		if(isset($_POST['imprensa_id']) && trim($_POST['imprensa_id'])!=''){
 			if($exec['success']){
