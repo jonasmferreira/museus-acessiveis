@@ -541,15 +541,17 @@ function resizeContent(){
 	$('#content-l').css('overflow','visible');
 	var cr = $('#content-r').css('height');
 	var cl = $('#content').css('height');
+	
 	cr=cr.split('px');
-	r=cr[0];
+	tr=parseInt(cr[0]);
 	cl=cl.split('px');
-	l=cl[0];
-	if(parseInt(l) < parseInt(r)){
-		$('#content').css('height',r+'px');
+	tl=parseInt(cl[0]);
+
+	if(tl <= tr){
+		$('#content').css('height',tr+'px');
 	}
-	$('#content').css('overflow','visible');
-	$('#content').css('height','auto');
+	$('#content').css('overflow','visible !important');
+	$('#content').css('height','auto !important');
 
 }
 
