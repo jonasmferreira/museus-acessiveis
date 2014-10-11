@@ -1,4 +1,5 @@
 						<div>
+							<div class="clear"><br /></div>
 						<?php
 							if(count($aGloss)>0){
 						?>

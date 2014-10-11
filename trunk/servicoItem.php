@@ -77,7 +77,7 @@
         <div id="content" href="content" accesskey="3">
 			<?php include_once("{$path_root_page}logo.php"); ?>
 			<div id="news360">
-           	  <h1 tabIndex="31" class="orange-color">Servico <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>servicos">| Lista de Serviços</a></h1>
+           	  <h1 tabIndex="31" class="orange-color">Serviços <a id="news-list" class="orange-color" href="<?=$linkAbsolute;?>servicos">| Lista de Serviços</a></h1>
 					<div id="content-news" class="content-box">
 						<?php if($aServicos['servico_agenda']!='00/00/0000'){ ?>
                         <div class="date">
