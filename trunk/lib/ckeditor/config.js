@@ -10,7 +10,8 @@ CKEDITOR.editorConfig = function( config )
 	// config.uiColor = '#AADC6E';
 	
 	config.toolbar = 'Full2';
- 
+	config.extraPlugins = 'mediaembed'; 
+	
 	config.toolbar_Full2 =
 	[
 		//{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
@@ -24,7 +25,8 @@ CKEDITOR.editorConfig = function( config )
 		{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
 		{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
 		//{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
-		{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar' ] },
+		{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar'] },
+		{ name: 'MediaEmbed', items : [ 'MediaEmbed' ] },
 
 		'/',
 		{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
