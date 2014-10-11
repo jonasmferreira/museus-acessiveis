@@ -112,7 +112,7 @@ class novidade extends defaultClass{
 		if(isset($sOrder)&&trim($sOrder)!=''){
 			$sql[] = $sOrder;
 		}else{
-			$sql[] = "ORDER BY t.novidade_360_dt_agenda ASC";
+			$sql[] = "ORDER BY t.novidade_360_dt_agenda DESC, t.novidade_360_titulo_sintese ASC";
 		}
 
 		$sql[] = "LIMIT {$start},{$limit}";

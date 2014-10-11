@@ -138,7 +138,7 @@ class imprensa extends defaultClass{
 				,imprensa_assessoria_telefone = '{$this->values['imprensa_assessoria_telefone']}'
 				,imprensa_assessoria_email = '{$this->values['imprensa_assessoria_email']}'
 				,imprensa_nossos_numeros = '{$this->values['imprensa_nossos_numeros']}'
-				,novidade_360_id = '{$this->values['novidade_360_id']}'
+				,novidade_360_id = {$this->values['novidade_360_id']}
 		";
 		$sql[] = "WHERE	imprensa_id = '{$this->values['imprensa_id']}'";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
@@ -159,7 +159,7 @@ class imprensa extends defaultClass{
 				,imprensa_assessoria_telefone = '{$this->values['imprensa_assessoria_telefone']}'
 				,imprensa_assessoria_email = '{$this->values['imprensa_assessoria_email']}'
 				,imprensa_nossos_numeros = '{$this->values['imprensa_nossos_numeros']}'
-				,novidade_360_id = '{$this->values['novidade_360_id']}'
+				,novidade_360_id = {$this->values['novidade_360_id']}
 				
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
