@@ -31,7 +31,7 @@
 	}
 	//$obj->debug($aRows);
 ?>
-<script type="text/javascript" src="js/downloadCategoria.js"></script>
+<script type="text/javascript" src="js/depoimento.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
           Painel Administrativo <strong>/ Depoimento</strong>

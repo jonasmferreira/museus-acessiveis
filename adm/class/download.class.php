@@ -63,6 +63,18 @@ class download extends defaultClass{
 			'tipo_download_id'=>7
 			,'tipo_download_titulo'=>'Link Internet'
 		)
+		,8=>array(
+			'tipo_download_id'=>8
+			,'tipo_download_titulo'=>'E-pub'
+		)
+		,9=>array(
+			'tipo_download_id'=>9
+			,'tipo_download_titulo'=>'Daisy'
+		)
+		,10=>array(
+			'tipo_download_id'=>10
+			,'tipo_download_titulo'=>'Outros'
+		)
 		
 	);
 	

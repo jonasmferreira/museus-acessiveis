@@ -37,19 +37,19 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						Nome da Acessoria<br />
+						Nome da Assessoria<br />
 						<input type="text" class="formTxt obrigatorio" name="imprensa_assessoria_nome" id="imprensa_assessoria_nome" style="width:98%" value="<?=$aRow['imprensa_assessoria_nome']?>" />
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						Telefone da Acessoria<br />
+						Telefone da Assessoria<br />
 						<input type="text" class="formTxt obrigatorio" name="imprensa_assessoria_telefone" id="imprensa_assessoria_telefone" style="width:98%" value="<?=$aRow['imprensa_assessoria_telefone']?>" />
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						E-mail da Acessoria<br />
+						E-mail da Assessoria<br />
 						<input type="text" class="formTxt obrigatorio" name="imprensa_assessoria_email" id="imprensa_assessoria_email" style="width:98%" value="<?=$aRow['imprensa_assessoria_email']?>" />
 					</td>
 				</tr>
