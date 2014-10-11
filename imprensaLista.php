@@ -29,11 +29,12 @@
 		//Novidades 360 - Destaque
 		$objNovidade->setValues(array(
 			'novidade_360_exibir_destaque_home'=>'S'
-			,'page'=>'1'
-			,'rows'=>'1'
+			//,'page'=>'1'
+			//,'rows'=>'1'
+			,'novidade_360_id'=> $aRow['novidade_360_id']
 		));
-		$aNovidade = $objNovidade->getLista();
-		$aDestaque = $aNovidade['rows'][0];
+		$aNovidade = $objNovidade->getOne();
+		$aDestaque = $aNovidade;
 		//$objNovidade->debug($aDestaque);
 		
 		//Release
@@ -79,7 +80,7 @@
 			<div id="imprensa-info">
            	  <h1 tabIndex="31" class="orange-color">Imprensa</h1>
 				<div id="content-news" class="content-box">
-						<h3 class="orange-color"  tabIndex="33">Acessoria: <?php echo $aRow['imprensa_assessoria_nome'];?></h3>
+						<h3 class="orange-color"  tabIndex="33">Assessoria: <?php echo $aRow['imprensa_assessoria_nome'];?></h3>
 						<span class="curso-info">
 							<?php echo $aRow['imprensa_assessoria_telefone'];?>
 							<br />
