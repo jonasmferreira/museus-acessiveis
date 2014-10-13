@@ -67,7 +67,11 @@
                     </td>
 					<td>&nbsp;</td>
 				</tr>
-				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Bloco 01 - Projeto</strong>
+					</td>
+				</tr>				
 				<tr>
 					<td colspan="3">
 						Projeto<br />
@@ -84,25 +88,12 @@
 						</select>
 					</td>
 				</tr>
-				
-				<tr>
+
+				<tr class="tableHead">
 					<td colspan="3">
-						Serviços<br />
-						<select class="formTxt obrigatorio" name="emailmkt_servico_ids[]" style="width:98%" multiple="yes" id="emailmkt_servico_ids">
-							<?	$aServs = array();
-								if(trim($aRow['emailmkt_servico_ids'])!=""){
-									$aServs = explode(",",$aRow['emailmkt_servico_ids']);
-								}
-								foreach($aServicoIds AS $k=>$v):
-									$selected = in_array($v['servico_id'], $aServs)!==false?' selected="selected"':'';
-							?>
-							<option value="<?=$v['servico_id']?>"<?=$selected?>><?=$v['servico_titulo']?></option>
-							<?	endforeach;?>
-						</select>
+						<strong>Bloco 02 - Glossário</strong>
 					</td>
-				</tr>
-				
-				
+				</tr>				
 				<tr>
 					<td colspan="3">
 						Glossário<br />
@@ -119,6 +110,13 @@
 						</select>
 					</td>
 				</tr>
+				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Bloco 03 - Novidades 360º</strong>
+					</td>
+				</tr>				
+				
 				<tr>
 					<td colspan="3">
 						Novidades 360º (Destaque)<br />
@@ -148,12 +146,31 @@
 						</select>
 					</td>
 				</tr>
+
+				<!--tr>
+					<td colspan="3">
+						Serviços<br />
+						<select class="formTxt obrigatorio" name="emailmkt_servico_ids[]" style="width:98%" multiple="yes" id="emailmkt_servico_ids">
+							<?	$aServs = array();
+								if(trim($aRow['emailmkt_servico_ids'])!=""){
+									$aServs = explode(",",$aRow['emailmkt_servico_ids']);
+								}
+								foreach($aServicoIds AS $k=>$v):
+									$selected = in_array($v['servico_id'], $aServs)!==false?' selected="selected"':'';
+							?>
+							<option value="<?=$v['servico_id']?>"<?=$selected?>><?=$v['servico_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr-->
+				
 				
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Seção Aqui Tem</strong>
+						<strong>Bloco 04 - Aqui Tem Acessibilidade</strong>
 					</td>
-				</tr>
+				</tr>				
+
 				<tr>
 					<td colspan="3">
 						Titulo<br />
@@ -187,6 +204,13 @@
 						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_url" id="emailmkt_aqui_tem_url" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_url']?>" />
 					</td>
 				</tr>
+
+				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Bloco 05 - Agenda Brasil de Acessibilidade</strong>
+					</td>
+				</tr>				
 				
 				<tr>
 					<td colspan="3">
@@ -207,9 +231,10 @@
 				
 				<tr class="tableHead">
 					<td colspan="3">
-						<strong>Seção Propaganda</strong>
+						<strong>Bloco 06 - Propaganda</strong>
 					</td>
-				</tr>
+				</tr>				
+
 				<tr>
 					<td colspan="3">
 						URL<br />
