@@ -386,6 +386,9 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 
 
 $(document).ready(function(){
+	if($(".novidade360Content").length > 0)
+		$('.novidade360Content').glossary(linkAbsolute+'adm/controller/glossario.controller.php?action=generateGlossary');
+	
 	$('#normal-view').click(function(){
 		$(document).find('body').attr('class','');
 	});
