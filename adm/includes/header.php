@@ -91,6 +91,7 @@
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
                 	Newsletter
                 	<div>
+						<a href="emktNoticiaLista.php" style="background-image:url(imgs/icon-blog.png);">Notícias</a><br />
                         <a href="mailingLista.php" style="background-image:url(imgs/icon-blog.png);">Mailing</a><br />
                         <a href="emailmktLista.php" style="background-image:url(imgs/icon-blog.png);">E-mail MKT</a>
                     </div>
