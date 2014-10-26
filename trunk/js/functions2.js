@@ -386,6 +386,7 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 
 
 $(document).ready(function(){
+	
 	$('#normal-view').click(function(){
 		$(document).find('body').attr('class','');
 	});

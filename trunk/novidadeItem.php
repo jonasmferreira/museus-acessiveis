@@ -42,7 +42,7 @@
 		);
 		if(count($aTodosGlossario) > 0){
 			foreach($aTodosGlossario AS $v){
-				$v['glossario_palavra'] = strtolower(trim($v['glossario_palavra']));
+				/*$v['glossario_palavra'] = strtolower(trim($v['glossario_palavra']));
 				$linkGlossario = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.$v['glossario_palavra'].'</a>';
 				$linkGlossario2 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtolower($v['glossario_palavra']).'</a>';
 				$linkGlossario3 = '<a href="javascript:void(0);" glossario_id="'.$v['glossario_id'].'" class="glossario_def">'.strtoupper($v['glossario_palavra']).'</a>';
@@ -60,6 +60,8 @@
 					$sConteudo = str_replace("\t".ucwords($v['glossario_palavra']).$carac,"\t".$linkGlossario4.$carac,$sConteudo);
 					$sConteudo = str_replace(" ".ucwords($v['glossario_palavra']).$carac," ".$linkGlossario4.$carac,$sConteudo);
 				}
+				*/
+				
 			}
 		}
 
@@ -99,7 +101,7 @@
 						
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
 						<p id="news-spotlight"  tabIndex="34"><strong><?=$aNovidade['novidade_360_resumo'];?></strong></p>
-						<div id="project-content">
+						<div id="project-content" class="novidade360Content">
 							<?php echo $sConteudo; ?>
 						</div>
 

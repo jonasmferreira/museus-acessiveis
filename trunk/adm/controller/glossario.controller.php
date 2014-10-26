@@ -52,4 +52,43 @@ switch($_REQUEST['action']){
 		$aResult = $obj->getOne();
 		echo json_encode($aResult);
 	break;
+	case 'generateGlossary':
+		$aRet = array();
+		$aTodosGlossario = $obj->getAll();
+		if(count($aTodosGlossario) > 0){
+			foreach($aTodosGlossario AS $v){
+				$v['glossario_palavra'] = strtolower($v['glossario_palavra']);
+				$arr = array();
+				$arr['term'] = $v['glossario_palavra'];
+				$arr['type'] = "0";
+				$arr['definition'] = $v['glossario_conteudo'];
+				//$arr['id'] = $v['id'];
+				$aRet[] = $arr;
+				
+				$arr = array();
+				$arr['term'] = strtoupper($v['glossario_palavra']);
+				$arr['type'] = "0";
+				$arr['definition'] = $v['glossario_conteudo'];
+				//$arr['id'] = $v['id'];
+				$aRet[] = $arr;
+				
+				$arr = array();
+				$arr['term'] = ucfirst($v['glossario_palavra']);
+				$arr['type'] = "0";
+				$arr['definition'] = $v['glossario_conteudo'];
+				//$arr['id'] = $v['id'];
+				$aRet[] = $arr;
+				
+				$arr = array();
+				$arr['term'] = ucwords($v['glossario_palavra']);
+				$arr['type'] = "0";
+				$arr['definition'] = $v['glossario_conteudo'];
+				//$arr['id'] = $v['id'];
+				$aRet[] = $arr;
+				
+			}
+		}
+		header('Content-type: application/json');
+		echo json_encode($aRet);
+	break;
 }
