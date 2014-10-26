@@ -23,7 +23,8 @@
 <link rel="shortcut icon" href="<?=$linkAbsolute?>img/favicon.ico?<?=$seqAleatoria?>" type="image/x-icon" />
 <link rel="stylesheet" href="<?=$linkAbsolute?>plugins/lightbox/css/lightbox.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>plugins/css/south-street/jquery-ui-1.10.4.custom.min.css?<?=$seqAleatoria?>" />
-<link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>js/jquery.zglossary.min.css?<?=$seqAleatoria?>" />
+<!--link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>js/jquery.zglossary.min.css?<?=$seqAleatoria?>" /-->
+<link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>js/jquery.zglossary.css?<?=$seqAleatoria?>" />
 <link rel="stylesheet" href="<?=$linkAbsolute?>css/style.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?=$linkAbsolute?>css/style_contrast.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
 
