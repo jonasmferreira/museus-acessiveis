@@ -116,6 +116,7 @@
 	<?php
 		$aProj = $objEmkt->getProjetosByIds($aNewsletter['emailmkt_projeto_ids']);
 		//$objEmkt->debug($aProj);
+        if(count($aProj) > 0){
 		foreach($aProj as $k => $v){
 	?>
 	<div id="project" style="padding: 34px 31px 30px 16px;">
@@ -134,13 +135,14 @@
 			</a>
 		</div>
 	</div>
-	<?php } ?>
+    <?php }} ?>
 
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
 	<?php
 		$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
 		//$objEmkt->debug($aGloss);
+        if(count($aGloss)){
 		foreach($aGloss as $k => $v){
 	?>
 	<div id="acessibilidade" style="margin: 0 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url('<?=$linkAbsolute;?>img/emkt_access_bg_purple2.png') left bottom no-repeat;">
@@ -163,6 +165,7 @@
 		</div>
 	</div> 
 	<?php } ?>
+    <?php } ?>
 
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
