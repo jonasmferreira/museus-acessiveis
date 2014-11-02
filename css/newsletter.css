@@ -71,6 +71,10 @@ h3 {
 	color: #FFF;
 }
 
+#logo{
+	background: url(../img/emkt_logo_museus.png) left top no-repeat !important;
+}
+
 #project{
 	padding: 34px 31px 30px 16px;
 }
