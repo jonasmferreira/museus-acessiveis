@@ -101,7 +101,7 @@ h1.project-title{
 }
 
 #acessibilidade{
-	margin: 0 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url(../img/emkt_access_bg_purple2.png) left bottom no-repeat;
+	margin: 10px 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url(../img/emkt_access_bg_purple2.png) left bottom no-repeat;
 }
 #acessibilidade .box{
 	padding: 10px 0 5px 0;background: url(../img/emkt_access_bg_purple1.png) left top no-repeat;
