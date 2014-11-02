@@ -113,9 +113,9 @@
 	</div>
 
 	<?php
-		$aEmktNews = $objEmkt->getEmktNoticiaByIds($aNewsletter['emailmkt_noticia_ids']);
-		//$objEmkt->debug($aEmktNews);
-        if(count($aEmktNews) > 0){
+        if($aNewsletter['emailmkt_exibe_noticia'] =='S'){
+			$aEmktNews = $objEmkt->getEmktNoticiaByIds($aNewsletter['emailmkt_noticia_ids']);
+			//$objEmkt->debug($aEmktNews);
 			foreach($aEmktNews as $k => $v){
 	?>
 	<div id="project" style="padding: 34px 31px 30px 16px;">
@@ -134,17 +134,19 @@
 			</a>
 		</div>
 	</div>
-    <?php }} ?>
 
+    <?php } ?>
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
+    <?php } ?>
+
 	<?php
-		$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
-		//$objEmkt->debug($aGloss);
-        if(count($aGloss)){
-		foreach($aGloss as $k => $v){
+        if($aNewsletter['emailmkt_exibe_glossario'] =='S'){
+			$aGloss = $objEmkt->getGlossariosByIds($aNewsletter['emailmkt_glossario_ids']);
+			//$objEmkt->debug($aGloss);
+			foreach($aGloss as $k => $v){
 	?>
-	<div id="acessibilidade" style="margin: 0 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url('<?=$linkAbsolute;?>img/emkt_access_bg_purple2.png') left bottom no-repeat;">
+	<div id="acessibilidade" style="margin: 10px 0 10px 47px;width: 594px;padding: 0 0 5px 0;overflow: visible;background: url('<?=$linkAbsolute;?>img/emkt_access_bg_purple2.png') left bottom no-repeat;">
 		<div class="box" style="padding: 10px 0 5px 0;background: url('<?=$linkAbsolute;?>img/emkt_access_bg_purple1.png') left top no-repeat;">
 			<div class="word-box" style="margin: 0px 0 0 4px;width: 565px;overflow: visible;padding: 20px 0 25px 15px;background: url('<?=$linkAbsolute;?>img/emkt_access_bg_yellow.png') left top repeat-y;">
 				<h2 class="word" style="margin:0;color: #632d8b;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;width:548px;font-size: 65px;padding: 20px 0 0 0;text-align: center;font-weight: normal;background: url('<?=$linkAbsolute;?>img/emkt_access_word_bg.png') left top no-repeat;">
@@ -164,10 +166,14 @@
 		</div>
 	</div> 
 	<?php } ?>
-    <?php } ?>
-
+	
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
+    <?php } ?>
+
+<?php
+	if($aNewsletter['emailmkt_exibe_novidade360'] =='S'){
+?>
 	<div id="news" style="padding: 0 0 30px 16px;">
 		<h1 class="news-title" style="font-size:28px;display: block;margin:0;padding: 7px 0 0 56px;color: #28b297;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_news360_ico.png') left top no-repeat;">
 			Novidades 360º
@@ -222,6 +228,12 @@
 
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 
+<?php } ?>
+	
+<?php
+	if($aNewsletter['emailmkt_exibe_aquitem'] =='S'){
+?>
+	
 	<div id="aquitem" style="padding: 0 31px 30px 16px;background: url('<?=$linkAbsolute;?>img/emkt_bg_bottom.png') left bottom no-repeat;">
 		<h1 style="font-size:28px;display: block;padding: 7px 0 0 56px;margin:0;color: #4d4d4d;height: 48px;overflow: visible;text-transform: uppercase;background: url('<?=$linkAbsolute;?>img/emkt_aquitem_ico.png') left top no-repeat;" class="news-title">Aqui tem Acessibilidade</h1>
 		<table cellpading="0" cellspacing="0" border="0" width="87%" style="margin: 0 0 0 45px;padding:0;border:0;">
@@ -261,6 +273,12 @@
 		</table>
 	</div>
 
+<?php } ?>	
+
+<?php
+	if($aNewsletter['emailmkt_exibe_agenda'] =='S'){
+?>
+	
 	<div id="schedule" style="padding: 40px 31px 30px 16px;background: #f3fefe url('<?=$linkAbsolute;?>img/emkt_schedule_box_bg.gif') left bottom repeat-x;">
 		<h1 style="font-size:28px;margin:0;display: block;padding: 7px 0 0 56px;color: #632d8b;height: 48px;overflow: visible;text-transform: uppercase;line-height: 32px;background: url('<?=$linkAbsolute;?>img/emkt_schedule_ico.png') left top no-repeat;" class="title">Agenda Brasil<br />de Acessibilidade</h1>
 		<div id="schedule-box" style="padding: 40px 60px;">
@@ -312,12 +330,20 @@
 		</div>
 	</div>  
 
+<?php } ?>	
+	
+<?php
+	if($aNewsletter['emailmkt_exibe_propaganda'] =='S'){
+?>
+	
 	<div id="propaganda" style="padding: 23px 0;text-align: center;"><br />
 		<a style="color: #565652;text-decoration: none !important;" href="<?=$aNewsletter['emailmkt_propaganda_url'];?>" target="_blank"><br />
 			<img src="<?=$linkAbsolute;?>imgEmkt/<?=$aNewsletter['emailmkt_propaganda_img'];?>" width="634" height="634"  alt=""/>
 		</a> 
 	</div> 
 
+<?php } ?>	
+	
 	<div id="footer" href="footer" accesskey="5" style="background: #632d8b;padding: 65px 0 0 37px;font-size: 17px;color: #FFF;">
 		<table style="border: 0;padding: 0 0 30px 0;margin: 0;background: url('<?=$linkAbsolute;?>img/emkt_footer_bg.png') 370px bottom no-repeat;">
 			<tr>
@@ -395,7 +421,7 @@
 				</td>
 				<td class="opcoes" style="width: 220px;font-size: 11px;text-transform: uppercase;text-align: right;">
 					<span id="access-option">
-					<a style="color: #FFF; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">opções de acessibilidade</a>
+					<a style="color: #FFF; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a>
 					</span>
 				</td>
 			</tr>
