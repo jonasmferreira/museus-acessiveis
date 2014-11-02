@@ -31,12 +31,6 @@ ALTER TABLE `tb_emailmkt`
 	DROP COLUMN `emailmkt_projeto_ids`,
 	ADD COLUMN `emailmkt_noticia_ids` TEXT DEFAULT NULL AFTER `emailmkt_status`;
 
-ALTER TABLE `tb_emailmkt` 
-	DROP COLUMN `emailmkt_servico_ids`,
-	CHANGE COLUMN `emailmkt_projeto_ids` `emailmkt_noticia_ids` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
-
-
-
 
 ALTER TABLE `tb_emailmkt` 
 	ADD COLUMN `emailmkt_exibe_noticia` ENUM('S','N') NOT NULL AFTER `emailmkt_noticia_ids`,
@@ -46,6 +40,4 @@ ALTER TABLE `tb_emailmkt`
 	ADD COLUMN `emailmkt_exibe_arquivo` ENUM('S','N') NOT NULL AFTER `emailmkt_arq_fisico`,
 	ADD COLUMN `emailmkt_exibe_aquitem` ENUM('S','N') NOT NULL AFTER `emailmkt_aqui_tem_url`,
 	ADD COLUMN `emailmkt_exibe_propaganda` ENUM('S','N') NOT NULL AFTER `emailmkt_propaganda_url`;
-
-
 
