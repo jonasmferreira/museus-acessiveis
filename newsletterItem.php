@@ -93,7 +93,9 @@
 		<table border="0" cellpadding="0" cellspacing="0" width="654">
 		  <tr>
 			<td width="248" valign="middle" align="right">
-				<img src="<?=$linkAbsolute?>img/emkt_logo_museus.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/>
+				<a href="<?=$linkAbsolute;?>home" target="_blank">
+					<img id="logo" style="height: 255px;background: url('<?=$linkAbsolute;?>img/emkt_logo_museus.png') left top no-repeat;" src="<?=$linkAbsolute;?>img/emkt_logo_transparent.png" width="248" height="255"  alt="Museus Acessíveis - Cultura + Acessibilidade 360º" title="Museus Acessíveis - Cultura + Acessibilidade 360º"/>
+				</a>				
 			</td>
 			<td style="background: url('<?=$linkAbsolute;?>img/emkt_title.png') left 35px no-repeat;padding:200px 0 0 0;" class="title" valign="middle" align="center">
 				<?php
