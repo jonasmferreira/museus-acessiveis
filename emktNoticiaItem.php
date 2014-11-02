@@ -21,7 +21,7 @@
 			)
 		);
 		$aEmktNoticia = $objEmktNoticia->getOne();
-		$objEmktNoticia->debug($aEmktNoticia);
+		//$objEmktNoticia->debug($aEmktNoticia);
 		
 		$sConteudo = $aEmktNoticia['emkt_noticia_conteudo'];
 		$caracEspeciais = array(
