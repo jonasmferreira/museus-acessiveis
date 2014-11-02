@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS `tb_emailmkt`;
+CREATE TABLE  `tb_emailmkt` (
+  `emailmkt_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `emailmkt_titulo` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `emailmkt_qtde_enviada` int(11) NOT NULL,
+  `emailmkt_dt_agendada` date NOT NULL,
+  `emailmkt_hr_agendada` time NOT NULL,
+  `emailmkt_dt_disparo` date DEFAULT NULL,
+  `emailmkt_hr_disparo` time DEFAULT NULL,
+  `emailmkt_status` enum('P','X','E','C','L') CHARACTER SET latin1 NOT NULL DEFAULT 'P',
+  `emailmkt_noticia_ids` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_noticia` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_glossario_ids` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_glossario` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_novidade360_id` bigint(20) NOT NULL,
+  `emailmkt_novidade360_ids` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_novidade360` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_agenda_ids` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_agenda` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_arq_fisico` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_arquivo` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_aqui_tem_titulo` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_aqui_tem_resumo` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_aqui_tem_thumb` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_aqui_tem_url` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_exibe_aquitem` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  `emailmkt_propaganda_img` text CHARACTER SET latin1 NOT NULL,
+  `emailmkt_propaganda_url` text CHARACTER SET latin1,
+  `emailmkt_exibe_propaganda` enum('S','N') CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`emailmkt_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
