@@ -106,81 +106,102 @@
 			$("#dialog-form-emailmkt").dialog("open");
 		});
 		
-		$('#emailmkt_exibe_noticia').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_noticia_ids').addClass("obrigatorio");
-			}else{
-				$('#emailmkt_noticia_ids').removeClass("obrigatorio");
-			}
-		});		
-		
-		$('#emailmkt_exibe_glossario').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_glossario_ids').addClass("obrigatorio");
-			}else{
-				$('#emailmkt_glossario_ids').removeClass("obrigatorio");
-			}
-		});		
-		
-		$('#emailmkt_exibe_novidade360').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_novidade360_id').addClass("obrigatorio");
-				$('#emailmkt_novidade360_ids').addClass("obrigatorio");
-			}else{
-				$('#emailmkt_novidade360_id').removeClass("obrigatorio");
-				$('#emailmkt_novidade360_ids').addClass("obrigatorio");
-			}
-		});		
-		
-		$('#emailmkt_exibe_aquitem').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_aqui_tem_titulo').addClass("obrigatorio");
-				//$('#emailmkt_aqui_tem_thumb').addClass("obrigatorio");
-				$('#emailmkt_aqui_tem_resumo').addClass("obrigatorio");
-				$('#emailmkt_aqui_tem_url').addClass("obrigatorio");
-				
-			}else{
-				$('#emailmkt_aqui_tem_titulo').removeClass("obrigatorio");
-				//$('#emailmkt_aqui_tem_thumb').removeClass("obrigatorio");
-				$('#emailmkt_aqui_tem_resumo').removeClass("obrigatorio");
-				$('#emailmkt_aqui_tem_url').removeClass("obrigatorio");
-			}
-		});		
-		
-		$('#emailmkt_exibe_agenda').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_agenda_ids').addClass("obrigatorio");
-			}else{
-				$('#emailmkt_agenda_ids').removeClass("obrigatorio");
-			}
-		});		
-
-		$('#emailmkt_exibe_propaganda').click(function () {
-			//console.log($(this).prop("checked"));
-			if($(this).prop("checked")){
-				$('#emailmkt_propaganda_url').addClass("obrigatorio");
-				//$('#emailmkt_propaganda_img').addClass("obrigatorio");
-			}else{
-				$('#emailmkt_propaganda_url').removeClass("obrigatorio");
-				//$('#emailmkt_propaganda_img').removeClass("obrigatorio");
-			}
-		});		
-
-		
-		$('#emailmkt_exibe_propaganda').trigger('click');
-		$('#emailmkt_exibe_agenda').trigger('click');
-		$('#emailmkt_exibe_aquitem').trigger('click');
-		$('#emailmkt_exibe_novidade360').trigger('click');
-		$('#emailmkt_exibe_glossario').trigger('click');
-		$('#emailmkt_exibe_noticia').trigger('click');
+		//Validando os campos obrigatórios
+		ValidaNoticia();
+		ValidaGlossario();
+		ValidaNovidade360();
+		ValidaAquiTem();
+		ValidaAgenda();
+		ValidaPropaganda();
 
 	});
 })(jQuery);
+
+function ValidaNoticia(){
+	var obj = $('#emailmkt_exibe_noticia');
+	//console.log($(obj).prop("checked"));	
+	if($(obj).prop("checked")){
+		$('#emailmkt_noticia_ids').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_noticia_ids').removeClass("obrigatorio");
+		console.log('Não obrigatório');		
+	}
+}
+
+function ValidaGlossario(){
+	var obj = $('#emailmkt_exibe_glossario');
+	//console.log($(obj).prop("checked"));
+	if($(obj).prop("checked")){
+		$('#emailmkt_glossario_ids').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_glossario_ids').removeClass("obrigatorio");
+		console.log('Não Obrigatorio');
+	}
+}
+
+function ValidaNovidade360(){
+	var obj = $('#emailmkt_exibe_novidade360');
+	//console.log($(obj).prop("checked"));
+	if($(obj).prop("checked")){
+		$('#emailmkt_novidade360_id').addClass("obrigatorio");
+		$('#emailmkt_novidade360_ids').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_novidade360_id').removeClass("obrigatorio");
+		$('#emailmkt_novidade360_ids').removeClass("obrigatorio");
+		console.log('Não Obrigatorio');
+	}
+}
+
+
+function ValidaAquiTem(){
+	var obj = $('#emailmkt_exibe_aquitem');
+	//console.log($(obj).prop("checked"));
+	if($(obj).prop("checked")){
+		$('#emailmkt_aqui_tem_titulo').addClass("obrigatorio");
+		//$('#emailmkt_aqui_tem_thumb').addClass("obrigatorio");
+		$('#emailmkt_aqui_tem_resumo').addClass("obrigatorio");
+		$('#emailmkt_aqui_tem_url').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_aqui_tem_titulo').removeClass("obrigatorio");
+		//$('#emailmkt_aqui_tem_thumb').removeClass("obrigatorio");
+		$('#emailmkt_aqui_tem_resumo').removeClass("obrigatorio");
+		$('#emailmkt_aqui_tem_url').removeClass("obrigatorio");
+		console.log('Não Obrigatorio');
+	}
+}
+
+function ValidaAgenda(){
+	var obj = $('#emailmkt_exibe_agenda');
+	//console.log($(obj).prop("checked"));
+	if($(obj).prop("checked")){
+		$('#emailmkt_agenda_ids').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_agenda_ids').removeClass("obrigatorio");
+		console.log('Não Obrigatorio');
+	}
+}		
+		
+function ValidaPropaganda(){
+	var obj = $('#emailmkt_exibe_propaganda');
+	//console.log($(obj).prop("checked"));
+	if($(obj).prop("checked")){
+		$('#emailmkt_propaganda_url').addClass("obrigatorio");
+		//$('#emailmkt_propaganda_img').addClass("obrigatorio");
+		console.log('Obrigatorio');
+	}else{
+		$('#emailmkt_propaganda_url').removeClass("obrigatorio");
+		//$('#emailmkt_propaganda_img').removeClass("obrigatorio");
+		console.log('Não Obrigatorio');
+	}
+}
+
+
+
 
 
 
