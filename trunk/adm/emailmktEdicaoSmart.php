@@ -19,7 +19,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	$obj->debug($aRow);
+	//$obj->debug($aRow);
 ?>
 <script type="text/javascript" src="js/emailmktSmart.js"></script>
 <div id="contentWrapper">
@@ -75,7 +75,7 @@
 				</tr>	
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_noticia']=='S'?'checked="checked"':''?> name="emailmkt_exibe_noticia" id="emailmkt_exibe_noticia"/>&nbsp; Configurar o bloco de Notícias?
+						<input onclick="ValidaNoticia();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_noticia']=='S'?'checked="checked"':''?> name="emailmkt_exibe_noticia" id="emailmkt_exibe_noticia"/>&nbsp; Configurar o bloco de Notícias?
                     </td>
                 </tr>
 				<tr>
@@ -104,7 +104,7 @@
 				</tr>				
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_glossario']=='S'?'checked="checked"':''?> name="emailmkt_exibe_glossario" id="emailmkt_exibe_glossario"/>&nbsp; Configurar o bloco de Glossário?
+						<input onclick="ValidaGlossario();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_glossario']=='S'?'checked="checked"':''?> name="emailmkt_exibe_glossario" id="emailmkt_exibe_glossario"/>&nbsp; Configurar o bloco de Glossário?
                     </td>
                 </tr>
 				<tr>
@@ -131,7 +131,7 @@
 				</tr>				
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_novidade360']=='S'?'checked="checked"':''?> name="emailmkt_exibe_novidade360" id="emailmkt_exibe_novidade360"/>&nbsp; Configurar o bloco de Novidades 360?
+						<input onclick="ValidaNovidade360();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_novidade360']=='S'?'checked="checked"':''?> name="emailmkt_exibe_novidade360" id="emailmkt_exibe_novidade360"/>&nbsp; Configurar o bloco de Novidades 360?
                     </td>
                 </tr>
 				
@@ -172,7 +172,7 @@
 				</tr>				
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_aquitem']=='S'?'checked="checked"':''?> name="emailmkt_exibe_aquitem" id="emailmkt_exibe_aquitem"/>&nbsp; Configurar o bloco Aqui Tem Acessibilidade?
+						<input onclick="ValidaAquiTem();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_aquitem']=='S'?'checked="checked"':''?> name="emailmkt_exibe_aquitem" id="emailmkt_exibe_aquitem"/>&nbsp; Configurar o bloco Aqui Tem Acessibilidade?
                     </td>
                 </tr>
 
@@ -218,7 +218,7 @@
 				</tr>				
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_agenda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_agenda" id="emailmkt_exibe_agenda"/>&nbsp; Configurar o bloco de Agenda?
+						<input onclick="ValidaAgenda();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_agenda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_agenda" id="emailmkt_exibe_agenda"/>&nbsp; Configurar o bloco de Agenda?
                     </td>
                 </tr>
 				
@@ -246,7 +246,7 @@
 				</tr>				
 				<tr>
             		<td colspan="3">
-						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_propaganda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_propaganda" id="emailmkt_exibe_propaganda"/>&nbsp; Configurar o bloco de Propaganda?
+						<input onclick="ValidaPropaganda();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_propaganda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_propaganda" id="emailmkt_exibe_propaganda"/>&nbsp; Configurar o bloco de Propaganda?
                     </td>
                 </tr>
 
