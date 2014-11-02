@@ -112,7 +112,7 @@
 	</div>
 	<br clear="all" />
 	<div class="right" style="float: right; width: auto; margin: 10px 24px 0px 0px;">
-		<a href="emailmktEdicao.php" class="butCadastro">Adicionar</a>
+		<a href="emailmktEdicaoSmart.php" class="butCadastro">Adicionar</a>
 	</div>
 	<br clear="all" />
 	<table cellpadding="8" cellspacing="0" border="0" width="100%">
@@ -136,7 +136,7 @@
 				<td align="left"><?=$obj->dateDB2BR($v['emailmkt_dt_agendada'])?> às <?=$v['emailmkt_hr_agendada']?></td>
 				<td align="left"><?=$v['emailmkt_status_label']?></td>
 				<td>
-					<a href="emailmktEdicao.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="btEdit">Editar</a>
+					<a href="emailmktEdicaoSmart.php?emailmkt_id=<?=$v['emailmkt_id']?>" class="btEdit">Editar</a>
 					<a href="<?=$linkAbsolute;?>boletim/<?=$v['emailmkt_id']?>" class="popups btView">Ver</a>
 					<a href="javascript:void(0)" rel="<?=$v['emailmkt_id']?>"  class="btDisparo btView">Testar Disparo</a>
 					<a href="javascript:void(0);" rel="<?=$v['emailmkt_id']?>" class="btDel">Excluir</a>

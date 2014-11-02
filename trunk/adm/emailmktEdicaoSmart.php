@@ -19,17 +19,17 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
-	//$obj->debug($aRow);
+	$obj->debug($aRow);
 ?>
-<script type="text/javascript" src="js/emailmkt.js"></script>
+<script type="text/javascript" src="js/emailmktSmart.js"></script>
 <div id="contentWrapper">
 	<div id="breadCrumbs">
-		Painel Administrativo / Institucional <strong>/ <?=isset($aRow['emailmkt_id'])?'Editar':'Cadastrar'?> E-mail Marketing</strong>
+		Painel Administrativo / Newsletter <strong>/ <?=isset($aRow['emailmkt_id'])?'Editar':'Cadastrar'?> E-mail Marketing</strong>
 	</div>
-	<form action="controller/emailmkt.controller.php" method="post" id="formSalvar" name="formSalvar" enctype="multipart/form-data">
+	<form action="controller/emailmktSmart.controller.php" method="post" id="formSalvar" name="formSalvar" enctype="multipart/form-data">
 		<input type="hidden" name="action" id="action" value="edit-item" />
 		<input type="hidden" name="emailmkt_id" id="emailmkt_id" value="<?=$aRow['emailmkt_id']?>" />
-		<input type="hidden" name="voltar" id="voltar" value="emailmktEdicao.php" />
+		<input type="hidden" name="voltar" id="voltar" value="emailmktEdicaoSmart.php" />
 		<table cellpadding="0" cellspacing="0" id="formCadastro">
 			<tbody>
 				<tr class="tableHead">
@@ -72,11 +72,16 @@
 					<td colspan="3">
 						<strong>Bloco 01 - Emkt Notícias</strong>
 					</td>
-				</tr>				
+				</tr>	
+				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_noticia']=='S'?'checked="checked"':''?> name="emailmkt_exibe_noticia" id="emailmkt_exibe_noticia"/>&nbsp; Configurar o bloco de Notícias?
+                    </td>
+                </tr>
 				<tr>
 					<td colspan="3">
 						Emkt - Notícias<br />
-						<select class="formTxt obrigatorio" name="emailmkt_noticia_ids[]" style="width:98%" multiple="yes" id="emailmkt_noticia_ids">
+						<select class="formTxto" name="emailmkt_noticia_ids[]" style="width:98%" multiple="yes" id="emailmkt_noticia_ids">
 							<?	$aNews = array();
 								if(trim($aRow['emailmkt_noticia_ids'])!=""){
 									$aNews = explode(",",$aRow['emailmkt_noticia_ids']);
@@ -98,9 +103,14 @@
 					</td>
 				</tr>				
 				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_glossario']=='S'?'checked="checked"':''?> name="emailmkt_exibe_glossario" id="emailmkt_exibe_glossario"/>&nbsp; Configurar o bloco de Glossário?
+                    </td>
+                </tr>
+				<tr>
 					<td colspan="3">
 						Glossário<br />
-						<select class="formTxt obrigatorio" name="emailmkt_glossario_ids[]" style="width:98%" multiple="yes" id="emailmkt_glossario_ids">
+						<select class="formTxt" name="emailmkt_glossario_ids[]" style="width:98%" multiple="yes" id="emailmkt_glossario_ids">
 							<?	$aGloss = array();
 								if(trim($aRow['emailmkt_glossario_ids'])!=""){
 									$aGloss = explode(",",$aRow['emailmkt_glossario_ids']);
@@ -119,11 +129,16 @@
 						<strong>Bloco 03 - Novidades 360º</strong>
 					</td>
 				</tr>				
+				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_novidade360']=='S'?'checked="checked"':''?> name="emailmkt_exibe_novidade360" id="emailmkt_exibe_novidade360"/>&nbsp; Configurar o bloco de Novidades 360?
+                    </td>
+                </tr>
 				
 				<tr>
 					<td colspan="3">
 						Novidades 360º (Destaque)<br />
-						<select class="formTxt obrigatorio" name="emailmkt_novidade360_id" style="width:98%" id="emailmkt_novidade360_id">
+						<select class="formTxt" name="emailmkt_novidade360_id" style="width:98%" id="emailmkt_novidade360_id">
 							<?	
 								foreach($aNovidadeIds AS $k=>$v):
 									$selected = ($v['novidade_360_id']==$aRow['emailmkt_novidade360_id'])?' selected="selected"':'';
@@ -136,7 +151,7 @@
 				<tr>
 					<td colspan="3">
 						Novidades 360º<br />
-						<select class="formTxt obrigatorio" name="emailmkt_novidade360_ids[]" style="width:98%" multiple="yes" id="emailmkt_novidade360_ids">
+						<select class="formTxt" name="emailmkt_novidade360_ids[]" style="width:98%" multiple="yes" id="emailmkt_novidade360_ids">
 							<?	$aProjs = array();
 								if(trim($aRow['emailmkt_novidade360_ids'])!=""){
 									$aProjs = explode(",",$aRow['emailmkt_novidade360_ids']);
@@ -155,11 +170,16 @@
 						<strong>Bloco 04 - Aqui Tem Acessibilidade</strong>
 					</td>
 				</tr>				
+				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_aquitem']=='S'?'checked="checked"':''?> name="emailmkt_exibe_aquitem" id="emailmkt_exibe_aquitem"/>&nbsp; Configurar o bloco Aqui Tem Acessibilidade?
+                    </td>
+                </tr>
 
 				<tr>
 					<td colspan="3">
 						Titulo<br />
-						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_titulo" id="emailmkt_aqui_tem_titulo" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_titulo']?>" />
+						<input type="text" class="formTxt" name="emailmkt_aqui_tem_titulo" id="emailmkt_aqui_tem_titulo" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_titulo']?>" />
 					</td>
 				</tr>
 				<tr>
@@ -180,13 +200,13 @@
 				<tr>
 					<td colspan="3">
 						Resumo<br />
-						<textarea class="formTxt obrigatorio" rows="5" name="emailmkt_aqui_tem_resumo" id="emailmkt_aqui_tem_resumo" style="width:98%"><?=$aRow['emailmkt_aqui_tem_resumo']?></textarea>
+						<textarea class="formTxt" rows="5" name="emailmkt_aqui_tem_resumo" id="emailmkt_aqui_tem_resumo" style="width:98%"><?=$aRow['emailmkt_aqui_tem_resumo']?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
 						URL<br />
-						<input type="text" class="formTxt obrigatorio" name="emailmkt_aqui_tem_url" id="emailmkt_aqui_tem_url" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_url']?>" />
+						<input type="text" class="formTxt" name="emailmkt_aqui_tem_url" id="emailmkt_aqui_tem_url" style="width:98%" value="<?=$aRow['emailmkt_aqui_tem_url']?>" />
 					</td>
 				</tr>
 
@@ -196,11 +216,16 @@
 						<strong>Bloco 05 - Agenda Brasil de Acessibilidade</strong>
 					</td>
 				</tr>				
+				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_agenda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_agenda" id="emailmkt_exibe_agenda"/>&nbsp; Configurar o bloco de Agenda?
+                    </td>
+                </tr>
 				
 				<tr>
 					<td colspan="3">
 						Agenda<br />
-						<select class="formTxt obrigatorio" name="emailmkt_agenda_ids[]" style="width:98%" multiple="yes" id="emailmkt_agenda_ids">
+						<select class="formTxt" name="emailmkt_agenda_ids[]" style="width:98%" multiple="yes" id="emailmkt_agenda_ids">
 							<?	$aProjs = array();
 								if(trim($aRow['emailmkt_agenda_ids'])!=""){
 									$aProjs = explode(",",$aRow['emailmkt_agenda_ids']);
@@ -219,11 +244,16 @@
 						<strong>Bloco 06 - Propaganda</strong>
 					</td>
 				</tr>				
+				<tr>
+            		<td colspan="3">
+						<input value="S" type="checkbox" <?=$aRow['emailmkt_exibe_propaganda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_propaganda" id="emailmkt_exibe_propaganda"/>&nbsp; Configurar o bloco de Propaganda?
+                    </td>
+                </tr>
 
 				<tr>
 					<td colspan="3">
 						URL<br />
-						<input type="text" class="formTxt obrigatorio" name="emailmkt_propaganda_url" id="emailmkt_propaganda_url" style="width:98%" value="<?=$aRow['emailmkt_propaganda_url']?>" />
+						<input type="text" class="formTxt" name="emailmkt_propaganda_url" id="emailmkt_propaganda_url" style="width:98%" value="<?=$aRow['emailmkt_propaganda_url']?>" />
 					</td>
 				</tr>
 				<tr>
@@ -242,7 +272,7 @@
 				</tr>
 				<tr>
 					<td align="right" colspan="3">
-						<a href="emailmktLista.php" class="butVoltar">Voltar</a>&nbsp;
+						<a href="emailmktListaSmart.php" class="butVoltar">Voltar</a>&nbsp;
 						<input type="button" value="Salvar" id="salvar" class="butSalvar" />
 					</td>
 				</tr>

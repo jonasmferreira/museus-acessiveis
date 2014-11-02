@@ -306,27 +306,6 @@ class emailmkt extends defaultClass{
 		return $aRet['rows'];
 	}
 	
-	public function getEmktNoticiaByIds($list_id){
-		$sql = array();
-		$sql[] = "
-			SELECT	*
-			FROM	tb_emkt_noticia t
-			WHERE	1 = 1
-			AND		emkt_noticia_id IN ({$list_id})
-		";
-		$arr = array();
-		$result = $this->dbConn->db_query(implode("\n",$sql));
-		if($result['success']){
-			if($result['total'] > 0){
-				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					array_push($arr,$this->utf8_array_encode($rs));					
-				}
-			}
-		}
-		return $arr;
-	}
-	
-	
 	public function edit(){
 		if(isset($this->values['emailmkt_id'])&&trim($this->values['emailmkt_id'])!=''){
 			$result = $this->update();
@@ -337,13 +316,50 @@ class emailmkt extends defaultClass{
 	}
 
 	private function update(){
+
+		//Verificando se devemos ou não salvar os blocos de dados do Newsletter
+		
 		$this->values['emailmkt_noticia_ids'] = @implode(",",$this->values['emailmkt_noticia_ids']);
+		if($this->values['emailmkt_exibe_noticia']!='S'){
+			$this->values['emailmkt_noticia_ids']='';
+		}
+		
 		$this->values['emailmkt_glossario_ids'] = @implode(",",$this->values['emailmkt_glossario_ids']);
+		if($this->values['emailmkt_exibe_glossario']!='S'){
+			$this->values['emailmkt_glossario_ids'] = '';
+		}
+		
 		$this->values['emailmkt_novidade360_ids'] = @implode(",",$this->values['emailmkt_novidade360_ids']);
-		$this->values['emailmkt_aqui_tem_thumb'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_aqui_tem_thumb']);
-		$this->values['emailmkt_propaganda_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_propaganda_img']);
-		$this->values['emailmkt_dt_agendada'] = $this->dateBR2DB($this->values['emailmkt_dt_agendada']);
+		if($this->values['emailmkt_exibe_novidade360']!='S'){
+			$this->values['emailmkt_novidade360_ids'] = '';
+			$this->values['emailmkt_novidade360_id'] = '';
+		}
+
 		$this->values['emailmkt_agenda_ids'] = @implode(",",$this->values['emailmkt_agenda_ids']);
+		if($this->values['emailmkt_exibe_agenda']!='S'){
+			$this->values['emailmkt_agenda_ids'] = '';
+		}
+
+		if($this->values['emailmkt_exibe_arquivo']!='S'){
+			$this->values['emailmkt_arq_fisico'] = '';
+		}
+
+		$this->values['emailmkt_aqui_tem_thumb'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_aqui_tem_thumb']);
+		if($this->values['emailmkt_exibe_aquitem']!='S'){
+			$this->values['emailmkt_aqui_tem_titulo'] = '';
+			$this->values['emailmkt_aqui_tem_resumo'] = '';
+			$this->values['emailmkt_aqui_tem_url'] = '';
+			$this->values['emailmkt_aqui_tem_thumb']='';
+		}
+		
+		$this->values['emailmkt_propaganda_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_propaganda_img']);
+		if($this->values['emailmkt_exibe_propaganda']!='S'){
+			$this->values['emailmkt_propaganda_img']='';
+			$this->values['emailmkt_propaganda_url']='';
+		}
+
+		$this->values['emailmkt_dt_agendada'] = $this->dateBR2DB($this->values['emailmkt_dt_agendada']);
+		
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -352,24 +368,33 @@ class emailmkt extends defaultClass{
 					,emailmkt_dt_agendada = '{$this->values['emailmkt_dt_agendada']}'
 					,emailmkt_hr_agendada = '{$this->values['emailmkt_hr_agendada']}'
 					,emailmkt_status = '{$this->values['emailmkt_status']}'
+					,emailmkt_exibe_noticia = '{$this->values['emailmkt_exibe_noticia']}'
 					,emailmkt_noticia_ids = '{$this->values['emailmkt_noticia_ids']}'
+					,emailmkt_exibe_glossario = '{$this->values['emailmkt_exibe_glossario']}'
 					,emailmkt_glossario_ids = '{$this->values['emailmkt_glossario_ids']}'
+					,emailmkt_exibe_novidade360 = '{$this->values['emailmkt_exibe_novidade360']}'
 					,emailmkt_novidade360_id = '{$this->values['emailmkt_novidade360_id']}'
 					,emailmkt_novidade360_ids = '{$this->values['emailmkt_novidade360_ids']}'
+					,emailmkt_exibe_agenda = '{$this->values['emailmkt_exibe_agenda']}'
 					,emailmkt_agenda_ids = '{$this->values['emailmkt_agenda_ids']}'
+					,emailmkt_exibe_arquivo = '{$this->values['emailmkt_exibe_arquivo']}'
 					,emailmkt_arq_fisico = '{$this->values['emailmkt_arq_fisico']}'
+					,emailmkt_exibe_aquitem = '{$this->values['emailmkt_exibe_aquitem']}'
 					,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 					,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 					,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
 					,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
+					,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
 		";
+
 		if(trim($this->values['emailmkt_aqui_tem_thumb'])!=''){
 			$sql[] = ",emailmkt_aqui_tem_thumb = '{$this->values['emailmkt_aqui_tem_thumb']}'";
 		}
 		if(trim($this->values['emailmkt_propaganda_img'])!=''){
 			$sql[] = ",emailmkt_propaganda_img = '{$this->values['emailmkt_propaganda_img']}'	";
 		}
-		$sql[] = "WHERE	emailmkt_id = '{$this->values['emailmkt_id']}'";
+					
+		$sql[] = " WHERE	emailmkt_id = '{$this->values['emailmkt_id']}'";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
@@ -380,12 +405,48 @@ class emailmkt extends defaultClass{
 	}
 
 	private function insert(){
+
+		//Verificando se devemos ou não salvar os blocos de dados do Newsletter
+		
 		$this->values['emailmkt_noticia_ids'] = @implode(",",$this->values['emailmkt_noticia_ids']);
+		if($this->values['emailmkt_exibe_noticia']!='S'){
+			$this->values['emailmkt_noticia_ids']='';
+		}
+		
 		$this->values['emailmkt_glossario_ids'] = @implode(",",$this->values['emailmkt_glossario_ids']);
+		if($this->values['emailmkt_exibe_glossario']!='S'){
+			$this->values['emailmkt_glossario_ids'] = '';
+		}
+		
 		$this->values['emailmkt_novidade360_ids'] = @implode(",",$this->values['emailmkt_novidade360_ids']);
+		if($this->values['emailmkt_exibe_novidade360']!='S'){
+			$this->values['emailmkt_novidade360_ids'] = '';
+			$this->values['emailmkt_novidade360_id'] = '';
+		}
+
 		$this->values['emailmkt_agenda_ids'] = @implode(",",$this->values['emailmkt_agenda_ids']);
+		if($this->values['emailmkt_exibe_agenda']!='S'){
+			$this->values['emailmkt_agenda_ids'] = '';
+		}
+
+		if($this->values['emailmkt_exibe_arquivo']!='S'){
+			$this->values['emailmkt_arq_fisico'] = '';
+		}
+
 		$this->values['emailmkt_aqui_tem_thumb'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_aqui_tem_thumb']);
+		if($this->values['emailmkt_exibe_aquitem']!='S'){
+			$this->values['emailmkt_aqui_tem_titulo'] = '';
+			$this->values['emailmkt_aqui_tem_resumo'] = '';
+			$this->values['emailmkt_aqui_tem_url'] = '';
+			$this->values['emailmkt_aqui_tem_thumb']='';
+		}
+		
 		$this->values['emailmkt_propaganda_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_propaganda_img']);
+		if($this->values['emailmkt_exibe_propaganda']!='S'){
+			$this->values['emailmkt_propaganda_img']='';
+			$this->values['emailmkt_propaganda_url']='';
+		}
+
 		$this->values['emailmkt_dt_agendada'] = $this->dateBR2DB($this->values['emailmkt_dt_agendada']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
@@ -395,24 +456,33 @@ class emailmkt extends defaultClass{
 				,emailmkt_dt_agendada = '{$this->values['emailmkt_dt_agendada']}'
 				,emailmkt_hr_agendada = '{$this->values['emailmkt_hr_agendada']}'
 				,emailmkt_status = '{$this->values['emailmkt_status']}'
+				,emailmkt_exibe_noticia = '{$this->values['emailmkt_exibe_noticia']}'
 				,emailmkt_noticia_ids = '{$this->values['emailmkt_noticia_ids']}'
+				,emailmkt_exibe_glossario = '{$this->values['emailmkt_exibe_glossario']}'
 				,emailmkt_glossario_ids = '{$this->values['emailmkt_glossario_ids']}'
+				,emailmkt_exibe_novidade360 = '{$this->values['emailmkt_exibe_novidade360']}'
 				,emailmkt_novidade360_id = '{$this->values['emailmkt_novidade360_id']}'
 				,emailmkt_novidade360_ids = '{$this->values['emailmkt_novidade360_ids']}'
+				,emailmkt_exibe_agenda = '{$this->values['emailmkt_exibe_agenda']}'
 				,emailmkt_agenda_ids = '{$this->values['emailmkt_agenda_ids']}'
+				,emailmkt_exibe_arquivo = '{$this->values['emailmkt_exibe_arquivo']}'
 				,emailmkt_arq_fisico = '{$this->values['emailmkt_arq_fisico']}'
+				,emailmkt_exibe_aquitem = '{$this->values['emailmkt_exibe_aquitem']}'
 				,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 				,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 				,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
 				,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
+				,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
 				
 		";
+
 		if(trim($this->values['emailmkt_aqui_tem_thumb'])!=''){
 			$sql[] = ",emailmkt_aqui_tem_thumb = '{$this->values['emailmkt_aqui_tem_thumb']}'";
 		}
 		if(trim($this->values['emailmkt_propaganda_img'])!=''){
 			$sql[] = ",emailmkt_propaganda_img = '{$this->values['emailmkt_propaganda_img']}'	";
 		}
+				
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
