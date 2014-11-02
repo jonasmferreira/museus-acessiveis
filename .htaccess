@@ -24,6 +24,10 @@
 
 	RewriteRule ^boletim/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
 
+	RewriteRule ^emkt_noticia/([^/]+)/?$ emktNoticiaItem.php?emkt_noticia_id=$1
+	RewriteRule ^emkt_noticia/([^/]+)/([^/]+)/?$ emktNoticiaItem.php?emkt_noticia_id=$1&emkt_noticia_titulo=$2
+	RewriteRule ^emkt_noticia/([^/]+)/([^/]+)/([^/]+)/?$ emktNoticiaItem.php?emkt_noticia_id=$1&emkt_noticia_titulo=$2&emailmkt_id=$3
+
 	RewriteRule ^glossario/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2
 	RewriteRule ^glossario/([^/]+)/([^/]+)/([^/]+)/?$ glossarioItem.php?glossario_id=$1&glossario_palavra=$2&emailmkt_id=$3
 
