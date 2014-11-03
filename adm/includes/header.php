@@ -84,7 +84,8 @@
 						<a href="novidadeLista.php" style="background-image:url(imgs/icon-blog.png);">Novidades 360º</a><br />
 						<a href="imprensaEdicao.php?imprensa_id=1" style="background-image:url(imgs/icon-blog.png);">Imprensa</a><br />
 						<a href="releaseLista.php" style="background-image:url(imgs/icon-blog.png);">Releases</a><br />
-						<a href="clippingLista.php" style="background-image:url(imgs/icon-blog.png);">Clipping</a>
+						<a href="clippingLista.php" style="background-image:url(imgs/icon-blog.png);">Clipping</a><br />
+						<a href="galeriaLista.php" style="background-image:url(imgs/icon-blog.png);">Galeria</a>
                     </div>
                 </span>                
 				<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
