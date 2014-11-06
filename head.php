@@ -25,8 +25,11 @@
 <link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>plugins/css/south-street/jquery-ui-1.10.4.custom.min.css?<?=$seqAleatoria?>" />
 <!--link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>js/jquery.zglossary.min.css?<?=$seqAleatoria?>" /-->
 <link rel="stylesheet" type="text/css" href="<?=$linkAbsolute?>js/jquery.zglossary.css?<?=$seqAleatoria?>" />
+
 <link rel="stylesheet" href="<?=$linkAbsolute?>css/style.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?=$linkAbsolute?>css/style_contrast.css?<?=$seqAleatoria?>" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="<?=$linkAbsolute?>css/style_print.css?<?=$seqAleatoria?>" type="text/css" media="print" />
 
 <script src="<?=$linkAbsolute?>plugins/jquery-1.10.2.min.js?<?=$seqAleatoria?>"></script>
 <script src="<?=$linkAbsolute?>plugins/jquery-migrate.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
