@@ -8,7 +8,7 @@ class contrast
 body.contrast {
 	background: #231f20 url(../img/body_bg.gif) left top repeat-x;
 	color: #FFF;
-	}
+}
 
 .contrast a{
 	color: #FFF;

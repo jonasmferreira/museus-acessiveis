@@ -496,6 +496,39 @@ div.news-spotlight{
 	text-decoration: none;
 }
 
+#devices img.normal{
+	display:inline !important;
+}
+#devices img.contrast{
+	display:none !important;
+}
+
+#devices .rss{
+	display: block;
+	padding:0 0 0 20px;
+	background: url(../img/icons/ico_rss.png) left center no-repeat;
+}
+
+#devices .favorite{
+	display: block;
+	padding:0 0 0 20px;
+	background: url(../img/icons/ico_favorite.png) left center no-repeat;
+}
+
+#devices .print{
+	display: block;
+	padding:0 0 0 20px;
+	background: url(../img/icons/ico_print.png) left center no-repeat;
+}
+
+#devices .sendmail{
+	display: block;
+	padding:0 0 0 20px;
+	background: url(../img/icons/ico_sendtofriend.png) left center no-repeat;
+}
+
+
+
 #contact #devices .fone{
 	padding: 0 0 0 20px;
 	display: block;
