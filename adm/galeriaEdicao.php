@@ -53,7 +53,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<table cellpadding="0" cellspacing="0" id="formCadastroImagem" class="formTable">
+		<table cellpadding="0" cellspacing="0" id="formCadastroImagem" class="formTable" width="100%">
 			<thead>
 				<tr class="tableHead">
 					<td colspan="5">
@@ -72,11 +72,14 @@
 				<?	if(count($aRow['galeriaImagens']) >0):?>
 				<?		foreach($aRow['galeriaImagens'] AS $v):?>
 				<tr>
-					<td>
+					<td width="2%">
 						<input class="formTxt" type="hidden" name="galeria_imagem_id[<?=$v['galeria_imagem_id']?>]" value="<?=$v['galeria_imagem_id']?>" class="galeria_imagem_id" />
 					</td>
 					<td>
 						<input class="formTxt" type="text" name="galeria_imagem_titulo[<?=$v['galeria_imagem_id']?>]" value="<?=$v['galeria_imagem_titulo']?>" />
+					</td>
+					<td>
+						<input class="formTxt" type="text" name="galeria_imagem_descricao[<?=$v['galeria_imagem_id']?>]" value="<?=$v['galeria_imagem_descricao']?>" />
 					</td>
 					<td>
 						<?	if(is_file("../galeriaImagem/{$v['galeria_imagem_arq']}")):?>
@@ -85,9 +88,6 @@
                         </div>
 						<?	endif;?>
 						<input class="formTxt" type="file" name="galeria_imagem_arq[<?=$v['galeria_imagem_id']?>]" value="" />
-					</td>
-					<td>
-						<input class="formTxt" type="text" name="galeria_imagem_descricao[<?=$v['galeria_imagem_id']?>]" value="<?=$v['galeria_imagem_descricao']?>" />
 					</td>
 					<td>
 						<a href="javascript:void(0);" class="btDel notDelImg">Excluir</a>
