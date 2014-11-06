@@ -57,6 +57,11 @@ class contato extends defaultClass{
 		if(isset($this->values['contato_exibir'])&&trim($this->values['contato_exibir'])!=''){
 			$sql[] = "AND t.contato_exibir IN ('{$this->values['contato_exibir']}')";
 		}
+		if(isset($this->values['contato_tipo'])&&trim($this->values['contato_tipo'])!=''){
+			$sql[] = "AND tc.contato_tipo IN ('{$this->values['contato_tipo']}')";
+		}
+
+		
 		$count = $this->getTotalData(implode("\n",$sql));
 		$page = ($page < 1)?1:$page;
 		if($count>0) {
@@ -202,6 +207,18 @@ class contato extends defaultClass{
 		
 	}
 	
+	
+	public function createContactGroup($aRow){
+		$arr = array();
+		$arr['contato_tipo']=$aRow['contato_tipo'];
+		$arr['contato_nome']=$aRow['contato_nome'];
+		$arr['contato_link']=$aRow['contato_link'];
+		$arr['contato_tipo_icone']=$aRow['contato_tipo_icone'];
+		$arr['contato_tipo_icone_contraste']=$aRow['contato_tipo_icone_contraste'];
+
+		return $arr;
+		
+	}
 	
 	
 	
