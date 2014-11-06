@@ -60,7 +60,7 @@
                     	<a href="downloadCategoriaLista.php" style="background-image:url(imgs/icon-blog.png);">Categorias de Downloads</a><br />
 						<a href="downloadLista.php" style="background-image:url(imgs/icon-blog.png);">Downloads</a><br />
                     	<a href="depoimentoLista.php" style="background-image:url(imgs/icon-videos.png);">Depoimento</a><br />
-
+						<a href="galeriaLista.php" style="background-image:url(imgs/icon-blog.png);">Galeria</a>
                     </div>
                 </span>
 				<span class="catHead" style="background-image:url(imgs/icon-config.png)">
@@ -85,7 +85,6 @@
 						<a href="imprensaEdicao.php?imprensa_id=1" style="background-image:url(imgs/icon-blog.png);">Imprensa</a><br />
 						<a href="releaseLista.php" style="background-image:url(imgs/icon-blog.png);">Releases</a><br />
 						<a href="clippingLista.php" style="background-image:url(imgs/icon-blog.png);">Clipping</a><br />
-						<a href="galeriaLista.php" style="background-image:url(imgs/icon-blog.png);">Galeria</a>
                     </div>
                 </span>                
 				<a href="anuncianteLista.php" style="background-image:url(imgs/icon-blog.png);">Anunciantes/Banners</a>
