@@ -213,6 +213,34 @@
 				
 				<tr class="tableHead">
 					<td colspan="3">
+						<strong>Bloco 04A - Divulgue Iniciativas de acessibilidade</strong>
+					</td>
+				</tr>				
+				<tr>
+					<td colspan="3">
+						E-mail de Contato<br />
+						<input type="text" class="formTxt obrigatorio" name="emailmkt_contato_email" id="emailmkt_contato_email" style="width:98%" value="<?=$aRow['emailmkt_contato_email']?>" />
+					</td>
+				</tr>
+				<tr>
+            		<td colspan="3">
+						Imagem Selo Divulgue<br />
+						<?	if(is_file("../imgEmkt/{$aRow['emailmkt_contato_img']}")):?>
+						<span>(<a href="javascript:void(0)" rel="emailmkt_contato_img" class="delImg">Remover Imagem</a>)</span>
+						<?	endif;?>
+						<br />
+						<input type="file" name="emailmkt_contato_img" id="emailmkt_contato_img" />
+						<?	if(is_file("../imgEmkt/{$aRow['emailmkt_contato_img']}")):?>
+						<div class="images">
+                        	<img src="../imgEmkt/<?=$aRow['emailmkt_contato_img']?>" />
+                        </div>
+						<?	endif;?>
+                    </td>
+				</tr>
+				
+				
+				<tr class="tableHead">
+					<td colspan="3">
 						<strong>Bloco 05 - Agenda Brasil de Acessibilidade</strong>
 					</td>
 				</tr>				

@@ -372,6 +372,11 @@ class emailmkt extends defaultClass{
 			$this->values['emailmkt_aqui_tem_url'] = '';
 			$this->values['emailmkt_aqui_tem_thumb']='';
 		}
+
+		$this->values['emailmkt_contato_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_contato_img']);
+		if($this->values['emailmkt_contato_img']==''){
+			$this->values['emailmkt_contato_img']='emkt_contact_bt.png';
+		}
 		
 		$this->values['emailmkt_propaganda_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_propaganda_img']);
 		if($this->values['emailmkt_exibe_propaganda']!='S'){
@@ -404,6 +409,8 @@ class emailmkt extends defaultClass{
 					,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 					,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 					,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
+					,emailmkt_contato_img = '{$this->values['emailmkt_contato_img']}'
+					,emailmkt_contato_email = '{$this->values['emailmkt_contato_email']}'
 					,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
 					,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
 		";
@@ -461,6 +468,11 @@ class emailmkt extends defaultClass{
 			$this->values['emailmkt_aqui_tem_url'] = '';
 			$this->values['emailmkt_aqui_tem_thumb']='';
 		}
+
+		$this->values['emailmkt_contato_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_contato_img']);
+		if($this->values['emailmkt_contato_img']==''){
+			$this->values['emailmkt_contato_img']='emkt_contact_bt.png';
+		}
 		
 		$this->values['emailmkt_propaganda_img'] = $this->uploadFile($this->pathImg, $this->files['emailmkt_propaganda_img']);
 		if($this->values['emailmkt_exibe_propaganda']!='S'){
@@ -492,6 +504,8 @@ class emailmkt extends defaultClass{
 				,emailmkt_aqui_tem_titulo = '{$this->values['emailmkt_aqui_tem_titulo']}'
 				,emailmkt_aqui_tem_resumo = '{$this->values['emailmkt_aqui_tem_resumo']}'
 				,emailmkt_aqui_tem_url = '{$this->values['emailmkt_aqui_tem_url']}'
+				,emailmkt_contato_img = '{$this->values['emailmkt_contato_img']}'
+				,emailmkt_contato_email = '{$this->values['emailmkt_contato_email']}'
 				,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
 				,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
 				
