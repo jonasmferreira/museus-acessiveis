@@ -58,7 +58,7 @@
 				</tr>
 				<tr>
             		<td colspan="3">
-						Thumb(150x115)<br />
+						Thumb(570x227)<br />
 						<?	if(is_file("../images/{$aRow['emkt_noticia_thumb']}")):?>
 						<span>(<a href="javascript:void(0)" rel="emkt_noticia_thumb" class="delImg">Remover Imagem</a>)</span>
 						<?	endif;?>
