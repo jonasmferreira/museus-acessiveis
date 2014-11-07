@@ -25,7 +25,13 @@
 			,'t.novidade_360_hr' => 'DESC'
 		));
 		$aRows = $objNovidade->getLista();
-		//$objNovidade->debug($aRows);
+		//reordenando pela data para exibir na listagem
+		$aRowsList = array();
+		foreach($aRows['rows'] as $k =>$v){
+			$aRowsList[$v['data_ordenacao'] . '-' . $k]= $v;
+		}
+		krsort($aRowsList);
+		//$objNovidade->debug($aRowsList);
 
 		$aMeses = $objNovidade->getMeses();
 		//$objNovidade->debug($aRows);
@@ -53,10 +59,12 @@
 		$nMes = 0;
 		$nPos=0;
 		$sCloseLi = '';
-		foreach($aRows['rows'] as $k => $v){
-			$aData = explode('/',$v['novidade_360_dt_agenda']);
-			if($nAno!=$aData[2]||$nMes!=$aData[1]){
-				$nAno = $aData[2];
+		foreach($aRowsList as $k => $v){
+			$sData = $v['data_ordenacao'];
+			$aData = explode('-', $sData);
+			$sData = $aData[2].'/'.$aData[1].'/'.$aData[0];
+			if($nAno!=$aData[0]||$nMes!=$aData[1]){
+				$nAno = $aData[0];
 				$nMes = $aData[1];
 				$nPos=0;
 				if(trim($sCloseLi)!=''){
@@ -90,7 +98,7 @@
                                 <div class="info-head">
 									<div class="date">
 										<span class="purple-color" tabIndex="32">
-											<?=($v['novidade_360_dt_agenda']!='00/00/0000')?$v['novidade_360_dt_agenda']:'';?>
+											<?=($v['novidade_360_dt_agenda']!='00/00/0000')?$v['novidade_360_dt_agenda']:$sData;?>
 										</span>
 									</div>
 									<!--div class="social-media">
