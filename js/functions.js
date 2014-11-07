@@ -626,6 +626,12 @@ $(document).ready(function(){
 		
 	});
 	
+	
+	//Adicionando aos favoritos
+	$('#bookmarkme').click(function(){
+		alert('Pressione ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D para adicionar esta página aos seus Favoritos.');
+	});	
+	
 
 });
 
