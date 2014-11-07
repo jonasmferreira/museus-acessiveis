@@ -112,7 +112,7 @@ class novidade extends defaultClass{
 		if(isset($sOrder)&&trim($sOrder)!=''){
 			$sql[] = $sOrder;
 		}else{
-			$sql[] = "ORDER BY t.novidade_360_dt_agenda DESC, t.novidade_360_titulo_sintese ASC";
+			$sql[] = "ORDER BY t.novidade_360_dt_agenda DESC, t.novidade_360_dt DESC, t.novidade_360_titulo_sintese ASC";
 		}
 
 		$sql[] = "LIMIT {$start},{$limit}";
@@ -128,8 +128,13 @@ class novidade extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					
+					$sData = ($rs['novidade_360_dt_agenda']!='0000-00-00') ? $rs['novidade_360_dt_agenda'] : $rs['novidade_360_dt'];
+					$rs['data_ordenacao'] = $sData;
+					
 					$rs['novidade_360_dthr'] = $this->dateDB2BR($rs['novidade_360_dt'])." às ".$rs['novidade_360_hr'];
 					$rs['novidade_360_dt_agenda'] = $this->dateDB2BR($rs['novidade_360_dt_agenda']);
+					$rs['novidade_360_dt'] = $this->dateDB2BR($rs['novidade_360_dt']);
 					$rs['novidade_360_exibir_destaque_home_label'] = $rs['novidade_360_exibir_destaque_home']=='S'?'Sim':'Não';
 					$rs['novidade_360_exibir_banner_label'] = $rs['novidade_360_exibir_banner']=='S'?'Sim':'Não';
 					$rs['novidade_360_exibir_listagem_label'] = $rs['novidade_360_exibir_listagem']=='S'?'Sim':'Não';
