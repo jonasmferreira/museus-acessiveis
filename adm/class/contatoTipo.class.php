@@ -121,11 +121,16 @@ class contatoTipo extends defaultClass{
 		$sql[] = "
 			UPDATE	tb_contato_tipo SET
 					contato_tipo = '{$this->values['contato_tipo']}'
-					,contato_tipo_icone = '{$this->values['contato_tipo_icone']}'
-					,contato_tipo_icone_contraste = '{$this->values['contato_tipo_icone_contraste']}'
 					,contato_tipo_status = '{$this->values['contato_tipo_status']}'
-			WHERE	contato_tipo_id = '{$this->values['contato_tipo_id']}'
+			
 		";
+        if(isset($this->values['contato_tipo_icone'])&&trim($this->values['contato_tipo_icone'])!=''){
+          $sql[] = ",contato_tipo_icone = '{$this->values['contato_tipo_icone']}'";
+        }
+        if(isset($this->values['contato_tipo_icone_contraste'])&&trim($this->values['contato_tipo_icone_contraste'])!=''){
+          $sql[] = ",contato_tipo_icone_contraste = '{$this->values['contato_tipo_icone_contraste']}'";
+        }
+        $sql[] = "WHERE	contato_tipo_id = '{$this->values['contato_tipo_id']}'";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
@@ -144,10 +149,14 @@ class contatoTipo extends defaultClass{
 		$sql[] = "
 			INSERT INTO	tb_contato_tipo SET
 				contato_tipo = '{$this->values['contato_tipo']}'
-				,contato_tipo_icone = '{$this->values['contato_tipo_icone']}'
-				,contato_tipo_icone_contraste = '{$this->values['contato_tipo_icone_contraste']}'
 				,contato_tipo_status = '{$this->values['contato_tipo_status']}'
 		";
+        if(isset($this->values['contato_tipo_icone'])&&trim($this->values['contato_tipo_icone'])!=''){
+          $sql[] = ",contato_tipo_icone = '{$this->values['contato_tipo_icone']}'";
+        }
+        if(isset($this->values['contato_tipo_icone_contraste'])&&trim($this->values['contato_tipo_icone_contraste'])!=''){
+          $sql[] = ",contato_tipo_icone_contraste = '{$this->values['contato_tipo_icone_contraste']}'";
+        }
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
