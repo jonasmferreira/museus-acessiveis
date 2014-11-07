@@ -16,6 +16,8 @@
 
 	RewriteRule ^acessibilidade/?$ acessibilidadeInfo.php
 
+	RewriteRule ^rss/?$ rssLista.php
+
 	RewriteRule ^quem_somos/?$ quemSomosLista.php
 	RewriteRule ^quem_somos/([^/]+)/?$ quemSomosLista.php?quemsomos_id=$1
 	RewriteRule ^quem_somos/([^/]+)/([^/]+)/?$ quemSomosLista.php?quemsomos_id=$1&quemsomos_titulo=$2
