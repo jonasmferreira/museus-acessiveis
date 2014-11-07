@@ -99,6 +99,8 @@
 	
 							spannode.appendChild(middleclone);
 							middlebit.parentNode.replaceChild(spannode, middlebit);
+							
+							$(spannode).html("["+$(spannode).html()+"]");
 
 							skip = 1;
 							id += 1;
