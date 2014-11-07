@@ -15,7 +15,9 @@
 
 		$nId = (isset($_REQUEST['quemsomos_id'])?$_REQUEST['quemsomos_id']:'');
 		$sTitulo = (isset($_REQUEST['quemsomos_titulo'])?$_REQUEST['quemsomos_titulo']:'');
-		echo 'ID = ' .$nId . ' Título = ' .$sTitulo;
+		
+		//echo 'ID = ' .$nId . ' Título = ' .$sTitulo;
+		
 		$objQuemSomos->setValues(
 			array(
 				'quemsomos_id'=>$nId
