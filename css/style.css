@@ -282,6 +282,7 @@ h3 {
 
 #news360{
 	padding: 30px 15px 39px 110px;
+	overflow: visible;
 }
 
 #outdoor,#destaque,#news360{

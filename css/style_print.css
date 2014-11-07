@@ -10,10 +10,6 @@ class contrast
 } 
 
 
- 
-/* Fontes */
-
-	
 /* Tags Gerais */
 *, html, body {
 	margin:0; 
@@ -28,7 +24,7 @@ a{
 body {
 	font-family:Verdana, Helvetica, sans-serif;
 	color: #000;
-	}
+}
 
 a{
 	color: #000;
@@ -74,10 +70,9 @@ h3 {
 #access-bar{
 	display: none;
 }
+	
 #content-l{
-	width: 712px;
-	float: left;
-	background-color: #FFF;
+	width: 95%;
 }	
 
 #content-r{
@@ -88,21 +83,33 @@ h3 {
 	display: none;
 }	
 
+
 #logo{
-	padding: 28px 0 0 110px;
-	width: 288px;
-	height: 152px;
-	background: url(../img/logo.png) right bottom no-repeat;
+	display: none;
 }
 
 #content{
-	border-right: 4px solid #f37920;
-	padding-bottom: 17px;
+	border: none;
+	background: none;
+	width: 100%;
+}
+
+#content .social-media{
+	display: none;
 }
 
 /* outdoor */
 #outdoor{
 	display:none;
+}
+
+#destaque{
+	padding: 30px 15px 17px 110px;
+}
+
+#news360{
+	padding: 0;
+	width: 100%;
 }
 
 #destaque .content-box, 
@@ -172,18 +179,9 @@ div.news-spotlight{
 }
 
 .content-box .more{
-	display: block;
-	padding: 0 0 3px 0;
-	text-align:right;
-	color: #632d8b;
-	font-family: "Myriad Pro";
-	font-size: 14px;
-	border-bottom: 1px solid #632d8b;
+	display: none;
 }
 
-.content-box .more a{
-	color: #632d8b;
-}
 
 
 .info-head{
@@ -200,23 +198,8 @@ div.news-spotlight{
 	bottom: -2px;
 }
 .info-head .social-media{
-	background: #FFF;
-	width: auto;
-	float: right;
-	padding: 0 0 0 3px;
-	position: relative;
-	bottom: -2px;
+	display:none;
 }
-.info-head .social-media .separator{
-	width:4px;
-	padding: 0 3px;
-}
-
-.info-head a{
-	text-decoration: none;
-}
-
-
 
 #destaque .info-head{
 	border-bottom-color: #632d8b;
@@ -255,16 +238,12 @@ div.news-spotlight{
 
 
 
-
-
-
 /* FOOTER */
 #footer{
-	background: #632d8b;
-	padding: 10px 0 0 110px;
-	font-size: 17px;
-	color: #FFF;
+	display: none;
 }
+
+
 
 /* PÁGINA DE DOWNLOADS E IMPRENSA */
 
@@ -310,7 +289,7 @@ table#list tbody td a{
 /* PÁGINA DE NOVIDADES 360 - ITEM */
 
 #news360 h1 a#news-list {
-	font-weight: normal;
+	display:none;
 }
 
 #content-news{
@@ -358,22 +337,21 @@ table#list tbody td a{
 
 #list-itens{
 	display: block;
+	width: 100%;
 }
 #list-itens li.month-list{
-	background: url(../img/content-dest_bg.png) right bottom no-repeat;
 	display: block;
-	padding: 10px 0 10px 110px;
 }
 
 #list-itens li.month-list .itens{
-	padding: 10px 0 0 0;
+	padding: 0;
 }
 
 .active{
 	display: block;
 }
 .inactive{
-	display: none;
+	display: block;
 }
 
 #list-itens li.month-list h3{
@@ -536,11 +514,11 @@ table#list tbody td a{
 
 
 .imprensa .release-clipping{
-	padding: 0 15px 39px 110px;
+	padding: 0;
 }
 
-.imprensa .release-clipping{
-	background: url(../img/content-dest_bg.png) right bottom no-repeat;
+.imprensa .release-clipping .more{
+	text-align: right;
 }
 
 .imprensa .release-clipping .content-box{
@@ -573,11 +551,5 @@ table#list tbody td a{
 .imprensa .release-clipping.list h1{
 	padding-left: 110px;
 }
-
-.imprensa .release-clipping .more{
-	text-align: right;
-}
-
-
 
 
