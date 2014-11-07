@@ -58,9 +58,6 @@
 	
 	*/
 
-	echo substr('Social Media (Linkedin)',0,12);
-	
-	
 	$aCel=array();
 	$celPos=0;
 	$aSite=array();
@@ -104,14 +101,6 @@
 			$socialPos++;
 		}
 	}
-/*
-	$objContato->debug($aCel);
-	$objContato->debug($aEmail);
-	$objContato->debug($aSkype);
-	$objContato->debug($aSite);
-	$objContato->debug($aFacebook);
-	$objContato->debug($aSocialMedia);
-*/
 	
 ?>
 <div class="clear"></div>    
@@ -119,30 +108,6 @@
     	<div id="contact">
         	<strong tabIndex="114">Contatos</strong>
 
-<?php
-	$devices=array();
-	$sites=array();
-	foreach($aContato['rows'] as $k => $v){
-		$tipo=strtolower($v['contato_tipo']);
-		if($tipo=='celular' || $tipo=='telefone' || $tipo=='facebook' || $tipo=='twitter' || $tipo=='skype'){
-			$devices[$k]['contato_tipo']=$v['contato_tipo'];
-			$devices[$k]['contato_nome']=$v['contato_nome'];
-			$devices[$k]['contato_link']=$v['contato_link'];
-			$devices[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
-			$devices[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
-		}else{
-			$sites[$k]['contato_tipo']=$v['contato_tipo'];
-			$sites[$k]['contato_nome']=$v['contato_nome'];
-			$sites[$k]['contato_link']=$v['contato_link'];
-			$sites[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
-			$sites[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
-		}
-		
-	}
-	//$objContato->debug($devices);
-
-?>
-		
 			<div id="devices">
 				<?php  foreach($aCel as $k => $v){ ?>
 					<span tabIndex="">
