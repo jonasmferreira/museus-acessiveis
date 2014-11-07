@@ -161,7 +161,7 @@
 				<!-- FAVORITOS -->
 				<a tabIndex="" class="favorite" href="<?=$linkAbsolute;?>rss" target="_BLANK">Inserir nos favoritos</a>					
 				<!-- IMPRIMIR -->
-				<a tabIndex="" class="print" href="<?=$linkAbsolute;?>rss" target="_BLANK">Imprimir</a>					
+				<a tabIndex="" class="print" href="javascript:window.print();" target="_BLANK">Imprimir</a>					
 				<!-- ENVIAR POR E-MAIL -->
 				<a tabIndex="" class="sendmail" href="<?=$linkAbsolute;?>rss" target="_BLANK">Enviar por e-mail</a>					
 				
