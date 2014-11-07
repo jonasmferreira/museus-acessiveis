@@ -159,7 +159,7 @@
 				<br />
 				
 				<!-- FAVORITOS -->
-				<a tabIndex="" class="favorite" href="<?=$linkAbsolute;?>rss" target="_BLANK">Inserir nos favoritos</a>					
+				<a tabIndex="" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
 				<!-- IMPRIMIR -->
 				<a tabIndex="" class="print" href="javascript:window.print();" target="_BLANK">Imprimir</a>					
 				<!-- ENVIAR POR E-MAIL -->
