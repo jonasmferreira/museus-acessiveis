@@ -265,13 +265,15 @@
 					</a>                
 				</td>
 			</tr>
+			
 			<tr>
 				<td colspan="2" valign="middle" align="center" height="350">
-					<a style="color: #565652;text-decoration: none !important;" href="mailto:viviane@museusacessiveis.com.br">
-						<img src="<?=$linkAbsolute;?>img/emkt_contact_bt.png" width="261" height="269"  alt=""/>
+					<a style="color: #565652;text-decoration: none !important;" href="mailto:<?=$aNewsletter['emailmkt_contato_email'];?>">
+						<img src="<?=$linkAbsolute;?>imgEmkt/<?=$aNewsletter['emailmkt_contato_img'];?>" alt="Divulgue outras iniciativas de acessibilidade!"/>
 					</a>
 				</td>
 			</tr>
+
 		</table>
 	</div>
 
