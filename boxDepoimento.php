@@ -35,7 +35,7 @@
 				foreach($aDepoimento['rows'] as $k => $v){
 ?>
 					<li>
-						<div><strong tabIndex="104" class="description"><?=$v['depoimento_conteudo'];?></strong></div>
+						<div><strong tabIndex="104" class="description"><?=substr($v['depoimento_conteudo'],0,300).'...';?></strong></div>
 						<div style="height:5px;"></div>
 						<div><strong tabIndex="104" class="author"><?=$v['depoimento_autor'];?></strong></div>
 						<div><strong tabIndex="104" class="company"><?=$v['depoimento_empresa'];?></strong></div>
