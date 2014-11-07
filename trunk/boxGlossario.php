@@ -23,7 +23,7 @@
 		<div id="glossary-search">
         	<h1 tabIndex="110">Glossário da <br />Acessibilidade</h1>
             <p tabIndex="111" class="description">
-            Saiba mais sobre inclusãosem complicação!!!
+            Saiba mais sobre inclusão<br />sem complicação!!!
             </p>
 			<div class="clear"></div>
             <div class="tag-box">
