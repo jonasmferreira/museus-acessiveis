@@ -632,6 +632,11 @@ $(document).ready(function(){
 		alert('Pressione ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D para adicionar esta página aos seus Favoritos.');
 	});	
 	
+	//corrigindo bug de exibição das listas (novidades, projetos, cursos etc ao expandir um mês oculto
+	$('.month-list a.news-list').click(function(){
+		resizeContentList();
+	});
+	
 
 });
 
@@ -649,10 +654,33 @@ function resizeContent(){
 	if(tl <= tr){
 		$('#content').css('height',tr+'px');
 	}
-	$('#content').css('overflow','visible !important');
-	$('#content').css('height','auto !important');
+	$('#content').css('overflow','visible');
+	//$('#content').css('height','auto');
 
 }
+
+function resizeContentList(){
+	$('#content').css('overflow','visible');
+	$('#content').css('height','auto');
+
+	$('#content-l').css('display','block');
+	$('#content-l').css('overflow','visible');
+	var cr = $('#content-r').css('height');
+	var cl = $('#content').css('height');
+	
+	cr=cr.split('px');
+	tr=parseInt(cr[0]);
+	cl=cl.split('px');
+	tl=parseInt(cl[0]);
+
+	if(tl <= tr){
+		$('#content').css('height',tr+'px');
+	}
+	$('#content').css('overflow','visible');
+
+}
+
+
 
 function controlerFontSize(obj,container,multipleSize,dontChangeMe){
 	//inicializo os valores
