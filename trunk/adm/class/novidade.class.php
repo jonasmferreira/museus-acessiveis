@@ -200,7 +200,7 @@ class novidade extends defaultClass{
 		$this->values['novidade_360_destaque_home_desc'] = $this->escape_string($this->values['novidade_360_destaque_home_desc']);
 		$this->values['novidade_360_destaque_home_frase'] = $this->escape_string($this->values['novidade_360_destaque_home_frase']);
 		$this->values['novidade_360_exibir_listagem'] = trim($this->values['novidade_360_exibir_listagem'])!=''?$this->values['novidade_360_exibir_listagem']:'N';
-		
+
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -250,7 +250,12 @@ class novidade extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
-		
+
+		$result = $this->deleteGaleria();
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
 		
 		$novidade_360_id = $this->values['novidade_360_id'];
 		$result = $this->insertTags($this->values['tags'], $novidade_360_id);
@@ -260,6 +265,12 @@ class novidade extends defaultClass{
 		}
 		
 		$result = $this->insertDownload($this->values['downloads'], $novidade_360_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+
+		$result = $this->insertGaleria($this->values['galeria_id'], $novidade_360_id);
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
 			return $result;
@@ -328,6 +339,12 @@ class novidade extends defaultClass{
 		}
 		
 		$result = $this->insertDownload($this->values['downloads'], $novidade_360_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
+		$result = $this->insertGaleria($this->values['galeria_id'], $novidade_360_id);
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
 			return $result;
@@ -424,6 +441,48 @@ class novidade extends defaultClass{
 		return $arr;
 	}
 	
+	public function getNovidadeGaleria($novidade_360_id){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*,
+					ng.*
+			FROM	tb_galeria g
+			JOIN	tb_novidade_360_galeria ng
+			ON		ng.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		ng.novidade_360_id = '{$novidade_360_id}'
+		";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+			}
+		}
+		return $this->utf8_array_encode($rs);
+	}
+	
+	public function getGaleria(){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*
+			FROM	tb_galeria g
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	
+	
 	public function removeImage(){
 		$aReg = $this->getOne();
 		$this->dbConn->db_start_transaction();
@@ -462,6 +521,16 @@ class novidade extends defaultClass{
 		}
 		return $arr;
 	}
+
+	protected function deleteGaleria(){
+		$sql = array();
+		$sql[] = "
+			DELETE FROM tb_novidade_360_galeria
+			WHERE	novidade_360_id = '{$this->values['novidade_360_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		return $result;
+	}
 	
 	protected function deleteDownload(){
 		$sql = array();
@@ -491,6 +560,27 @@ class novidade extends defaultClass{
 		return array('success'=>'true');
 	}
 
+	protected function insertGaleria($galeria_id,$novidade_360_id){
+		
+		//if($galeria_id!=0){
+			$sql = array();
+			$sql[] = "
+				INSERT INTO tb_novidade_360_galeria SET
+					novidade_360_id = {$novidade_360_id}
+					,galeria_id = {$galeria_id}
+			";
+			$result = $this->dbConn->db_execute(implode("\n",$sql));
+			if($result['success']===false){
+				return array('success'=>'false');
+			}else{
+				return array('success'=>'true');
+			}
+		//}else{
+		//	return array('success'=>'true');
+		//}
+	}
+	
+	
 	public function getDownloadByNovidade($novidade_360_id, $sOrder='', $direction=''){
 		$sql = array();
 		
