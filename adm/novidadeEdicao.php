@@ -204,12 +204,12 @@
 					<td colspan="3">
 						Galeria<br />
 						<select class="formTxt" name="galeria_id" style="width:98%" id="galeria_id">
-							<option value="0">[Selecione a Galeria Desejada]</option>
+							<option value="">[Selecione a Galeria Desejada]</option>
 							<?	
 								foreach($aGaleria AS $k=>$v):
-									$selected = ($v['novidade_360_id']==$aNovidadeGaleria['novidade_360_id'])?' selected="selected"':'';
+									$selected = ($v['galeria_id']==$aNovidadeGaleria['galeria_id'])?' selected="selected"':'';
 							?>
-							<option value="<?=$v['novidade_360_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
+							<option value="<?=$v['galeria_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
 							<?	endforeach;?>
 						</select>
 					</td>
