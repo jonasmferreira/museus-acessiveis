@@ -155,7 +155,7 @@
 				<?php } ?>
 					
 				<!-- RSS -->
-				<a tabIndex="" class="rss" href="<?=$linkAbsolute;?>rss" target="_BLANK">RSS</a>					
+				<a tabIndex="" class="rss" href="<?=$linkAbsolute;?>rss.php" target="_BLANK">RSS</a>					
 				<br />
 				
 				<!-- FAVORITOS -->

@@ -15,7 +15,7 @@
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Museus Acessíveis</title>
-
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<?=$linkAbsolute?>rss.php" />
 <meta name="description" content="<?=$description;?>">
 <meta name="keywords" content="<?=$keywords;?>">
 <meta name="author" content="<?=$author;?>">

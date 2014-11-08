@@ -789,6 +789,26 @@ class defaultClass {
 
 		return $sRet;
 	}
-	
-	
+	public function createRss($aArr){
+		// Intanciamos/chamamos a classe
+		$rss = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss></rss>');
+		$rss->addAttribute('version', '2.0');
+		// Cria o elemento <channel> dentro de <rss>
+		$canal = $rss->addChild('channel');
+		if(count($aArr)>0){
+			foreach($aArr AS $v){
+				// Cria um elemento <item> dentro de <channel>
+				$item = $canal->addChild('item');
+				// Adiciona sub-elementos ao elemento <item>
+				$item->addChild('title', $v['titulo']);
+				$item->addChild('pubDate', $v['pubDate']);
+				$item->addChild('link', $v['link']);
+				$item->addChild('description',$v['texto']);
+			}
+		}
+		// Define o tipo de conteúdo e o charset
+		header("content-type: application/rss+xml; charset=utf-8");
+		// Entrega o conteúdo do RSS completo:
+		echo $rss->asXML();
+	}
 }

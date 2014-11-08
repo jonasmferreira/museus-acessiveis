@@ -32,6 +32,7 @@ class busca extends defaultClass{
 						,t.novidade_360_thumb as item_thumb
 						,t.novidade_360_thumb_desc as item_thumb_desc
 						,t.novidade_360_dt as item_dt
+						,DATE_FORMAT(CONCAT(t.novidade_360_dt,' ',t.novidade_360_hr),'%Y-%m-%d %H:%i:%s') as item_dtPub
 						,t.novidade_360_dt_agenda as item_dt_agenda
 				FROM	tb_novidade_360 t
 				WHERE	1 = 1 
@@ -49,6 +50,7 @@ class busca extends defaultClass{
 						,t.projeto_thumb as item_thumb
 						,t.projeto_thumb_desc as item_thumb_desc
 						,t.projeto_dt_ini as item_dt
+						,DATE_FORMAT(CONCAT(t.projeto_dt_cad,' ',t.projeto_hr_cad),'%Y-%m-%d %H:%i:%s') as item_dtPub
 						,t.projeto_agenda as item_dt_agenda
 				FROM	tb_projeto t
 				WHERE	1 = 1 
@@ -66,6 +68,7 @@ class busca extends defaultClass{
 						,t.curso_thumb as item_thumb
 						,t.curso_thumb_desc as item_thumb_desc
 						,t.curso_dt_ini as item_dt
+						,DATE_FORMAT(CONCAT(t.curso_dt_cad,' ',t.curso_hr_cad),'%Y-%m-%d %H:%i:%s') as item_dtPub
 						,t.curso_agenda as item_dt_agenda
 				FROM	tb_curso t
 				WHERE	1 = 1 
@@ -82,7 +85,8 @@ class busca extends defaultClass{
 						,t.servico_conteudo as item_conteudo
 						,t.servico_thumb as item_thumb
 						,t.servico_thumb_desc as item_thumb_desc
-						,t.servico_dt_ini as item_dt
+						,t.servico_dt_cad as item_dt
+						,DATE_FORMAT(CONCAT(t.servico_dt_cad,' ',t.servico_hr_cad),'%Y-%m-%d %H:%i:%s') as item_dtPub
 						,t.servico_agenda as item_dt_agenda
 				FROM	tb_servico t
 				WHERE	1 = 1 
@@ -96,7 +100,6 @@ class busca extends defaultClass{
 		$aSql[] = "WHERE 1 = 1 ";
 		return implode("\n",$aSql);
 	}
-	
 	public function getLista(){
 		$page = $this->values['page']; 
 		// get the requested page 
@@ -143,6 +146,21 @@ class busca extends defaultClass{
 		$aRet['rows'] = $arr;
 		return $aRet;
 	}
-
+	public function getInfoRss(){
+		$sql = array();
+		$sql[] = $this->getSql();
+		$sql[] = "ORDER BY item_dt DESC ";
+		$arr = array();
+		
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
 	
 }
