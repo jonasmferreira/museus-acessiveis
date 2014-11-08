@@ -1082,3 +1082,61 @@ table#list tbody td a{
 	text-align: right;
 }
 
+#galeria-box{
+	width: 560px;
+}
+
+#galeria-box table#img-lista{
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#galeria-box table#img-lista td#img-total{
+	height: 25px;
+	text-align:center;
+	vertical-align: middle;
+}
+
+#galeria-box table#img-lista td{
+	vertical-align: middle;
+	text-align: center;
+}
+#galeria-box table#img-lista .bt{
+	width: 51px;
+	vertical-align: middle;
+	background: #CCC;
+}
+#galeria-box table#img-lista .bt a{
+	text-decoration: none;
+}
+
+#galeria-box table#img-lista #imagens{
+	text-align: center;
+	vertical-align: middle;
+	height: 400px;
+	background: #CCC;
+}
+
+#galeria-box table#img-lista td.info{
+	padding: 5px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+#galeria-box table#img-lista td.info .title{
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
