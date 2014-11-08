@@ -100,7 +100,39 @@
 						<?php } ?>
 						
 						<h2 id="title-news" tabIndex="33"><?=$aNovidade['novidade_360_titulo'];?></h2>
-						<p id="news-spotlight"  tabIndex="34"><strong><?=$aNovidade['novidade_360_resumo'];?></strong></p>
+						<p id="news-spotlight"  tabIndex="34">
+							<strong><?=$aNovidade['novidade_360_resumo'];?></strong>
+						</p>
+						<div id="galeria-box">
+							<table id="img-lista" width="100%" height="">
+								<tr>
+									<td id="img-total" align="center" valign="middle">
+										3 de 5 fotos
+									</td>
+								</tr>
+								<tr>
+									<td class="bt">
+										<a href="javascript:void(0);">
+											<img src="<?=$linkAbsolute;?>img/gallery_bt_prev.png" title="Anterior" alt="Anterior" />
+										</a>
+									</td>
+									<td id="imagens" align="center" valign="middle">
+										<img src="<?=$linkAbsolute;?>galeriaImagem/20141107230311_emkt_schedule_bg.png" title="" alt="" />
+									</td>
+									<td class="bt">
+										<a href="javascript:void(0);">
+											<img src="<?=$linkAbsolute;?>img/gallery_bt_next.png" title="Próximo" alt="Próximo" />
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td id="info" align="left" valign="middle">
+										<strong class="title">Título da Imagem</strong>
+										<span>Descrição da imagem</span>
+									</td>
+								</tr>
+							</table>
+						</div>
 						<div id="project-content" class="novidade360Content">
 							<?php echo $sConteudo; ?>
 						</div>
