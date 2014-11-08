@@ -16,6 +16,13 @@
 	}
 	$aTags = $obj->getTags();
 	$aDownloads = $obj->getDownload();
+
+	$aGaleria = $obj->getGaleria();
+	//$obj->debug($aGaleria);
+	
+	$aNovidadeGaleria = $obj->getNovidadeGaleria($aRow['novidade_360_id']);
+	//$obj->debug($aNovidadeGaleria);
+	
 	
 ?>
 <script type="text/javascript" src="js/novidade.js"></script>
@@ -187,6 +194,27 @@
 					</td>
 					
 				</tr>
+				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Habilitar Galeria</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Galeria<br />
+						<select class="formTxt" name="galeria_id" style="width:98%" id="galeria_id">
+							<option value="0">[Selecione a Galeria Desejada]</option>
+							<?	
+								foreach($aGaleria AS $k=>$v):
+									$selected = ($v['novidade_360_id']==$aNovidadeGaleria['novidade_360_id'])?' selected="selected"':'';
+							?>
+							<option value="<?=$v['novidade_360_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<td align="right" colspan="3">
 						<a href="novidadeLista.php" class="butVoltar">Voltar</a>&nbsp;
