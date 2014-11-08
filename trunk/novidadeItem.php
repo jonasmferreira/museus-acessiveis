@@ -106,7 +106,7 @@
 						<div id="galeria-box">
 							<table id="img-lista" width="100%" height="">
 								<tr>
-									<td id="img-total" align="center" valign="middle">
+									<td id="img-total" align="center" valign="middle" colspan="3">
 										3 de 5 fotos
 									</td>
 								</tr>
@@ -126,8 +126,9 @@
 									</td>
 								</tr>
 								<tr>
-									<td id="info" align="left" valign="middle">
+									<td class="info" align="left" valign="middle" colspan="3">
 										<strong class="title">Título da Imagem</strong>
+										<br />
 										<span>Descrição da imagem</span>
 									</td>
 								</tr>
