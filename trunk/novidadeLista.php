@@ -60,6 +60,7 @@
 		$nPos=0;
 		$sCloseLi = '';
 		foreach($aRowsList as $k => $v){
+			$sClass=($nPos!=0)?' inactive':' active';
 			$sData = $v['data_ordenacao'];
 			$aData = explode('-', $sData);
 			$sData = $aData[2].'/'.$aData[1].'/'.$aData[0];
@@ -71,6 +72,8 @@
 					$sCloseLi .='</li>';
 					echo $sCloseLi;
 				}else{
+					
+					
 ?>				
 				<li class="month-list">
 					<h3>
@@ -84,7 +87,7 @@
 							?>
 						</a>
 					</h3>
-					<div class="itens <?=($k!=0)? ' inactive': '';?>">
+					<div class="itens <?php echo $sClass;?>">
 <?php				
 				
 				}
@@ -142,7 +145,7 @@
                         </tr>
                     </table>
                 </div>  
-						
+
 <?php						
 			$nPos++;
 		}
