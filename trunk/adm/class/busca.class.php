@@ -25,7 +25,7 @@ class busca extends defaultClass{
 			$sql[] = "
 				SELECT	
 						t.novidade_360_id as item_id
-						,'novidade360' as item_tipo_link
+						,'Novidade 360º' as item_tipo_link
 						,t.novidade_360_titulo as item_titulo
 						,t.novidade_360_resumo as item_resumo
 						,t.novidade_360_conteudo as item_conteudo
@@ -43,7 +43,7 @@ class busca extends defaultClass{
 			$sql[] = "
 				SELECT	
 						t.projeto_id as item_id
-						,'projeto' as item_tipo_link						
+						,'Projeto' as item_tipo_link						
 						,t.projeto_titulo as item_titulo
 						,t.projeto_resumo as item_resumo
 						,t.projeto_conteudo as item_conteudo
@@ -61,7 +61,7 @@ class busca extends defaultClass{
 			$sql[] = "
 				SELECT	
 						t.curso_id as item_id
-						,'curso' as item_tipo_link
+						,'Curso' as item_tipo_link
 						,t.curso_titulo as item_titulo
 						,t.curso_resumo as item_resumo
 						,t.curso_conteudo as item_conteudo
@@ -79,7 +79,7 @@ class busca extends defaultClass{
 			$sql[] = "
 				SELECT	
 						t.servico_id as item_id
-						,'servico' as item_tipo_link
+						,'Serviço' as item_tipo_link
 						,t.servico_titulo as item_titulo
 						,t.servico_resumo as item_resumo
 						,t.servico_conteudo as item_conteudo
@@ -91,6 +91,42 @@ class busca extends defaultClass{
 				FROM	tb_servico t
 				WHERE	1 = 1 
 				/*AND		DATE_FORMAT(t.servico_dt_ini,'%Y-%m-%d %H:%i:%s') <= NOW()*/
+				";
+
+			//release
+			$sql[] = "
+				SELECT	
+						t.release_id as item_id
+						,'Release' as item_tipo_link
+						,t.release_titulo as item_titulo
+						,t.release_resumo as item_resumo
+						,t.release_conteudo as item_conteudo
+						,t.release_thumb as item_thumb
+						,t.release_thumb_desc as item_thumb_desc
+						,t.release_dt as item_dt
+						,DATE_FORMAT(CONCAT(t.release_dt,' ',t.release_hr),'%Y-%m-%d %H:%i:%s') as item_dtPub
+						,t.release_dt_agenda as item_dt_agenda
+				FROM	tb_release t
+				WHERE	1 = 1 
+				/*AND		DATE_FORMAT(t.release_dt,'%Y-%m-%d %H:%i:%s') <= NOW()*/
+				";
+
+			//clipping
+			$sql[] = "
+				SELECT	
+						t.clipping_id as item_id
+						,'Clipping' as item_tipo_link
+						,t.clipping_titulo as item_titulo
+						,t.clipping_resumo as item_resumo
+						,t.clipping_conteudo as item_conteudo
+						,t.clipping_thumb as item_thumb
+						,t.clipping_thumb_desc as item_thumb_desc
+						,t.clipping_dt as item_dt
+						,DATE_FORMAT(CONCAT(t.clipping_dt,' ',t.clipping_hr),'%Y-%m-%d %H:%i:%s') as item_dtPub
+						,t.clipping_dt_agenda as item_dt_agenda
+				FROM	tb_clipping t
+				WHERE	1 = 1 
+				/*AND		DATE_FORMAT(t.clipping_dt,'%Y-%m-%d %H:%i:%s') <= NOW()*/
 				";
 			
 		$aSql = Array();
