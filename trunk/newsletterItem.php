@@ -33,6 +33,72 @@
 		);
 		$aNewsletter = $objEmkt->getOne();
 		//$objEmkt->debug($aNewsletter);
+		
+		include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
+		$objContato = new contato();
+		$objContato->setValues(array(
+			'contato_exibir'=>'S'
+			,'page'=>'1'
+			,'rows'=>'10'
+		));
+
+		$aContato = $objContato->getLista();
+		//$objContato->debug($aContato);
+
+		/*Organizando os contados por categoria;
+		1 - Telefones e Celulares
+		2 - Emails e Sites
+		3 - Facebook
+		4 - Redes Sociais (Social Media)
+
+		*/
+
+		$aCel=array();
+		$celPos=0;
+		$aSite=array();
+		$sitePos=0;
+		$aEmail = array();
+		$emailPos=0;
+		$aFacebook = array();
+		$facePos=0;
+		$aSkype = array();
+		$skypePos=0;
+		$aSocialMedia = array();
+		$socialPos=0;
+		$arr = array();
+		foreach($aContato['rows'] as $k => $v){
+			$tipo=strtolower($v['contato_tipo']);
+
+			if($tipo=='celular' || $tipo=='telefone'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aCel,$arr);
+				$celPos++;
+			}else if($tipo=='skype'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aSkype,$arr);
+				$skypePos++;
+			}else if($tipo=='site'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aSite,$arr);
+				$sitePos++;
+			}else if($tipo=='e-mail'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aEmail,$arr);
+				$emailPos++;
+
+			}else if($tipo=='facebook'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aFacebook,$arr);
+				$facePos++;
+			}else if(substr ($tipo, 0, 12)=='social media'){
+				$arr = $objContato->createContactGroup($v);
+				array_push($aSocialMedia,$arr);
+				$socialPos++;
+			}
+		}
+	
+		
+		
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -348,109 +414,87 @@
 
 <?php } ?>	
 	
-	<div id="footer" href="footer" accesskey="5" style="background: #632d8b;padding: 65px 0 0 37px;font-size: 17px;color: #FFF;">
-		<table style="border: 0;padding: 0 0 30px 0;margin: 0;background: url('<?=$linkAbsolute;?>img/emkt_footer_bg.png') 370px bottom no-repeat;">
+	<div id="footer" href="footer" accesskey="5" style="background: #632d8b url('<?=$linkAbsolute;?>img/emkt_footer_bg.png') 410px bottom repeat-y;padding: 35px 0 0 37px;font-size: 17px;color: #FFF;">
+		<table style="border: 0;padding: 0 0 30px 0;margin: 0;">
 			<tr>
 				<td class="contact" style="width: 370px;font-size: 17px;">
 					<div id="contact">
 						<strong tabIndex="114">Contatos</strong>
 
-					<?php
-						$objEmkt->setValues(array(
-							'contato_exibir'=>'S'
-						));
-						$aContato = $objEmkt->getContatos();
-						//$objEmkt->debug($aContato);
-						$devices=array();
-						$sites=array();
-						$aEmail = array();
-						$aSite = array();
-						$aFacebook = array();
-						
-						foreach($aContato as $k => $v){
-							$tipo=strtolower($v['contato_tipo']);
-							if(strtolower($v['contato_tipo'])=='e-mail'){
-								$aEmail[]=$v['contato_link'];
-							}elseif(strtolower($v['contato_tipo'])=='site'){
-								$aSite[]=$v['contato_link'];
-							}elseif(strtolower($v['contato_tipo'])=='facebook'){
-								$aFacebook[$k]['contato_nome']=$v['contato_nome'];
-								$aFacebook[$k]['contato_link']=$v['contato_link'];
-							}
+						<div id="devices" style="padding: 25px 0 3px 0; font-size:15px;">
 							
-							if($tipo=='celular' || $tipo=='telefone' || $tipo=='facebook' || $tipo=='twitter' || $tipo=='skype'){
-								$devices[$k]['contato_tipo']=$v['contato_tipo'];
-								$devices[$k]['contato_nome']=$v['contato_nome'];
-								$devices[$k]['contato_link']=$v['contato_link'];
-								$devices[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
-								$devices[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
-							}else{
-								$sites[$k]['contato_tipo']=$v['contato_tipo'];
-								$sites[$k]['contato_nome']=$v['contato_nome'];
-								$sites[$k]['contato_link']=$v['contato_link'];
-								$sites[$k]['contato_tipo_icone']=$v['contato_tipo_icone'];
-								$sites[$k]['contato_tipo_icone_contraste']=$v['contato_tipo_icone_contraste'];
-							}
-
-						}
-						//$objEmkt->debug($devices);
-					?>
-						
-						<div id="devices" style="padding: 25px 0 3px 0;">
-							<span tabIndex="117" class="facebook" style="display: block;padding: 0 0 0 20px; background: url('<?=$linkAbsolute;?>img/ico_facebook.png') left center no-repeat;">
-							<?php 
-								foreach($aFacebook as $k => $v){
-							?>
-								<a style="color: #FFF;text-decoration: none;" href="<?php echo $v['contato_link'];?>" target="_blank">
-									<?php echo $v['contato_nome'];?>
-								</a>
-							<?php } ?>
+						<?php  foreach($aCel as $k => $v){ ?>
+							<span tabIndex="" style="color: #FFF;text-decoration: none;">
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<?=$v['contato_nome'];?>
 							</span>
-						</div>
-						<div id="web" style="padding: 0 0 30px 20px;">
-							<?php 
-								foreach($aEmail as $k => $v){
-							?>
-								<a style="text-decoration: none;color: #FFF;" href="mailto:<?php echo $v;?>"><?php echo $v;?></a><br />
-							<?php } ?>
-							<?php 
-								foreach($aSite as $k => $v){
-							?>
-								<a style="text-decoration: none;color: #FFF;" target="_blank" href="<?php echo $v;?>"><?php echo $v;?></a><br />
-							<?php } ?>
-							
-							
+						<?php } ?>
+
+						<?php  foreach($aSkype as $k => $v){ ?>
+							<span tabIndex="" style="color: #FFF;text-decoration: none;">
+								<br />
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<?=$v['contato_nome'];?>
+							</span>
+						<?php } ?>
+
+						<?php  foreach($aFacebook as $k => $v){ ?>
+								<br />
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<a tabIndex="" style="color: #FFF;text-decoration: none;" href="<?=$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+						<?php } ?>
+
+						<?php  foreach($aEmail as $k => $v){ ?>
+								<br />
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<a tabIndex="" style="color: #FFF;text-decoration: none;" href="mailto:<?=$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+						<?php } ?>
+
+						<?php  foreach($aSite as $k => $v){ ?>
+								<br />
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<a tabIndex="" style="color: #FFF;text-decoration: none;" href="<?=$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+						<?php } ?>
+
+						<?php  foreach($aSocialMedia as $k => $v){ ?>
+								<br />
+								<img class="normal" style="display:inline;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<img class="contrast" style="display:none;" src="<?=$linkAbsolute;?>images/<?=$v['contato_tipo_icone_contraste'];?>" title="<?=$v['contato_nome'];?>" alt="<?=$v['contato_nome'];?>" />
+								<a tabIndex="" style="color: #FFF;text-decoration: none;" href="<?=$v['contato_link'];?>" target="_BLANK"><?=$v['contato_nome'];?></a>
+						<?php } ?>
+
+						<!-- RSS -->
+						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_rss.png) left center no-repeat;" class="rss" href="<?=$linkAbsolute;?>rss" target="_BLANK">RSS</a>					
+						<br />
+
+						<!-- FAVORITOS -->
+						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_favorite.png) left center no-repeat;" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
+						<!-- IMPRIMIR -->
+						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_print.png) left center no-repeat;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_print.png) left center no-repeat;" class="print" href="javascript:window.print();">Imprimir</a>					
+						<!-- ENVIAR POR E-MAIL -->
+						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_sendtofriend.png) left center no-repeat;" id="sendmail" class="sendmail" href="javascript:void(0);">Enviar por e-mail</a>					
+						
+						<br />
 						</div>
 					</div>
 				</td>
-				<td class="opcoes" style="width: 220px;font-size: 11px;text-transform: uppercase;text-align: right;">
+				<td class="opcoes" style="width: 220px;font-size: 11px;text-transform: uppercase;text-align: left; padding-left:15px;">
 					<span id="access-option">
-					<a style="color: #FFF; text-decoration: none;" tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a>
+						<a style="color: #FFF;text-decoration: none; font-size:11px; text-transform: uppercase; text-align: left;" href="<?=$linkAbsolute;?>acessibilidade" target="_blank">
+							<strong>ATALHOS DE TECLADO PARA <br />FACILITAR A NAVEGAÇÃO</strong>
+						</a>
 					</span>
 				</td>
 			</tr>
 			<tr>
-				<td align="center">
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_facebook_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_linkedin_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_twitter_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_googleplus_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_paper_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_star_ico.png" width="25" height="25"  alt=""/>
-					</a>
-					<a style="color: #FFF;text-decoration: none !important;" href="#">
-						<img class="ico" style="margin: 0 5px;" src="<?=$linkAbsolute;?>img/emkt_email_ico.png" width="25" height="25"  alt=""/>
+				<td align="left">
+					<a style="color: #FFF;text-decoration: none; font-size:11px; text-transform: uppercase; text-align: left;" href="<?=$linkAbsolute;?>acessibilidade" target="_blank">
+						<strong>ATALHOS DE TECLADO PARA <br />FACILITAR A NAVEGAÇÃO</strong>
 					</a>
 				</td>
 				<td align="center">&nbsp;</td>
