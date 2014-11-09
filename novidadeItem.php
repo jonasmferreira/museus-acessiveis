@@ -123,35 +123,37 @@
 										</div>';
 								}
 						?>
-						
-						<div id="galeria-box">
-							<table id="img-lista" width="100%" cellpadding="0" cellspacing="0" border="0">
-								<tr>
-									<td id="img-total" align="center" valign="middle" colspan="3">
-										<span id="img-pos">1</span> de <span id="img-count"><?php echo count($aNovidadeGaleria['rows']); ?></span> fotos
-									</td>
-								</tr>
-								<tr>
-									<td class="bt">
-										<a href="javascript:void(0);" id="galeria-prev">
-											<img src="<?=$linkAbsolute;?>img/gallery_bt_prev.png" title="Anterior" alt="Anterior" />
-										</a>
-									</td>
-									<td id="imagens" align="center" valign="middle">
-										<?php echo implode('',$arrImagem); ?>
-									</td>
-									<td class="bt">
-										<a href="javascript:void(0);" id="galeria-next">
-											<img src="<?=$linkAbsolute;?>img/gallery_bt_next.png" title="Próximo" alt="Próximo" />
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td class="info" align="left" valign="middle" colspan="3">
-										<?php echo implode('',$arrDescr); ?>
-									</td>
-								</tr>
-							</table>
+						<div id="galeria">
+							<h3>Galeria dde Imagens</h3>
+							<div id="galeria-box">
+								<table id="img-lista" width="100%" cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td id="img-total" align="center" valign="middle" colspan="3">
+											<span id="img-pos">1</span> de <span id="img-count"><?php echo count($aNovidadeGaleria['rows']); ?></span> fotos
+										</td>
+									</tr>
+									<tr>
+										<td class="bt">
+											<a href="javascript:void(0);" id="galeria-prev">
+												<img src="<?=$linkAbsolute;?>img/gallery_bt_prev.png" title="Anterior" alt="Anterior" />
+											</a>
+										</td>
+										<td id="imagens" align="center" valign="middle">
+											<?php echo implode('',$arrImagem); ?>
+										</td>
+										<td class="bt">
+											<a href="javascript:void(0);" id="galeria-next">
+												<img src="<?=$linkAbsolute;?>img/gallery_bt_next.png" title="Próximo" alt="Próximo" />
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="info" align="left" valign="middle" colspan="3">
+											<?php echo implode('',$arrDescr); ?>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
 						<?php } ?>
 						
