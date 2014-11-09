@@ -1114,10 +1114,9 @@ table#list tbody td a{
 }
 
 #galeria-box table#img-lista #imagens{
-	text-align: center;
+	text-align: center !important;
 	vertical-align: middle;
 	height: 400px;
-	background: #CCC;
 }
 
 #galeria-box table#img-lista td.info{
@@ -1130,7 +1129,12 @@ table#list tbody td a{
 	font-weight: bold;
 }
 
-
+#galeria-box .show{
+	display: block;
+}
+#galeria-box .hide{
+	display: none;
+}
 
 
 
