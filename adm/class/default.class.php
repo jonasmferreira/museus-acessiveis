@@ -800,7 +800,7 @@ class defaultClass {
 				// Cria um elemento <item> dentro de <channel>
 				$item = $canal->addChild('item');
 				// Adiciona sub-elementos ao elemento <item>
-				$item->addChild('title', $v['titulo']);
+				$item->addChild('title', '['.$v['categoria'] . ']: ' . $v['titulo']);
 				$item->addChild('pubDate', $v['pubDate']);
 				$item->addChild('link', $v['link']);
 				$item->addChild('description',$v['texto']);
