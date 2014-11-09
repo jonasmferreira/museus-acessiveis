@@ -167,14 +167,15 @@
 	background: #fcee21 !important;color: #000 !important;
 }
 
-.contrast #footer table{
-	background: url(../img/emkt_footer_bg_contrast.png) 370px bottom no-repeat !important;
+.contrast #footer{
+	background: #fcee21 url(../img/emkt_footer_bg_contrast.png) 410px bottom repeat-y !important;
 }
 
 .contrast #footer td.opcoes a{
 	color: #000 !important;
 }
 
+/*
 .contrast #footer #devices a{
 	color: #000 !important;
 }
@@ -182,6 +183,49 @@
 .contrast #footer #devices .facebook{
 	background: url(../img/ico_facebook_contrast.png) left center no-repeat !important;
 }
+*/
+
+.contrast #contact #devices span{
+	color: #000 !important;	
+}
+.contrast #contact #devices a{
+	color: #000 !important;
+}
+
+.contrast #contact #devices .normal{
+	display: none !important;;
+}
+.contrast #contact #devices .contrast{
+	display: inline !important;;
+}
+
+.contrast #footer a{
+	color: #000 !important; 
+	text-decoration: none !important;
+}
+
+
+.contrast #devices .rss{
+	background: url(../img/icons/ico_rss_contrast.png) left center no-repeat !important;
+}
+
+.contrast #devices .favorite{
+	background: url(../img/icons/ico_favorite_contrast.png) left center no-repeat !important;
+}
+
+.contrast #devices .print{
+	background: url(../img/icons/ico_print_contrast.png) left center no-repeat !important;
+}
+
+.contrast #devices .sendmail{
+	background: url(../img/icons/ico_sendtofriend_contrast.png) left center no-repeat !important;
+}
+
+
+
+
+
+
 
 .contrast #footer #web a{
 	color: #000 !important;
