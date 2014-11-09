@@ -440,6 +440,36 @@ class novidade extends defaultClass{
 		}
 		return $arr;
 	}
+
+	public function getNovidadeGaleriaItem($novidade_360_id){
+		$sql = array();
+
+		$arr = array();
+		$aGal = array();
+		$arr['galeria']= $this->getNovidadeGaleria($novidade_360_id);
+		$galeria_id = $arr['galeria']['galeria_id'];
+		
+		$sql[] = "
+			SELECT    gi.*
+			FROM	tb_galeria g
+			JOIN  tb_galeria_imagem gi
+			ON    gi.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		g.galeria_id = {$galeria_id}
+		";
+		
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($aGal,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$arr['rows'] = $aGal;
+		return $arr;
+	}
+	
 	
 	public function getNovidadeGaleria($novidade_360_id){
 		$sql = array();
@@ -450,7 +480,7 @@ class novidade extends defaultClass{
 			JOIN	tb_novidade_360_galeria ng
 			ON		ng.galeria_id = g.galeria_id
 			WHERE	1 = 1
-			AND		ng.novidade_360_id = '{$novidade_360_id}'
+			AND		ng.novidade_360_id = {$novidade_360_id}
 		";
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
