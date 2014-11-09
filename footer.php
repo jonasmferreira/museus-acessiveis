@@ -155,17 +155,15 @@
 				<?php } ?>
 					
 				<!-- RSS -->
-				<a tabIndex="" class="rss" href="<?=$linkAbsolute;?>rss.php" target="_BLANK">RSS</a>					
+				<a tabIndex="" class="rss" href="<?=$linkAbsolute;?>rss" target="_BLANK">RSS</a>					
 				<br />
 				
 				<!-- FAVORITOS -->
 				<a tabIndex="" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
 				<!-- IMPRIMIR -->
-				<a tabIndex="" class="print" href="javascript:window.print();" target="_BLANK">Imprimir</a>					
+				<a tabIndex="" class="print" href="javascript:window.print();">Imprimir</a>					
 				<!-- ENVIAR POR E-MAIL -->
-				<a tabIndex="" class="sendmail" href="<?=$linkAbsolute;?>rss" target="_BLANK">Enviar por e-mail</a>					
-				
-				
+				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);">Enviar por e-mail</a>					
 				
             </div>
             <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a></strong>
