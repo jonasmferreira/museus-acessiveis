@@ -79,6 +79,10 @@
 		//variáveis para a lista de download
 		$downPage = 'novidade';
 		$downId = $nId;
+
+		//CARREGANDO AS GALERIAS
+		$aNovidadeGaleria = $objNovidade->getNovidadeGaleriaItem($aNovidade['novidade_360_id']);
+		//$objNovidade->debug($aNovidadeGaleria);
 		
 	?>	
 </head>
@@ -103,37 +107,54 @@
 						<p id="news-spotlight"  tabIndex="34">
 							<strong><?=$aNovidade['novidade_360_resumo'];?></strong>
 						</p>
+						
+						<?php 
+							if(count($aNovidadeGaleria['rows'])>0){
+								$arrImagem = array();
+								$arrDescr = array();
+								foreach($aNovidadeGaleria['rows'] as $k => $v){ 
+									$class = ($k==0)?'show':'hide';
+									$arrImagem[]='<img class="' . $class . '" id="gal-item_'. ($k+1) . '" src="'. $linkAbsolute . 'galeriaImagem/' . $v['galeria_imagem_arq'] . '" title="' . $v['galeria_imagem_titulo'] . '" alt="'. $v['galeria_imagem_titulo'] . '" width="458" height="400" />';
+									$arrDescr[]= '								
+										<div  class="' . $class . '" id="gal-info_'. ($k+1) .'">
+											<strong class="title">'. $v['galeria_imagem_titulo'] .'</strong>
+											<br />
+											<span>'. $v['galeria_imagem_descricao'] .' </span>
+										</div>';
+								}
+						?>
+						
 						<div id="galeria-box">
-							<table id="img-lista" width="100%" height="">
+							<table id="img-lista" width="100%" cellpadding="0" cellspacing="0" border="0">
 								<tr>
 									<td id="img-total" align="center" valign="middle" colspan="3">
-										3 de 5 fotos
+										<span id="img-pos">1</span> de <span id="img-count"><?php echo count($aNovidadeGaleria['rows']); ?></span> fotos
 									</td>
 								</tr>
 								<tr>
 									<td class="bt">
-										<a href="javascript:void(0);">
+										<a href="javascript:void(0);" id="galeria-prev">
 											<img src="<?=$linkAbsolute;?>img/gallery_bt_prev.png" title="Anterior" alt="Anterior" />
 										</a>
 									</td>
 									<td id="imagens" align="center" valign="middle">
-										<img src="<?=$linkAbsolute;?>galeriaImagem/20141107230311_emkt_schedule_bg.png" title="" alt="" />
+										<?php echo implode('',$arrImagem); ?>
 									</td>
 									<td class="bt">
-										<a href="javascript:void(0);">
+										<a href="javascript:void(0);" id="galeria-next">
 											<img src="<?=$linkAbsolute;?>img/gallery_bt_next.png" title="Próximo" alt="Próximo" />
 										</a>
 									</td>
 								</tr>
 								<tr>
 									<td class="info" align="left" valign="middle" colspan="3">
-										<strong class="title">Título da Imagem</strong>
-										<br />
-										<span>Descrição da imagem</span>
+										<?php echo implode('',$arrDescr); ?>
 									</td>
 								</tr>
 							</table>
 						</div>
+						<?php } ?>
+						
 						<div id="project-content" class="novidade360Content">
 							<?php echo $sConteudo; ?>
 						</div>
