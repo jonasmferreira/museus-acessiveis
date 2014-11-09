@@ -400,38 +400,6 @@ $(document).ready(function(){
 		controlerFontSize('#fontSize','body',2,'.fixedSize');
 	});
 
-/*
-	$('#font-minus').click(function(){
-		//a função para diminuir o texto
-		$('.fontSize').each(function( index ) {
-			//console.log( index + ": " + $( this ).css('font-size') );
-			var s = $(this).css('font-size').replace('px','');
-			s-=1;
-			v = s+'px';
-			$(this).css('font-size',v);
-		});
-	}).mouseover(function(){
-		$(this).css('cursor','pointer');	
-	}).mouseout(function(){
-		$(this).css('cursor','normal');	
-	});
-
-	$('#font-plus').click(function(){
-		//a função para diminuir o texto
-		$('.fontSize').each(function( index ) {
-			//console.log( index + ": " + $( this ).css('font-size') );
-			var s = $(this).css('font-size').replace('px','');
-			s+=1;
-			v = s+'px';
-			$(this).css('font-size',v);
-		});
-	}).mouseover(function(){
-		$(this).css('cursor','pointer');	
-	}).mouseout(function(){
-		$(this).css('cursor','normal');	
-	});
-*/
-	
 	$('.event-day').live('mouseover',function(){
 		$(this).css('cursor', 'pointer');
 		
@@ -666,7 +634,6 @@ $(document).ready(function(){
 			$('#galeria-prev').css('display','none');			
 		}
 		
-		
 	});
 
 	$('#galeria-next').click(function(){
@@ -697,6 +664,10 @@ $(document).ready(function(){
 			$('#galeria-next').css('display','none');			
 		}
 
+	});
+	
+	$('#sendmail').click(function(){
+		alert('Tchoi, finaliza esta parte, please!');
 	});
 	
 
