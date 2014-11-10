@@ -23,16 +23,17 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}emailmktSmart.class.php");
 		$objEmkt = new emailmkt();
 
-		$nId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
-		$nEmkt = (isset($_REQUEST['emailmkt_emkt'])?$_REQUEST['emailmkt_emkt']:0);
+		//$nId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
+		//$nEmkt = (isset($_REQUEST['emailmkt_emkt'])?$_REQUEST['emailmkt_emkt']:0);
 
-		$objEmkt->setValues(
-			array(
-				'emailmkt_id'=>$nId
-			)
-		);
-		$aNewsletter = $objEmkt->getOne();
+		//$objEmkt->setValues(
+		//	array(
+		//		'emailmkt_id'=>$nId
+		//	)
+		//);
+		//$aNewsletter = $objEmkt->getOne();
 		//$objEmkt->debug($aNewsletter);
+		$ids = $_REQUEST['ids'];
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
 		$objContato = new contato();
@@ -102,7 +103,7 @@
 	?>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Museus Acessíveis - Seu amigo [NOME DO AMIGO] enviou esta notícia.</title>
+	<title>Museus Acessíveis - Seu amigo @@NOME_AMIGO@@ enviou esta notícia.</title>
 
 	<meta name="description" content="<?=$description;?>">
 	<meta name="keywords" content="<?=$keywords;?>">
@@ -155,20 +156,19 @@
 	</div>
 
 	<?php
-        if($aNewsletter['emailmkt_exibe_noticia'] =='S'){
-			$aEmktNews = $objEmkt->getEmktNoticiaByIds($aNewsletter['emailmkt_noticia_ids']);
+			$aEmktNews = $objEmkt->getNovidadesByIds($aIds);
 			//$objEmkt->debug($aEmktNews);
 			foreach($aEmktNews as $k => $v){
 	?>
 	<div id="project" style="padding: 34px 31px 30px 16px;">
 		<h1 style="margin:0; font-size:28px; display: block; background: url('<?=$linkAbsolute;?>img/emkt_projeto_ico.png') left top no-repeat; padding: 7px 0 0 56px;color: #632d8b;height: 48px;overflow: visible;" class="project-title">
-			<?=$v['emkt_noticia_titulo']?>
+			<?=$v['novidade_360_titulo']?>
 		</h1>
 		<div class="description" style="padding: 18px 0 0 40px;">
 			<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
-				<?=$v['emkt_noticia_resumo']?>
+				<?=$v['novidade_360_resumo']?>
 			</p>
-			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>emkt_noticia/<?=$v['emkt_noticia_id'];?>/<?=$objEmkt->toNormaliza($v['emkt_noticia_titulo']);?>/<?=$aNewsletter['emailmkt_id'];?>" class="saibamais">
+			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>novidade360/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>" class="saibamais">
 				Leia mais
 			</a>
 		</div>
@@ -176,8 +176,6 @@
 
     <?php } ?>
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
-
-    <?php } ?>
 	
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
     	<tr>

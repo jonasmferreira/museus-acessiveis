@@ -68,5 +68,15 @@ switch($_REQUEST['action']){
 		}
 		echo $msg;
 	break;
+	case 'sendToFriend':
+		$obj->setValues($_REQUEST);
+		$exec = $obj->sendTofriend();
+		if($exec){
+			$msg = "CMD_SUCCESS|E-mail Enviado com Sucesso!";
+		}else{
+			$msg = "CMD_FAILED|Erro ao tentar enviar e-mail!";
+		}
+		echo $msg;
+	break;
 }
 

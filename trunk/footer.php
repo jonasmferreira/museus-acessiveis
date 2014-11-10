@@ -103,6 +103,33 @@
 	}
 	
 ?>
+<style>
+	
+	#dialog-form-send-to-friend{display:none;font-size:65%!important;}
+	#dialog-form-send-to-friend label, #dialog-form-send-to-friend input { display:block; }
+	#dialog-form-send-to-friend input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	#dialog-form-send-to-friend fieldset { padding:0; border:0; margin-top:10px; }
+	#dialog-form-send-to-friend h1 { font-size: 1.0em; margin: .6em 0; }
+	#dialog-form-send-to-friend div#users-contain { width: 350px; margin: 10px 0; }
+	#dialog-form-send-to-friend div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+	#dialog-form-send-to-friend div#users-contain table td, #dialog-form-send-to-friend div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+	#dialog-form-send-to-friend .ui-dialog .ui-state-error { padding: .3em; }
+	#dialog-form-send-to-friend .validateTips { border: 1px solid transparent; padding: 0.3em; }
+</style>
+<div id="dialog-form-send-to-friend" title="Envie para o seu Amigo">
+	<form>
+		<fieldset>
+			<label for="nome">Seu Nome</label>
+			<input type="text" name="nome" id="nome" value="" class="text ui-widget-content ui-corner-all" />
+			<label for="email">Seu E-mail</label>
+			<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+			<label for="nome_amigo">Nome do Amigo</label>
+			<input type="text" name="nome_amigo" id="nome_amigo" value="" class="text ui-widget-content ui-corner-all" />
+			<label for="email_amigo">E-mail do Amigo</label>
+			<input type="tex" name="email_amigo" id="email_amigo" value="" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</form>
+</div>
 <div class="clear"></div>    
 	<div id="footer" href="footer" accesskey="5">
     	<div id="contact">
@@ -161,10 +188,11 @@
 				<!-- FAVORITOS -->
 				<a tabIndex="" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
 				<!-- IMPRIMIR -->
-				<a tabIndex="" class="print" href="javascript:window.print();">Imprimir</a>					
+				<a tabIndex="" class="print" href="javascript:window.print();">Imprimir</a>
+				<?php	if(isset($_REQUEST['novidade_360_id'])):?>
 				<!-- ENVIAR POR E-MAIL -->
-				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);">Enviar por e-mail</a>					
-				
+				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);" data-id="<?=$_REQUEST['novidade_360_id']?>">Enviar por e-mail</a>
+				<?php	endif;?>
             </div>
             <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a></strong>
         </div>

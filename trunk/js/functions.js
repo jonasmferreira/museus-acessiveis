@@ -386,6 +386,55 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 
 
 $(document).ready(function(){
+	var dialog_disparo, form, emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+	name = $( "#nome_amigo" ),
+	email = $( "#email_amigo" ),
+	name2 = $( "#nome" ),
+	email2 = $( "#email" ),
+	allFields = $( [] ).add( name ).add( email ).add( name2 ).add( email2 ),id_not;
+	$( "#dialog-form-send-to-friend" ).dialog({
+		autoOpen: false,
+		height: 400,
+		width: 430,
+		modal: true,
+		buttons: {
+			"Disparar": function(){
+				$.ajax({
+					type:'POST'
+					,url:linkAbsolute+"adm/controller/emailmktSmart.controller.php?action=sendToFriend"
+					,async:false
+					,data:{
+						'ids':id_not
+						,'nome':name.val()
+						,'email':email.val()
+						,'nome_amigo':name2.val()
+						,'email_amigo':email2.val()
+					}
+					,success:function(resp){
+						resp = resp.toString();
+						resp = resp.split("|");
+						newAlert(trim(resp[1]));
+					}
+				});
+				$(this).dialog( "close" );
+			},
+			"Cancelar": function() {
+				$(this).dialog( "close" );
+			}
+		},
+		close: function() {
+			$("#nome_amigo").val('');
+			$("#email_amigo").val('');
+			$("#nome").val('');
+			$("#email").val('');
+			id_not="";
+			//$("#dialog-form-emailmkt form").reset();
+			$(this).dialog( "close" );
+			allFields.removeClass( "ui-state-error" );
+		}
+	});
+	
+	
 	if($(".novidade360Content").length > 0)
 		$('.novidade360Content').glossary(linkAbsolute+'adm/controller/glossario.controller.php?action=generateGlossary');
 	
@@ -522,20 +571,22 @@ $(document).ready(function(){
 		var obj = $(this);
 		gerarCalendario(obj.attr("mes"),obj.attr("ano"),"mes_posterior");
 	});
-	
-	//SLIDER do Fique Atento
-	$('.atento-item ul').cycle({
-		fx:      'scrollLeft'
-		,speed:    1000
-		,timeout:  3000
-	});
-
-	//SLIDER do Depoimentos
-	$('.depoimento-box ul').cycle({
-		fx:      'scrollLeft'
-		,speed:    1000
-		,timeout:  5000
-	});
+	if($('.atento-item ul').length > 0){
+		//SLIDER do Fique Atento
+		$('.atento-item ul').cycle({
+			fx:      'scrollLeft'
+			,speed:    1000
+			,timeout:  3000
+		});
+	}
+	if($('.depoimento-box ul').length > 0){
+		//SLIDER do Depoimentos
+		$('.depoimento-box ul').cycle({
+			fx:      'scrollLeft'
+			,speed:    1000
+			,timeout:  5000
+		});
+	}
 	
 	//controlando tamanho dos conteudos (content-r e content-l)
 	if($('#content').length > 0){
@@ -667,7 +718,9 @@ $(document).ready(function(){
 	});
 	
 	$('#sendmail').click(function(){
-		alert('Tchoi, finaliza esta parte, please!');
+	//alert('Tchoi, finaliza esta parte, please!');
+		id_not = $(this).data('id');
+		$("#dialog-form-send-to-friend").dialog("open");
 	});
 	
 
