@@ -33,7 +33,7 @@
 		//);
 		//$aNewsletter = $objEmkt->getOne();
 		//$objEmkt->debug($aNewsletter);
-		$ids = $_REQUEST['ids'];
+		$aIds = $_REQUEST['ids'];
 		
 		include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
 		$objContato = new contato();
@@ -168,7 +168,7 @@
 			<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
 				<?=$v['novidade_360_resumo']?>
 			</p>
-			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>novidade360/<?=$aDestaque['novidade_360_id'];?>/<?=$objNovidade->toNormaliza($aDestaque['novidade_360_titulo']);?>" class="saibamais">
+			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objContato->toNormaliza($v['novidade_360_titulo']);?>" class="saibamais">
 				Leia mais
 			</a>
 		</div>
