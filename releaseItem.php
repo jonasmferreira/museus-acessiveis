@@ -65,6 +65,10 @@
 		//variáveis para a lista de download
 		$downPage = 'release';
 		$downId = $nId;
+
+		//CARREGANDO AS GALERIAS
+		$aGaleria = $objRelease->getReleaseGaleriaItem($nId);
+		//$objRelease->debug($aGaleria);
 		
 	?>	
 </head>
@@ -91,6 +95,10 @@
 						<p id="news-spotlight"  tabIndex="34">
 							<b><?=$aRelease['release_resumo'];?></b>
 						</p>
+						
+						<!-- AQUI A GALERIA DE IMAGENS -->			  
+						<?php include_once("{$path_root_page}includeGaleria.php"); ?>
+						
 						<div id="project-content">
 							<?=$aRelease['release_conteudo'];?>
 						</div>

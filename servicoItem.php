@@ -65,6 +65,10 @@
 		//variáveis para a lista de download
 		$downPage = 'servico';
 		$downId = $nId;
+
+		//CARREGANDO AS GALERIAS
+		$aGaleria = $objServico->getServicoGaleriaItem($nId);
+		//$objServico->debug($aGaleria);
 		
 	?>	
 </head>
@@ -96,6 +100,10 @@
 						<p id="news-spotlight"  tabIndex="34">
 							<b><?=$aServicos['servico_resumo'];?></b>
 						</p>
+						
+						<!-- AQUI A GALERIA DE IMAGENS -->			  
+						<?php include_once("{$path_root_page}includeGaleria.php"); ?>
+
 						<div id="project-content">
 							<?=$aServicos['servico_conteudo'];?>
 						</div>

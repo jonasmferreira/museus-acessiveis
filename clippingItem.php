@@ -66,6 +66,10 @@
 		$downPage = 'clipping';
 		$downId = $nId;
 		
+		//CARREGANDO AS GALERIAS
+		$aGaleria = $objClipping->getClippingGaleriaItem($nId);
+		//$objClipping->debug($aGaleria);
+		
 	?>	
 </head>
 <body>
@@ -91,6 +95,10 @@
 						<p id="news-spotlight"  tabIndex="34">
 							<b><?=$aClipping['clipping_resumo'];?></b>
 						</p>
+						
+						<!-- AQUI A GALERIA DE IMAGENS -->			  
+						<?php include_once("{$path_root_page}includeGaleria.php"); ?>
+						
 						<div id="project-content">
 							<?=$aClipping['clipping_conteudo'];?>
 						</div>
