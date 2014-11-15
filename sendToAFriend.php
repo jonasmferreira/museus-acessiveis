@@ -85,7 +85,7 @@
 	<div id="project" style="padding: 34px 31px 30px 16px;">
 		<div class="description" style="padding: 18px 0 0 40px;">
 			<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
-				Seu amigo <?php echo $nome . '('.$email.') esteve no site Museus Acessíveis e lhe enviou esta notícia: ';?>
+				Seu amigo <?php echo $nome . '('.$email.') esteve no site Museus Acessíveis e lhe enviou esta notícia: ';?><br />
 				<a style="text-decoration: underline !important;padding: 5px;;font-weight: bold;font-size: 14px;" href="<?php echo $urlsend;?>" target="_BLANK"><?php echo $urlsend;?></a>
 			</p>
 		</div>
