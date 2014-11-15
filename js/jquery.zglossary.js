@@ -162,7 +162,7 @@
 			if ($('#glossaryTip').length) {
 				$('#glossaryTip').remove();
 			}
-			glossaryTip.holder = $('<div id="glossaryTip" style="max-width:400px;"><div id="glossaryClose"></div></div>');
+			glossaryTip.holder = $('<div id="glossaryTip" style="max-width:400px;"><div id="glossaryClose">[fechar]</div></div>');
 			glossaryTip.content = $('<div id="glossaryContent"></div>');
 
 			$('body').append(glossaryTip.holder.append(glossaryTip.content));
