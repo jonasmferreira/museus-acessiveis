@@ -434,3 +434,9 @@ body.contrast {
 }
 
 
+.contrast #galeria .normal{
+	display: none;
+}
+.contrast #galeria .contrast{
+	display: block;
+}
