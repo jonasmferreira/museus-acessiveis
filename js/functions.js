@@ -391,7 +391,8 @@ $(document).ready(function(){
 	email = $( "#email_amigo" ),
 	name2 = $( "#nome" ),
 	email2 = $( "#email" ),
-	allFields = $( [] ).add( name ).add( email ).add( name2 ).add( email2 ),id_not;
+	urlsend = $( "#urlsend" ),
+	allFields = $( [] ).add( name ).add( email ).add( name2 ).add( email2 ).add( urlsend ),id_not;
 	$( "#dialog-form-send-to-friend" ).dialog({
 		autoOpen: false,
 		height: 400,
@@ -401,7 +402,7 @@ $(document).ready(function(){
 			"Disparar": function(){
 				$.ajax({
 					type:'POST'
-					,url:linkAbsolute+"adm/controller/emailmktSmart.controller.php?action=sendToFriend"
+					,url:linkAbsolute+"adm/controller/emailmktSmart.controller.php?action=sendToAFriend"
 					,async:false
 					,data:{
 						'ids':id_not
@@ -409,8 +410,14 @@ $(document).ready(function(){
 						,'email':email.val()
 						,'nome_amigo':name2.val()
 						,'email_amigo':email2.val()
+						,'urlsend':urlsend.val()
 					}
 					,success:function(resp){
+						resp = resp.toString();
+						resp = resp.split("|");
+						newAlert(trim(resp[1]));
+					}
+					,error:function(resp){
 						resp = resp.toString();
 						resp = resp.split("|");
 						newAlert(trim(resp[1]));
@@ -719,6 +726,7 @@ $(document).ready(function(){
 	
 	$('#sendmail').click(function(){
 	//alert('Tchoi, finaliza esta parte, please!');
+		$("#urlsend").val(window.location.href);
 		id_not = $(this).data('id');
 		$("#dialog-form-send-to-friend").dialog("open");
 	});
