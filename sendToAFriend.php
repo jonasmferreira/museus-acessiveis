@@ -23,82 +23,9 @@
 		include_once("{$path_root_page}adm{$DS}class{$DS}emailmktSmart.class.php");
 		$objEmkt = new emailmkt();
 
-		//$nId = (isset($_REQUEST['emailmkt_id'])?$_REQUEST['emailmkt_id']:0);
-		//$nEmkt = (isset($_REQUEST['emailmkt_emkt'])?$_REQUEST['emailmkt_emkt']:0);
-
-		//$objEmkt->setValues(
-		//	array(
-		//		'emailmkt_id'=>$nId
-		//	)
-		//);
-		//$aNewsletter = $objEmkt->getOne();
-		//$objEmkt->debug($aNewsletter);
-		$aIds = $_REQUEST['ids'];
-		
-		include_once("{$path_root_page}adm{$DS}class{$DS}contato.class.php");
-		$objContato = new contato();
-		$objContato->setValues(array(
-			'contato_exibir'=>'S'
-			,'page'=>'1'
-			,'rows'=>'10'
-		));
-
-		$aContato = $objContato->getLista();
-		//$objContato->debug($aContato);
-
-		/*Organizando os contados por categoria;
-		1 - Telefones e Celulares
-		2 - Emails e Sites
-		3 - Facebook
-		4 - Redes Sociais (Social Media)
-
-		*/
-
-		$aCel=array();
-		$celPos=0;
-		$aSite=array();
-		$sitePos=0;
-		$aEmail = array();
-		$emailPos=0;
-		$aFacebook = array();
-		$facePos=0;
-		$aSkype = array();
-		$skypePos=0;
-		$aSocialMedia = array();
-		$socialPos=0;
-		$arr = array();
-		foreach($aContato['rows'] as $k => $v){
-			$tipo=strtolower($v['contato_tipo']);
-
-			if($tipo=='celular' || $tipo=='telefone'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aCel,$arr);
-				$celPos++;
-			}else if($tipo=='skype'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aSkype,$arr);
-				$skypePos++;
-			}else if($tipo=='site'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aSite,$arr);
-				$sitePos++;
-			}else if($tipo=='e-mail'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aEmail,$arr);
-				$emailPos++;
-
-			}else if($tipo=='facebook'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aFacebook,$arr);
-				$facePos++;
-			}else if(substr ($tipo, 0, 12)=='social media'){
-				$arr = $objContato->createContactGroup($v);
-				array_push($aSocialMedia,$arr);
-				$socialPos++;
-			}
-		}
-	
-		
+		$urlsend = $_REQUEST['urlsend'];
+		$nome = $_REQUEST['nome'];
+		$email = $_REQUEST['email'];
 		
 	?>
 
@@ -155,26 +82,15 @@
 		</table>
 	</div>
 
-	<?php
-			$aEmktNews = $objEmkt->getNovidadesByIds($aIds);
-			//$objEmkt->debug($aEmktNews);
-			foreach($aEmktNews as $k => $v){
-	?>
 	<div id="project" style="padding: 34px 31px 30px 16px;">
-		<h1 style="margin:0; font-size:28px; display: block; background: url('<?=$linkAbsolute;?>img/emkt_projeto_ico.png') left top no-repeat; padding: 7px 0 0 56px;color: #632d8b;height: 48px;overflow: visible;" class="project-title">
-			<?=$v['novidade_360_titulo']?>
-		</h1>
 		<div class="description" style="padding: 18px 0 0 40px;">
 			<p style="font-size: 14px;color: #565652;line-height: 21px;padding: 0 0 20px 0;margin:0;">
-				<?=$v['novidade_360_resumo']?>
+				Seu amigo <?php echo $nome . '('.$email.') esteve no site Museus Acessíveis e lhe enviou esta notícia: ';?>
+				<a style="text-decoration: underline !important;padding: 5px;;font-weight: bold;font-size: 14px;" href="<?php echo $urlsend;?>" target="_BLANK"><?php echo $urlsend;?></a>
 			</p>
-			<a style="text-decoration: none !important;padding: 5px;background: #000;font-weight: bold;font-size: 14px;color: #FFF;" href="<?=$linkAbsolute;?>novidade360/<?=$v['novidade_360_id'];?>/<?=$objContato->toNormaliza($v['novidade_360_titulo']);?>" class="saibamais">
-				Leia mais
-			</a>
 		</div>
 	</div>
 
-    <?php } ?>
 	<div class="separator" style="margin: 30px 0 30px 30px; height: 19px;background: url('<?=$linkAbsolute;?>img/emkt_bg_separator.png') left top no-repeat;" ></div>
 	
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">

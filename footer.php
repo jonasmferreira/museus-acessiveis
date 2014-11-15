@@ -120,6 +120,7 @@
 	<form>
 		<fieldset>
 			<label for="nome">Seu Nome</label>
+			<input type="hidden" name="urlsend" id="urlsend" value="" class="text ui-widget-content ui-corner-all" />
 			<input type="text" name="nome" id="nome" value="" class="text ui-widget-content ui-corner-all" />
 			<label for="email">Seu E-mail</label>
 			<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
@@ -189,10 +190,8 @@
 				<a tabIndex="" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
 				<!-- IMPRIMIR -->
 				<a tabIndex="" class="print" href="javascript:window.print();">Imprimir</a>
-				<?php	if(isset($_REQUEST['novidade_360_id'])):?>
 				<!-- ENVIAR POR E-MAIL -->
 				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);" data-id="<?=$_REQUEST['novidade_360_id']?>">Enviar por e-mail</a>
-				<?php	endif;?>
             </div>
             <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a></strong>
         </div>
