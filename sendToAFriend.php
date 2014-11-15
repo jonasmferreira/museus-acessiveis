@@ -63,7 +63,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
     	<tr>
         	<td align="center" class="news-info" height="30" style="font-size:11px; color:#000;">
-            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?=$linkAbsolute?>boletim/<?=$aNewsletter['emailmkt_id'];?>" target="_blank"><b>clique aqui!</b></a>
+            	<span style="font-weight:bold;">Acessibilidade 360º: </span>Se você não consegue visualizar este e-mail, <a style="color: #FF0000; text-decoration: none !important;" href="<?php echo $urlsend;?>" target="_blank"><b>clique aqui!</b></a>
             </td>
         </tr>
     </table>
