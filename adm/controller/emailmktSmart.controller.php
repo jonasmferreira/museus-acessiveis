@@ -68,9 +68,9 @@ switch($_REQUEST['action']){
 		}
 		echo $msg;
 	break;
-	case 'sendToFriend':
+	case 'sendToAFriend':
 		$obj->setValues($_REQUEST);
-		$exec = $obj->sendTofriend();
+		$exec = $obj->sendToAFriend();
 		if($exec){
 			$msg = "CMD_SUCCESS|E-mail Enviado com Sucesso!";
 		}else{
