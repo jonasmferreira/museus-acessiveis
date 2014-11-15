@@ -66,6 +66,10 @@
 		//variáveis para a lista de download
 		$downPage = 'curso';
 		$downId = $nId;
+
+		//CARREGANDO AS GALERIAS
+		$aGaleria = $objCurso->getCursoGaleriaItem($nId);
+		//$objCurso->debug($aGaleria);
 		
 	?>	
 </head>
@@ -98,6 +102,10 @@
 						<p id="news-spotlight"  tabIndex="34">
 							<b><?=$aRow['curso_resumo'];?></b>
 						</p>
+
+						<!-- AQUI A GALERIA DE IMAGENS -->			  
+						<?php include_once("{$path_root_page}includeGaleria.php"); ?>
+						
 						<div id="project-content">
 							<?=$aRow['curso_conteudo'];?>
 						</div>

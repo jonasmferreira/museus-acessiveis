@@ -65,6 +65,10 @@
 		//variáveis para a lista de download
 		$downPage = 'projeto';
 		$downId = $nId;
+
+		//CARREGANDO AS GALERIAS
+		$aGaleria = $objProjeto->getProjetoGaleriaItem($nId);
+		//$objProjeto->debug($aGaleria);
 		
 	?>	
 </head>
@@ -95,6 +99,10 @@
 					<p id="news-spotlight"  tabIndex="34">
 						<b><?=$aProjeto['projeto_resumo'];?></b>
 					</p>
+					
+					<!-- AQUI A GALERIA DE IMAGENS -->			  
+					<?php include_once("{$path_root_page}includeGaleria.php"); ?>
+
 					<div id="project-content">
 						<?=$aProjeto['projeto_conteudo'];?>
 					</div>

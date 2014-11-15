@@ -111,7 +111,6 @@
 						<!-- AQUI A GALERIA DE IMAGENS -->			  
 						<?php include_once("{$path_root_page}includeGaleria.php"); ?>
 						
-						
 						<div id="project-content" class="novidade360Content">
 							<?php echo $sConteudo; ?>
 						</div>
