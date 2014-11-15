@@ -441,12 +441,12 @@ class novidade extends defaultClass{
 		return $arr;
 	}
 
-	public function getNovidadeGaleriaItem($novidade_360_id){
+	public function getNovidadeGaleriaItem($id){
 		$sql = array();
 
 		$arr = array();
 		$aGal = array();
-		$arr['galeria']= $this->getNovidadeGaleria($novidade_360_id);
+		$arr['galeria']= $this->getNovidadeGaleria($id);
 		$galeria_id = $arr['galeria']['galeria_id'];
 		
 		$sql[] = "
@@ -471,7 +471,7 @@ class novidade extends defaultClass{
 	}
 	
 	
-	public function getNovidadeGaleria($novidade_360_id){
+	public function getNovidadeGaleria($id){
 		$sql = array();
 		$sql[] = "
 			SELECT	g.*,
@@ -480,7 +480,7 @@ class novidade extends defaultClass{
 			JOIN	tb_novidade_360_galeria ng
 			ON		ng.galeria_id = g.galeria_id
 			WHERE	1 = 1
-			AND		ng.novidade_360_id = {$novidade_360_id}
+			AND		ng.novidade_360_id = {$id}
 		";
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
@@ -510,8 +510,6 @@ class novidade extends defaultClass{
 		}
 		return $arr;
 	}
-	
-	
 	
 	public function removeImage(){
 		$aReg = $this->getOne();

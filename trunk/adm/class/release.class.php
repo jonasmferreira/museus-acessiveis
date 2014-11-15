@@ -247,6 +247,12 @@ class release extends defaultClass{
 			return $result;
 		}
 		
+		$result = $this->deleteGaleria();
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$release_id = $this->values['release_id'];
 		$result = $this->insertTags($this->values['tags'], $release_id);
 		if($result['success']===false){
@@ -255,6 +261,12 @@ class release extends defaultClass{
 		}
 		
 		$result = $this->insertDownload($this->values['downloads'], $release_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
+		$result = $this->insertGaleria($this->values['galeria_id'], $release_id);
 		if($result['success']===false){
 			$this->dbConn->db_rollback();
 			return $result;
@@ -329,8 +341,44 @@ class release extends defaultClass{
 			return $result;
 		}
 		
+		$result = $this->insertGaleria($this->values['galeria_id'], $release_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
+	}
+	
+	protected function deleteGaleria(){
+		$sql = array();
+		$sql[] = "
+			DELETE FROM tb_release_galeria
+			WHERE	release_id = '{$this->values['release_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		return $result;
+	}
+	
+	protected function insertGaleria($galeria_id,$release_id){
+		
+		//if($galeria_id!=0){
+			$sql = array();
+			$sql[] = "
+				INSERT INTO tb_release_galeria SET
+					release_id = {$release_id}
+					,galeria_id = {$galeria_id}
+			";
+			$result = $this->dbConn->db_execute(implode("\n",$sql));
+			if($result['success']===false){
+				return array('success'=>'false');
+			}else{
+				return array('success'=>'true');
+			}
+		//}else{
+		//	return array('success'=>'true');
+		//}
 	}
 	
 	protected function deleteTags(){
@@ -406,6 +454,75 @@ class release extends defaultClass{
 		$sql[] = "
 			SELECT	t.*
 			FROM	tb_tag t
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
+	public function getReleaseGaleriaItem($id){
+		$sql = array();
+
+		$arr = array();
+		$aGal = array();
+		$arr['galeria']= $this->getReleaseGaleria($id);
+		$galeria_id = $arr['galeria']['galeria_id'];
+		
+		$sql[] = "
+			SELECT    gi.*
+			FROM	tb_galeria g
+			JOIN  tb_galeria_imagem gi
+			ON    gi.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		g.galeria_id = {$galeria_id}
+		";
+		
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($aGal,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$arr['rows'] = $aGal;
+		return $arr;
+	}
+	
+	public function getReleaseGaleria($id){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*,
+					tg.*
+			FROM	tb_galeria g
+			JOIN	tb_release_galeria tg
+			ON		tg.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		tg.release_id = {$id}
+		";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+			}
+		}
+		return $this->utf8_array_encode($rs);
+	}
+	
+	public function getGaleria(){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*
+			FROM	tb_galeria g
 			WHERE	1 = 1
 		";
 		$arr = array();
