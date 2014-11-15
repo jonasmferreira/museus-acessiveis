@@ -920,7 +920,7 @@ class emailmkt extends defaultClass{
 		}
 	}
 	
-	public function sendTofriend(){
+	public function sendToAFriend(){
 		$path_root_emailmktClass = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
 		$path_root_emailmktClass = "{$path_root_emailmktClass}{$DS}..{$DS}..{$DS}";
@@ -929,8 +929,8 @@ class emailmkt extends defaultClass{
 		$aConfig = $objConfig->getOne();
 		$linkAbsolute=$aConfig['configuracao_baseurl'];
 		$objEmail = new emailClass();
-		$objEmail->setAssunto("Museus Acessíveis - Seu Amigo {$this->values['nome']} enviou essa notícia");
-		$objEmail->conteudo = file_get_contents("{$linkAbsolute}sendToAFriend.php?ids={$this->values['ids']}");
+		$objEmail->setAssunto("Museus Acessíveis - Seu Amigo {$this->values['nome']} lhe enviou essa notícia");
+		$objEmail->conteudo = file_get_contents("{$linkAbsolute}sendToAFriend.php?urlsend={$this->values['urlsend']}&nome={$this->values['nome']}&email={$this->values['email']}");
 		//
 		$objEmail->conteudo = str_replace("@@NOME_AMIGO@@",$this->values['nome'],$objEmail->conteudo);
 		
