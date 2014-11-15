@@ -18,6 +18,11 @@
 	$aDownloads = $obj->getDownload();
 	//$obj->debug($aRow);
 	
+	$aGaleria = $obj->getGaleria();
+	//$obj->debug($aGaleria);
+	
+	$aClippingGaleria = $obj->getClippingGaleria($aRow['clipping_id']);
+	//$obj->debug($aClippingGaleria);
 	
 ?>
 <script type="text/javascript" src="js/clipping.js"></script>
@@ -190,6 +195,27 @@
 					</td>
 					
 				</tr>
+				
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Habilitar Galeria</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Galeria<br />
+						<select class="formTxt" name="galeria_id" style="width:98%" id="galeria_id">
+							<option value="">[Selecione a Galeria Desejada]</option>
+							<?	
+								foreach($aGaleria AS $k=>$v):
+									$selected = ($v['galeria_id']==$aClippingGaleria['galeria_id'])?' selected="selected"':'';
+							?>
+							<option value="<?=$v['galeria_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<td align="right" colspan="3">
 						<a href="clippingLista.php" class="butVoltar">Voltar</a>&nbsp;

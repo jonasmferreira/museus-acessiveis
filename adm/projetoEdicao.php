@@ -20,6 +20,12 @@
 	$aDownloads = $obj->getDownload();
 	$aExtras = $obj->getExtra();
 	$aTipoProjeto = $obj->getTipoProjeto();
+
+	$aGaleria = $obj->getGaleria();
+	//$obj->debug($aGaleria);
+	
+	$aProjetoGaleria = $obj->getProjetoGaleria($aRow['projeto_id']);
+	//$obj->debug($aProjetoGaleria);
 	
 ?>
 <script type="text/javascript" src="js/projeto.js"></script>
@@ -201,6 +207,27 @@
 				</tr>
 				<?php }	?>
 				<?	endif;?>
+
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Habilitar Galeria</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Galeria<br />
+						<select class="formTxt" name="galeria_id" style="width:98%" id="galeria_id">
+							<option value="">[Selecione a Galeria Desejada]</option>
+							<?	
+								foreach($aGaleria AS $k=>$v):
+									$selected = ($v['galeria_id']==$aProjetoGaleria['galeria_id'])?' selected="selected"':'';
+							?>
+							<option value="<?=$v['galeria_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<td align="right" colspan="3">
 						<a href="projetoLista.php" class="butVoltar">Voltar</a>&nbsp;

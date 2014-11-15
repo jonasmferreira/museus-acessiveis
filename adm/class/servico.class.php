@@ -216,6 +216,13 @@ class servico extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->deleteGaleria();
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$servico_id = $this->values['servico_id'];
 		$result = $this->insertExtras($this->values['extras'], $servico_id);
 		if($result['success']===false){
@@ -237,6 +244,13 @@ class servico extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->insertGaleria($this->values['galeria_id'], $servico_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
 	}
@@ -295,10 +309,27 @@ class servico extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->insertGaleria($this->values['galeria_id'], $servico_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
 	}
 	
+	protected function deleteGaleria(){
+		$sql = array();
+		$sql[] = "
+			DELETE FROM tb_servico_galeria
+			WHERE	servico_id = '{$this->values['servico_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		return $result;
+	}
+
 	protected function deleteTags(){
 		$sql = array();
 		$sql[] = "
@@ -326,6 +357,27 @@ class servico extends defaultClass{
 		}
 		return array('success'=>'true');
 	}
+	
+	protected function insertGaleria($galeria_id,$servico_id){
+		
+		//if($galeria_id!=0){
+			$sql = array();
+			$sql[] = "
+				INSERT INTO tb_servico_galeria SET
+					servico_id = {$servico_id}
+					,galeria_id = {$galeria_id}
+			";
+			$result = $this->dbConn->db_execute(implode("\n",$sql));
+			if($result['success']===false){
+				return array('success'=>'false');
+			}else{
+				return array('success'=>'true');
+			}
+		//}else{
+		//	return array('success'=>'true');
+		//}
+	}
+	
 	protected function deleteGlossario(){
 		$sql = array();
 		$sql[] = "
@@ -408,6 +460,76 @@ class servico extends defaultClass{
 		}
 		return array('success'=>'true');
 	}
+	
+	public function getServicoGaleriaItem($id){
+		$sql = array();
+
+		$arr = array();
+		$aGal = array();
+		$arr['galeria']= $this->getServicoGaleria($id);
+		$galeria_id = $arr['galeria']['galeria_id'];
+		
+		$sql[] = "
+			SELECT    gi.*
+			FROM	tb_galeria g
+			JOIN  tb_galeria_imagem gi
+			ON    gi.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		g.galeria_id = {$galeria_id}
+		";
+		
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($aGal,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$arr['rows'] = $aGal;
+		return $arr;
+	}
+	
+	public function getServicoGaleria($id){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*,
+					tg.*
+			FROM	tb_galeria g
+			JOIN	tb_servico_galeria tg
+			ON		tg.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		tg.servico_id = {$id}
+		";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+			}
+		}
+		return $this->utf8_array_encode($rs);
+	}
+	
+	public function getGaleria(){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*
+			FROM	tb_galeria g
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
 	public function deleteItem(){
 		$this->dbConn->db_start_transaction();
 		$result = $this->deleteExtras();

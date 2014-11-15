@@ -20,6 +20,13 @@
 	$aDownloads = $obj->getDownload();
 	$aExtras = $obj->getExtra();
 	$aTipoCurso = $obj->getTipoCurso();
+	
+	$aGaleria = $obj->getGaleria();
+	//$obj->debug($aGaleria);
+	
+	$aCursoGaleria = $obj->getCursoGaleria($aRow['curso_id']);
+	//$obj->debug($aReleaseGaleria);
+	
 ?>
 <script type="text/javascript" src="js/curso.js"></script>
 <div id="contentWrapper">
@@ -182,6 +189,27 @@
 				</tr>
 				<?	endforeach;?>
 				<?	endif;?>
+
+				<tr class="tableHead">
+					<td colspan="3">
+						<strong>Habilitar Galeria</strong>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Galeria<br />
+						<select class="formTxt" name="galeria_id" style="width:98%" id="galeria_id">
+							<option value="">[Selecione a Galeria Desejada]</option>
+							<?	
+								foreach($aGaleria AS $k=>$v):
+									$selected = ($v['galeria_id']==$aCursoGaleria['galeria_id'])?' selected="selected"':'';
+							?>
+							<option value="<?=$v['galeria_id']?>"<?=$selected?>><?=$v['galeria_titulo']?></option>
+							<?	endforeach;?>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<td align="right" colspan="3" align="right">
 						<a href="cursoLista.php" class="butVoltar">Voltar</a>&nbsp;

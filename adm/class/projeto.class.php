@@ -267,6 +267,13 @@ class projeto extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->deleteGaleria();
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$projeto_id = $this->values['projeto_id'];
 		$result = $this->insertExtras($this->values['extras'], $projeto_id);
 		if($result['success']===false){
@@ -288,6 +295,13 @@ class projeto extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+		
+		$result = $this->insertGaleria($this->values['galeria_id'], $projeto_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
 		return $result;
 	}
@@ -346,7 +360,24 @@ class projeto extends defaultClass{
 			$this->dbConn->db_rollback();
 			return $result;
 		}
+
+		$result = $this->insertGaleria($this->values['galeria_id'], $projeto_id);
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+			return $result;
+		}
+		
 		$this->dbConn->db_commit();
+		return $result;
+	}
+	
+	protected function deleteGaleria(){
+		$sql = array();
+		$sql[] = "
+			DELETE FROM tb_projeto_galeria
+			WHERE	projeto_id = '{$this->values['projeto_id']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		return $result;
 	}
 	
@@ -359,6 +390,27 @@ class projeto extends defaultClass{
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		return $result;
 	}
+	
+	protected function insertGaleria($galeria_id,$projeto_id){
+		
+		//if($galeria_id!=0){
+			$sql = array();
+			$sql[] = "
+				INSERT INTO tb_projeto_galeria SET
+					projeto_id = {$projeto_id}
+					,galeria_id = {$galeria_id}
+			";
+			$result = $this->dbConn->db_execute(implode("\n",$sql));
+			if($result['success']===false){
+				return array('success'=>'false');
+			}else{
+				return array('success'=>'true');
+			}
+		//}else{
+		//	return array('success'=>'true');
+		//}
+	}
+	
 	protected function insertTags($tags,$projeto_id){
 		if(count($tags) > 0){
 			foreach($tags AS $tag){
@@ -459,6 +511,76 @@ class projeto extends defaultClass{
 		}
 		return array('success'=>'true');
 	}
+	
+	public function getProjetoGaleriaItem($id){
+		$sql = array();
+
+		$arr = array();
+		$aGal = array();
+		$arr['galeria']= $this->getProjetoGaleria($id);
+		$galeria_id = $arr['galeria']['galeria_id'];
+		
+		$sql[] = "
+			SELECT    gi.*
+			FROM	tb_galeria g
+			JOIN  tb_galeria_imagem gi
+			ON    gi.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		g.galeria_id = {$galeria_id}
+		";
+		
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($aGal,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		$arr['rows'] = $aGal;
+		return $arr;
+	}
+	
+	public function getProjetoGaleria($id){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*,
+					tg.*
+			FROM	tb_galeria g
+			JOIN	tb_projeto_galeria tg
+			ON		tg.galeria_id = g.galeria_id
+			WHERE	1 = 1
+			AND		tg.projeto_id = {$id}
+		";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+			}
+		}
+		return $this->utf8_array_encode($rs);
+	}
+	
+	public function getGaleria(){
+		$sql = array();
+		$sql[] = "
+			SELECT	g.*
+			FROM	tb_galeria g
+			WHERE	1 = 1
+		";
+		$arr = array();
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		if($result['success']){
+			if($result['total'] > 0){
+				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
+					array_push($arr,$this->utf8_array_encode($rs));
+				}
+			}
+		}
+		return $arr;
+	}
+	
 	public function deleteItem(){
 		$this->dbConn->db_start_transaction();
 		$result = $this->deleteExtras();
