@@ -9,6 +9,7 @@ $path_root_dbClass = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
 $path_root_dbClass = "{$path_root_dbClass}{$DS}..{$DS}..{$DS}";
 require_once "{$path_root_dbClass}lib{$DS}DataBaseClass.php";
+require_once "{$path_root_dbClass}lib{$DS}canvas.php";
 class defaultClass {
 	protected $dbConn;
 	protected $values;
@@ -665,15 +666,52 @@ class defaultClass {
 		}
 		return $aArr;
 	}
+	
+	public function resizePng($ori,$dest, $newWidth, $newHeight) {
+		$imageInfo = getimagesize($ori);
+
+		$image = imagecreatefrompng($ori); //create source image resource
+		imagesavealpha($image, true); //saving transparency
+
+		$newImg = imagecreatetruecolor($newWidth, $newHeight); //creating conteiner for new image
+		imagealphablending($newImg, false);
+		imagesavealpha($newImg,true);
+		$transparent = imagecolorallocatealpha($newImg, 255, 255, 255, 127); //seting transparent background
+		imagefilledrectangle($newImg, 0, 0, $newWidth, $newHeight, $transparent);
+		imagecopyresampled($newImg, $image, 0, 0, 0, 0, $newWidth, $newHeight,  $imageInfo[0], $imageInfo[1]);
+
+		imagepng($newImg,$dest);
+	}
 	public function uploadFile($path,$aFile){
 		$fileName = date('YmdHis')."_".$this->normaliza($aFile['name']);
 		if(!is_dir($path)){
 			@mkdir($path,0777,true);
 		}
 		@chmod($path,0777);
-		if(move_uploaded_file($aFile["tmp_name"],"{$path}{$fileName}")){
-			@chmod("{$path}{$fileName}",0777);
+		$typeFile = $aFile["type"];
+		if(stripos($typeFile,"image")!==false){
+			list($width, $height, $type, $attr) = getimagesize("{$aFile["tmp_name"]}");
+			if($width > $height){
+				$nW = $width;
+				$nH = (4 / 3) *  $width;
+			}else{
+				$nW = (4 / 3) *  $height;
+				$nH = $height;
+			}
+			if(stripos($typeFile,"png")!==false){
+				$this->resizePng($aFile["tmp_name"],"{$path}{$fileName}",$nW, $nH);
+			}else{
+				$img = new canvas();
+				$img->carrega( "{$aFile["tmp_name"]}" )
+					->redimensiona( $width, $nH )
+					->grava("{$path}{$fileName}");
+			}
 			return $fileName;
+		}else{
+			if(move_uploaded_file($aFile["tmp_name"],"{$path}{$fileName}")){
+				@chmod("{$path}{$fileName}",0777);
+				return $fileName;
+			}
 		}
 		return '';
 	}
