@@ -25,6 +25,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
+	$sBaseUrl = $obj->getBaseUrl();
 ?>
 <script type="text/javascript" src="js/clipping.js"></script>
 <div id="contentWrapper">
@@ -125,6 +126,7 @@
 					?>
 				</td>
 				<td>
+					<a href="<?=$sBaseUrl?>release/<?=$v['clipping_id']?>/<?=$obj->toNormaliza($v['clipping_titulo'])?>" class="popupsNew btView">Ver</a>
 					<a href="clippingEdicao.php?clipping_id=<?=$v['clipping_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['clipping_id']?>" class="btDel">Excluir</a>
 				</td>
