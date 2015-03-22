@@ -682,7 +682,7 @@ class defaultClass {
 		$sql = array();
 		$sql[] = "
 			SELECT	*
-			FROM	admin_configuracao
+			FROM		tb_configuracao
 			WHERE	1 = 1
 			AND		configuracao_id = '1'
 		";
@@ -691,9 +691,10 @@ class defaultClass {
 		if($result['success']){
 			if($result['total'] > 0){
 				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+				$rs = $this->utf8_array_encode($rs);
 			}
 		}
-		return $this->utf8_array_encode($rs['configuracao_baseurl']);
+		return $rs['configuracao_baseurl'];
 	}
 	
 	
