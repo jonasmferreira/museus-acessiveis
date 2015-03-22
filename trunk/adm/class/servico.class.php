@@ -1,4 +1,12 @@
 <?php
+
+/* 
+ * Lista de atualizações
+ * 22/03/2015
+ * O cliente solicitou remover os campos Dt_Ini, Dt_Fim, Sob_Demanda - Joy
+ * 
+ */
+
 $path_root_servicoClass = dirname(__FILE__);
 $DS = DIRECTORY_SEPARATOR;
 $path_root_servicoClass = "{$path_root_servicoClass}{$DS}..{$DS}..{$DS}";
@@ -61,7 +69,8 @@ class servico extends defaultClass{
 				$sql[] = "AND {$this->values['fieldName']} LIKE '%{$this->values['txtPesquisar']}%'";
 			}
 		}
-		if(isset($this->values['data_ini'])&&trim($this->values['data_ini'])!=''){
+
+                if(isset($this->values['data_ini'])&&trim($this->values['data_ini'])!=''){
 			$this->values['data_ini'] = $this->dateBR2DB($this->values['data_ini']);
 			$sql[] = "AND t.servico_agenda >= '{$this->values['data_ini']}'";
 		}
@@ -69,7 +78,7 @@ class servico extends defaultClass{
 			$this->values['data_fim'] = $this->dateBR2DB($this->values['data_fim']);
 			$sql[] = "AND t.servico_agenda <= '{$this->values['data_fim']}'";
 		}
-		
+                
 		if(isset($this->values['tipo_servico_id'])&&trim($this->values['tipo_servico_id'])!=''){
 			$sql[] = "AND t.tipo_servico_id = '{$this->values['tipo_servico_id']}'";
 		}
@@ -107,10 +116,7 @@ class servico extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				while($rs = $this->dbConn->db_fetch_assoc($result['result'])){
-					$rs['servico_sob_demanda_label'] = $rs['servico_sob_demanda']=='S'?'Sim':'Não';
 					$rs['servico_dt_hr'] = $this->dateDB2BR($rs['servico_dt_cad'])." às ".$rs['servico_hr_cad'];
-					$rs['servico_dt_ini'] = $this->dateDB2BR($rs['servico_dt_ini']);
-					$rs['servico_dt_fim'] = $this->dateDB2BR($rs['servico_dt_fim']);
 					$rs['servico_agenda'] = $this->dateDB2BR($rs['servico_agenda']);
 					$rs['tags'] = $this->getTagsCadatradas($rs['servico_id']);
 					$rs['glossarios'] = $this->getGlossarioCadatradas($rs['servico_id']);
@@ -133,10 +139,7 @@ class servico extends defaultClass{
 		if($result['success']){
 			if($result['total'] > 0){
 				$rs = $this->dbConn->db_fetch_assoc($result['result']);
-				$rs['servico_sob_demanda_label'] = $rs['servico_sob_demanda']=='S'?'Sim':'Não';
 				$rs['servico_dt_hr'] = $this->dateDB2BR($rs['servico_dt'])." às ".$rs['servico_hr'];
-				$rs['servico_dt_ini'] = $this->dateDB2BR($rs['servico_dt_ini']);
-				$rs['servico_dt_fim'] = $this->dateDB2BR($rs['servico_dt_fim']);
 				$rs['servico_agenda'] = $this->dateDB2BR($rs['servico_agenda']);
 				$rs['tags'] = $this->getTagsCadatradas($rs['servico_id']);
 				$rs['tag_list'] = $this->getTagsByServico($rs['servico_id']);
@@ -161,22 +164,16 @@ class servico extends defaultClass{
 	}
 
 	private function update(){
-		$this->values['servico_sob_demanda'] = trim($this->values['servico_sob_demanda'])!=''?$this->values['servico_sob_demanda']:'N';
 		$this->values['servico_conteudo'] = $this->escape_string($this->values['servico_conteudo']);
 		$this->values['servico_resumo'] = $this->escape_string($this->values['servico_resumo']);
 		$this->values['servico_thumb_desc'] = $this->escape_string($this->values['servico_resumo']);
 		$this->values['servico_thumb'] = $this->uploadFile($this->pathImg, $this->files['servico_thumb']);
-		$this->values['servico_dt_ini'] = $this->dateBR2DB($this->values['servico_dt_ini']);
-		$this->values['servico_dt_fim'] = $this->dateBR2DB($this->values['servico_dt_fim']);
 		$this->values['servico_agenda'] = $this->dateBR2DB($this->values['servico_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
 			UPDATE	tb_servico SET
-					servico_dt_ini = '{$this->values['servico_dt_ini']}'
-					,servico_dt_fim = '{$this->values['servico_dt_fim']}'
-					,servico_sob_demanda = '{$this->values['servico_sob_demanda']}'
-					,servico_titulo = '{$this->values['servico_titulo']}'
+					servico_titulo = '{$this->values['servico_titulo']}'
 					,servico_resumo = '{$this->values['servico_resumo']}'
 					,servico_thumb_desc = '{$this->values['servico_thumb_desc']}'
 					,servico_fonte = '{$this->values['servico_fonte']}'
@@ -256,13 +253,10 @@ class servico extends defaultClass{
 	}
 
 	private function insert(){
-		$this->values['servico_sob_demanda'] = trim($this->values['servico_sob_demanda'])!=''?$this->values['servico_sob_demanda']:'N';
 		$this->values['servico_conteudo'] = $this->escape_string($this->values['servico_conteudo']);
 		$this->values['servico_resumo'] = $this->escape_string($this->values['servico_resumo']);
 		$this->values['servico_thumb_desc'] = $this->escape_string($this->values['servico_resumo']);
 		$this->values['servico_thumb'] = $this->uploadFile($this->pathImg, $this->files['servico_thumb']);
-		$this->values['servico_dt_ini'] = $this->dateBR2DB($this->values['servico_dt_ini']);
-		$this->values['servico_dt_fim'] = $this->dateBR2DB($this->values['servico_dt_fim']);
 		$this->values['servico_agenda'] = $this->dateBR2DB($this->values['servico_agenda']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
@@ -270,9 +264,6 @@ class servico extends defaultClass{
 			INSERT INTO	tb_servico SET
 				servico_dt_cad = CURDATE()
 				,servico_hr_cad = CURTIME()
-				,servico_dt_ini = '{$this->values['servico_dt_ini']}'
-				,servico_dt_fim = '{$this->values['servico_dt_fim']}'
-				,servico_sob_demanda = '{$this->values['servico_sob_demanda']}'
 				,servico_titulo = '{$this->values['servico_titulo']}'
 				,servico_resumo = '{$this->values['servico_resumo']}'
 				,servico_thumb = '{$this->values['servico_thumb']}'
