@@ -153,25 +153,11 @@
 					</td>
 				</tr>
 				<tr>
-            		<td colspan="3">
-						Sob demanda?<br />
-						<input value="S" type="checkbox" <?=$aRow['servico_sob_demanda']=='S'?'checked="checked"':''?> name="servico_sob_demanda" id="servico_sob_demanda"/>&nbsp; Sim
-                    </td>
-                </tr>
-				<tr>
-            		<td>
-						Periodo De<br />
-						<input type="text" <?=$aRow['servico_sob_demanda']=='S'?'disabled="disabled"':''?> class="formTxt datepicker" name="servico_dt_ini" id="servico_dt_ini" style="width:98%" value="<?=$aRow['servico_dt_ini']?>" />
-                    </td>
-					<td>
-						Periodo Ate<br />
-						<input type="text" <?=$aRow['servico_sob_demanda']=='S'?'disabled="disabled"':''?> class="formTxt datepicker" name="servico_dt_fim" id="servico_dt_fim" style="width:98%" value="<?=$aRow['servico_dt_fim']?>" />
-                    </td>
-					<td>
+                                    <td colspan="3">
 						Agenda<br />
 						<input type="text" class="formTxt datepicker" name="servico_agenda" id="servico_agenda" style="width:98%" value="<?=$aRow['servico_agenda']?>" />
-                    </td>
-                </tr>
+                                    </td>
+                                </tr>
 
 				<?	if(count($aExtras) > 0):?>
 				<tr class="tableHead">

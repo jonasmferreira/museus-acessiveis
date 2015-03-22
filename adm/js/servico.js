@@ -33,16 +33,6 @@
 					}
 			)
 		});
-		$("#servico_sob_demanda").click(function(){
-			if($(this).prop('checked')){
-				$("#servico_dt_ini").attr('disabled','disabled');
-				$("#servico_dt_fim").attr('disabled','disabled');
-			}else{
-				$("#servico_dt_ini").removeAttr('disabled');
-				$("#servico_dt_fim").removeAttr('disabled');
-			}
-		});
-		
 		$(".delImg").click(function(){
 			var obj = $(this);
 			var img = $(this).attr('rel');

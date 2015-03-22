@@ -75,9 +75,6 @@
 			<tr class="tableHead">
 				<td width="40" align="center">#</td>
 				<td>Data</td>
-				<td>Periodo De</td>
-				<td>Periodo Até</td>
-				<td>Sob Demanda?</td>
 				<td>Nome do Servico</td>
 				<td>Tipo</td>
 				<td>Resumo</td>
@@ -93,9 +90,6 @@
 			<tr class="tableItem<?=$evenOdd?>">
 				<td align="center"><?=$v['servico_id']?></td>
 				<td><?=$v['servico_dt_hr']?></td>
-				<td><?=$v['servico_dt_ini']?></td>
-				<td><?=$v['servico_dt_fim']?></td>
-				<td><?=$v['servico_sob_demanda_label']?></td>
 				<td><?=$v['servico_titulo']?></td>
 				<td><?=$v['tipo_servico_titulo']?></td>
 				<td><?=$v['servico_resumo']?></td>
