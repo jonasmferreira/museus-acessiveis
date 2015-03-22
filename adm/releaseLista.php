@@ -25,6 +25,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
+	$sBaseUrl = $obj->getBaseUrl();
 ?>
 <script type="text/javascript" src="js/release.js"></script>
 <div id="contentWrapper">
@@ -125,6 +126,7 @@
 					?>
 				</td>
 				<td>
+					<a href="<?=$sBaseUrl?>release/<?=$v['release_id']?>/<?=$obj->toNormaliza($v['release_titulo'])?>" class="popupsNew btView">Ver</a>
 					<a href="releaseEdicao.php?release_id=<?=$v['release_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['release_id']?>" class="btDel">Excluir</a>
 				</td>
