@@ -40,6 +40,12 @@
 				</tr>
 				<tr>
 					<td colspan="3">
+						Descrição<br />
+						<textarea name="anunciante_descricao" id="anunciante_descricao" rows="5" style="width:99%"><?=$aRow['anunciante_descricao']?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
 						Tipo Banner<br />
 						<select class="formTxt obrigatorio" name="anunciante_tipo_banner" id="anunciante_tipo_banner">
 							<option value="FB"<?=$aRow['anunciante_tipo_banner']=='FB'?' selected="selected"':''?>>Full Banner</option>

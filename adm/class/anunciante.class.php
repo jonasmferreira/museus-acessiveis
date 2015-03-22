@@ -133,6 +133,7 @@ class anunciante extends defaultClass{
 	private function update(){
 		$this->values['anunciante_banner_desc'] = $this->escape_string($this->values['anunciante_banner_desc']);
 		$this->values['anunciante_banner'] = $this->uploadFile($this->pathImg, $this->files['anunciante_banner']);
+		$this->values['anunciante_descricao'] = $this->escape_string($this->values['anunciante_descricao']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -142,6 +143,7 @@ class anunciante extends defaultClass{
 					,anunciante_banner_desc = '{$this->values['anunciante_banner_desc']}'
 					,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
 					,anunciante_dt = '{$this->values['anunciante_dt']}'
+					,anunciante_descricao = '{$this->values['anunciante_descricao']}'
 		";
 		if(trim($this->values['anunciante_banner'])!=''){
 			$sql[] = ",anunciante_banner = '{$this->values['anunciante_banner']}'";
@@ -171,6 +173,7 @@ class anunciante extends defaultClass{
 	private function insert(){
 		$this->values['anunciante_banner_desc'] = $this->escape_string($this->values['anunciante_banner_desc']);
 		$this->values['anunciante_banner'] = $this->uploadFile($this->pathImg, $this->files['anunciante_banner']);
+		$this->values['anunciante_descricao'] = $this->escape_string($this->values['anunciante_descricao']);
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -181,6 +184,7 @@ class anunciante extends defaultClass{
 				,anunciante_tipo_banner = '{$this->values['anunciante_tipo_banner']}'
 				,anunciante_banner_desc = '{$this->values['anunciante_banner_desc']}'
 				,anuncianete_banner_link = '{$this->values['anuncianete_banner_link']}'
+				,anunciante_descricao = '{$this->values['anunciante_descricao']}'
 		";
 
 		if(trim($this->values['anunciante_banner'])!=''){
