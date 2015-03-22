@@ -191,7 +191,7 @@
 				<!-- IMPRIMIR -->
 				<a tabIndex="" class="print" href="javascript:window.print();">Imprimir</a>
 				<!-- ENVIAR POR E-MAIL -->
-				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);" data-id="<?=$_REQUEST['novidade_360_id']?>">Enviar por e-mail</a>
+				<a tabIndex="" id="sendmail" class="sendmail" href="javascript:void(0);" data-id="">Enviar por e-mail</a>
             </div>
             <strong id="access-option"><a tabIndex="120" href="<?=$linkAbsolute;?>acessibilidade">atalhos de teclado para facilitar a navegação</a></strong>
         </div>

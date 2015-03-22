@@ -3,6 +3,13 @@
 <head>
 	<?php 
 
+/* 
+ * Lista de atualizações
+ * 22/03/2015
+ * O cliente solicitou remover os campos Dt_Ini, Dt_Fim, Sob_Demanda - Joy
+ * 
+ */
+
 		$path_root_page = dirname(__FILE__);
 		$DS = DIRECTORY_SEPARATOR;
 		$path_root_page = "{$path_root_page}{$DS}";
@@ -50,7 +57,9 @@
 		$objServico->setAOrderBy(array(
 			'tc.tipo_servico_titulo' => 'ASC'
 			,'t.servico_agenda' => 'DESC'
-			,'t.servico_dt_ini' => 'DESC'
+			,'t.servico_dt_cad' => 'DESC'
+			,'t.servico_hr_cad' => 'DESC'
+                    
 		));
 
 		$aRows = $objServico->getLista();
@@ -114,56 +123,51 @@
 					<div class="content-box">
                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" height="auto">
                     	<tr>
-	                        <td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['servico_thumb'];?>" width="152" height="116"  alt="<?=$v['servico_thumb_desc'];?>" title="<?=$v['servico_titulo'];?>"/></td>
-							<td valign="top" align="left">
-                                <div class="info-head">
-									<div class="date">
-										<span class="purple-color" tabIndex="32">
-											<?=($v['servico_agenda']!='00/00/0000')?$v['servico_agenda']:'';?>
-										</span>
-									</div>
-									<!--div class="social-media">
-										<?php 
-											$urlPost = $linkAbsolute . 'servico/' . $v['servico_id'] . '/'. $objServico->toNormaliza($v['servico_titulo']);
-											$titlePost = $aNovidade['servico_titulo'];
-										?>
-										<div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
-										<span class="purple-color">
-											<a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
-										</span>
-										<span class="separator">|</span>
-										<span class="purple-color">
-											<a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
-												twitter
-											</a>										
-										</span>
-									</div-->
-									<div class="clear"></div>
-								</div> 
-								<dl class="content-list-itens">
-									<dt>
-										<span class="orange-color" tabIndex="32">
-											<strong><a tabIndex="33" href="<?=$linkAbsolute;?>servico/<?=$v['servico_id'];?>/<?=$objServico->toNormaliza($v['servico_titulo']);?>"><?=$v['servico_titulo'];?></a></strong>
-										</span>
-										<div class="purple-color">
-											<?php
-													echo 'categoria: ' . $v['tipo_servico_titulo'];
-											?>
-											<span class="curso-info orange-color">
-											<?php if($v['servico_sob_demanda']=='N' && $v['servico_agenda']!='00/00/0000'){  ?>
-												Período: de <?=$v['servico_dt_ini'];?> até <?=$v['servico_dt_fim'];?>
-											<?php }else { ?>
-												Período: Sob demanda
-											<?php } ?>
-											</span>
-										</div>
-									</dt>
-									<dd tabIndex="34">
-										<i>
-										<?=$v['servico_resumo'];?>
-										</i>
-									</dd>
-								</dl>
+                            <td valign="top" align="left" width="152"><img tabIndex="35" src="<?=$linkAbsolute;?>images/<?=$v['servico_thumb'];?>" width="152" height="116"  alt="<?=$v['servico_thumb_desc'];?>" title="<?=$v['servico_titulo'];?>"/></td>
+                            <td valign="top" align="left">
+                            <div class="info-head">
+                                <div class="date">
+                                        <span class="purple-color" tabIndex="32">
+                                                <?=($v['servico_agenda']!='00/00/0000')?$v['servico_agenda']:'';?>
+                                        </span>
+                                </div>
+                                <!--div class="social-media">
+                                        <?php 
+                                                $urlPost = $linkAbsolute . 'servico/' . $v['servico_id'] . '/'. $objServico->toNormaliza($v['servico_titulo']);
+                                                $titlePost = $aNovidade['servico_titulo'];
+                                        ?>
+                                        <div class="fb-share-button" data-href="<?=$urlPost;?>"></div>										
+                                        <span class="purple-color">
+                                                <a tabIndex="36" class="purple-color" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?=$urlPost;?>">facebook</a>
+                                        </span>
+                                        <span class="separator">|</span>
+                                        <span class="purple-color">
+                                                <a tabIndex="37" class="purple-color" href="http://twitter.com/share?text=<?=$urlTitle;?>&url=<?=$urlPost;?>&counturl=<?=$urlPost;?>&via=joynilson" target="_blank">
+                                                        twitter
+                                                </a>										
+                                        </span>
+                                </div-->
+                                <div class="clear"></div>
+                            </div> 
+                            <dl class="content-list-itens">
+                                    <dt>
+                                            <span class="orange-color" tabIndex="32">
+                                                    <strong><a tabIndex="33" href="<?=$linkAbsolute;?>servico/<?=$v['servico_id'];?>/<?=$objServico->toNormaliza($v['servico_titulo']);?>"><?=$v['servico_titulo'];?></a></strong>
+                                            </span>
+                                            <div class="purple-color">
+                                                    <?php
+                                                        echo 'categoria: ' . $v['tipo_servico_titulo']; 
+                                                    ?>
+																								
+                                            </div>
+                                    </dt>
+                                    <dd tabIndex="34">
+																				<br/>
+																				<i>
+																				<?=$v['servico_resumo'];?>
+																				</i>
+                                    </dd>
+                            </dl>
                             </td>
                         </tr>
                         <tr>
@@ -173,8 +177,8 @@
                 </div>  
 						
 <?php						
-			$nPos++;
-		}
+        $nPos++;
+    }
 ?>
 				  
               </ul>

@@ -474,10 +474,12 @@
 
 						<!-- FAVORITOS -->
 						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_favorite.png) left center no-repeat;" id="bookmarkme" class="favorite" href="javascript:void(0);">Inserir nos favoritos</a>					
+
 						<!-- IMPRIMIR -->
-						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_print.png) left center no-repeat;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_print.png) left center no-repeat;" class="print" href="javascript:window.print();">Imprimir</a>					
+						<a tabIndex=""  style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_print.png) left center no-repeat;display: block; padding:0 0 0 20px;" class="print" href="javascript:window.print();">Imprimir</a>
+
 						<!-- ENVIAR POR E-MAIL -->
-						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_sendtofriend.png) left center no-repeat;" id="sendmail" class="sendmail" href="javascript:void(0);">Enviar por e-mail</a>					
+						<a tabIndex="" style="color: #FFF;text-decoration: none;display: block; padding:0 0 0 20px; background: url(../img/icons/ico_sendtofriend.png) left center no-repeat;" id="sendmail" class="sendmail" href="javascript:void(0);" data-id="">Enviar por e-mail</a>
 						
 						<br />
 						</div>
