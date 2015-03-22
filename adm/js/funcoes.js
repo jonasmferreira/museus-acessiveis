@@ -431,6 +431,13 @@ function deleteItem(mensagem,url,param,callbackSuccess,callbackError){
 			window.open($(this).attr("href"), "popupWindow", "width=750,height=550,scrollbars=yes");
 		});
 		
+		$(".popupsNew").popupWindow({ 
+			centerScreen:1 
+			,scrollbars:1
+			,height:550 
+			,width:800
+		}); 
+		
 		$("#antPage").click(function(){
 			var pagAtual = $("#paginacao span").text();
 			var pagAnterior = pagAtual-1;

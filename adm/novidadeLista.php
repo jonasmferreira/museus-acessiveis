@@ -25,6 +25,7 @@
 		$aErro['erro'] =  $erro;
 		$obj->unRegisterSession($aErro);
 	}
+	$sBaseUrl = $obj->getBaseUrl();
 ?>
 <script type="text/javascript" src="js/novidade.js"></script>
 <div id="contentWrapper">
@@ -126,6 +127,7 @@
 					?>
 				</td>
 				<td>
+					<a href="<?=$sBaseUrl?>novidade360/<?=$v['novidade_360_id']?>/<?=$obj->toNormaliza($v['novidade_360_titulo'])?>" class="popupsNew btView">Ver</a>
 					<a href="novidadeEdicao.php?novidade_360_id=<?=$v['novidade_360_id']?>" class="btEdit">Editar</a>
 					<a href="javascript:void(0);" rel="<?=$v['novidade_360_id']?>" class="btDel">Excluir</a>
 				</td>

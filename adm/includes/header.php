@@ -42,6 +42,7 @@
 		<script src="../plugins/i18n/grid.locale-pt-br.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="../plugins/jquery.jqGrid.min.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="../plugins/jquery.magnific-popup.min.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
+		<script src="../plugins/jquery.popupWindow.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 		<script src="js/funcoes.js?rnd=<?=$seqAleatoria?>" type="text/javascript"></script>
 	</head>
 	<body>
