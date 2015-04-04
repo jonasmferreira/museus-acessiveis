@@ -440,3 +440,18 @@ body.contrast {
 .contrast #galeria .contrast{
 	display: block;
 }
+
+.contrast #remove_from_mailing .bt-newsletter{
+	width:39px;
+	height: 15px;
+	background: url(../img/remover_bt_contrast.png) right bottom no-repeat !important;
+}
+
+
+
+
+
+
+
+
+
