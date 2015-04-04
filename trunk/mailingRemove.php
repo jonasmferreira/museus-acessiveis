@@ -16,15 +16,18 @@
 		$nId = (isset($_REQUEST['mailing_id'])?$_REQUEST['mailing_id']:'');
 		$sEmail = (isset($_REQUEST['mailing_email'])?$_REQUEST['mailing_email']:'');
 		
-		$objMailing->setValues(
-			array(
-				'mailing_id'=>$nId
-				,'mailing_email'=>$sEmail
-			)
-		);
-		$aRow = $objMailing->getSubscribeItem();
-		//$objMailing->debug($aRow);
-
+		$aRow=array();
+		if(trim($nId)!=''){
+			$objMailing->setValues(
+				array(
+					'mailing_id'=>$nId
+					,'mailing_email'=>$sEmail
+				)
+			);
+			$aRow = $objMailing->getSubscribeItem();
+			//$objMailing->debug($aRow);
+		}
+		
 	?>	
 
 </head>
@@ -46,21 +49,40 @@
 									<div class="itens">
 									<div class="content-box">
 										<form action="javascript:void(0);" method="POST" id="remove_from_mailing">
-												<p class="description">
-													Confira seus dados e clique no botão enviar para que seu e-mail seja removido dos próximos boletins acessíveis.<br /><br />
-												</p>													
-												<table border="0" cellpadding="0" cellspacing="0" width="95%">
-														<tr>
-																<td>
-																	<span><b>Nome: </b></span><?php echo $aRow['mailing_nome']; ?> <br />
-																	<span><b>E-mail: </b></span><?php echo $aRow['mailing_email']; ?> <br /><br /><br />
-																</td>
-																<td>
-																	<input tabIndex="" name="mailing_email" id="mailing_email" type="hidden" class="field" value="<?php echo $aRow['mailing_email']; ?>" />
-																	<input tabIndex="" type="image" class="bt-newsletter" width="39" height="15" src="<?=$linkAbsolute?>img/search-bt_transparent.png" />
-																</td>
-														</tr>
-												</table>
+												<?php 
+													if(count($aRow)>0) {
+												?>
+														<p class="description">
+															Confira seus dados e clique no botão "remover" para que seu e-mail seja removido dos próximos boletins acessíveis.<br /><br />
+														</p>													
+														<table border="0" cellpadding="0" cellspacing="0" width="95%">
+																<tr>
+																		<td>
+																			<span><b>Nome: </b></span><?php echo $aRow['mailing_nome']; ?> <br />
+																			<span><b>E-mail: </b></span><?php echo $aRow['mailing_email']; ?> <br /><br /><br />
+																		</td>
+																		<td>
+																			<input tabIndex="" name="mailing_email" id="mailing_email" type="hidden" class="field" value="<?php echo $aRow['mailing_email']; ?>" />
+																			<input tabIndex="" type="image" class="bt-newsletter" width="39" height="15" src="<?=$linkAbsolute?>img/search-bt_transparent.png" />
+																		</td>
+																</tr>
+														</table>
+													<?php } else { ?>
+														<p class="description">
+															Digite seu e-mail e clique no botão "remover" para que seu e-mail seja removido dos próximos boletins acessíveis.<br /><br />
+														</p>													
+														<table border="0" cellpadding="0" cellspacing="0" width="95%">
+																<tr>
+																		<td>
+																			<input tabIndex="" width="150" name="mailing_email" id="mailing_email" type="text" class="field" value="Digite seu e-mail" />
+																		</td>
+																		<td>
+																			<input tabIndex="" type="image" class="bt-newsletter" width="39" height="15" src="<?=$linkAbsolute?>img/search-bt_transparent.png" />
+																		</td>
+																</tr>
+														</table>
+												
+													<?php } ?>
 												<div class="clear"></div>
 										</form>
 									</div>  
