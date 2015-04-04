@@ -52,10 +52,10 @@
 												<?php 
 													if(count($aRow)>0) {
 												?>
-														<p class="description">
+														<p class="description" tabIndex="" >
 															Confira seus dados e clique no botão "remover" para que seu e-mail seja removido dos próximos boletins acessíveis.<br /><br />
 														</p>													
-														<table border="0" cellpadding="0" cellspacing="0" width="95%">
+														<table border="0" cellpadding="0" cellspacing="0" width="95%" tabIndex="" >
 																<tr>
 																		<td>
 																			<span><b>Nome: </b></span><?php echo $aRow['mailing_nome']; ?> <br />
@@ -68,10 +68,10 @@
 																</tr>
 														</table>
 													<?php } else { ?>
-														<p class="description">
+														<p class="description" tabIndex="" >
 															Digite seu e-mail e clique no botão "remover" para que seu e-mail seja removido dos próximos boletins acessíveis.<br /><br />
 														</p>													
-														<table border="0" cellpadding="0" cellspacing="0" width="95%">
+														<table border="0" cellpadding="0" cellspacing="0" width="95%" tabIndex="" >
 																<tr>
 																		<td>
 																			<input tabIndex="" width="150" name="mailing_email" id="mailing_email" type="text" class="field" value="Digite seu e-mail" />
