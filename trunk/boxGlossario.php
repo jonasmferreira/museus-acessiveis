@@ -44,7 +44,11 @@
 						}
 					}
 ?>
-				        <li><a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>"><?=$v['glossario_palavra'];?></a></li>
+				        <li>
+										<a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>">
+												<?=$v['glossario_palavra'];?>
+										</a>
+								</li>
 <?php				
 				}
 			

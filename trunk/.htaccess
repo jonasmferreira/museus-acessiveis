@@ -25,6 +25,7 @@
 	RewriteRule ^busca/([^/]+)/?$ buscaLista.php?busca_texto=$1
 
 	RewriteRule ^boletim/([^/]+)/?$ newsletterItem.php?emailmkt_id=$1
+	RewriteRule ^boletim_remover/([^/]+)/([^/]+)/?$ mailingRemove?mailing_id=$1&mailing_email=$2
 
 	RewriteRule ^emkt_noticia/([^/]+)/?$ emktNoticiaItem.php?emkt_noticia_id=$1
 	RewriteRule ^emkt_noticia/([^/]+)/([^/]+)/?$ emktNoticiaItem.php?emkt_noticia_id=$1&emkt_noticia_titulo=$2
