@@ -545,6 +545,27 @@ $(document).ready(function(){
 			,dataType: 'json'
 		});
 	});
+
+	//Removendo e-mail do Mailing
+	$('#remove_from_mailing .bt-newsletter').click(function(e){
+		e.preventDefault();
+		//Ajax para salvar os dados do newsletter
+		$.ajax({
+			type: "POST"
+			,async:false
+			,url: linkAbsolute+'adm/controller/mailing.controller.php'
+			,data: {
+				action:'disable-item'
+				,'mailing_email': $('#mailing_email').val()
+			}
+			,success:function(msg){
+				newAlert(msg.msg,500,linkAbsolute+'home');
+			}
+			,dataType: 'json'
+		});
+	});
+	
+	
 	
 	$(".glossario_def").click(function(e){
 		var id = $(this).attr("glossario_id");
