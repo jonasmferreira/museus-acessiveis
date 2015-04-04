@@ -100,6 +100,20 @@ class mailing extends defaultClass{
 		}
 		return $this->utf8_array_encode($rs);
 	}
+	public function getSubscribeItem(){
+		$sql = array();
+		$sql[] = $this->getSql();
+		//$sql[] = "AND		m.mailing_id = '{$this->values['mailing_id']}'";
+		$sql[] = "AND		m.mailing_email = '{$this->values['mailing_email']}'";
+		$result = $this->dbConn->db_query(implode("\n",$sql));
+		$rs = array();
+		if($result['success']){
+			if($result['total'] > 0){
+				$rs = $this->dbConn->db_fetch_assoc($result['result']);
+			}
+		}
+		return $this->utf8_array_encode($rs);
+	}
 
 	public function edit(){
 		if(isset($this->values['mailing_id'])&&trim($this->values['mailing_id'])!=''){
@@ -163,6 +177,28 @@ class mailing extends defaultClass{
 		}
 		return $result;
 	}
+	
+	public function disableMail(){
+		$this->values['mailing_enviar'] = 'N';
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		$sql[] = "
+			UPDATE	tb_mailing SET
+							mailing_enviar = '{$this->values['mailing_enviar']}'
+			WHERE		mailing_email = '{$this->values['mailing_email']}'
+			AND			mailing_enviar = 'S'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			$this->dbConn->db_commit();
+		}
+		return $result;
+	}
+	
+	
+	
 }
 
 
