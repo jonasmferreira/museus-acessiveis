@@ -68,5 +68,21 @@ switch($_REQUEST['action']){
 		$exec['msg'] = $msg;
 		echo json_encode($exec);
 	break;
+	case 'disable-item':
+		$volta = "newsletterRemove.php";
+		if(isset($_POST['volta'])&&trim($_POST['volta'])!=''){
+			$volta = $_POST['volta'];
+		}
+		$obj->setValues($_POST);
+		$exec = $obj->disableMail();
+		if($exec['success'] && $exec['total']>0){
+			$msg = "O e-mail " . $_POST['mailing_email'] . " foi removido com sucesso!";
+		}else{
+			$msg = "O e-mail " . $_POST['mailing_email'] . " não consta em nosso banco de dados!";
+		}
+		$exec['msg'] = $msg;
+		echo json_encode($exec);
+	break;
+	
 
 }
