@@ -1149,6 +1149,13 @@ table#list tbody td a{
 	display: none;
 }
 
+#remove_from_mailing .bt-newsletter{
+	width:39px;
+	height: 15px;
+	background: url(../img/remover_bt.png) right bottom no-repeat !important;
+}
+
+
 
 
 
