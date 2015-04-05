@@ -608,6 +608,16 @@ div.news-spotlight{
 	float: left;
 }
 
+#remove_from_mailing .field{
+	background: url(../img/search-field_long_bg.png) left top no-repeat;
+	height: 18px;
+	width: 200px;
+	padding: 1px 3px;
+	font-size:11px;
+	color: #000;
+	float: left;
+}
+
 
 #glossary-search .tag-box{
 	padding: 3px 0 5px 0;

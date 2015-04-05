@@ -291,9 +291,17 @@ body.contrast {
 .contrast #search .field,
 .contrast #newsletter .field,
 .contrast #glossary-search .field{
+{
 	background: url(../img/search-field_contrast_bg.png) left top no-repeat;
 	color: #000;
 }
+
+.contrast #remove_from_mailing .field{
+{
+	background: url(../img/search-field_long_contrast_bg.png) left top no-repeat;
+	color: #000;
+}
+
 
 .contrast #glossary-search .tag-box h3{
 	color: #FFF;
