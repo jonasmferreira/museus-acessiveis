@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<input type="checkbox" name="mailing_enviar" value="S" <?=$aRow['mailing_enviar']=='S'?' checked="checked"':''?> /> Receber Informações
+						<input type="checkbox" name="mailing_enviar" value="S" <?=$aRow['mailing_enviar']=='S'?' checked="checked"':''?> /> E-mail Ativo?
 					</td>
 				</tr>
 				<tr>
@@ -47,6 +47,11 @@
 					<td colspan="3">
 						E-mail<br />
 						<input type="text" class="formTxt obrigatorio" name="mailing_email" id="mailing_email" style="width:98%" value="<?=$aRow['mailing_email']?>" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<input type="checkbox" name="mailing_disparo_teste" value="S" <?=$aRow['mailing_disparo_teste']=='S'?' checked="checked"':''?> /> Receber Disparos de Teste?
 					</td>
 				</tr>
 				<tr>

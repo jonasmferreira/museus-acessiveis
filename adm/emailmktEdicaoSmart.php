@@ -58,11 +58,11 @@
 				<tr>
 					<td>
 						Data de Agendamento<br />
-						<input type="text" class="formTxt datepicker" name="emailmkt_dt_agendada" id="emailmkt_dt_agendada" style="width:98%" value="<?=$aRow['emailmkt_dt_agendada']?>" />
+						<input type="text" class="formTxt datepicker obrigatorio" name="emailmkt_dt_agendada" id="emailmkt_dt_agendada" style="width:98%" value="<?=$aRow['emailmkt_dt_agendada']?>" />
                     </td>
 					<td>
 						Hora de Agendamento<br />
-						<input type="text" class="formTxt hr" name="emailmkt_hr_agendada" id="emailmkt_hr_agendada" style="width:98%" value="<?=$aRow['emailmkt_hr_agendada']?>" />
+						<input type="text" class="formTxt hr obrigatorio" name="emailmkt_hr_agendada" id="emailmkt_hr_agendada" style="width:98%" value="<?=$aRow['emailmkt_hr_agendada']?>" />
                     </td>
 					<td>&nbsp;</td>
 				</tr>
@@ -219,7 +219,7 @@
 				<tr>
 					<td colspan="3">
 						E-mail de Contato<br />
-						<input type="text" class="formTxt obrigatorio" name="emailmkt_contato_email" id="emailmkt_contato_email" style="width:98%" value="<?=$aRow['emailmkt_contato_email']?>" />
+						<input type="text" class="formTxt" name="emailmkt_contato_email" id="emailmkt_contato_email" style="width:98%" value="<?=$aRow['emailmkt_contato_email']?>" />
 					</td>
 				</tr>
 				<tr>
@@ -273,10 +273,10 @@
 					</td>
 				</tr>				
 				<tr>
-            		<td colspan="3">
+          <td colspan="3">
 						<input onclick="ValidaPropaganda();" value="S" type="checkbox" <?=$aRow['emailmkt_exibe_propaganda']=='S'?'checked="checked"':''?> name="emailmkt_exibe_propaganda" id="emailmkt_exibe_propaganda"/>&nbsp; Configurar o bloco de Propaganda?
-                    </td>
-                </tr>
+          </td>
+        </tr>
 
 				<tr>
 					<td colspan="3">
@@ -297,6 +297,12 @@
                         </div>
 						<?	endif;?>
                     </td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Descrição da Propaganda<br />
+						<textarea class="formTxt" rows="5" name="emailmkt_propaganda_descr" id="emailmkt_propaganda_descr" style="width:98%"><?=$aRow['emailmkt_propaganda_descr']?></textarea>
+					</td>
 				</tr>
 				<tr>
 					<td align="right" colspan="3">
