@@ -408,7 +408,7 @@
 	
 	<div id="propaganda" style="padding: 23px 0;text-align: center;"><br />
 		<a style="color: #565652;text-decoration: none !important;" href="<?=$aNewsletter['emailmkt_propaganda_url'];?>" target="_blank"><br />
-			<img src="<?=$linkAbsolute;?>imgEmkt/<?=$aNewsletter['emailmkt_propaganda_img'];?>" width="634" height="634"  alt=""/>
+			<img src="<?=$linkAbsolute;?>imgEmkt/<?=$aNewsletter['emailmkt_propaganda_img'];?>" width="634" height="634" alt="<?=$aNewsletter['emailmkt_propaganda_descr'];?>" title="<?=$aNewsletter['emailmkt_propaganda_descr'];?>" />
 		</a> 
 	</div> 
 
@@ -508,7 +508,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
 			<td align="center" class="news-info" height="30" style="font-size:11px; color:#000;">
-				<span style="font-weight:bold;">Política anti-spam:</span> Se você não deseja mais receber este e-mail, <a style="color: #FF0000;text-decoration: none !important;" href="#" target="_blank"><b>clique aqui!</b></a>
+				<span style="font-weight:bold;">Política anti-spam:</span> Se você não deseja mais receber este e-mail, <a style="color: #FF0000;text-decoration: none !important;" href="<?=$linkAbsolute;?>boletim_remover" target="_blank"><b>clique aqui!</b></a>
 			</td>
 		</tr>
 	</table>

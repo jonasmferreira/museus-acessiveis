@@ -17,7 +17,7 @@
 		$sEmail = (isset($_REQUEST['mailing_email'])?$_REQUEST['mailing_email']:'');
 		
 		$aRow=array();
-		if(trim($nId)!=''){
+		if(trim($sEmail)!=''){
 			$objMailing->setValues(
 				array(
 					'mailing_id'=>$nId
@@ -42,8 +42,6 @@
 			<div id="outdoor-news"></div>        	
             <div id="news360" class="list">
            	  <h1 tabIndex="31" class="orange-color">Boletim Acessível - Descadastrar</h1>
-
-
               <ul id="list-itens">
 								<li class="month-list">
 									<div class="itens">
@@ -74,7 +72,7 @@
 														<table border="0" cellpadding="0" cellspacing="0" width="95%" tabIndex="" >
 																<tr>
 																		<td>
-																			<input tabIndex="" width="150" name="mailing_email" id="mailing_email" type="text" class="field" value="Digite seu e-mail" />
+																			<input tabIndex="" name="mailing_email" id="mailing_email" type="text" class="field" value="Digite seu e-mail" />
 																		</td>
 																		<td>
 																			<input tabIndex="" type="image" class="bt-newsletter" width="39" height="15" src="<?=$linkAbsolute?>img/search-bt_transparent.png" />
