@@ -72,11 +72,11 @@ switch($_REQUEST['action']){
 <div id="month-info">
 	<table cellpadding="0" cellspacing="0" width="100%">
 		<tr>
-			<td><a tabIndex="63" href="javascript:void(0);" id="mes_anterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-l"><strong>&lt;&lt;</strong></a></td>
-			<td><a tabIndex="64" href=""><strong><?=$aArrAgenda['mesExtenso']?></strong></a></td>
+			<td><a title="Mês Anterior" tabIndex="63" href="javascript:void(0);" id="mes_anterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-l"><strong>&lt;&lt;</strong></a></td>
+			<td><a title="Mês de <?=$aArrAgenda['mesExtenso']?>" tabIndex="64" href=""><strong><?=$aArrAgenda['mesExtenso']?></strong></a></td>
 			<td><span>|</span></td>
-			<td><a tabIndex="65" href=""><strong><?=$aArrAgenda['ano']?></strong></a></td>
-			<td><a tabIndex="66" href="javascript:void(0);" id="mes_posterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-r"><strong>&gt;&gt;</strong></a></td>
+			<td><a title="Ano de <?=$aArrAgenda['ano']?>" tabIndex="65" href=""><strong><?=$aArrAgenda['ano']?></strong></a></td>
+			<td><a title="Próximo Mês" tabIndex="66" href="javascript:void(0);" id="mes_posterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-r"><strong>&gt;&gt;</strong></a></td>
 		</tr>
 	</table>
 </div>
@@ -84,13 +84,13 @@ switch($_REQUEST['action']){
    <table id='calendas' cellpadding="0" cellspacing="0" width="100%">
 	   <thead>
 		   <tr>
-			   <td align="center" valign="middle">D</td>
-			   <td align="center" valign="middle">S</td>
-			   <td align="center" valign="middle">T</td>
-			   <td align="center" valign="middle">Q</td>
-			   <td align="center" valign="middle">Q</td>
-			   <td align="center" valign="middle">S</td>
-			   <td align="center" valign="middle">S</td>
+					<td title="Domingo" align="center" valign="middle">D</td>
+					<td title="Segunda" align="center" valign="middle">S</td>
+					<td title="Terça" align="center" valign="middle">T</td>
+					<td title="Quarta" align="center" valign="middle">Q</td>
+					<td title="Quinta" align="center" valign="middle">Q</td>
+					<td title="Sexta" align="center" valign="middle">S</td>
+					<td title="Sábado" align="center" valign="middle">S</td>
 		   </tr>
 	   </thead>
 	   <tbody>
@@ -98,7 +98,16 @@ switch($_REQUEST['action']){
 			   foreach($aArrAgenda['dias'] AS $row):?>
 		   <tr>
 			   <?	foreach($row AS $dia):?>
-			   <td tabIndex="<?=$tabIndex?>" align="center" valign="middle"><?=$dia?></td>
+				 
+						<?php
+							 //encontrando o dia na string
+							 $pos = strpos($dia,'>');
+							 $msgDia = substr($dia,$pos+1,strlen($dia));
+							 $pos = strpos($msgDia,'<');
+							 $msgDia = substr($msgDia,0,$pos);
+						?>
+				 
+			   <td tabIndex="<?=$tabIndex?>" align="center" valign="middle" title="Dia <?=$msgDia?>"><?=$dia?></td>
 			   <?		$tabIndex++;
 				   endforeach;?>
 		   </tr>
