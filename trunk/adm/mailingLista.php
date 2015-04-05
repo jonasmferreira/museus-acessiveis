@@ -64,7 +64,8 @@
 				<td width="40" align="center">#</td>
 				<td>Nome</td>
 				<td width="150" align="left">E-mail</td>
-				<td width="150" align="center">Receber Inf.</td>
+				<td width="150" align="center">Receber Disparo Teste?</td>
+				<td width="150" align="center">E-mail Ativo?</td>
 				<td width="174">&nbsp;</td>
 			</tr>
 		</thead>
@@ -77,6 +78,7 @@
 				<td align="center"><?=$v['mailing_id']?></td>
 				<td align="left"><?=$v['mailing_nome']?></td>
 				<td align="left"><?=$v['mailing_email']?></td>
+				<td align="center"><?=($v['mailing_disparo_teste']=='S'?'Sim':'Não');?></td>
 				<td align="center"><?=($v['mailing_enviar']=='S'?'Sim':'Não');?></td>
 				<td>
 					<a href="mailingEdicao.php?mailing_id=<?=$v['mailing_id']?>" class="btEdit">Editar</a>
