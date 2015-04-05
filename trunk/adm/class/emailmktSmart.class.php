@@ -382,6 +382,7 @@ class emailmkt extends defaultClass{
 		if($this->values['emailmkt_exibe_propaganda']!='S'){
 			$this->values['emailmkt_propaganda_img']='';
 			$this->values['emailmkt_propaganda_url']='';
+			$this->values['emailmkt_propaganda_descr']='';
 		}
 
 		$this->values['emailmkt_dt_agendada'] = $this->dateBR2DB($this->values['emailmkt_dt_agendada']);
@@ -412,6 +413,7 @@ class emailmkt extends defaultClass{
 					,emailmkt_contato_img = '{$this->values['emailmkt_contato_img']}'
 					,emailmkt_contato_email = '{$this->values['emailmkt_contato_email']}'
 					,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
+					,emailmkt_propaganda_descr = '{$this->values['emailmkt_propaganda_descr']}'
 					,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
 		";
 
@@ -478,6 +480,7 @@ class emailmkt extends defaultClass{
 		if($this->values['emailmkt_exibe_propaganda']!='S'){
 			$this->values['emailmkt_propaganda_img']='';
 			$this->values['emailmkt_propaganda_url']='';
+			$this->values['emailmkt_propaganda_descr']='';
 		}
 
 		$this->values['emailmkt_dt_agendada'] = $this->dateBR2DB($this->values['emailmkt_dt_agendada']);
@@ -507,8 +510,8 @@ class emailmkt extends defaultClass{
 				,emailmkt_contato_img = '{$this->values['emailmkt_contato_img']}'
 				,emailmkt_contato_email = '{$this->values['emailmkt_contato_email']}'
 				,emailmkt_propaganda_url = '{$this->values['emailmkt_propaganda_url']}'
+				,emailmkt_propaganda_descr = '{$this->values['emailmkt_propaganda_descr']}'
 				,emailmkt_exibe_propaganda = '{$this->values['emailmkt_exibe_propaganda']}'
-				
 		";
 
 		if(trim($this->values['emailmkt_aqui_tem_thumb'])!=''){
@@ -570,13 +573,13 @@ class emailmkt extends defaultClass{
 		//novidade 360
 		$sql[] = "
 			SELECT	
-					t.novidade_360_id as item_id
-					,'novidade360' as item_tipo_link
-					,t.novidade_360_titulo as item_titulo
-					,t.novidade_360_dt_agenda as item_dt_agenda
-					,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
-					,'N' AS item_tipo
-					,'Novidade 360º' AS item_tipo_label
+						t.novidade_360_id as item_id
+						,'novidade360' as item_tipo_link
+						,t.novidade_360_titulo as item_titulo
+						,t.novidade_360_dt_agenda as item_dt_agenda
+						,DAY(t.novidade_360_dt_agenda) as item_dt_agenda_dia
+						,'N' AS item_tipo
+						,'Novidade 360º' AS item_tipo_label
 			FROM	tb_novidade_360 t
 			WHERE	1 = 1 
 			#AND		t.novidade_360_dt_agenda >= '{$dataPadrao}'
@@ -586,13 +589,13 @@ class emailmkt extends defaultClass{
 		//Projetos
 		$sql[] = "
 			SELECT	
-					t.projeto_id as item_id
-					,'projeto' as item_tipo_link
-					,t.projeto_titulo as item_titulo
-					,t.projeto_agenda as item_dt_agenda
-					,DAY(t.projeto_agenda) as item_dt_agenda_dia
-					,'P' AS item_tipo
-					,'Projeto' AS item_tipo_label
+						t.projeto_id as item_id
+						,'projeto' as item_tipo_link
+						,t.projeto_titulo as item_titulo
+						,t.projeto_agenda as item_dt_agenda
+						,DAY(t.projeto_agenda) as item_dt_agenda_dia
+						,'P' AS item_tipo
+						,'Projeto' AS item_tipo_label
 			FROM	tb_projeto t
 			WHERE	1 = 1 
 			#AND		t.projeto_agenda >= '{$dataPadrao}'
@@ -603,13 +606,13 @@ class emailmkt extends defaultClass{
 		//cursos
 		$sql[] = "
 			SELECT	
-					t.curso_id as item_id
-					,'curso' as item_tipo_link
-					,t.curso_titulo as item_titulo
-					,t.curso_agenda as item_dt_agenda
-					,DAY(t.curso_agenda) as item_dt_agenda_dia
-					,'C' AS item_tipo
-					,'Curso' AS item_tipo_label
+						t.curso_id as item_id
+						,'curso' as item_tipo_link
+						,t.curso_titulo as item_titulo
+						,t.curso_agenda as item_dt_agenda
+						,DAY(t.curso_agenda) as item_dt_agenda_dia
+						,'C' AS item_tipo
+						,'Curso' AS item_tipo_label
 			FROM	tb_curso t
 			WHERE	1 = 1 
 			#AND		t.curso_agenda >= '{$dataPadrao}'
@@ -620,13 +623,13 @@ class emailmkt extends defaultClass{
 		//servicos
 		$sql[] = "
 			SELECT	
-					t.servico_id as item_id
-					,'servico' as item_tipo_link
-					,t.servico_titulo as item_titulo
-					,t.servico_agenda as item_dt_agenda
-					,DAY(t.servico_agenda) as item_dt_agenda_dia
-					,'S' AS item_tipo
-					,'Serviço' AS item_tipo_label
+						t.servico_id as item_id
+						,'servico' as item_tipo_link
+						,t.servico_titulo as item_titulo
+						,t.servico_agenda as item_dt_agenda
+						,DAY(t.servico_agenda) as item_dt_agenda_dia
+						,'S' AS item_tipo
+						,'Serviço' AS item_tipo_label
 			FROM	tb_servico t
 			WHERE	1 = 1 
 			#AND		t.servico_agenda >= '{$dataPadrao}'

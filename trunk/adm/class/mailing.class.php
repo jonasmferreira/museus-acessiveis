@@ -100,11 +100,13 @@ class mailing extends defaultClass{
 		}
 		return $this->utf8_array_encode($rs);
 	}
+
 	public function getSubscribeItem(){
 		$sql = array();
 		$sql[] = $this->getSql();
 		//$sql[] = "AND		m.mailing_id = '{$this->values['mailing_id']}'";
 		$sql[] = "AND		m.mailing_email = '{$this->values['mailing_email']}'";
+		$sql[] = "AND		m.mailing_enviar = '{$this->values['mailing_enviar']}'";
 		$result = $this->dbConn->db_query(implode("\n",$sql));
 		$rs = array();
 		if($result['success']){
@@ -126,6 +128,7 @@ class mailing extends defaultClass{
 
 	private function update(){
 		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
+		$this->values['mailing_disparo_teste'] = trim($this->values['mailing_disparo_teste'])!=''?$this->values['mailing_disparo_teste']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -133,6 +136,7 @@ class mailing extends defaultClass{
 					mailing_nome = '{$this->values['mailing_nome']}'
 					,mailing_enviar = '{$this->values['mailing_enviar']}'
 					,mailing_email = '{$this->values['mailing_email']}'
+					,mailing_disparo_teste = '{$this->values['mailing_disparo_teste']}'
 			WHERE	mailing_id = '{$this->values['mailing_id']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
@@ -146,6 +150,7 @@ class mailing extends defaultClass{
 
 	private function insert(){
 		$this->values['mailing_enviar'] = trim($this->values['mailing_enviar'])!=''?$this->values['mailing_enviar']:'N';
+		$this->values['mailing_disparo_teste'] = trim($this->values['mailing_disparo_teste'])!=''?$this->values['mailing_disparo_teste']:'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
 		$sql[] = "
@@ -153,6 +158,7 @@ class mailing extends defaultClass{
 					mailing_nome = '{$this->values['mailing_nome']}'
 					,mailing_enviar = '{$this->values['mailing_enviar']}'
 					,mailing_email = '{$this->values['mailing_email']}'
+					,mailing_disparo_teste = '{$this->values['mailing_disparo_teste']}'
 		";
 		$result = $this->dbConn->db_execute(implode("\n",$sql));
 		if($result['success']===false){
@@ -179,6 +185,7 @@ class mailing extends defaultClass{
 	}
 	
 	public function disableMail(){
+		/*
 		$this->values['mailing_enviar'] = 'N';
 		$this->dbConn->db_start_transaction();
 		$sql = array();
@@ -195,6 +202,23 @@ class mailing extends defaultClass{
 			$this->dbConn->db_commit();
 		}
 		return $result;
+		 * 
+		 */
+		
+		$this->dbConn->db_start_transaction();
+		$sql = array();
+		$sql[] = "
+				DELETE FROM tb_mailing
+				WHERE mailing_email = '{$this->values['mailing_email']}'
+		";
+		$result = $this->dbConn->db_execute(implode("\n",$sql));
+		if($result['success']===false){
+			$this->dbConn->db_rollback();
+		}else{
+			$this->dbConn->db_commit();
+		}
+		return $result;
+		
 	}
 	
 	
