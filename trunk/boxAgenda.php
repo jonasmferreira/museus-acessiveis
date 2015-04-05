@@ -16,19 +16,19 @@
 			}
 		</style>
 		<div id="diary" style="background:none !important; padding-bottom: 0px;">
-        	<h1 tabIndex="61">Agenda Brasil de Acessibilidade</h1>
-            <p tabIndex="62" class="description">
-				Clique e saiba mais sobreos principais eventosda área de acessibilidade!!!
+			<h1 tabIndex="61">Agenda Brasil de Acessibilidade</h1>
+			<p tabIndex="62" class="description">
+				Clique e saiba mais sobreos principais eventos&nbsp;da área de acessibilidade!!!
 			</p>
 			<div id="calendar">
 				<div id="month-info">
 					<table cellpadding="0" cellspacing="0" width="100%">
 						<tr>
-							<td><a tabIndex="63" href="javascript:void(0);" id="mes_anterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-l"><strong>&lt;&lt;</strong></a></td>
-							<td><a tabIndex="64" href=""><strong><?=$aArrAgenda['mesExtenso']?></strong></a></td>
+							<td><a title="Mês Anterior" tabIndex="63" href="javascript:void(0);" id="mes_anterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-l"><strong>&lt;&lt;</strong></a></td>
+							<td><a title="Mês de <?=$aArrAgenda['mesExtenso']?>" tabIndex="64" href=""><strong><?=$aArrAgenda['mesExtenso']?></strong></a></td>
 							<td><span>|</span></td>
-							<td><a tabIndex="65" href=""><strong><?=$aArrAgenda['ano']?></strong></a></td>
-							<td><a tabIndex="66" href="javascript:void(0);" id="mes_posterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-r"><strong>&gt;&gt;</strong></a></td>
+							<td><a title="Ano de <?=$aArrAgenda['ano']?>" tabIndex="65" href=""><strong><?=$aArrAgenda['ano']?></strong></a></td>
+							<td><a title="Próximo Mês" tabIndex="66" href="javascript:void(0);" id="mes_posterior" mes="<?=$aArrAgenda['mes']?>" ano="<?=$aArrAgenda['ano']?>" class="arrow-r"><strong>&gt;&gt;</strong></a></td>
 						</tr>
 					</table>
 				</div>
@@ -36,21 +36,30 @@
 				   <table id='calendas' cellpadding="0" cellspacing="0" width="100%">
 					   <thead>
 						   <tr>
-							   <td align="center" valign="middle">D</td>
-							   <td align="center" valign="middle">S</td>
-							   <td align="center" valign="middle">T</td>
-							   <td align="center" valign="middle">Q</td>
-							   <td align="center" valign="middle">Q</td>
-							   <td align="center" valign="middle">S</td>
-							   <td align="center" valign="middle">S</td>
+							   <td tabIndex="67" title="Domingo" align="center" valign="middle">D</td>
+							   <td tabIndex="67" title="Segunda" align="center" valign="middle">S</td>
+							   <td tabIndex="67" title="Terça" align="center" valign="middle">T</td>
+							   <td tabIndex="67" title="Quarta" align="center" valign="middle">Q</td>
+							   <td tabIndex="67" title="Quinta" align="center" valign="middle">Q</td>
+							   <td tabIndex="67" title="Sexta" align="center" valign="middle">S</td>
+							   <td tabIndex="67" title="Sábado" align="center" valign="middle">S</td>
 						   </tr>
 					   </thead>
 					   <tbody>
-						   <?	$tabIndex = 67;
+						   <?	$tabIndex = 68;
 							   foreach($aArrAgenda['dias'] AS $row):?>
 						   <tr>
 							   <?	foreach($row AS $dia):?>
-							   <td tabIndex="<?=$tabIndex?>" align="center" valign="middle"><?=$dia?></td>
+									
+								 <?php
+										//encontrando o dia na string
+										$pos = strpos($dia,'>');
+										$msgDia = substr($dia,$pos+1,strlen($dia));
+										$pos = strpos($msgDia,'<');
+										$msgDia = substr($msgDia,0,$pos);
+								 ?>
+								 
+							   <td tabIndex="<?=$tabIndex?>" align="center" valign="middle" title="Dia <?=$msgDia?>"><?=$dia?></td>
 							   <?		$tabIndex++;
 								   endforeach;?>
 						   </tr>
@@ -67,7 +76,7 @@
 		<div id="atento">
 			<h1 tabIndex="102">Fique atento!</h1>
 			<div class="atento-item">
-				<ul>
+				<ul title="Datas importantes do mês">
 			<?php
 				foreach($aFiqueAtento['rows'] as $k => $v){
 ?>
@@ -91,6 +100,8 @@
 			
 		</div>
 		
-		
-		
 <?php } ?>
+
+
+		
+		

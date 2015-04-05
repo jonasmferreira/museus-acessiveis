@@ -35,17 +35,17 @@
 						$sLetra=$v['glossario_letra'];
 						if(trim($sCloseUl)!=''){
 							echo '</ul>';
-							echo '<h3>'.strtoupper($sLetra).'</h3>';
+							echo '<h3 tabIndex="112" title="Letra '.strtoupper($sLetra).'">'.strtoupper($sLetra).'</h3>';
 							echo '<ul class="tag">';
 						}else{
 							$sCloseUl='_';	
-							echo '<h3>'.$sLetra.'</h3>';
+							echo '<h3 tabIndex="112" title="Letra '.strtoupper($sLetra).'">'.$sLetra.'</h3>';
 							echo '<ul class="tag">';
 						}
 					}
 ?>
 				        <li>
-										<a href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>">
+										<a title="Verbete: <?=$v['glossario_palavra'];?>" tabIndex="112" href="<?=$linkAbsolute;?>glossario/<?=$v['glossario_id'];?>/<?=$objGlossario->toNormaliza($v['glossario_palavra']);?>">
 												<?=$v['glossario_palavra'];?>
 										</a>
 								</li>

@@ -46,7 +46,7 @@
 				</ul>
 			</div>
 			<div id="link">
-				<a href="<?=$linkAbsolute;?>depoimento" class="purple-color">
+				<a tabIndex="104" href="<?=$linkAbsolute;?>depoimento" class="purple-color">
 					<b>Ver todos</b>
 				</a>
 			</div>
